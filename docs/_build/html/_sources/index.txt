@@ -3,8 +3,8 @@ pyobis
 
 |docs| |travis| |coverage|
 
-Python client for the `GBIF API
-<http://www.gbif.org/developer/summary>`__.
+Python client for the `OBIS API
+<https://github.com/iobis/api-docs>`__.
 
 `Source on GitHub at sckott/pyobis <https://github.com/sckott/pyobis>`__
 
@@ -23,7 +23,6 @@ Installation
 
 * Taxa - Taxonomic names
 * Occurrences - Occurrence search
-* EEZ - Exclusive economic zones
 
 You can import the entire library, or each module individually as needed.
 
@@ -43,14 +42,6 @@ Occurrence module
     from pyobis import occurrence
     occurrence.name_suggest(q='Puma concolor')
 
-EEZ module
-==========
-
-.. code-block:: python
-
-    from pyobis import eez
-    eez.search(taxonKey = 3329049)
-
 Meta
 ====
 
@@ -58,13 +49,14 @@ Meta
 * Please note that this project is released with a `Contributor Code of Conduct <CONDUCT.md>`__. By participating in this project you agree to abide by its terms.
 
 .. |docs| image:: https://readthedocs.org/projects/pyobis/badge/?version=latest
-   :target: http://pyobis.rtfd.org/
+   :target: http://pyobis.readthedocs.org/en/latest/?badge=latest
 
 .. |travis| image:: https://travis-ci.org/sckott/pyobis.svg
    :target: https://travis-ci.org/sckott/pyobis
 
 .. |coverage| image:: https://coveralls.io/repos/sckott/pyobis/badge.svg?branch=master&service=github
    :target: https://coveralls.io/github/sckott/pyobis?branch=master
+
 
 
 

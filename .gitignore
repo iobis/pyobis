@@ -13,3 +13,5 @@
 
 # Build output
 /build/
+
+.coverage

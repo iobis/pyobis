@@ -130,8 +130,8 @@
             
   <div class="section" id="pyobis">
 <h1>pyobis<a class="headerlink" href="#pyobis" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="http://pyobis.rtfd.org/"><img alt="docs" src="https://readthedocs.org/projects/pyobis/badge/?version=latest" /></a> <a class="reference external" href="https://travis-ci.org/sckott/pyobis"><img alt="travis" src="https://travis-ci.org/sckott/pyobis.svg" /></a> <a class="reference external" href="https://coveralls.io/github/sckott/pyobis?branch=master"><img alt="coverage" src="https://coveralls.io/repos/sckott/pyobis/badge.svg?branch=master&amp;service=github" /></a></p>
-<p>Python client for the <a class="reference external" href="http://www.gbif.org/developer/summary">GBIF API</a>.</p>
+<p><a class="reference external" href="http://pyobis.readthedocs.org/en/latest/?badge=latest"><img alt="docs" src="https://readthedocs.org/projects/pyobis/badge/?version=latest" /></a> <a class="reference external" href="https://travis-ci.org/sckott/pyobis"><img alt="travis" src="https://travis-ci.org/sckott/pyobis.svg" /></a> <a class="reference external" href="https://coveralls.io/github/sckott/pyobis?branch=master"><img alt="coverage" src="https://coveralls.io/repos/sckott/pyobis/badge.svg?branch=master&amp;service=github" /></a></p>
+<p>Python client for the <a class="reference external" href="https://github.com/iobis/api-docs">OBIS API</a>.</p>
 <p><a class="reference external" href="https://github.com/sckott/pyobis">Source on GitHub at sckott/pyobis</a></p>
 <p>Other OBIS clients:</p>
 <ul class="simple">
@@ -147,7 +147,6 @@
 <ul class="simple">
 <li>Taxa - Taxonomic names</li>
 <li>Occurrences - Occurrence search</li>
-<li>EEZ - Exclusive economic zones</li>
 </ul>
 <p>You can import the entire library, or each module individually as needed.</p>
 </div>
@@ -162,13 +161,6 @@
 <h1>Occurrence module<a class="headerlink" href="#occurrence-module" title="Permalink to this headline">¶</a></h1>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">occurrence</span>
 <span class="n">occurrence</span><span class="o">.</span><span class="n">name_suggest</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="s">&#39;Puma concolor&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="eez-module">
-<h1>EEZ module<a class="headerlink" href="#eez-module" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">eez</span>
-<span class="n">eez</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">taxonKey</span> <span class="o">=</span> <span class="mi">3329049</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
