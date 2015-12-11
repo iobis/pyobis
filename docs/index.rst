@@ -1,7 +1,7 @@
 pyobis
 ======
 
-|pypi| |docs| |travis| |coverage|
+|docs| |travis| |coverage|
 
 Python client for the `GBIF API
 <http://www.gbif.org/developer/summary>`__.
@@ -56,9 +56,6 @@ Meta
 
 * License: MIT, see `LICENSE file <LICENSE>`__
 * Please note that this project is released with a `Contributor Code of Conduct <CONDUCT.md>`__. By participating in this project you agree to abide by its terms.
-
-.. |pypi| image:: https://img.shields.io/pypi/v/pyobis.svg
-   :target: https://pypi.python.org/pypi/pyobis
 
 .. |docs| image:: https://readthedocs.org/projects/pyobis/badge/?version=latest
    :target: http://pyobis.rtfd.org/
