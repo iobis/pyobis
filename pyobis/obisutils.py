@@ -16,7 +16,7 @@ def obis_GET(url, args, **kwargs):
   return out.json()
 
 def stopifnot(x):
-  if x != 'application/json':
+  if x != 'application/json;charset=UTF-8':
     raise NoResultException("content-type did not = application/json")
 
 def stop(x):

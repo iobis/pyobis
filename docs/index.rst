@@ -75,8 +75,7 @@ Contents
    :maxdepth: 2
 
    occurrences
-   taxa
-   eez
+   taxon
    changelog_link
 
 License

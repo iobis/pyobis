@@ -1,65 +1,55 @@
-Python GBIF Client
-===========================
+pyobis
+======
 
-|pypi| |docs| |travis| |coverage|
+|docs| |travis| |coverage|
 
 Python client for the `GBIF API
 <http://www.gbif.org/developer/summary>`__.
 
-`Source on GitHub at sckott/pygbif <https://github.com/sckott/pygbif>`__
+`Source on GitHub at sckott/pyobis <https://github.com/sckott/pyobis>`__
 
-`pygbif` is split up into modules for each of the major groups of API methods.
+Other OBIS clients:
 
-* Registry - Datasets, Nodes, Installations, Networks, Organizations - `Registry API Docs`_
-* Species - Taxonomic names - `Species API Docs`_
-* Occurrences - Occurrence data, including the download API - `Occurrences API Docs`_
-
-Note that GBIF maps API_ is not included in `pygbif`.
-
-.. _API: http://www.gbif.org/developer/maps
-
-Other GBIF clients:
-
-* R: rgbif_
-
-.. _rgbif: https://github.com/ropensci/rgbif
-.. _Registry API Docs: http://www.gbif.org/developer/registry
-.. _Species API Docs: http://www.gbif.org/developer/species
-.. _Occurrences API Docs: http://www.gbif.org/developer/occurrences
+* R: `obisclient`, `iobis/obisclient <https://github.com/iobis/obisclient>`__
 
 Installation
--------------
+============
 
-::
+.. code-block:: console
 
-    pip install pygbif
+    [sudo] pip install git+git://github.com/sckott/pyobis.git#egg=pyobis
 
+`pyobis` is split up into modules for each of the major groups of API methods.
 
-Registry module
-===============
+* Taxa - Taxonomic names
+* Occurrences - Occurrence search
+* EEZ - Exclusive economic zones
 
-.. code-block:: python
+You can import the entire library, or each module individually as needed.
 
-    from pygbif import registry
-    registry.dataset_metrics(uuid='3f8a1297-3259-4700-91fc-acc4170b27ce')
-
-Species module
-===============
-
-.. code-block:: python
-
-    from pygbif import species
-    species.name_suggest(q='Puma concolor')
-
-Occurrences module
-==================
+Taxa module
+===========
 
 .. code-block:: python
 
-    from pygbif import occurrences
-    occurrences.search(taxonKey = 3329049)
-    occurrences.get(taxonKey = 252408386)
-    occurrences.count(isGeoreferenced = True)
+    from pyobis import taxa
+    taxa.dataset_metrics(uuid='3f8a1297-3259-4700-91fc-acc4170b27ce')
+
+Occurrence module
+=================
+
+.. code-block:: python
+
+    from pyobis import occurrence
+    occurrence.name_suggest(q='Puma concolor')
+
+EEZ module
+==========
+
+.. code-block:: python
+
+    from pyobis import eez
+    eez.search(taxonKey = 3329049)
 
 Meta
 ====
@@ -67,17 +57,15 @@ Meta
 * License: MIT, see `LICENSE file <LICENSE>`__
 * Please note that this project is released with a `Contributor Code of Conduct <CONDUCT.md>`__. By participating in this project you agree to abide by its terms.
 
-.. |pypi| image:: https://img.shields.io/pypi/v/habanero.svg
-   :target: https://pypi.python.org/pypi/habanero
+.. |docs| image:: https://readthedocs.org/projects/pyobis/badge/?version=latest
+   :target: http://pyobis.rtfd.org/
 
-.. |docs| image:: https://readthedocs.org/projects/pygbif/badge/?version=latest
-   :target: http://pygbif.rtfd.org/
+.. |travis| image:: https://travis-ci.org/sckott/pyobis.svg
+   :target: https://travis-ci.org/sckott/pyobis
 
-.. |travis| image:: https://travis-ci.org/sckott/pygbif.svg
-   :target: https://travis-ci.org/sckott/pygbif
+.. |coverage| image:: https://coveralls.io/repos/sckott/pyobis/badge.svg?branch=master&service=github
+   :target: https://coveralls.io/github/sckott/pyobis?branch=master
 
-.. |coverage| image:: https://coveralls.io/repos/sckott/pygbif/badge.svg?branch=master&service=github
-   :target: https://coveralls.io/github/sckott/pygbif?branch=master
 
 
 Contents
@@ -87,8 +75,7 @@ Contents
    :maxdepth: 2
 
    occurrences
-   registry
-   species
+   taxon
    changelog_link
 
 License

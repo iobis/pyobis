@@ -3,16 +3,6 @@
 occurrences module
 ==================
 
-.. py:module:: pygbif
+.. py:module:: pyobis
 
 .. automethod:: occurrences.search
-.. automethod:: occurrences.get
-.. automethod:: occurrences.get_verbatim
-.. automethod:: occurrences.get_fragment
-.. automethod:: occurrences.count
-.. automethod:: occurrences.count_basisofrecord
-.. automethod:: occurrences.count_year
-.. automethod:: occurrences.count_datasets
-.. automethod:: occurrences.count_countries
-.. automethod:: occurrences.count_schema
-.. automethod:: occurrences.count_publishingcountries

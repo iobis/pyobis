@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-from .occurrences import occurrences
+from .occurrences import search

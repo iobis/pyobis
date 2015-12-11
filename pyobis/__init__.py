@@ -41,7 +41,5 @@ __title__ = 'pyobis'
 __author__ = 'Scott Chamberlain'
 __license__ = 'MIT'
 
-from .occurrences import search, get, count
-from .species import names
-from .registry import datasets, nodes
-from .gbifissues import occ_issues_lookup
+from .occurrences import search
+from .taxon import search
