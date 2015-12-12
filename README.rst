@@ -31,16 +31,22 @@ Taxa module
 
 .. code-block:: python
 
-		from pyobis import taxa
-		taxa.dataset_metrics(uuid='3f8a1297-3259-4700-91fc-acc4170b27ce')
+		from pyobis import taxon
+		taxon.search(scientificname = 'Mola mola')
+		taxon.search(scientificname = 'Mola mola', offset=10, limit=10)
+    taxon.search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit=20)
+    taxon.search(aphiaid=key, year="2013", limit=20)
 
 Occurrence module
 =================
 
 .. code-block:: python
 
-		from pyobis import occurrence
-		occurrence.name_suggest(q='Puma concolor')
+		from pyobis import occurrences
+		occurrences.search(scientificname = 'Mola mola')
+		occurrences.search(scientificname = 'Mola mola', offset=0, limit=10)
+    occurrences.search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit=20)
+    occurrences.search(aphiaid=key, year="2013", limit=20)
 
 Meta
 ====
