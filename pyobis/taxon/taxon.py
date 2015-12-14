@@ -60,3 +60,22 @@ def search(scientificname=None, aphiaid=None, obisid=None, resourceid=None,
         'enddepth': enddepth, 'geometry': geometry, 'year': year,
         'fields': fields, 'limit': limit, 'offset': offset}, **kwargs)
     return out
+
+def taxon(id=None, **kwargs):
+    '''
+    Get taxon by ID
+
+    :param id: [Fixnum] An OBIS taxon identifier
+    :return: A dictionary, of results
+
+    Usage::
+
+        from pyobis import taxon
+        taxon.taxon(545439)
+        taxon.taxon(402913)
+        taxon.taxon(406296)
+        taxon.taxon(415282)
+    '''
+    url = obis_baseurl + 'taxon/' + str(id)
+    out = obis_GET(url, {}, **kwargs)
+    return out

@@ -36,6 +36,8 @@ Taxa module
     taxon.search(scientificname = 'Mola mola', offset=10, limit=10)
     taxon.search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit=20)
     taxon.search(aphiaid=key, year="2013", limit=20)
+    taxon.taxon(406296)
+    taxon.taxon(415282)
 
 Occurrence module
 =================
