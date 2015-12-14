@@ -7,4 +7,4 @@ def test_search():
     res = taxon.search(scientificname = 'Mola mola')
     assert 'dict' == res.__class__.__name__
     assert 5 == len(res)
-    assert [u'count', u'lastpage', u'limit', u'results', u'offset'] == res.keys()
+    assert list == list(res.keys()).__class__
