@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.0.5.9000 (2016-05-12)
+0.0.6.9000 (2016-05-12)
 -----------------------
 - Updated modules with missing methods
 - Added modules: groups, resources
