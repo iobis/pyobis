@@ -1,5 +1,7 @@
 import requests
 
+obis_baseurl = "http://api.iobis.org/"
+
 class NoResultException(Exception):
     pass
 
@@ -22,4 +24,12 @@ def stopifnot(x):
 def stop(x):
   raise ValueError(x)
 
-obis_baseurl = "http://api.iobis.org/"
+def handle_arrstr(x):
+  if x.__class__.__name__ == 'NoneType':
+    pass
+  else:
+    if x.__class__.__name__ == 'str':
+      return x
+    else:
+      return ','.join(x)
+

@@ -17,6 +17,8 @@ import pyobis
 from pyobis import occurrence
 ## taxa
 from pyobis import taxa
+## taxon
+from pyobis import taxon
 ## eez
 from pyobis import eez
 
@@ -36,10 +38,12 @@ from pyobis import occurrence
 occurrence.search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit=20)
 '''
 
-__version__ = '0.0.2.9000'
+__version__ = '0.0.5.9000'
 __title__ = 'pyobis'
 __author__ = 'Scott Chamberlain'
 __license__ = 'MIT'
 
 from .occurrences import search
-from .taxon import search
+from .taxa import search, taxon, common, taxon_search
+from .groups import group
+from .resources import search, resource, citation

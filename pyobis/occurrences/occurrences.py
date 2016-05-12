@@ -7,30 +7,33 @@ def search(scientificname=None, aphiaid=None, obisid=None, resourceid=None,
     Search OBIS occurrences
 
     :param aphiaid: [Fixnum] A obis occurrence identifier
-    :param scientificname: A scientific name from the obis backbone. All included and synonym taxa are included in the search.
-    :param year: The 4 digit year. A year of 98 will be interpreted as AD 98. Supports range queries,
+    :param scientificname: [String,Array] One or more scientific names from the OBIS backbone. All included and
+       synonym taxa are included in the search.
+    :param year: [Fixnum] The 4 digit year. A year of 98 will be interpreted as AD 98. Supports range queries,
        smaller,larger (e.g., '1990,1991', whereas '1991,1990' wouldn't work)
-    :param geometry: Searches for occurren
-       Text (WKT) format. A WKT shape written as either POINT, LINESTRING, LINEARRING
-       or POLYGON. Example of a polygon: ((30.1 10.1, 20, 20 40, 40 40, 30.1 10.1)) would be queried as http://bit.ly/1BzNwDq}.
-    :param obisid: (integer) An OBIS id
-    :param aphiaid: (integer) An Aphia id
-    :param resourceid: (integer) An resource id
-    :param startdate: (integer) Start date
-    :param enddate: (logical) End date
-    :param startdepth: (integer) Start depth
-    :param enddepth: (logical) End depth
-    :param qc: (character) Quality control flags
+    :param geometry: [String] Well Known Text (WKT). A WKT shape written as either POINT, LINESTRING, LINEARRING
+       or POLYGON. Example of a polygon: ((30.1 10.1, 20, 20 40, 40 40, 30.1 10.1)) would be queried as http://bit.ly/1BzNwDq
+    :param obisid: [Fixnum] An OBIS id. This is listed as the `id` or `valid_id` in `taxa`/`taxon` results
+    :param aphiaid: [Fixnum] An Aphia id. This is listed as the `worms_id` in `taxa`/`taxon` results
+    :param resourceid: [Fixnum] An resource id
+    :param startdate: [Fixnum] Start date
+    :param enddate: [Boolean] End date
+    :param startdepth: [Fixnum] Start depth
+    :param enddepth: [Boolean] End depth
+    :param qc: [String] Quality control flags
     :param fields: [Array] Array of field names
     :param limit: [Fixnum] Number of results to return. Default: 1000
     :param offset: [Fixnum] Start at record. Default: 0
 
-    :return: A dictionary, of results
+    :return: A dictionary
 
     Usage::
 
         from pyobis import occurrences
         occurrences.search(scientificname = 'Mola mola')
+
+        # Many names
+        occurrences.search(scientificname = ['Mola', 'Abra', 'Lanice', 'Pectinaria'])
 
         # Use paging parameters (limit and start) to page. Note the different results
         # for the two queries below.
@@ -41,20 +44,15 @@ def search(scientificname=None, aphiaid=None, obisid=None, resourceid=None,
         ## in well known text format
         occurrences.search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit=20)
         from pyobis import taxa
-        key = taxa.search(query='Mola mola')[0]['key']
-        occurrences.search(aphiaid=key, geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit=20)
+        res = taxa.search(scientificname='Mola mola')['results'][0]
+        occurrences.search(obisid=res['id'], geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit=20)
+        occurrences.search(aphiaid=res['worms_id'], geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit=20)
 
         # Get occurrences for a particular eventDate
-        occurrences.search(aphiaid=key, year="2013", limit=20)
-
-        # Query based on quality control flags
-        occurrences.search(aphiaid=1, issue='DEPTH_UNLIKELY')
-        occurrences.search(aphiaid=1, issue=['DEPTH_UNLIKELY','COORDINATE_ROUNDED'])
-        # Show all records in the Arizona State Lichen Collection that cant be matched to the obis
-        # backbone properly:
-        occurrences.search(datasetKey='84c0e1a0-f762-11e1-a439-00145eb45e9a', issue=['TAXON_MATCH_NONE','TAXON_MATCH_HIGHERRANK'])
+        occurrences.search(aphiaid=res['worms_id'], year="2013", limit=20)
     '''
     url = obis_baseurl + 'occurrence'
+    scientificname = handle_arrstr(scientificname)
     out = obis_GET(url, {'aphiaid': aphiaid, 'obisid': obisid,
         'resourceid': resourceid, 'scientificname': scientificname,
         'startdate': startdate, 'enddate': enddate, 'startdepth': startdepth,

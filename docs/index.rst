@@ -73,7 +73,9 @@ Contents
    :maxdepth: 2
 
    occurrences
-   taxon
+   taxa
+   groups
+   resources
    changelog_link
 
 License

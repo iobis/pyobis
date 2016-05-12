@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Python Module Index &mdash; pyobis 0.0.5.9000 documentation</title>
+  <title>groups module &mdash; pyobis 0.0.5.9000 documentation</title>
   
 
   
@@ -31,13 +31,8 @@
 
   
     <link rel="top" title="pyobis 0.0.5.9000 documentation" href="index.html"/>
- 
-
-    <script type="text/javascript">
-      DOCUMENTATION_OPTIONS.COLLAPSE_INDEX = true;
-    </script>
-
-
+        <link rel="next" title="resources module" href="resources.html"/>
+        <link rel="prev" title="taxa module" href="taxa.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -86,10 +81,10 @@
           
             
             
-                <ul>
+                <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="occurrences.html">occurrences module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="taxa.html">taxa module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="groups.html">groups module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">groups module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="resources.html">resources module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog_link.html">Changelog</a></li>
 </ul>
@@ -122,9 +117,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li></li>
+    <li>groups module</li>
       <li class="wy-breadcrumbs-aside">
         
+          
+            <a href="_sources/groups.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -134,28 +131,51 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
+  <div class="section" id="module-pyobis">
+<span id="groups-module"></span><span id="groups"></span><h1>groups module<a class="headerlink" href="#module-pyobis" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="pyobis.groups.group">
+<code class="descclassname">groups.</code><code class="descname">group</code><span class="sig-paren">(</span><em>limit=100</em>, <em>offset=0</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyobis.groups.group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get OBIS groups</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>limit</strong> &#8211; [Fixnum] Number of results to return. Default: 1000</li>
+<li><strong>offset</strong> &#8211; [Fixnum] Start at record. Default: 0</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A dictionary</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">groups</span>
+<span class="n">groups</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
+<span class="n">groups</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="n">limit</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">groups</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="n">limit</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">offset</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
 
-   <h1>Python Module Index</h1>
-
-   <div class="modindex-jumpbox">
-   <a href="#cap-p"><strong>p</strong></a>
-   </div>
-
-   <table class="indextable modindextable" cellspacing="0" cellpadding="2">
-     <tr class="pcap"><td></td><td>&nbsp;</td><td></td></tr>
-     <tr class="cap" id="cap-p"><td></td><td>
-       <strong>p</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="taxa.html#module-pyobis"><code class="xref">pyobis</code></a></td><td>
-       <em></em></td></tr>
-   </table>
+</div>
 
 
            </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="resources.html" class="btn btn-neutral float-right" title="resources module" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="taxa.html" class="btn btn-neutral" title="taxa module" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
