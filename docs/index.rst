@@ -31,13 +31,13 @@ Taxa module
 
 .. code-block:: python
 
-    from pyobis import taxon
-    taxon.search(scientificname = 'Mola mola')
-    taxon.search(scientificname = 'Mola mola', offset=10, limit=10)
-    taxon.search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit=20)
-    taxon.search(aphiaid=key, year="2013", limit=20)
-    taxon.taxon(406296)
-    taxon.taxon(415282)
+    from pyobis import taxa
+    taxa.search(scientificname = 'Mola mola')
+    taxa.search(scientificname = 'Mola mola', offset=10, limit=10)
+    taxa.search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit=20)
+    taxa.search(aphiaid=key, year="2013", limit=20)
+    taxa.taxon(406296)
+    taxa.taxon(415282)
 
 Occurrence module
 =================

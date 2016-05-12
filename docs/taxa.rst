@@ -5,5 +5,10 @@ taxa module
 
 .. py:module:: pyobis
 
-.. automodule:: taxa
-   :members:
+.. automethod:: taxa.search
+
+.. automethod:: taxa.taxon
+
+.. automethod:: taxa.common
+
+.. automethod:: taxa.taxon_search

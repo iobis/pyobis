@@ -5,5 +5,8 @@ resources module
 
 .. py:module:: pyobis
 
-.. automodule:: resources
-   :members:
+.. automethod:: resources.search
+
+.. automethod:: resources.resource
+
+.. automethod:: resources.citation

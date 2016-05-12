@@ -133,6 +133,135 @@
             
   <div class="section" id="module-pyobis">
 <span id="taxa-module"></span><span id="taxa"></span><h1>taxa module<a class="headerlink" href="#module-pyobis" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="pyobis.taxa.search">
+<code class="descclassname">taxa.</code><code class="descname">search</code><span class="sig-paren">(</span><em>scientificname=None</em>, <em>aphiaid=None</em>, <em>obisid=None</em>, <em>resourceid=None</em>, <em>startdate=None</em>, <em>enddate=None</em>, <em>startdepth=None</em>, <em>enddepth=None</em>, <em>geometry=None</em>, <em>year=None</em>, <em>fields=None</em>, <em>limit=500</em>, <em>offset=0</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyobis.taxa.search" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search OBIS taxa</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>aphiaid</strong> &#8211; [Fixnum] A obis occurrence identifier</li>
+<li><strong>scientificname</strong> &#8211; [String,Array] One or more scientific names from the OBIS backbone.  All included and synonym taxa
+are included in the search.</li>
+<li><strong>year</strong> &#8211; [Fixnum] The 4 digit year. A year of 98 will be interpreted as AD 98. Supports range queries,
+smaller,larger (e.g., &#8216;1990,1991&#8217;, whereas &#8216;1991,1990&#8217; wouldn&#8217;t work)</li>
+<li><strong>geometry</strong> &#8211; [String] Well Known Text (WKT). A WKT shape written as either POINT, LINESTRING, LINEARRING
+or POLYGON. Example of a polygon: ((30.1 10.1, 20, 20 40, 40 40, 30.1 10.1)) would be queried as <a class="reference external" href="http://bit.ly/1BzNwDq">http://bit.ly/1BzNwDq</a>}.</li>
+<li><strong>obisid</strong> &#8211; [Fixnum] An OBIS id. This is listed as the <cite>id</cite> or <cite>valid_id</cite> in <cite>taxa</cite>/<cite>taxon</cite> results</li>
+<li><strong>aphiaid</strong> &#8211; [Fixnum] An Aphia id. This is listed as the <cite>worms_id</cite> in <cite>taxa</cite>/<cite>taxon</cite> results</li>
+<li><strong>resourceid</strong> &#8211; [Fixnum] An resource id</li>
+<li><strong>startdate</strong> &#8211; [Fixnum] Start date</li>
+<li><strong>enddate</strong> &#8211; [Boolean] End date</li>
+<li><strong>startdepth</strong> &#8211; [Fixnum] Start depth</li>
+<li><strong>enddepth</strong> &#8211; [Booean] End depth</li>
+<li><strong>fields</strong> &#8211; [Array] Array of field names</li>
+<li><strong>limit</strong> &#8211; [Fixnum] Number of results to return. Default: 1000</li>
+<li><strong>offset</strong> &#8211; [Fixnum] Start at record. Default: 0</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A dictionary</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">taxa</span>
+<span class="n">taxa</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">)</span>
+
+<span class="c1"># Use paging parameters (limit and start) to page. Note the different results</span>
+<span class="c1"># for the two queries below.</span>
+<span class="n">taxa</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">taxa</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Search on a bounding box</span>
+<span class="c1">## in well known text format</span>
+<span class="n">taxa</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">geometry</span><span class="o">=</span><span class="s1">&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">taxa</span>
+<span class="n">key</span> <span class="o">=</span> <span class="n">taxa</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="s1">&#39;Mola mola&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;key&#39;</span><span class="p">]</span>
+<span class="n">taxa</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">aphiaid</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">geometry</span><span class="o">=</span><span class="s1">&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="c1"># Get taxon for a particular eventDate</span>
+<span class="n">taxa</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">aphiaid</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">year</span><span class="o">=</span><span class="s2">&quot;2013&quot;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyobis.taxa.taxon">
+<code class="descclassname">taxa.</code><code class="descname">taxon</code><span class="sig-paren">(</span><em>id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyobis.taxa.taxon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get taxon by ID</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>id</strong> &#8211; [Fixnum] An OBIS taxon identifier</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A dictionary</td>
+</tr>
+</tbody>
+</table>
+<p>Usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">taxa</span>
+<span class="n">taxa</span><span class="o">.</span><span class="n">taxon</span><span class="p">(</span><span class="mi">545439</span><span class="p">)</span>
+<span class="n">taxa</span><span class="o">.</span><span class="n">taxon</span><span class="p">(</span><span class="mi">402913</span><span class="p">)</span>
+<span class="n">taxa</span><span class="o">.</span><span class="n">taxon</span><span class="p">(</span><span class="mi">406296</span><span class="p">)</span>
+<span class="n">taxa</span><span class="o">.</span><span class="n">taxon</span><span class="p">(</span><span class="mi">415282</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyobis.taxa.common">
+<code class="descclassname">taxa.</code><code class="descname">common</code><span class="sig-paren">(</span><em>id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyobis.taxa.common" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get common names for a taxon by ID</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>id</strong> &#8211; [Fixnum] An OBIS taxon identifier. Required</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A dictionary</td>
+</tr>
+</tbody>
+</table>
+<p>Usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">taxa</span>
+<span class="c1"># have common names</span>
+<span class="n">taxa</span><span class="o">.</span><span class="n">common</span><span class="p">(</span><span class="mi">402913</span><span class="p">)</span>
+<span class="n">taxa</span><span class="o">.</span><span class="n">common</span><span class="p">(</span><span class="mi">406296</span><span class="p">)</span>
+<span class="c1"># no common names</span>
+<span class="n">taxa</span><span class="o">.</span><span class="n">common</span><span class="p">(</span><span class="mi">415282</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyobis.taxa.taxon_search">
+<code class="descclassname">taxa.</code><code class="descname">taxon_search</code><span class="sig-paren">(</span><em>scientificname=None</em>, <em>aphiaid=None</em>, <em>obisid=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyobis.taxa.taxon_search" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get taxon by ID</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>id</strong> &#8211; [Fixnum] An OBIS taxon identifier</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A dictionary</td>
+</tr>
+</tbody>
+</table>
+<p>Usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">taxa</span>
+<span class="n">taxa</span><span class="o">.</span><span class="n">taxon_search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">)</span>
+<span class="n">taxa</span><span class="o">.</span><span class="n">taxon_search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola&#39;</span><span class="p">)</span>
+<span class="n">taxa</span><span class="o">.</span><span class="n">taxon_search</span><span class="p">(</span><span class="n">aphiaid</span> <span class="o">=</span> <span class="mi">127405</span><span class="p">)</span>
+<span class="n">taxa</span><span class="o">.</span><span class="n">taxon_search</span><span class="p">(</span><span class="n">obisid</span> <span class="o">=</span> <span class="mi">472375</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
 </div>
 
 

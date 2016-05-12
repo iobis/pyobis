@@ -133,6 +133,133 @@
             
   <div class="section" id="module-pyobis">
 <span id="resources-module"></span><span id="resources"></span><h1>resources module<a class="headerlink" href="#module-pyobis" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="pyobis.resources.search">
+<code class="descclassname">resources.</code><code class="descname">search</code><span class="sig-paren">(</span><em>scientificname=None</em>, <em>aphiaid=None</em>, <em>obisid=None</em>, <em>startdate=None</em>, <em>enddate=None</em>, <em>startdepth=None</em>, <em>enddepth=None</em>, <em>geometry=None</em>, <em>year=None</em>, <em>limit=500</em>, <em>offset=0</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyobis.resources.search" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search OBIS resources</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>aphiaid</strong> &#8211; [Fixnum] A obis occurrence identifier</li>
+<li><strong>scientificname</strong> &#8211; [String,Array] One or more scientific names from the OBIS backbone. All included and
+synonym taxa are included in the search.</li>
+<li><strong>year</strong> &#8211; [Fixnum] The 4 digit year. A year of 98 will be interpreted as AD 98. Supports range queries,
+smaller,larger (e.g., &#8216;1990,1991&#8217;, whereas &#8216;1991,1990&#8217; wouldn&#8217;t work)</li>
+<li><strong>geometry</strong> &#8211; [String] Well Known Text (WKT). A WKT shape written as either POINT, LINESTRING, LINEARRING
+or POLYGON. Example of a polygon: ((30.1 10.1, 20, 20 40, 40 40, 30.1 10.1)) would be queried as <a class="reference external" href="http://bit.ly/1BzNwDq">http://bit.ly/1BzNwDq</a></li>
+<li><strong>obisid</strong> &#8211; [Fixnum] An OBIS id. This is listed as the <cite>id</cite> or <cite>valid_id</cite> in <cite>taxa</cite>/<cite>taxon</cite> results</li>
+<li><strong>aphiaid</strong> &#8211; [Fixnum] An Aphia id. This is listed as the <cite>worms_id</cite> in <cite>taxa</cite>/<cite>taxon</cite> results</li>
+<li><strong>startdate</strong> &#8211; [Fixnum] Start date</li>
+<li><strong>enddate</strong> &#8211; [Boolean] End date</li>
+<li><strong>startdepth</strong> &#8211; [Fixnum] Start depth</li>
+<li><strong>enddepth</strong> &#8211; [Boolean] End depth</li>
+<li><strong>limit</strong> &#8211; [Fixnum] Number of results to return. Default: 1000</li>
+<li><strong>offset</strong> &#8211; [Fixnum] Start at record. Default: 0</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A dictionary</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">resources</span>
+<span class="n">resources</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">)</span>
+
+<span class="c1"># Many names</span>
+<span class="n">resources</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Mola&#39;</span><span class="p">,</span> <span class="s1">&#39;Abra&#39;</span><span class="p">,</span> <span class="s1">&#39;Lanice&#39;</span><span class="p">,</span> <span class="s1">&#39;Pectinaria&#39;</span><span class="p">])</span>
+
+<span class="c1"># Use paging parameters (limit and start) to page. Note the different results</span>
+<span class="c1"># for the two queries below.</span>
+<span class="n">resources</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">resources</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Search on a bounding box</span>
+<span class="c1">## in well known text format</span>
+<span class="n">resources</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">geometry</span><span class="o">=</span><span class="s1">&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">taxa</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">taxa</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="s1">&#39;Mola mola&#39;</span><span class="p">)[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">resources</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">obisid</span><span class="o">=</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span> <span class="n">geometry</span><span class="o">=</span><span class="s1">&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">resources</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">aphiaid</span><span class="o">=</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;worms_id&#39;</span><span class="p">],</span> <span class="n">geometry</span><span class="o">=</span><span class="s1">&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="c1"># Get resources for a particular eventDate</span>
+<span class="n">resources</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">aphiaid</span><span class="o">=</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;worms_id&#39;</span><span class="p">],</span> <span class="n">year</span><span class="o">=</span><span class="s2">&quot;2013&quot;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyobis.resources.resource">
+<code class="descclassname">resources.</code><code class="descname">resource</code><span class="sig-paren">(</span><em>id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyobis.resources.resource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get resource by ID</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>id</strong> &#8211; [Fixnum] An OBIS resource identifier</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A dictionary</td>
+</tr>
+</tbody>
+</table>
+<p>Usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">resources</span>
+<span class="n">resources</span><span class="o">.</span><span class="n">resource</span><span class="p">(</span><span class="mi">103</span><span class="p">)</span>
+<span class="n">resources</span><span class="o">.</span><span class="n">resource</span><span class="p">(</span><span class="mi">2126</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyobis.resources.citation">
+<code class="descclassname">resources.</code><code class="descname">citation</code><span class="sig-paren">(</span><em>scientificname=None</em>, <em>aphiaid=None</em>, <em>obisid=None</em>, <em>startdate=None</em>, <em>enddate=None</em>, <em>startdepth=None</em>, <em>enddepth=None</em>, <em>geometry=None</em>, <em>year=None</em>, <em>limit=500</em>, <em>offset=0</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyobis.resources.citation" title="Permalink to this definition">¶</a></dt>
+<dd><p>List dataset citations</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>aphiaid</strong> &#8211; [Fixnum] A obis occurrence identifier</li>
+<li><strong>scientificname</strong> &#8211; [String,Array] One or more scientific names from the OBIS backbone. All included and
+synonym taxa are included in the search.</li>
+<li><strong>year</strong> &#8211; [Fixnum] The 4 digit year. A year of 98 will be interpreted as AD 98. Supports range queries,
+smaller,larger (e.g., &#8216;1990,1991&#8217;, whereas &#8216;1991,1990&#8217; wouldn&#8217;t work)</li>
+<li><strong>geometry</strong> &#8211; [String] Well Known Text (WKT). A WKT shape written as either POINT, LINESTRING, LINEARRING
+or POLYGON. Example of a polygon: ((30.1 10.1, 20, 20 40, 40 40, 30.1 10.1)) would be queried as <a class="reference external" href="http://bit.ly/1BzNwDq">http://bit.ly/1BzNwDq</a></li>
+<li><strong>obisid</strong> &#8211; [Fixnum] An OBIS id. This is listed as the <cite>id</cite> or <cite>valid_id</cite> in <cite>taxa</cite>/<cite>taxon</cite> results</li>
+<li><strong>aphiaid</strong> &#8211; [Fixnum] An Aphia id. This is listed as the <cite>worms_id</cite> in <cite>taxa</cite>/<cite>taxon</cite> results</li>
+<li><strong>startdate</strong> &#8211; [Fixnum] Start date</li>
+<li><strong>enddate</strong> &#8211; [Boolean] End date</li>
+<li><strong>startdepth</strong> &#8211; [Fixnum] Start depth</li>
+<li><strong>enddepth</strong> &#8211; [Boolean] End depth</li>
+<li><strong>limit</strong> &#8211; [Fixnum] Number of results to return. Default: 1000</li>
+<li><strong>offset</strong> &#8211; [Fixnum] Start at record. Default: 0</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A dictionary</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">resources</span>
+<span class="n">resources</span><span class="o">.</span><span class="n">citation</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">)</span>
+
+<span class="c1"># Many names</span>
+<span class="n">resources</span><span class="o">.</span><span class="n">citation</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Mola&#39;</span><span class="p">,</span> <span class="s1">&#39;Abra&#39;</span><span class="p">,</span> <span class="s1">&#39;Lanice&#39;</span><span class="p">,</span> <span class="s1">&#39;Pectinaria&#39;</span><span class="p">])</span>
+
+<span class="c1"># Use paging parameters (limit and start) to page. Note the different results</span>
+<span class="c1"># for the two queries below.</span>
+<span class="n">resources</span><span class="o">.</span><span class="n">citation</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">resources</span><span class="o">.</span><span class="n">citation</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
 </div>
 
 
