@@ -52,6 +52,25 @@ Occurrence module
     occurrences.search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit=20)
     occurrences.search(aphiaid=key, year="2013", limit=20)
 
+Resources module
+================
+
+.. code-block:: python
+
+    from pyobis import resources
+    resources.search(scientificname = ['Mola', 'Abra', 'Lanice', 'Pectinaria'])
+    resources.resource(103)
+    resources.citation(scientificname = 'Mola mola')
+
+Groups module
+=============
+
+.. code-block:: python
+
+    from pyobis import groups
+    groups.group()
+    groups.group(limit = 3)
+
 Meta
 ====
 
@@ -66,6 +85,7 @@ Meta
 
 .. |coverage| image:: https://coveralls.io/repos/sckott/pyobis/badge.svg?branch=master&service=github
    :target: https://coveralls.io/github/sckott/pyobis?branch=master
+
 
 
 Contents
