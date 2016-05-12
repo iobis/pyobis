@@ -21,8 +21,10 @@ Installation
 
 `pyobis` is split up into modules for each of the major groups of API methods.
 
-* Taxa - Taxonomic names
-* Occurrences - Occurrence search
+* taxa - Taxonomic names
+* occurrences - Occurrence search
+* resources - Resources
+* groups - Groups
 
 You can import the entire library, or each module individually as needed.
 
