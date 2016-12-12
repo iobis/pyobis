@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>occurrences module &mdash; pyobis 0.0.6.9000 documentation</title>
+  <title>occurrences module &mdash; pyobis 0.0.8.9000 documentation</title>
   
 
   
@@ -30,7 +30,10 @@
   
 
   
-    <link rel="top" title="pyobis 0.0.6.9000 documentation" href="index.html"/>
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="pyobis 0.0.8.9000 documentation" href="index.html"/>
         <link rel="next" title="taxa module" href="taxa.html"/>
         <link rel="prev" title="pyobis" href="index.html"/> 
 
@@ -60,7 +63,7 @@
             
             
               <div class="version">
-                0.0.6.9000
+                0.0.8.9000
               </div>
             
           
@@ -82,7 +85,7 @@
             
             
                 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">occurrences module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">occurrences module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="taxa.html">taxa module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="groups.html">groups module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="resources.html">resources module</a></li>
@@ -109,7 +112,7 @@
         <div class="rst-content">
           
 
-
+ 
 
 
 
@@ -169,27 +172,27 @@ or POLYGON. Example of a polygon: ((30.1 10.1, 20, 20 40, 40 40, 30.1 10.1)) wou
 </tbody>
 </table>
 <p>Usage:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">occurrences</span>
-<span class="n">occurrences</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis</span> <span class="k">import</span> <span class="n">occurrences</span> <span class="k">as</span> <span class="n">occ</span>
+<span class="n">occ</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">)</span>
 
 <span class="c1"># Many names</span>
-<span class="n">occurrences</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Mola&#39;</span><span class="p">,</span> <span class="s1">&#39;Abra&#39;</span><span class="p">,</span> <span class="s1">&#39;Lanice&#39;</span><span class="p">,</span> <span class="s1">&#39;Pectinaria&#39;</span><span class="p">])</span>
+<span class="n">occ</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Mola&#39;</span><span class="p">,</span> <span class="s1">&#39;Abra&#39;</span><span class="p">,</span> <span class="s1">&#39;Lanice&#39;</span><span class="p">,</span> <span class="s1">&#39;Pectinaria&#39;</span><span class="p">])</span>
 
 <span class="c1"># Use paging parameters (limit and start) to page. Note the different results</span>
 <span class="c1"># for the two queries below.</span>
-<span class="n">occurrences</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">occurrences</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">occ</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">occ</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 
 <span class="c1"># Search on a bounding box</span>
 <span class="c1">## in well known text format</span>
-<span class="n">occurrences</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">geometry</span><span class="o">=</span><span class="s1">&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">taxa</span>
+<span class="n">occ</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">geometry</span><span class="o">=</span><span class="s1">&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">pyobis</span> <span class="k">import</span> <span class="n">taxa</span>
 <span class="n">res</span> <span class="o">=</span> <span class="n">taxa</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="s1">&#39;Mola mola&#39;</span><span class="p">)[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">occurrences</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">obisid</span><span class="o">=</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span> <span class="n">geometry</span><span class="o">=</span><span class="s1">&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">occurrences</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">aphiaid</span><span class="o">=</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;worms_id&#39;</span><span class="p">],</span> <span class="n">geometry</span><span class="o">=</span><span class="s1">&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">occ</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">obisid</span><span class="o">=</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span> <span class="n">geometry</span><span class="o">=</span><span class="s1">&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">occ</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">aphiaid</span><span class="o">=</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;worms_id&#39;</span><span class="p">],</span> <span class="n">geometry</span><span class="o">=</span><span class="s1">&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 
 <span class="c1"># Get occurrences for a particular eventDate</span>
-<span class="n">occurrences</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">aphiaid</span><span class="o">=</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;worms_id&#39;</span><span class="p">],</span> <span class="n">year</span><span class="o">=</span><span class="s2">&quot;2013&quot;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">occ</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">aphiaid</span><span class="o">=</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;worms_id&#39;</span><span class="p">],</span> <span class="n">year</span><span class="o">=</span><span class="s2">&quot;2013&quot;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -237,7 +240,7 @@ or POLYGON. Example of a polygon: ((30.1 10.1, 20, 20 40, 40 40, 30.1 10.1)) wou
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.0.6.9000',
+            VERSION:'0.0.8.9000',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

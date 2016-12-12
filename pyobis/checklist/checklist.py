@@ -1,10 +1,10 @@
 from ..obisutils import *
 
-def search(scientificname=None, aphiaid=None, obisid=None, resourceid=None,
-    startdate=None, enddate=None, startdepth=None, enddepth=None,
-    geometry=None, year=None, qc=None, fields=None, limit=500, offset=0, **kwargs):
+def list(scientificname=None, aphiaid=None, obisid=None, resourceid=None,
+    eezid=None, startdate=None, enddate=None, startdepth=None, enddepth=None,
+    geometry=None, year=None, limit=500, offset=0, **kwargs):
     '''
-    Search OBIS occurrences
+    Make an OBIS checklist
 
     :param aphiaid: [Fixnum] A obis occurrence identifier
     :param scientificname: [String,Array] One or more scientific names from the OBIS backbone. All included and
@@ -16,12 +16,11 @@ def search(scientificname=None, aphiaid=None, obisid=None, resourceid=None,
     :param obisid: [Fixnum] An OBIS id. This is listed as the `id` or `valid_id` in `taxa`/`taxon` results
     :param aphiaid: [Fixnum] An Aphia id. This is listed as the `worms_id` in `taxa`/`taxon` results
     :param resourceid: [Fixnum] An resource id
+    :param eezid: [Fixnum] An eez id
     :param startdate: [Fixnum] Start date
     :param enddate: [Boolean] End date
     :param startdepth: [Fixnum] Start depth
     :param enddepth: [Boolean] End depth
-    :param qc: [String] Quality control flags
-    :param fields: [Array] Array of field names
     :param limit: [Fixnum] Number of results to return. Default: 1000
     :param offset: [Fixnum] Start at record. Default: 0
 
@@ -29,33 +28,31 @@ def search(scientificname=None, aphiaid=None, obisid=None, resourceid=None,
 
     Usage::
 
-        from pyobis import occurrences as occ
-        occ.search(scientificname = 'Mola mola')
+        from pyobis import checklist as ch
+        ch.list(scientificname = 'Mola mola')
 
-        # Many names
-        occ.search(scientificname = ['Mola', 'Abra', 'Lanice', 'Pectinaria'])
+        # 2005 and Cetacea
+        ch.list(year = 2005, scientificname = 'Cetacea')
+
+        # resourceid of 3013
+        ch.list(resourceid = 3013)
+
+        # eezid + scientificname
+        ch.list(eezid = 59, scientificname = 'Mollusca', limit = 100)
 
         # Use paging parameters (limit and start) to page. Note the different results
         # for the two queries below.
-        occ.search(scientificname = 'Mola mola', offset=0, limit=10)
-        occ.search(scientificname = 'Mola mola', offset=10, limit=10)
+        ch.list(resourceid = 3013, offset=0, limit=10)
+        ch.list(resourceid = 3013, offset=10, limit=10)
 
-        # Search on a bounding box
-        ## in well known text format
-        occ.search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit=20)
-        from pyobis import taxa
-        res = taxa.search(scientificname='Mola mola')['results'][0]
-        occ.search(obisid=res['id'], geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit=20)
-        occ.search(aphiaid=res['worms_id'], geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit=20)
-
-        # Get occurrences for a particular eventDate
-        occ.search(aphiaid=res['worms_id'], year="2013", limit=20)
+        # Get checklist for a particular eventDate
+        ch.list(aphiaid=res['worms_id'], year="2013")
     '''
-    url = obis_baseurl + 'occurrence'
+    url = obis_baseurl + 'checklist'
     scientificname = handle_arrstr(scientificname)
     out = obis_GET(url, {'aphiaid': aphiaid, 'obisid': obisid,
-        'resourceid': resourceid, 'scientificname': scientificname,
+        'resourceid': resourceid, 'eezid': eezid, 'scientificname': scientificname,
         'startdate': startdate, 'enddate': enddate, 'startdepth': startdepth,
         'enddepth': enddepth, 'geometry': geometry, 'year': year,
-        'fields': fields, 'qc': qc, 'limit': limit, 'offset': offset}, **kwargs)
+        'limit': limit, 'offset': offset}, **kwargs)
     return out

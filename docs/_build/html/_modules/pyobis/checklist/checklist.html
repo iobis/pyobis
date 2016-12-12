@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyobis.occurrences.occurrences &mdash; pyobis 0.0.8.9000 documentation</title>
+  <title>pyobis.checklist.checklist &mdash; pyobis 0.0.8.9000 documentation</title>
   
 
   
@@ -123,7 +123,7 @@
       
           <li><a href="../../index.html">Module code</a> &raquo;</li>
       
-    <li>pyobis.occurrences.occurrences</li>
+    <li>pyobis.checklist.checklist</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -135,14 +135,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for pyobis.occurrences.occurrences</h1><div class="highlight"><pre>
+  <h1>Source code for pyobis.checklist.checklist</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">..obisutils</span> <span class="k">import</span> <span class="o">*</span>
 
-<span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">aphiaid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">obisid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">resourceid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">startdate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">enddate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">startdepth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">enddepth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">geometry</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">year</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">qc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">list</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">aphiaid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">obisid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">resourceid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">eezid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">startdate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">enddate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">startdepth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">enddepth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">geometry</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">year</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Search OBIS occurrences</span>
+<span class="sd">    Make an OBIS checklist</span>
 
 <span class="sd">    :param aphiaid: [Fixnum] A obis occurrence identifier</span>
 <span class="sd">    :param scientificname: [String,Array] One or more scientific names from the OBIS backbone. All included and</span>
@@ -154,12 +154,11 @@
 <span class="sd">    :param obisid: [Fixnum] An OBIS id. This is listed as the `id` or `valid_id` in `taxa`/`taxon` results</span>
 <span class="sd">    :param aphiaid: [Fixnum] An Aphia id. This is listed as the `worms_id` in `taxa`/`taxon` results</span>
 <span class="sd">    :param resourceid: [Fixnum] An resource id</span>
+<span class="sd">    :param eezid: [Fixnum] An eez id</span>
 <span class="sd">    :param startdate: [Fixnum] Start date</span>
 <span class="sd">    :param enddate: [Boolean] End date</span>
 <span class="sd">    :param startdepth: [Fixnum] Start depth</span>
 <span class="sd">    :param enddepth: [Boolean] End depth</span>
-<span class="sd">    :param qc: [String] Quality control flags</span>
-<span class="sd">    :param fields: [Array] Array of field names</span>
 <span class="sd">    :param limit: [Fixnum] Number of results to return. Default: 1000</span>
 <span class="sd">    :param offset: [Fixnum] Start at record. Default: 0</span>
 
@@ -167,35 +166,33 @@
 
 <span class="sd">    Usage::</span>
 
-<span class="sd">        from pyobis import occurrences as occ</span>
-<span class="sd">        occ.search(scientificname = &#39;Mola mola&#39;)</span>
+<span class="sd">        from pyobis import checklist as ch</span>
+<span class="sd">        ch.list(scientificname = &#39;Mola mola&#39;)</span>
 
-<span class="sd">        # Many names</span>
-<span class="sd">        occ.search(scientificname = [&#39;Mola&#39;, &#39;Abra&#39;, &#39;Lanice&#39;, &#39;Pectinaria&#39;])</span>
+<span class="sd">        # 2005 and Cetacea</span>
+<span class="sd">        ch.list(year = 2005, scientificname = &#39;Cetacea&#39;)</span>
+
+<span class="sd">        # resourceid of 3013</span>
+<span class="sd">        ch.list(resourceid = 3013)</span>
+
+<span class="sd">        # eezid + scientificname</span>
+<span class="sd">        ch.list(eezid = 59, scientificname = &#39;Mollusca&#39;, limit = 100)</span>
 
 <span class="sd">        # Use paging parameters (limit and start) to page. Note the different results</span>
 <span class="sd">        # for the two queries below.</span>
-<span class="sd">        occ.search(scientificname = &#39;Mola mola&#39;, offset=0, limit=10)</span>
-<span class="sd">        occ.search(scientificname = &#39;Mola mola&#39;, offset=10, limit=10)</span>
+<span class="sd">        ch.list(resourceid = 3013, offset=0, limit=10)</span>
+<span class="sd">        ch.list(resourceid = 3013, offset=10, limit=10)</span>
 
-<span class="sd">        # Search on a bounding box</span>
-<span class="sd">        ## in well known text format</span>
-<span class="sd">        occ.search(geometry=&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;, limit=20)</span>
-<span class="sd">        from pyobis import taxa</span>
-<span class="sd">        res = taxa.search(scientificname=&#39;Mola mola&#39;)[&#39;results&#39;][0]</span>
-<span class="sd">        occ.search(obisid=res[&#39;id&#39;], geometry=&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;, limit=20)</span>
-<span class="sd">        occ.search(aphiaid=res[&#39;worms_id&#39;], geometry=&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;, limit=20)</span>
-
-<span class="sd">        # Get occurrences for a particular eventDate</span>
-<span class="sd">        occ.search(aphiaid=res[&#39;worms_id&#39;], year=&quot;2013&quot;, limit=20)</span>
+<span class="sd">        # Get checklist for a particular eventDate</span>
+<span class="sd">        ch.list(aphiaid=res[&#39;worms_id&#39;], year=&quot;2013&quot;)</span>
 <span class="sd">    &#39;&#39;&#39;</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s1">&#39;occurrence&#39;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s1">&#39;checklist&#39;</span>
     <span class="n">scientificname</span> <span class="o">=</span> <span class="n">handle_arrstr</span><span class="p">(</span><span class="n">scientificname</span><span class="p">)</span>
     <span class="n">out</span> <span class="o">=</span> <span class="n">obis_GET</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;aphiaid&#39;</span><span class="p">:</span> <span class="n">aphiaid</span><span class="p">,</span> <span class="s1">&#39;obisid&#39;</span><span class="p">:</span> <span class="n">obisid</span><span class="p">,</span>
-        <span class="s1">&#39;resourceid&#39;</span><span class="p">:</span> <span class="n">resourceid</span><span class="p">,</span> <span class="s1">&#39;scientificname&#39;</span><span class="p">:</span> <span class="n">scientificname</span><span class="p">,</span>
+        <span class="s1">&#39;resourceid&#39;</span><span class="p">:</span> <span class="n">resourceid</span><span class="p">,</span> <span class="s1">&#39;eezid&#39;</span><span class="p">:</span> <span class="n">eezid</span><span class="p">,</span> <span class="s1">&#39;scientificname&#39;</span><span class="p">:</span> <span class="n">scientificname</span><span class="p">,</span>
         <span class="s1">&#39;startdate&#39;</span><span class="p">:</span> <span class="n">startdate</span><span class="p">,</span> <span class="s1">&#39;enddate&#39;</span><span class="p">:</span> <span class="n">enddate</span><span class="p">,</span> <span class="s1">&#39;startdepth&#39;</span><span class="p">:</span> <span class="n">startdepth</span><span class="p">,</span>
         <span class="s1">&#39;enddepth&#39;</span><span class="p">:</span> <span class="n">enddepth</span><span class="p">,</span> <span class="s1">&#39;geometry&#39;</span><span class="p">:</span> <span class="n">geometry</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">:</span> <span class="n">year</span><span class="p">,</span>
-        <span class="s1">&#39;fields&#39;</span><span class="p">:</span> <span class="n">fields</span><span class="p">,</span> <span class="s1">&#39;qc&#39;</span><span class="p">:</span> <span class="n">qc</span><span class="p">,</span> <span class="s1">&#39;limit&#39;</span><span class="p">:</span> <span class="n">limit</span><span class="p">,</span> <span class="s1">&#39;offset&#39;</span><span class="p">:</span> <span class="n">offset</span><span class="p">},</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="s1">&#39;limit&#39;</span><span class="p">:</span> <span class="n">limit</span><span class="p">,</span> <span class="s1">&#39;offset&#39;</span><span class="p">:</span> <span class="n">offset</span><span class="p">},</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">out</span>
 </pre></div>
 

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Search &mdash; pyobis 0.0.8.9000 documentation</title>
+  <title>nodes module &mdash; pyobis 0.0.8.9000 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
         <link rel="index" title="Index"
               href="genindex.html"/>
-        <link rel="search" title="Search" href="#"/>
+        <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="pyobis 0.0.8.9000 documentation" href="index.html"/> 
 
   
@@ -68,7 +68,7 @@
 
           
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="#" method="get">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -87,8 +87,6 @@
 <li class="toctree-l1"><a class="reference internal" href="taxa.html">taxa module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="groups.html">groups module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="resources.html">resources module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nodes.html">nodes module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="checklist.html">checklist module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog_link.html">Changelog</a></li>
 </ul>
 
@@ -112,7 +110,7 @@
         <div class="rst-content">
           
 
-
+ 
 
 
 
@@ -120,8 +118,12 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li></li>
+    <li>nodes module</li>
       <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/nodes.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
   </ul>
@@ -130,19 +132,38 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <noscript>
-  <div id="fallback" class="admonition warning">
-    <p class="last">
-      Please activate JavaScript to enable the search
-      functionality.
-    </p>
-  </div>
-  </noscript>
+  <div class="section" id="module-pyobis">
+<span id="nodes-module"></span><span id="nodes"></span><h1>nodes module<a class="headerlink" href="#module-pyobis" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="pyobis.nodes.node">
+<code class="descclassname">nodes.</code><code class="descname">node</code><span class="sig-paren">(</span><em>limit=100</em>, <em>offset=0</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyobis.nodes.node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get OBIS nodes</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>limit</strong> &#8211; [Fixnum] Number of results to return. Default: 1000</li>
+<li><strong>offset</strong> &#8211; [Fixnum] Start at record. Default: 0</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A dictionary</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Usage:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis</span> <span class="k">import</span> <span class="n">nodes</span>
+<span class="n">nodes</span><span class="o">.</span><span class="n">node</span><span class="p">()</span>
+<span class="n">nodes</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="n">limit</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">nodes</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="n">limit</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">offset</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
 
-  
-  <div id="search-results">
-  
-  </div>
+</div>
+
 
            </div>
           </div>
@@ -184,7 +205,6 @@
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/searchtools.js"></script>
 
   
 
@@ -200,14 +220,7 @@
           SphinxRtdTheme.StickyNav.enable();
       });
   </script>
-  
-  <script type="text/javascript">
-    jQuery(function() { Search.loadIndex("searchindex.js"); });
-  </script>
-  
-  <script type="text/javascript" id="searchindexloader"></script>
    
-
 
 </body>
 </html>

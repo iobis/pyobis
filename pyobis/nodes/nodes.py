@@ -1,10 +1,8 @@
 from ..obisutils import *
 
-def group(limit=100, offset=0, **kwargs):
+def node(limit=100, offset=0, **kwargs):
     '''
-    Get OBIS groups
-
-    Groups are taxonomic groups
+    Get OBIS nodes
 
     :param limit: [Fixnum] Number of results to return. Default: 1000
     :param offset: [Fixnum] Start at record. Default: 0
@@ -13,11 +11,11 @@ def group(limit=100, offset=0, **kwargs):
 
     Usage::
 
-        from pyobis import groups
-        groups.group()
-        groups.group(limit = 3)
-        groups.group(limit = 3, offset = 1)
+        from pyobis import nodes
+        nodes.node()
+        nodes.node(limit = 3)
+        nodes.node(limit = 3, offset = 1)
     '''
-    url = obis_baseurl + 'group'
+    url = obis_baseurl + 'node'
     out = obis_GET(url, {'limit': limit, 'offset': offset}, **kwargs)
     return out

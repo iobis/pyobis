@@ -98,6 +98,8 @@ Contents
    taxa
    groups
    resources
+   nodes
+   checklist
    changelog_link
 
 License

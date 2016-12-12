@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyobis &mdash; pyobis 0.0.6.9000 documentation</title>
+  <title>pyobis &mdash; pyobis 0.0.8.9000 documentation</title>
   
 
   
@@ -30,7 +30,10 @@
   
 
   
-    <link rel="top" title="pyobis 0.0.6.9000 documentation" href="#"/>
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="pyobis 0.0.8.9000 documentation" href="#"/>
         <link rel="next" title="occurrences module" href="occurrences.html"/> 
 
   
@@ -59,7 +62,7 @@
             
             
               <div class="version">
-                0.0.6.9000
+                0.0.8.9000
               </div>
             
           
@@ -85,6 +88,8 @@
 <li class="toctree-l1"><a class="reference internal" href="taxa.html">taxa module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="groups.html">groups module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="resources.html">resources module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nodes.html">nodes module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="checklist.html">checklist module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog_link.html">Changelog</a></li>
 </ul>
 
@@ -108,7 +113,7 @@
         <div class="rst-content">
           
 
-
+ 
 
 
 
@@ -142,7 +147,7 @@
 </div>
 <div class="section" id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">[sudo] pip install git+git://github.com/sckott/pyobis.git#egg=pyobis</span>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">[sudo] pip install git+git://github.com/sckott/pyobis.git#egg=pyobis</span>
 </pre></div>
 </div>
 <p><cite>pyobis</cite> is split up into modules for each of the major groups of API methods.</p>
@@ -156,7 +161,7 @@
 </div>
 <div class="section" id="taxa-module">
 <h1>Taxa module<a class="headerlink" href="#taxa-module" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">taxa</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">taxa</span>
 <span class="n">taxa</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">)</span>
 <span class="n">taxa</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">taxa</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">geometry</span><span class="o">=</span><span class="s1">&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
@@ -168,7 +173,7 @@
 </div>
 <div class="section" id="occurrence-module">
 <h1>Occurrence module<a class="headerlink" href="#occurrence-module" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">occurrences</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">occurrences</span>
 <span class="n">occurrences</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">)</span>
 <span class="n">occurrences</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">occurrences</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">geometry</span><span class="o">=</span><span class="s1">&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
@@ -178,7 +183,7 @@
 </div>
 <div class="section" id="resources-module">
 <h1>Resources module<a class="headerlink" href="#resources-module" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">resources</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">resources</span>
 <span class="n">resources</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Mola&#39;</span><span class="p">,</span> <span class="s1">&#39;Abra&#39;</span><span class="p">,</span> <span class="s1">&#39;Lanice&#39;</span><span class="p">,</span> <span class="s1">&#39;Pectinaria&#39;</span><span class="p">])</span>
 <span class="n">resources</span><span class="o">.</span><span class="n">resource</span><span class="p">(</span><span class="mi">103</span><span class="p">)</span>
 <span class="n">resources</span><span class="o">.</span><span class="n">citation</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">)</span>
@@ -187,7 +192,7 @@
 </div>
 <div class="section" id="groups-module">
 <h1>Groups module<a class="headerlink" href="#groups-module" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">groups</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">groups</span>
 <span class="n">groups</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
 <span class="n">groups</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="n">limit</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
 </pre></div>
@@ -207,9 +212,12 @@
 <li class="toctree-l1"><a class="reference internal" href="taxa.html">taxa module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="groups.html">groups module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="resources.html">resources module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nodes.html">nodes module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="checklist.html">checklist module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog_link.html">Changelog</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="changelog_link.html#id1">0.0.6.9000 (2016-05-12)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="changelog_link.html#id2">0.0.1 (2015-12-11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog_link.html#id1">0.1.0 (2016-12-11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog_link.html#id2">0.0.6.9000 (2016-05-12)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog_link.html#id3">0.0.1 (2015-12-11)</a></li>
 </ul>
 </li>
 </ul>
@@ -222,9 +230,9 @@
 <div class="section" id="indices-and-tables">
 <h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference internal" href="genindex.html"><span>Index</span></a></li>
-<li><a class="reference internal" href="py-modindex.html"><span>Module Index</span></a></li>
-<li><a class="reference internal" href="search.html"><span>Search Page</span></a></li>
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
 </ul>
 </div>
 </div>
@@ -268,7 +276,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.0.6.9000',
+            VERSION:'0.0.8.9000',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

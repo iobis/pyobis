@@ -10,7 +10,7 @@ Python client for the `OBIS API
 
 Other OBIS clients:
 
-* R: `obisclient`, `iobis/obisclient <https://github.com/iobis/obisclient>`__
+* R: `robis`, `iobis/robis <https://github.com/iobis/robis>`__
 
 Installation
 ============
