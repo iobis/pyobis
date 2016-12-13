@@ -54,7 +54,7 @@ def search(scientificname=None, aphiaid=None, obisid=None,
         'scientificname': scientificname, 'startdate': startdate,
         'enddate': enddate, 'startdepth': startdepth,
         'enddepth': enddepth, 'geometry': geometry, 'year': year,
-        'limit': limit, 'offset': offset}, **kwargs)
+        'limit': limit, 'offset': offset}, 'application/json;charset=UTF-8', **kwargs)
     return out
 
 def resource(id, **kwargs):
@@ -72,7 +72,7 @@ def resource(id, **kwargs):
         resources.resource(2126)
     '''
     url = obis_baseurl + 'resource/' + str(id)
-    out = obis_GET(url, {}, **kwargs)
+    out = obis_GET(url, {}, 'application/json;charset=UTF-8', **kwargs)
     return out
 
 def citation(scientificname=None, aphiaid=None, obisid=None,
@@ -118,5 +118,6 @@ def citation(scientificname=None, aphiaid=None, obisid=None,
         'scientificname': scientificname, 'startdate': startdate,
         'enddate': enddate, 'startdepth': startdepth,
         'enddepth': enddepth, 'geometry': geometry, 'year': year,
-        'limit': limit, 'offset': offset}, **kwargs)
+        'limit': limit, 'offset': offset},
+        'application/json;charset=UTF-8', **kwargs)
     return out

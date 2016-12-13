@@ -17,5 +17,6 @@ def node(limit=100, offset=0, **kwargs):
         nodes.node(limit = 3, offset = 1)
     '''
     url = obis_baseurl + 'node'
-    out = obis_GET(url, {'limit': limit, 'offset': offset}, **kwargs)
+    out = obis_GET(url, {'limit': limit, 'offset': offset},
+        'application/json;charset=UTF-8', **kwargs)
     return out

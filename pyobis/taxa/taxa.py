@@ -52,7 +52,8 @@ def search(scientificname=None, aphiaid=None, obisid=None, resourceid=None,
         'resourceid': resourceid, 'scientificname': scientificname,
         'startdate': startdate, 'enddate': enddate, 'startdepth': startdepth,
         'enddepth': enddepth, 'geometry': geometry, 'year': year,
-        'fields': fields, 'limit': limit, 'offset': offset}, **kwargs)
+        'fields': fields, 'limit': limit, 'offset': offset},
+        'application/json;charset=UTF-8', **kwargs)
     return out
 
 def taxon(id, **kwargs):
@@ -72,7 +73,7 @@ def taxon(id, **kwargs):
         taxa.taxon(415282)
     '''
     url = obis_baseurl + 'taxon/' + str(id)
-    out = obis_GET(url, {}, **kwargs)
+    out = obis_GET(url, {}, 'application/json;charset=UTF-8', **kwargs)
     return out
 
 def taxon_search(scientificname=None, aphiaid=None, obisid=None, **kwargs):
@@ -93,7 +94,7 @@ def taxon_search(scientificname=None, aphiaid=None, obisid=None, **kwargs):
     '''
     url = obis_baseurl + 'taxon'
     out = obis_GET(url, {'aphiaid': aphiaid, 'obisid': obisid,
-        'scientificname': scientificname}, **kwargs)
+        'scientificname': scientificname}, 'application/json;charset=UTF-8', **kwargs)
     return out
 
 def common(id, **kwargs):
@@ -114,5 +115,5 @@ def common(id, **kwargs):
         taxa.common(415282)
     '''
     url = obis_baseurl + 'taxon/' + str(id) + '/common'
-    out = obis_GET(url, {}, **kwargs)
+    out = obis_GET(url, {}, 'application/json;charset=UTF-8', **kwargs)
     return out

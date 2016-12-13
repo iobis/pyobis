@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyobis.occurrences.occurrences &mdash; pyobis 0.1.0 documentation</title>
+  <title>pyobis.occurrences.download &mdash; pyobis 0.1.0 documentation</title>
   
 
   
@@ -123,7 +123,7 @@
       
           <li><a href="../../index.html">Module code</a> &raquo;</li>
       
-    <li>pyobis.occurrences.occurrences</li>
+    <li>pyobis.occurrences.download</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -135,14 +135,46 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for pyobis.occurrences.occurrences</h1><div class="highlight"><pre>
+  <h1>Source code for pyobis.occurrences.download</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">..obisutils</span> <span class="k">import</span> <span class="o">*</span>
 
-<span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">aphiaid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">obisid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">resourceid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="k">class</span> <span class="nc">ObisDownload</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ObisDownload class</span>
+
+<span class="sd">    methods:</span>
+
+<span class="sd">    - uuid: get uuid for the download</span>
+<span class="sd">    - status: get download status</span>
+<span class="sd">    - fetch: retrieve the download</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uuid</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ObisDownload</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uuid</span> <span class="o">=</span> <span class="n">uuid</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;&lt;OBIS Occurrence Download&gt;</span><span class="se">\n</span><span class="s1">  uuid: &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">uuid</span>
+
+    <span class="k">def</span> <span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s1">&#39;download/</span><span class="si">%s</span><span class="s1">/status&#39;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">uuid</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">obis_GET</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="p">{},</span> <span class="s1">&#39;text/x-json;charset=UTF-8&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span>
+
+    <span class="k">def</span> <span class="nf">fetch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s1">&#39;download/</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">uuid</span><span class="p">)</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/</span><span class="si">%s</span><span class="s2">.zip&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">uuid</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span> <span class="o">=</span> <span class="n">path</span>
+        <span class="n">obis_write_disk</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="s1">&#39;content=type&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;On disk at &quot;</span> <span class="o">+</span> <span class="n">path</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">path</span>
+
+
+<span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">aphiaid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">obisid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">resourceid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">startdate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">enddate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">startdepth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">enddepth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">geometry</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">year</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">qc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">geometry</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">year</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">qc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Search OBIS occurrences</span>
+<span class="sd">    Download OBIS occurrences</span>
 
 <span class="sd">    :param aphiaid: [Fixnum] A obis occurrence identifier</span>
 <span class="sd">    :param scientificname: [String,Array] One or more scientific names from the OBIS backbone. All included and</span>
@@ -160,66 +192,58 @@
 <span class="sd">    :param enddepth: [Boolean] End depth</span>
 <span class="sd">    :param qc: [String] Quality control flags</span>
 <span class="sd">    :param fields: [Array] Array of field names</span>
-<span class="sd">    :param limit: [Fixnum] Number of results to return. Default: 1000</span>
-<span class="sd">    :param offset: [Fixnum] Start at record. Default: 0</span>
 
-<span class="sd">    :return: A dictionary</span>
+<span class="sd">    :return: An object of class ObisDownload with methods to continue accessing the data</span>
 
 <span class="sd">    Usage::</span>
 
 <span class="sd">        from pyobis import occurrences as occ</span>
-<span class="sd">        occ.search(scientificname = &#39;Mola mola&#39;)</span>
 
-<span class="sd">        # Many names</span>
-<span class="sd">        occ.search(scientificname = [&#39;Mola&#39;, &#39;Abra&#39;, &#39;Lanice&#39;, &#39;Pectinaria&#39;])</span>
+<span class="sd">        # query to generate a download job</span>
+<span class="sd">        res = occ.download(year = 2001, scientificname = &#39;Orcinus&#39;)</span>
 
-<span class="sd">        # Use paging parameters (limit and start) to page. Note the different results</span>
-<span class="sd">        # for the two queries below.</span>
-<span class="sd">        occ.search(scientificname = &#39;Mola mola&#39;, offset=0, limit=10)</span>
-<span class="sd">        occ.search(scientificname = &#39;Mola mola&#39;, offset=10, limit=10)</span>
+<span class="sd">        # get the uuid for your download job</span>
+<span class="sd">        res.uuid</span>
 
-<span class="sd">        # Search on a bounding box</span>
-<span class="sd">        ## in well known text format</span>
-<span class="sd">        occ.search(geometry=&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;, limit=20)</span>
-<span class="sd">        from pyobis import taxa</span>
-<span class="sd">        res = taxa.search(scientificname=&#39;Mola mola&#39;)[&#39;results&#39;][0]</span>
-<span class="sd">        occ.search(obisid=res[&#39;id&#39;], geometry=&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;, limit=20)</span>
-<span class="sd">        occ.search(aphiaid=res[&#39;worms_id&#39;], geometry=&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;, limit=20)</span>
+<span class="sd">        # get status of download prep</span>
+<span class="sd">        res.status()</span>
 
-<span class="sd">        # Get occurrences for a particular eventDate</span>
-<span class="sd">        occ.search(aphiaid=res[&#39;worms_id&#39;], year=&quot;2013&quot;, limit=20)</span>
+<span class="sd">        # fetch file, writes to disk</span>
+<span class="sd">        res.fetch()</span>
+
+<span class="sd">        # get file path</span>
+<span class="sd">        x.file_path</span>
+
+<span class="sd">        # unzip the file</span>
+<span class="sd">        import zipfile</span>
+<span class="sd">        import tempfile</span>
+<span class="sd">        import shutil</span>
+<span class="sd">        import os</span>
+
+<span class="sd">        zipf = zipfile.ZipFile(x, &#39;r&#39;)</span>
+<span class="sd">        dir = tempfile.mkdtemp()</span>
+<span class="sd">        zipf.extractall(dir)</span>
+<span class="sd">        fpath = dir + &#39;/&#39; + os.listdir(dir)[0]</span>
+<span class="sd">        zipf.close()</span>
+
+<span class="sd">        # read some lines of the csv</span>
+<span class="sd">        import csv</span>
+<span class="sd">        with open(fpath) as csvfile:</span>
+<span class="sd">            reader = csv.DictReader(csvfile)</span>
+<span class="sd">            for row in reader:</span>
+<span class="sd">                print(row[&#39;genus&#39;], row[&#39;species&#39;])</span>
+
+<span class="sd">        # cleanup</span>
+<span class="sd">        shutil.rmtree(dir)</span>
 <span class="sd">    &#39;&#39;&#39;</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s1">&#39;occurrence&#39;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s1">&#39;occurrence/download&#39;</span>
     <span class="n">scientificname</span> <span class="o">=</span> <span class="n">handle_arrstr</span><span class="p">(</span><span class="n">scientificname</span><span class="p">)</span>
     <span class="n">out</span> <span class="o">=</span> <span class="n">obis_GET</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;aphiaid&#39;</span><span class="p">:</span> <span class="n">aphiaid</span><span class="p">,</span> <span class="s1">&#39;obisid&#39;</span><span class="p">:</span> <span class="n">obisid</span><span class="p">,</span>
         <span class="s1">&#39;resourceid&#39;</span><span class="p">:</span> <span class="n">resourceid</span><span class="p">,</span> <span class="s1">&#39;scientificname&#39;</span><span class="p">:</span> <span class="n">scientificname</span><span class="p">,</span>
         <span class="s1">&#39;startdate&#39;</span><span class="p">:</span> <span class="n">startdate</span><span class="p">,</span> <span class="s1">&#39;enddate&#39;</span><span class="p">:</span> <span class="n">enddate</span><span class="p">,</span> <span class="s1">&#39;startdepth&#39;</span><span class="p">:</span> <span class="n">startdepth</span><span class="p">,</span>
         <span class="s1">&#39;enddepth&#39;</span><span class="p">:</span> <span class="n">enddepth</span><span class="p">,</span> <span class="s1">&#39;geometry&#39;</span><span class="p">:</span> <span class="n">geometry</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">:</span> <span class="n">year</span><span class="p">,</span>
-        <span class="s1">&#39;fields&#39;</span><span class="p">:</span> <span class="n">fields</span><span class="p">,</span> <span class="s1">&#39;qc&#39;</span><span class="p">:</span> <span class="n">qc</span><span class="p">,</span> <span class="s1">&#39;limit&#39;</span><span class="p">:</span> <span class="n">limit</span><span class="p">,</span> <span class="s1">&#39;offset&#39;</span><span class="p">:</span> <span class="n">offset</span><span class="p">},</span>
-        <span class="s1">&#39;application/json;charset=UTF-8&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">out</span>
-
-
-<span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Get an OBIS occurrence</span>
-
-<span class="sd">    :param id: [Fixnum] An obis occurrence identifier</span>
-
-<span class="sd">    :return: A dictionary</span>
-
-<span class="sd">    Usage::</span>
-
-<span class="sd">        from pyobis import occurrences as occ</span>
-<span class="sd">        occ.get(id = 14333)</span>
-<span class="sd">        occ.get(id = 135355)</span>
-
-<span class="sd">        # many at once</span>
-<span class="sd">        [ occ.get(id = x) for x in [14333, 135355, 276413] ]</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s1">&#39;occurrence/&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
-    <span class="n">out</span> <span class="o">=</span> <span class="n">obis_GET</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="p">{},</span> <span class="s1">&#39;application/json;charset=UTF-8&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">out</span>
+        <span class="s1">&#39;fields&#39;</span><span class="p">:</span> <span class="n">fields</span><span class="p">,</span> <span class="s1">&#39;qc&#39;</span><span class="p">:</span> <span class="n">qc</span><span class="p">},</span> <span class="s1">&#39;text/x-json;charset=UTF-8&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ObisDownload</span><span class="p">(</span><span class="n">uuid</span> <span class="o">=</span> <span class="n">out</span><span class="p">[</span><span class="s1">&#39;uuid&#39;</span><span class="p">])</span>
 </pre></div>
 
            </div>

@@ -57,5 +57,28 @@ def search(scientificname=None, aphiaid=None, obisid=None, resourceid=None,
         'resourceid': resourceid, 'scientificname': scientificname,
         'startdate': startdate, 'enddate': enddate, 'startdepth': startdepth,
         'enddepth': enddepth, 'geometry': geometry, 'year': year,
-        'fields': fields, 'qc': qc, 'limit': limit, 'offset': offset}, **kwargs)
+        'fields': fields, 'qc': qc, 'limit': limit, 'offset': offset},
+        'application/json;charset=UTF-8', **kwargs)
+    return out
+
+
+def get(id, **kwargs):
+    '''
+    Get an OBIS occurrence
+
+    :param id: [Fixnum] An obis occurrence identifier
+
+    :return: A dictionary
+
+    Usage::
+
+        from pyobis import occurrences as occ
+        occ.get(id = 14333)
+        occ.get(id = 135355)
+
+        # many at once
+        [ occ.get(id = x) for x in [14333, 135355, 276413] ]
+    '''
+    url = obis_baseurl + 'occurrence/' + str(id)
+    out = obis_GET(url, {}, 'application/json;charset=UTF-8', **kwargs)
     return out

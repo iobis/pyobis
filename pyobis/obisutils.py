@@ -5,21 +5,24 @@ obis_baseurl = "http://api.iobis.org/"
 class NoResultException(Exception):
     pass
 
-def obis_search_GET(url, args, **kwargs):
+def obis_GET(url, args, ctype, **kwargs):
   out = requests.get(url, params=args, **kwargs)
   out.raise_for_status()
-  stopifnot(out.headers['content-type'])
+  stopifnot(out.headers['content-type'], ctype)
   return out.json()
 
-def obis_GET(url, args, **kwargs):
-  out = requests.get(url, params=args, **kwargs)
+def obis_write_disk(url, path, ctype, **kwargs):
+  out = requests.get(url, stream=True, **kwargs)
   out.raise_for_status()
-  stopifnot(out.headers['content-type'])
-  return out.json()
+  with open(path, 'wb') as f:
+    for chunk in out.iter_content(chunk_size = 1024):
+      if chunk:
+        f.write(chunk)
+  return path
 
-def stopifnot(x):
-  if x != 'application/json;charset=UTF-8':
-    raise NoResultException("content-type did not = application/json")
+def stopifnot(x, ctype):
+  if x != ctype:
+    raise NoResultException("content-type did not equal " + str(ctype))
 
 def stop(x):
   raise ValueError(x)

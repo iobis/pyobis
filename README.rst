@@ -19,12 +19,14 @@ Installation
 
     [sudo] pip install git+git://github.com/sckott/pyobis.git#egg=pyobis
 
-`pyobis` is split up into modules for each of the major groups of API methods.
+`pyobis` is split up into modules for each of the groups of API methods.
 
-* taxa - Taxonomic names
-* occurrences - Occurrence search
-* resources - Resources
-* groups - Groups
+* `taxa` - Taxonomic names
+* `occurrences` - Occurrence search, and occurrence downloads
+* `resources` - Resources
+* `groups` - Groups
+* `nodes` - Nodes
+* `checklist` - Checklist
 
 You can import the entire library, or each module individually as needed.
 
@@ -44,6 +46,8 @@ Taxa module
 Occurrence module
 =================
 
+Search
+
 .. code-block:: python
 
     from pyobis import occurrences
@@ -51,6 +55,15 @@ Occurrence module
     occurrences.search(scientificname = 'Mola mola', offset=0, limit=10)
     occurrences.search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit=20)
     occurrences.search(aphiaid=key, year="2013", limit=20)
+
+Download
+
+.. code-block:: python
+
+    res = occ.download(year = 2001, scientificname = 'Orcinus')
+    res.uuid
+    res.status()
+    res.fetch()
 
 Resources module
 ================
@@ -70,6 +83,22 @@ Groups module
     from pyobis import groups
     groups.group()
     groups.group(limit = 3)
+
+Ndes module
+===========
+
+.. code-block:: python
+
+    from pyobis import nodes
+    nodes.node()
+
+Checklist module
+================
+
+.. code-block:: python
+
+    from pyobis import checklist as ch
+    ch.list(year = 2005, scientificname = 'Cetacea')
 
 Meta
 ====
