@@ -15,9 +15,21 @@ Other OBIS clients:
 Installation
 ============
 
+from pypi
+
 .. code-block:: console
 
-    [sudo] pip install git+git://github.com/sckott/pyobis.git#egg=pyobis
+    pip install pyobis
+
+dev version
+
+.. code-block:: console
+
+    pip install git+git://github.com/sckott/pyobis.git#egg=pyobis
+
+
+library API
+===========
 
 `pyobis` is split up into modules for each of the groups of API methods.
 
