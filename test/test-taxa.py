@@ -33,4 +33,6 @@ def test_taxa_common():
     assert list == list(res.keys()).__class__
     assert list == res['results'].__class__
     assert dict == res['results'][0].__class__
-    assert ['name', 'language'] == res['results'][0].keys()
+    xx = list(res['results'][0].keys())
+    xx.sort()
+    assert ['language', 'name'] == xx
