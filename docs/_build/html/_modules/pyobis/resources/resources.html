@@ -192,7 +192,7 @@
         <span class="s1">&#39;scientificname&#39;</span><span class="p">:</span> <span class="n">scientificname</span><span class="p">,</span> <span class="s1">&#39;startdate&#39;</span><span class="p">:</span> <span class="n">startdate</span><span class="p">,</span>
         <span class="s1">&#39;enddate&#39;</span><span class="p">:</span> <span class="n">enddate</span><span class="p">,</span> <span class="s1">&#39;startdepth&#39;</span><span class="p">:</span> <span class="n">startdepth</span><span class="p">,</span>
         <span class="s1">&#39;enddepth&#39;</span><span class="p">:</span> <span class="n">enddepth</span><span class="p">,</span> <span class="s1">&#39;geometry&#39;</span><span class="p">:</span> <span class="n">geometry</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">:</span> <span class="n">year</span><span class="p">,</span>
-        <span class="s1">&#39;limit&#39;</span><span class="p">:</span> <span class="n">limit</span><span class="p">,</span> <span class="s1">&#39;offset&#39;</span><span class="p">:</span> <span class="n">offset</span><span class="p">},</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="s1">&#39;limit&#39;</span><span class="p">:</span> <span class="n">limit</span><span class="p">,</span> <span class="s1">&#39;offset&#39;</span><span class="p">:</span> <span class="n">offset</span><span class="p">},</span> <span class="s1">&#39;application/json;charset=UTF-8&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">out</span>
 
 <span class="k">def</span> <span class="nf">resource</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -210,7 +210,7 @@
 <span class="sd">        resources.resource(2126)</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s1">&#39;resource/&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
-    <span class="n">out</span> <span class="o">=</span> <span class="n">obis_GET</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="p">{},</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">obis_GET</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="p">{},</span> <span class="s1">&#39;application/json;charset=UTF-8&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">out</span>
 
 <span class="k">def</span> <span class="nf">citation</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">aphiaid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">obisid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -256,7 +256,8 @@
         <span class="s1">&#39;scientificname&#39;</span><span class="p">:</span> <span class="n">scientificname</span><span class="p">,</span> <span class="s1">&#39;startdate&#39;</span><span class="p">:</span> <span class="n">startdate</span><span class="p">,</span>
         <span class="s1">&#39;enddate&#39;</span><span class="p">:</span> <span class="n">enddate</span><span class="p">,</span> <span class="s1">&#39;startdepth&#39;</span><span class="p">:</span> <span class="n">startdepth</span><span class="p">,</span>
         <span class="s1">&#39;enddepth&#39;</span><span class="p">:</span> <span class="n">enddepth</span><span class="p">,</span> <span class="s1">&#39;geometry&#39;</span><span class="p">:</span> <span class="n">geometry</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">:</span> <span class="n">year</span><span class="p">,</span>
-        <span class="s1">&#39;limit&#39;</span><span class="p">:</span> <span class="n">limit</span><span class="p">,</span> <span class="s1">&#39;offset&#39;</span><span class="p">:</span> <span class="n">offset</span><span class="p">},</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="s1">&#39;limit&#39;</span><span class="p">:</span> <span class="n">limit</span><span class="p">,</span> <span class="s1">&#39;offset&#39;</span><span class="p">:</span> <span class="n">offset</span><span class="p">},</span>
+        <span class="s1">&#39;application/json;charset=UTF-8&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">out</span>
 </pre></div>
 
