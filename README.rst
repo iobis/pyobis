@@ -1,7 +1,7 @@
 pyobis
 ======
 
-|pypi| |docs| |travis| |coverage|
+|pypi| |docs| |tests| |coverage|
 
 Python client for the `OBIS API
 <https://github.com/iobis/api-docs>`__.
@@ -124,8 +124,8 @@ Meta
 .. |docs| image:: https://readthedocs.org/projects/pyobis/badge/?version=latest
    :target: http://pyobis.readthedocs.org/en/latest/?badge=latest
 
-.. |travis| image:: https://travis-ci.org/sckott/pyobis.svg
-   :target: https://travis-ci.org/sckott/pyobis
+.. |tests| image:: https://github.com/iobis/pyobis/actions/workflows/tests.yml/badge.svg
+   :target: https://github.com/iobis/pyobis/actions/workflows/tests.yml
 
 .. |coverage| image:: https://coveralls.io/repos/sckott/pyobis/badge.svg?branch=master&service=github
    :target: https://coveralls.io/github/sckott/pyobis?branch=master
