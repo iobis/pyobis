@@ -1,0 +1,44 @@
+name: Tests
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  run:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        python-version: ["3.7", "3.8", "3.9", "3.10"]
+        os: [windows-latest, ubuntu-latest, macos-latest]
+      fail-fast: false
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup Conda
+      uses: s-weigand/setup-conda@v1
+      with:
+        activate-conda: false
+        update-conda: true
+        conda-channels: conda-forge
+
+    - name: Python ${{ matrix.python-version }}
+      shell: bash -l {0}
+      run: |
+        conda create --name TEST python=${{ matrix.python-version }} --file requirements.txt --file requirements-dev.txt
+        source activate TEST
+        python -m pip install -e . --no-deps --force-reinstall
+
+    - name: Debug Installation
+      shell: bash -l {0}
+      run: |
+        source activate TEST
+        which python
+
+    - name: Tests
+      shell: bash -l {0}
+      run: |
+        source activate TEST
+        python -m pytest -rxs --cov=pyobis tests
