@@ -1,5 +1,4 @@
 from ..obisutils import *
-
 def search(scientificname=None, aphiaid=None, obisid=None, resourceid=None,
     startdate=None, enddate=None, startdepth=None, enddepth=None,
     geometry=None, year=None, qc=None, fields=None, limit=500, offset=0, **kwargs):
@@ -58,9 +57,8 @@ def search(scientificname=None, aphiaid=None, obisid=None, resourceid=None,
         'startdate': startdate, 'enddate': enddate, 'startdepth': startdepth,
         'enddepth': enddepth, 'geometry': geometry, 'year': year,
         'fields': fields, 'qc': qc, 'limit': limit, 'offset': offset},
-        'application/json;charset=UTF-8', **kwargs)
+        'application/json; charset=utf-8', **kwargs)
     return out
-
 
 def get(id, **kwargs):
     '''
@@ -80,5 +78,5 @@ def get(id, **kwargs):
         [ occ.get(id = x) for x in [14333, 135355, 276413] ]
     '''
     url = obis_baseurl + 'occurrence/' + str(id)
-    out = obis_GET(url, {}, 'application/json;charset=UTF-8', **kwargs)
+    out = obis_GET(url, {}, 'application/json; charset=utf-8', **kwargs)
     return out
