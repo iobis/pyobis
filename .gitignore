@@ -15,3 +15,7 @@
 /build/
 
 .coverage
+
+# Local test files
+test.py
+.replit

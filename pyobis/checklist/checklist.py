@@ -55,5 +55,5 @@ def list(scientificname=None, aphiaid=None, obisid=None, resourceid=None,
         'startdate': startdate, 'enddate': enddate, 'startdepth': startdepth,
         'enddepth': enddepth, 'geometry': geometry, 'year': year,
         'limit': limit, 'offset': offset},
-        'application/json;charset=UTF-8', **kwargs)
+        'application/json; charset=utf-8', **kwargs)
     return out
