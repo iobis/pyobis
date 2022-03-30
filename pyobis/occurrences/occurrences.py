@@ -1,8 +1,23 @@
 from ..obisutils import *
-def search(scientificname=None, aphiaid=None, obisid=None, resourceid=None,
-    startdate=None, enddate=None, startdepth=None, enddepth=None,
-    geometry=None, year=None, qc=None, fields=None, limit=500, offset=0, 
-           mof=False, hasextensions=None, **kwargs):
+
+
+def search(scientificname=None,
+           aphiaid=None,
+           obisid=None,
+           resourceid=None,
+           startdate=None,
+           enddate=None,
+           startdepth=None,
+           enddepth=None,
+           geometry=None,
+           year=None,
+           qc=None,
+           fields=None,
+           limit=500,
+           offset=0,
+           mof=False,
+           hasextensions=None,
+           **kwargs):
     '''
     Search OBIS occurrences
 
@@ -54,13 +69,27 @@ def search(scientificname=None, aphiaid=None, obisid=None, resourceid=None,
     '''
     url = obis_baseurl + 'occurrence'
     scientificname = handle_arrstr(scientificname)
-    out = obis_GET(url, {'aphiaid': aphiaid, 'obisid': obisid,
-        'resourceid': resourceid, 'scientificname': scientificname,
-        'startdate': startdate, 'enddate': enddate, 'startdepth': startdepth,
-        'enddepth': enddepth, 'geometry': geometry, 'year': year,
-        'fields': fields, 'qc': qc, 'limit': limit, 'offset': offset, 'mof':mof,'hasextensions':hasextensions},
-        'application/json; charset=utf-8', **kwargs)
+    out = obis_GET(
+        url, {
+            'aphiaid': aphiaid,
+            'obisid': obisid,
+            'resourceid': resourceid,
+            'scientificname': scientificname,
+            'startdate': startdate,
+            'enddate': enddate,
+            'startdepth': startdepth,
+            'enddepth': enddepth,
+            'geometry': geometry,
+            'year': year,
+            'fields': fields,
+            'qc': qc,
+            'limit': limit,
+            'offset': offset,
+            'mof': mof,
+            'hasextensions': hasextensions
+        }, 'application/json; charset=utf-8', **kwargs)
     return out
+
 
 def get(id, **kwargs):
     '''

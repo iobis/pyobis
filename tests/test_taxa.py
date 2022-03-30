@@ -6,8 +6,8 @@ def test_taxa_search():
     "taxa.search - basic test"
     res = taxa.search(scientificname = 'Mola mola')
     assert 'dict' == res.__class__.__name__
-    assert 5 == len(res)
     assert list == list(res.keys()).__class__
+    assert 5 == len(res)
 
 def test_taxa_taxon():
     "taxa.taxon - basic test"
@@ -17,12 +17,12 @@ def test_taxa_taxon():
     assert list == list(res.keys()).__class__
     assert 545439 == res['valid_id']
 
-def test_taxa_taxon():
+def test_taxa_taxon_search():
     "taxa.taxon_search - basic test"
     res = taxa.taxon_search(scientificname = 'Mola')
     assert dict == res.__class__
-    assert 5 == len(res)
     assert list == list(res.keys()).__class__
+    assert 5 == len(res)
     assert 'Mola' == res['results'][0]['genus']
 
 def test_taxa_common():

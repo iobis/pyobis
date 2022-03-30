@@ -93,7 +93,7 @@ def taxon_search(scientificname=None, aphiaid=None, obisid=None, **kwargs):
         taxa.taxon_search(aphiaid = 127405)
         taxa.taxon_search(obisid = 472375)
     '''
-    url = obis_baseurl + 'taxon'
+    url = obis_baseurl +  'taxon/' + handle_arrstr(scientificname)
     out = obis_GET(url, {'aphiaid': aphiaid, 'obisid': obisid,
         'scientificname': scientificname}, 'application/json; charset=utf-8', **kwargs)
     return out

@@ -1,10 +1,8 @@
 # import requests
 # import pandas as pd
-from pyobis import occurrences
+from pyobis import taxa
 
-print(occurrences.search(scientificname=["Abra","Mola"]))
-
-
+print(taxa.taxon_search(scientificname = 'Mola'))
 def getExtensions(data):
     lis=[]
     a = pd.json_normalize(data, "mof", ["scientificName", "eventDate","id"])
