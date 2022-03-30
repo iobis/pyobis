@@ -1,7 +1,8 @@
 from ..obisutils import *
 def search(scientificname=None, aphiaid=None, obisid=None, resourceid=None,
     startdate=None, enddate=None, startdepth=None, enddepth=None,
-    geometry=None, year=None, qc=None, fields=None, limit=500, offset=0, **kwargs):
+    geometry=None, year=None, qc=None, fields=None, limit=500, offset=0, 
+           mof=False, hasextensions=None, **kwargs):
     '''
     Search OBIS occurrences
 
@@ -23,7 +24,8 @@ def search(scientificname=None, aphiaid=None, obisid=None, resourceid=None,
     :param fields: [Array] Array of field names
     :param limit: [Fixnum] Number of results to return. Default: 1000
     :param offset: [Fixnum] Start at record. Default: 0
-
+    :param mof: [Boolean] Include MeasurementOrFact records, true/false. Default: 0
+    :param hasextensions: [String] Extensions that need to be present (e.g. MeasurementOrFact, DNADerivedData).
     :return: A dictionary
 
     Usage::
@@ -56,7 +58,7 @@ def search(scientificname=None, aphiaid=None, obisid=None, resourceid=None,
         'resourceid': resourceid, 'scientificname': scientificname,
         'startdate': startdate, 'enddate': enddate, 'startdepth': startdepth,
         'enddepth': enddepth, 'geometry': geometry, 'year': year,
-        'fields': fields, 'qc': qc, 'limit': limit, 'offset': offset},
+        'fields': fields, 'qc': qc, 'limit': limit, 'offset': offset, 'mof':mof,'hasextensions':hasextensions},
         'application/json; charset=utf-8', **kwargs)
     return out
 
