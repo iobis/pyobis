@@ -20,5 +20,5 @@ def group(limit=100, offset=0, **kwargs):
     '''
     url = obis_baseurl + 'group'
     out = obis_GET(url, {'limit': limit, 'offset': offset},
-        'application/json;charset=UTF-8', **kwargs)
+        'application/json; charset=utf-8', **kwargs)
     return out

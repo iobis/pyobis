@@ -1,11 +1,11 @@
 import requests
 
-obis_baseurl = "http://api.iobis.org/"
+obis_baseurl = "https://api.obis.org/v3/"
 
 class NoResultException(Exception):
     pass
 
-def obis_GET(url, args, ctype, **kwargs):
+def obis_GET(url, args,ctype, **kwargs):
   out = requests.get(url, params=args, **kwargs)
   out.raise_for_status()
   stopifnot(out.headers['content-type'], ctype)
@@ -35,4 +35,3 @@ def handle_arrstr(x):
       return x
     else:
       return ','.join(x)
-
