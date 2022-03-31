@@ -2,16 +2,16 @@ from ..obisutils import *
 
 
 def search(scientificname=None,
-           aphiaid=None,
+           taxonid=None,
            obisid=None,
-           resourceid=None,
+           datasetid=None,
            startdate=None,
            enddate=None,
            startdepth=None,
            enddepth=None,
            geometry=None,
            year=None,
-           qc=None,
+           flags=None,
            fields=None,
            limit=500,
            offset=0,
@@ -21,22 +21,22 @@ def search(scientificname=None,
     '''
     Search OBIS occurrences
 
-    :param aphiaid: [Fixnum] A obis occurrence identifier
+    :param taxonid: [Fixnum] A obis occurrence identifier
     :param scientificname: [String,Array] One or more scientific names from the OBIS backbone. All included and
        synonym taxa are included in the search.
-    :param year: [Fixnum] The 4 digit year. A year of 98 will be interpreted as AD 98. Supports range queries,
+    :param year: Removed in v3 API. [Fixnum] The 4 digit year. A year of 98 will be interpreted as AD 98. Supports range queries,
        smaller,larger (e.g., '1990,1991', whereas '1991,1990' wouldn't work)
     :param geometry: [String] Well Known Text (WKT). A WKT shape written as either POINT, LINESTRING, LINEARRING
        or POLYGON. Example of a polygon: ((30.1 10.1, 20, 20 40, 40 40, 30.1 10.1)) would be queried as http://bit.ly/1BzNwDq
     :param obisid: [Fixnum] An OBIS id. This is listed as the `id` or `valid_id` in `taxa`/`taxon` results
-    :param aphiaid: [Fixnum] An Aphia id. This is listed as the `worms_id` in `taxa`/`taxon` results
-    :param resourceid: [Fixnum] An resource id
+    :param taxonid: Prev. aphiaid [Fixnum] An Aphia id. This is listed as the `worms_id` in `taxa`/`taxon` results
+    :param datasetid: Prev. resourceid [Fixnum] A resource id
     :param startdate: [Fixnum] Start date
     :param enddate: [Boolean] End date
     :param startdepth: [Fixnum] Start depth
     :param enddepth: [Boolean] End depth
-    :param qc: [String] Quality control flags
-    :param fields: [Array] Array of field names
+    :param flags: Prev. qc [String] Quality control flags
+    :param fields: [String] Comma seperated list of field names
     :param limit: [Fixnum] Number of results to return. Default: 1000
     :param offset: [Fixnum] Start at record. Default: 0
     :param mof: [Boolean] Include MeasurementOrFact records, true/false. Default: 0
@@ -71,9 +71,9 @@ def search(scientificname=None,
     scientificname = handle_arrstr(scientificname)
     out = obis_GET(
         url, {
-            'aphiaid': aphiaid,
+            'taxonid': taxonid,
             'obisid': obisid,
-            'resourceid': resourceid,
+            'datasetid': datasetid,
             'scientificname': scientificname,
             'startdate': startdate,
             'enddate': enddate,
@@ -82,7 +82,7 @@ def search(scientificname=None,
             'geometry': geometry,
             'year': year,
             'fields': fields,
-            'qc': qc,
+            'flags': flags,
             'limit': limit,
             'offset': offset,
             'mof': mof,

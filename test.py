@@ -1,8 +1,7 @@
 # import requests
-# import pandas as pd
-from pyobis import taxa
+import pandas as pd
 
-print(taxa.taxon_search(scientificname = 'Mola'))
+
 def getExtensions(data):
     lis=[]
     a = pd.json_normalize(data, "mof", ["scientificName", "eventDate","id"])
@@ -16,3 +15,8 @@ def returnMOF():
     # requests.get("https://api.obis.org/occurrence?scientificname=Abra&mof=true&hasextensions=MeasurementOrFact")
     results = response["results"]
     print(getExtensions(results))
+
+from pyobis import taxa
+res=taxa.annotations(scientificname="Egg")
+print(res["results"])
+print(pd.DataFrame(res["results"]))

@@ -1,8 +1,8 @@
 from ..obisutils import *
 
-def search(scientificname=None, aphiaid=None, obisid=None, resourceid=None,
-    startdate=None, enddate=None, startdepth=None, enddepth=None,
-    geometry=None, year=None, fields=None, limit=500, offset=0, **kwargs):
+def search(scientificname=None, **kwargs): #aphiaid=None, obisid=None, resourceid=None,
+    #startdate=None, enddate=None, startdepth=None, enddepth=None,
+    #geometry=None, year=None, fields=None, limit=500, offset=0, **kwargs):
     '''
     Search OBIS taxa
 
@@ -49,12 +49,16 @@ def search(scientificname=None, aphiaid=None, obisid=None, resourceid=None,
      
     scientificname = handle_arrstr(scientificname)
     url = obis_baseurl + 'taxon/' + scientificname
-    out = obis_GET(url, {'aphiaid': aphiaid, 'obisid': obisid,
-        'resourceid': resourceid, 'scientificname': scientificname,
+    
+    out = obis_GET(url,{'scientificname': scientificname},'application/json; charset=utf-8', **kwargs)
+    '''
+    Commented out because this has become obsolete.
+        {'aphiaid': aphiaid, 'obisid': obisid,
+        'resourceid': resourceid, ,
         'startdate': startdate, 'enddate': enddate, 'startdepth': startdepth,
         'enddepth': enddepth, 'geometry': geometry, 'year': year,
-        'fields': fields, 'limit': limit, 'offset': offset},
-        'application/json; charset=utf-8', **kwargs)
+        'fields': fields, 'limit': limit, 'offset': offset}
+    '''
     return out
 
 def taxon(id, **kwargs):
@@ -97,9 +101,26 @@ def taxon_search(scientificname=None, aphiaid=None, obisid=None, **kwargs):
     out = obis_GET(url, {'aphiaid': aphiaid, 'obisid': obisid,
         'scientificname': scientificname}, 'application/json; charset=utf-8', **kwargs)
     return out
+    
+def annotations(scientificname, **kwargs):
+    '''
+    Get scientific name annotations by the WoRMS team.
+    :param scientificname: [String] Scientific name. Leave empty to include all taxa.
+    :return: A dictionary
 
+    Usage::
+        from pyobis import taxa
+        taxa.annotations(Abra)
+    '''
+    url = obis_baseurl + 'taxon/annotations'
+    scientificname = handle_arrstr(scientificname)
+    out = obis_GET(url, {'scientificname':scientificname}, 'application/json; charset=utf-8', **kwargs)
+    return out
+    
 def common(id, **kwargs):
     '''
+    This function has become obsolete, will delete once GSoC starts.
+    
     Get common names for a taxon by ID
 
     :param id: [Fixnum] An OBIS taxon identifier. Required
