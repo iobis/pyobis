@@ -44,8 +44,8 @@ __author__ = 'Scott Chamberlain'
 __license__ = 'MIT'
 
 from .occurrences import search, get, download, ObisDownload
-from .taxa import search, taxon, common, taxon_search
+from .taxa import search, taxon, common, taxon_search, annotations
 from .groups import group
 from .nodes import node
-from .resources import search, resource, citation
-from .checklist import list
+from .dataset import get, search
+from .checklist import list, redlist, newest

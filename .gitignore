@@ -18,5 +18,5 @@
 
 # Local test files
 test.py
-*.replit
 tests.sh
+.gitpod.yml
