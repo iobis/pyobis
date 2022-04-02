@@ -17,10 +17,10 @@ import pyobis
 from pyobis import occurrence
 ## taxa
 from pyobis import taxa
-## taxon
-from pyobis import taxon
-## eez
-from pyobis import eez
+## dataset
+from pyobis import dataset
+## checklist
+from pyobis import checklist
 
 ## use advanced logging
 ### setup first
@@ -46,6 +46,6 @@ __license__ = 'MIT'
 from .occurrences import search, get, download, ObisDownload
 from .taxa import search, taxon, common, taxon_search, annotations
 from .groups import group
-from .nodes import node
+from .nodes import search, activities
 from .dataset import get, search
 from .checklist import list, redlist, newest

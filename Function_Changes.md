@@ -1,8 +1,12 @@
 # Proposed module/function changes
 In continuation of the GSoC 2022 objective 1: Modifying API calls in the pyobis package.
 
+## Reference:
+| module to be changed | (any comments) |
+|----------------------|----------------|
+| API endpoint| corresponding function in module.|
 
-***Already changed modules***:
+## Changes already done
 |pyobis.checklist|                    |
 |----------------|--------------------|
 |checlist/| checklist.list(scientificname, **params, **kwargs)|
@@ -16,8 +20,17 @@ In continuation of the GSoC 2022 objective 1: Modifying API calls in the pyobis 
 
 All other functions existing previously in the resources module have been deleted, and it is renamed to dataset module.
 
+|pyobis.nodes|                    |
+|------------|--------------------|
+|node/{id}| nodes.search(id, **kwargs). It requires only Node UUID|
+|node/{id}/activities| nodes.activities(id, **kwargs). It requires only Node UUID|
+
+**pyobis.groups** has become obsolete and hence proposed to be deleted.
+
 --------------------
-*Resources in the new API for which new functions/modules need to be created **(Proposed Changes)**:*
+
+## Proposed changes
+*Resources in the new API for which new functions/modules need to be created*
 
 |pyobis.occurrences as occ|          |
 |-------------------------|----------|
@@ -34,4 +47,3 @@ All other functions existing previously in the resources module have been delete
 |taxon/{scientificname}| taxa.search(scientificname, **kwargs). It requires only scientificname|
 |taxon/{id}| taxa.taxon(id, **kwargs). It requires only TaxonID|
 |taxon/annotations|taxa.taxon(scientificname, **kwargs). It requires only scientific name|
-
