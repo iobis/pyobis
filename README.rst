@@ -4,9 +4,9 @@ pyobis
 |pypi| |docs| |tests| |coverage|
 
 Python client for the `OBIS API
-<https://github.com/iobis/api-docs>`__.
+<https://api.obis.org/>`__.
 
-`Source on GitHub at sckott/pyobis <https://github.com/sckott/pyobis>`__
+`Source on GitHub at iobis/pyobis <https://github.com/iobis/pyobis>`__
 
 Other OBIS clients:
 
