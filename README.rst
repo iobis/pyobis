@@ -35,8 +35,7 @@ library API
 
 * `taxa` - Taxonomic names
 * `occurrences` - Occurrence search, and occurrence downloads
-* `resources` - Resources
-* `groups` - Groups
+* `dataset` - Dataset
 * `nodes` - Nodes
 * `checklist` - Checklist
 
@@ -77,32 +76,22 @@ Download
     res.status()
     res.fetch()
 
-Resources module
+Dataset module
 ================
 
 .. code-block:: python
 
-    from pyobis import resources
-    resources.search(scientificname = ['Mola', 'Abra', 'Lanice', 'Pectinaria'])
-    resources.resource(103)
-    resources.citation(scientificname = 'Mola mola')
+    from pyobis import dataset
+    dataset.search(scientificname = ['Mola', 'Abra', 'Lanice', 'Pectinaria'])
+    dataset.get(id = 2126)
 
-Groups module
-=============
-
-.. code-block:: python
-
-    from pyobis import groups
-    groups.group()
-    groups.group(limit = 3)
-
-Ndes module
+Nodes module
 ===========
 
 .. code-block:: python
 
     from pyobis import nodes
-    nodes.node()
+    nodes.search(scientificname = ['Mola', 'Abra'] )
 
 Checklist module
 ================

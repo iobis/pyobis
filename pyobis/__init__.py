@@ -35,7 +35,7 @@ requests_log.setLevel(logging.DEBUG)
 requests_log.propagate = True
 ### then make request
 from pyobis import occurrence
-occurrence.search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit=20)
+occurrence.search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))')
 '''
 
 __version__ = '0.1.0'
@@ -44,8 +44,7 @@ __author__ = 'Scott Chamberlain'
 __license__ = 'MIT'
 
 from .occurrences import search, get, download, ObisDownload
-from .taxa import search, taxon, common, taxon_search, annotations
-from .groups import group
+from .taxa import search, taxon, annotations, common, taxon_search
 from .nodes import search, activities
 from .dataset import get, search
 from .checklist import list, redlist, newest
