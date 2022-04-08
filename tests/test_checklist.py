@@ -11,3 +11,4 @@ def test_checklist():
     assert int == res['results'][0]['id'].__class__
     assert 'Mola mola' == res['results'][0]['species']
 
+

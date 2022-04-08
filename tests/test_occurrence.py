@@ -15,3 +15,4 @@ def test_occurrences_search_limit():
     assert 'dict' == res.__class__.__name__
     assert 5 == len(res)
     assert 3 == len(res['results'])
+
