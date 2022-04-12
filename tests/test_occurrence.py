@@ -6,13 +6,12 @@ def test_occurrences_search():
     "occurrences.search - basic test"
     res = occ.search(scientificname = 'Mola mola')
     assert 'dict' == res.__class__.__name__
-    assert 5 == len(res)
+    assert 2 == len(res)
     assert list == list(res.keys()).__class__
 
-def test_occurrences_search_limit():
-    "occurrences.search - limit param works"
-    res = occ.search(scientificname = 'Mola mola', limit=3)
+def test_occurrences_get():
+    "occurrences.get - basic test"
+    res = occ.get(id = 135355)
     assert 'dict' == res.__class__.__name__
-    assert 5 == len(res)
-    assert 3 == len(res['results'])
-
+    assert 2 == len(res)
+    assert list == list(res.keys()).__class__

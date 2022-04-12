@@ -40,6 +40,8 @@ def list(scientificname=None, taxonid=None, nodeid=None,
 def redlist(scientificname=None, taxonid=None, nodeid=None, startdate=None,
    enddate=None, startdepth=None, enddepth=None, geometry=None, flags=None, **kwargs):
    '''
+   Generate a checklist of IUCN Red List species.
+
    :param scientificname: [String] Scientific name. Leave empty to include all taxa.
    :param taxonid: [String] Taxon AphiaID.
    :param nodeid: [String] Node UUID.
