@@ -21,3 +21,4 @@ test.py
 tests.sh
 .gitpod.yml
 .vscode
+.pytest_cache
