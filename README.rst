@@ -83,7 +83,7 @@ Dataset module
 
     from pyobis import dataset
     dataset.search(scientificname = ['Mola', 'Abra', 'Lanice', 'Pectinaria'])
-    dataset.get(id = 2126)
+    dataset.get(id = 'ec9df3b9-3b2b-4d83-881b-27bcbcd57b95')
 
 Nodes module
 ===========
@@ -113,8 +113,8 @@ Meta
 .. |docs| image:: https://readthedocs.org/projects/pyobis/badge/?version=latest
    :target: http://pyobis.readthedocs.org/en/latest/?badge=latest
 
-.. |tests| image:: https://github.com/iobis/pyobis/actions/workflows/tests.yml/badge.svg
-   :target: https://github.com/iobis/pyobis/actions/workflows/tests.yml
+.. |tests| image:: https://github.com/ayushanand18/pyobis/actions/workflows/tests.yml/badge.svg
+   :target: https://github.com/ayushanand18/pyobis/actions/workflows/tests.yml
 
 .. |coverage| image:: https://coveralls.io/repos/sckott/pyobis/badge.svg?branch=master&service=github
-   :target: https://coveralls.io/github/sckott/pyobis?branch=master
+   :target: https://coveralls.io/github/sckott/pyobis?branch=gsoc2022
