@@ -95,18 +95,14 @@ def get(id, **kwargs):
     '''
     Get an OBIS occurrence
 
-    :param id: [Fixnum] An obis occurrence identifier
+    :param id: [Fixnum] An obis occurrence identifier. It is returned in the 'id' field with occurrences.search().
 
     :return: A dictionary
 
     Usage::
 
         from pyobis import occurrences as occ
-        occ.get(id = 14333)
-        occ.get(id = 135355)
-
-        # many at once
-        [ occ.get(id = x) for x in [14333, 135355, 276413] ]
+        occ.get(id = '00008e33-6faa-4d98-a00b-91a6ed1ed3ca')
     '''
     url = obis_baseurl + 'occurrence/' + str(id)
     out = obis_GET(url, {}, 'application/json; charset=utf-8', **kwargs)

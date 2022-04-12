@@ -2,9 +2,9 @@
 import os
 from pyobis import dataset
 
-def test_getbyid():
+def test_dataset_get():
     "dataset.get - basic test"
-    res = dataset.get(id = 2126)
+    res = dataset.get(id = 'ec9df3b9-3b2b-4d83-881b-27bcbcd57b95')
     assert 'dict' == res.__class__.__name__
     assert 2 == len(res)
     assert dict == res['results'][0].__class__

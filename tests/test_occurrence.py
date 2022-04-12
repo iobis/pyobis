@@ -11,7 +11,7 @@ def test_occurrences_search():
 
 def test_occurrences_get():
     "occurrences.get - basic test"
-    res = occ.get(id = 135355)
+    res = occ.get(id = '00008e33-6faa-4d98-a00b-91a6ed1ed3ca')
     assert 'dict' == res.__class__.__name__
     assert 2 == len(res)
     assert list == list(res.keys()).__class__

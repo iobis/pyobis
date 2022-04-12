@@ -15,15 +15,14 @@ def test_taxa_taxon():
     assert dict == res.__class__
     assert 2 == len(res)
     assert list == list(res.keys()).__class__
-    assert 545439 == res['valid_id']
+    assert 545439 == res['results'][0]['taxonID']
 
 def test_taxa_annotations():
     "taxa.annotations - basic test"
-    res = taxa.annotations(scientificname='Abra alba')
+    res = taxa.annotations(scientificname='Abra')
     assert dict == res.__class__
     assert 2 == len(res)
     assert list == list(res.keys()).__class__
-    assert 545439 == res['valid_id']
 
 def test_taxa_taxon_search():
     "taxa.taxon_search - basic test"
@@ -40,7 +39,7 @@ def test_taxa_common():
     assert 2 == len(res)
     assert list == list(res.keys()).__class__
     assert list == res['results'].__class__
-    assert dict == res['results'][0].__class__
-    xx = list(res['results'][0].keys())
-    xx.sort()
-    assert ['language', 'name'] == xx
+    if (list(res['results'])):
+        xx = list(res['results'][0].keys())
+        xx.sort()
+        assert ['language', 'name'] == xx

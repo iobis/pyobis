@@ -9,7 +9,7 @@ def test_nodes():
     assert 2 == len(res)
     assert dict == res['results'][0].__class__
     assert str == str(res['results'][0]['description']).__class__
-    assert int == res['results'][0]['id'].__class__
+    assert str == res['results'][0]['id'].__class__
 
 def test_nodes_activities():
     "nodes.activities - basic test"
@@ -18,4 +18,4 @@ def test_nodes_activities():
     assert 2 == len(res)
     assert dict == res['results'][0].__class__
     assert str == str(res['results'][0]['description']).__class__
-    assert int == res['results'][0]['id'].__class__
+    assert str == res['results'][0]['id'].__class__
