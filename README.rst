@@ -6,7 +6,7 @@ pyobis
 Python client for the `OBIS API
 <https://api.obis.org/>`__.
 
-`Source on GitHub at iobis/pyobis <https://github.com/iobis/pyobis>`__
+`Source Code here  <https://github.com/iobis/pyobis>`__
 
 Other OBIS clients:
 
