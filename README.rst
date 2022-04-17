@@ -28,7 +28,7 @@ dev version
     pip install git+git://github.com/sckott/pyobis.git#egg=pyobis
 
 
-library API
+Library APIs
 ===========
 
 `pyobis` is split up into modules for each of the groups of API methods.
@@ -39,6 +39,11 @@ library API
 * `groups` - Groups
 * `nodes` - Nodes
 * `checklist` - Checklist
+
+
+
+Usage
+===========
 
 You can import the entire library, or each module individually as needed.
 
@@ -96,7 +101,7 @@ Groups module
     groups.group()
     groups.group(limit = 3)
 
-Ndes module
+Nodes module
 ===========
 
 .. code-block:: python
@@ -115,7 +120,7 @@ Checklist module
 Meta
 ====
 
-* License: MIT, see `LICENSE file <LICENSE>`__
+* License: MIT,  `see here <LICENSE>`__
 * Please note that this project is released with a `Contributor Code of Conduct <CONDUCT.md>`__. By participating in this project you agree to abide by its terms.
 
 .. |pypi| image:: https://img.shields.io/pypi/v/pyobis.svg
