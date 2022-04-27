@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-from .nodes import node
+from .nodes import search, activities
