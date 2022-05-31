@@ -45,6 +45,7 @@ def annotations(scientificname=None, **kwargs):
     '''
     Get scientific name annotations by the WoRMS team.
     :param scientificname: [String] Scientific name. Leave empty to include all taxa.
+    
     :return: A dictionary
 
     Usage::

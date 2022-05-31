@@ -27,6 +27,12 @@ All other functions existing previously in the resources module have been delete
 
 **pyobis.groups** has become obsolete and hence proposed to be deleted.
 
+|pyobis.taxa|                    |
+|-----------|--------------------|
+|taxon/{scientificname}| taxa.search(scientificname, **kwargs). It requires only scientificname |
+|taxon/{id}| taxa.taxon(id, **kwargs). It requires only TaxonID |
+|taxon/annotations|taxa.annotations(scientificname, **kwargs). It requires only scientific name |
+
 --------------------
 
 ## Proposed changes
@@ -42,8 +48,3 @@ All other functions existing previously in the resources module have been delete
 |*If mvt=1, return response as MVT, if mvt =0, return response as GeoJSON*||
 |occurrences/centroid|occ.centroid(scientificname,...,**kwargs)|
 
-|pyobis.taxa|                    |
-|-----------|--------------------|
-|taxon/{scientificname}| taxa.search(scientificname, **kwargs). It requires only scientificname|
-|taxon/{id}| taxa.taxon(id, **kwargs). It requires only TaxonID|
-|taxon/annotations|taxa.taxon(scientificname, **kwargs). It requires only scientific name|
