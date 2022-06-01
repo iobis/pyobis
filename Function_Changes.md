@@ -47,4 +47,3 @@ All other functions existing previously in the resources module have been delete
 |occurrences/tile/{x}/{y}/{z}|occ.tile(x,y,z,scientificname,mvt=1...,**kwargs)|
 |*If mvt=1, return response as MVT, if mvt =0, return response as GeoJSON*||
 |occurrences/centroid|occ.centroid(scientificname,...,**kwargs)|
-

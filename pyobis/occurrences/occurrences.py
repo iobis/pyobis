@@ -1,3 +1,4 @@
+from tkinter.messagebox import NO
 from ..obisutils import *
 
 
@@ -106,4 +107,50 @@ def get(id, **kwargs):
     '''
     url = obis_baseurl + 'occurrence/' + str(id)
     out = obis_GET(url, {}, 'application/json; charset=utf-8', **kwargs)
+    return out
+
+def grid(precision =None, geojson=True, scientificname=None, taxonid=None,
+        datasetid=None, nodeid=None, startdate=None,enddate=None,
+        startdepth=None, enddepth=None, geometry=None, redlist=None,
+        hab=None, wrims=None, event=None, flags=None, exclude=None, **kwargs):
+    '''
+    Fetch gridded occurrences as GeoJSON or KML.
+
+    :param precision: [integer] Geohash precision.
+    :param scientificname: [string] Scientific name. Leave empty to include all taxa.
+    :param taxonid: [string] Taxon AphiaID.
+    :param datasetid: [string] Dataset UUID.
+    :param nodeid: [string] Node UUID.
+    :param startdate: [string] Start date formatted as YYYY-MM-DD.
+    :param enddate: [string] End date formatted as YYYY-MM-DD.
+    :param startdepth: [integer] Start depth, in meters.
+    :param enddepth: [integer] End depth, in meters.
+    :param geometry: [string] Geometry, formatted as WKT or GeoHash.
+    :param redlist: [boolean] Red List species only, True/False.
+    :param hab: [boolean] HAB species only, true/false.
+    :param wrims: [boolean] WRiMS species only, True/False.
+    :param event: [string] Include pure event records (include) or get pure event records exclusively (true).
+    :param flags: [string] Comma separated list of quality flags which need to be set.
+    :param exclude: [string] Comma separated list of quality flags to be excluded.
+
+    :return: A dictionary
+    
+    Usage::
+
+        from pyobis import occurrences as occ
+        occ.grid(100, True) // returns in GeoJSON format
+        occ.grid(1000, False)   // returns in KML format
+    '''
+    kml = "" if geojson else "/kml"
+    url = obis_baseurl + 'occurrence/grid/' + str(precision) + kml
+    out = obis_GET(url, {
+        "scientificname":scientificname,
+        'taxonid': taxonid,'datasetid':datasetid,
+        'nodeid': nodeid,'startdate': startdate,
+        'enddate': enddate,'startdepth':startdepth,
+        'enddepth': enddepth, 'geometry':geometry,
+        'redlist':redlist, 'hab':hab,
+        'wrims': wrims, 'event':event,
+        'flags': flags, 'exclude': exclude
+    }, 'application/json; charset=utf-8', **kwargs)
     return out
