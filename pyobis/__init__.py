@@ -39,7 +39,7 @@ __title__ = 'pyobis'
 __author__ = 'Scott Chamberlain'
 __license__ = 'MIT'
 
-from .occurrences import search, get, download, ObisDownload
+from .occurrences import search, get, download, grid, getpoints, point, tile, centroid, ObisDownload
 from .taxa import search, taxon, annotations, common, taxon_search
 from .nodes import search, activities
 from .dataset import get, search
