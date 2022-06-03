@@ -1,6 +1,6 @@
 from tkinter.messagebox import NO
 from ..obisutils import *
-
+import pandas as pd
 
 def search(scientificname=None,
            taxonid=None,
@@ -67,11 +67,13 @@ def search(scientificname=None,
 
         # Get occurrences for a particular eventDate
         occ.search(aphiaid=res['worms_id'], year="2013", limit=20)
+
+        # Get mof response as list of pandas dataframes
+        occ.search(scientificname="Abra",mof=True,hasextensions="MeasurementOrFact")
     '''
     url = obis_baseurl + 'occurrence'
     scientificname = handle_arrstr(scientificname)
-    out = obis_GET(
-        url, {
+    out = obis_GET(url, {
             'taxonid': taxonid,
             'obisid': obisid,
             'datasetid': datasetid,
@@ -89,8 +91,11 @@ def search(scientificname=None,
             'mof': mof,
             'hasextensions': hasextensions
         }, 'application/json; charset=utf-8', **kwargs)
+    if (mof):
+        a = pd.json_normalize(out["results"], "mof", ["scientificName", "eventDate","id"])
+        ids = a.id.unique()
+        return [a[a['id']==ids[i]] for i in range(len(ids))]
     return out
-
 
 def get(id, **kwargs):
     '''
