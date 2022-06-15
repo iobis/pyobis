@@ -114,7 +114,7 @@ def get(id, **kwargs):
     out = obis_GET(url, {}, 'application/json; charset=utf-8', **kwargs)
     return out
 
-def grid(precision =None, geojson=True, scientificname=None, taxonid=None,
+def grid(precision, geojson=True, scientificname=None, taxonid=None,
         datasetid=None, nodeid=None, startdate=None,enddate=None,
         startdepth=None, enddepth=None, geometry=None, redlist=None,
         hab=None, wrims=None, event=None, flags=None, exclude=None, **kwargs):
@@ -146,18 +146,22 @@ def grid(precision =None, geojson=True, scientificname=None, taxonid=None,
         occ.grid(100, True) // returns in GeoJSON format
         occ.grid(1000, False)   // returns in KML format
     '''
-    kml = "" if geojson else "/kml"
-    url = obis_baseurl + 'occurrence/grid/' + str(precision) + kml
-    out = obis_GET(url, {
-        "scientificname":scientificname,
+    url = obis_baseurl + 'occurrence/grid/' + str(precision)
+    args = {"scientificname":scientificname,
         'taxonid': taxonid,'datasetid':datasetid,
         'nodeid': nodeid,'startdate': startdate,
         'enddate': enddate,'startdepth':startdepth,
         'enddepth': enddepth, 'geometry':geometry,
         'redlist':redlist, 'hab':hab,
         'wrims': wrims, 'event':event,
-        'flags': flags, 'exclude': exclude
-    }, 'application/json; charset=utf-8', **kwargs)
+        'flags': flags, 'exclude': exclude}
+
+    if not geojson: 
+        out = requests.get(url+'/kml', params=args, **kwargs)
+        out.raise_for_status()
+        stopifnot(out.headers['content-type'], "text/xml; charset=utf-8")
+        return out.content
+    out = obis_GET(url, args , 'application/json; charset=utf-8', **kwargs)
     return out
 
 def getpoints(scientificname=None, taxonid=None,
@@ -284,19 +288,23 @@ def tile(x,y,z,mvt=0,scientificname=None, taxonid=None,
 
         from pyobis import occurrences as occ
         occ.tile(x=1.77,y=52.26,z=0.5,mvt=0, scientificname = 'Mola mola')
+        occ.tile(x=1.77,y=52.26,z=0.5,mvt=1, scientificname = 'Mola mola')
     '''
-    mv = '.mvt' if mvt else ''
-    # for mvt we need to define another content type
-    url = obis_baseurl + 'occurrence/tile/%s/%s/%s%s'%(str(x),str(y),str(z),mv)
-    scientificname = handle_arrstr(scientificname)
-    out = obis_GET(
-        url, {
-        "scientificname":scientificname, 'taxonid': taxonid,
+    url = obis_baseurl + 'occurrence/tile/%s/%s/%s'%(str(x),str(y),str(z))
+    args =  {"scientificname":scientificname, 'taxonid': taxonid,
         'datasetid':datasetid, 'nodeid': nodeid,'startdate': startdate,
         'enddate': enddate,'startdepth':startdepth, 'enddepth': enddepth, 
         'geometry':geometry, 'redlist':redlist, 'hab':hab, 'wrims': wrims, 
-        'event':event, 'flags': flags, 'exclude': exclude
-        }, 'application/json; charset=utf-8', **kwargs)
+        'event':event, 'flags': flags, 'exclude': exclude}
+    scientificname = handle_arrstr(scientificname)
+
+    if mvt:
+        out = requests.get(url+'.mvt', params=args, **kwargs)
+        out.raise_for_status()
+        # stopifnot(out.headers['content-type'], "text/xml; charset=utf-8")
+        return out.content
+
+    out = obis_GET(url, args , 'application/json; charset=utf-8', **kwargs)
     return out
 
 def centroid(scientificname=None, taxonid=None,

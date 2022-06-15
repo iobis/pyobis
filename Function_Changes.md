@@ -34,16 +34,16 @@ All other functions existing previously in the resources module have been delete
 |taxon/annotations|taxa.annotations(scientificname, **kwargs). It requires only scientific name |
 
 --------------------
-
-## Proposed changes
-*Resources in the new API for which new functions/modules need to be created*
-
+## Changes made
 |pyobis.occurrences as occ|          |
 |-------------------------|----------|
-|occurrences/grid/{precision}|occ.grid(precision =None, geojson=False, **kwargs) {updated geojson, but with kml will need to ask|
-|*If GeoJSON=1, then GeoJSON response, if 0 then KML response.*||
-|occurrences/points|occ.getpoints(scientificname,...,**kwargs) {updated}|
 |occurrences/point/{x}/{y}|occ.point(x,y,scientificname,...,**kwargs) {updated}|
-|occurrences/tile/{x}/{y}/{z}|occ.tile(x,y,z,scientificname,mvt=1...,**kwargs) {updated geojson, but with mvt will need to ask}|
-|*If mvt=1, return response as MVT, if mvt =0, return response as GeoJSON*||
 |occurrences/centroid|occ.centroid(scientificname,...,**kwargs) {updated}|
+|occurrences/points|occ.getpoints(scientificname,...,**kwargs) {updated}|
+|occurrences/grid/{precision}|occ.grid(precision =None, geojson=False, **kwargs)|
+|*If GeoJSON=1, then GeoJSON response, if 0 then KML response.*||
+|occurrences/tile/{x}/{y}/{z}|occ.tile(x,y,z,scientificname,mvt=1...,**kwargs)|
+|*If mvt=1, return response as MVT, if mvt =0, return response as GeoJSON*||
+
+## Proposed changes
+*All done!*
