@@ -6,7 +6,7 @@ pyobis
 Python client for the `OBIS API
 <https://api.obis.org/>`__.
 
-`Source on GitHub at iobis/pyobis <https://github.com/iobis/pyobis>`__
+`Source Code here  <https://github.com/iobis/pyobis>`__
 
 Other OBIS clients:
 
@@ -28,7 +28,7 @@ dev version
     pip install git+git://github.com/sckott/pyobis.git#egg=pyobis
 
 
-library API
+Library API
 ===========
 
 `pyobis` is split up into modules for each of the groups of API methods.
@@ -38,6 +38,11 @@ library API
 * `dataset` - Dataset
 * `nodes` - Nodes
 * `checklist` - Checklist
+
+
+
+Usage
+===========
 
 You can import the entire library, or each module individually as needed.
 
@@ -104,7 +109,7 @@ Checklist module
 Meta
 ====
 
-* License: MIT, see `LICENSE file <LICENSE>`__
+* License: MIT,  `see LICENSE file <LICENSE>`__
 * Please note that this project is released with a `Contributor Code of Conduct <CONDUCT.md>`__. By participating in this project you agree to abide by its terms.
 
 .. |pypi| image:: https://img.shields.io/pypi/v/pyobis.svg
