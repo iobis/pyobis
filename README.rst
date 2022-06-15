@@ -28,7 +28,7 @@ dev version
     pip install git+git://github.com/sckott/pyobis.git#egg=pyobis
 
 
-Library APIs
+Library API
 ===========
 
 `pyobis` is split up into modules for each of the groups of API methods.
