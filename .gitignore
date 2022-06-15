@@ -18,5 +18,8 @@
 
 # Local test files
 test.py
-*.replit
 tests.sh
+.gitpod.yml
+EXAMPLES.md
+Function_Changes.md
+.vscode

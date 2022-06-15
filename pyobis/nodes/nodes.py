@@ -1,22 +1,37 @@
 from ..obisutils import *
 
-def node(limit=100, offset=0, **kwargs):
+def search(id=None, **kwargs):
     '''
-    Get OBIS nodes
+    Get OBIS nodes records
 
-    :param limit: [Fixnum] Number of results to return. Default: 1000
-    :param offset: [Fixnum] Start at record. Default: 0
+    :param id: [String] Node UUID.
 
     :return: A dictionary
 
     Usage::
 
         from pyobis import nodes
-        nodes.node()
-        nodes.node(limit = 3)
-        nodes.node(limit = 3, offset = 1)
+        nodes.search(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc")
     '''
-    url = obis_baseurl + 'node'
-    out = obis_GET(url, {'limit': limit, 'offset': offset},
+    url = obis_baseurl + 'node/' +id
+    out = obis_GET(url, {},
+        'application/json; charset=utf-8', **kwargs)
+    return out
+
+def activities(id=None, **kwargs):
+    '''
+    Get OBIS nodes activities
+
+    :param id: [String] Node UUID.
+
+    :return: A dictionary
+
+    Usage::
+
+        from pyobis import nodes
+        nodes.activities(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc")
+    '''
+    url = obis_baseurl + 'node/' +id + "/activities"
+    out = obis_GET(url, {},
         'application/json; charset=utf-8', **kwargs)
     return out
