@@ -4,7 +4,9 @@
 
 Click this badge to open these examples directly in Google Colab Jupyter Notebook.
 ## Occurrence
-*Using occurrences.search: to find occurrences based on scientificname, or for all taxa if left blank.*
+
+----
+*Using occurrences.search(): to find occurrences based on scientificname, or for all taxa if left blank.*
 
 Input Parameter Details
 
@@ -52,10 +54,53 @@ Out [2]:
 
 [10 rows x 95 columns]
 ```
+----
 *Using occurrences.get(): to get record with id*
 
 id parameter is Occurrence UUID, which is returned as "id" from occurrences.search()
 
+*Example Usage*
+```
+from pyobis import occurrences
+res=occurrences.get(id='00009261-7e82-4558-afd3-31b9fa3a7900')
+print(res["results"])
+print(pd.DataFrame(res["results"]))
+```
+**Expected Output**
+```
+Out [1]:
+[{'type': 'Event', 'class': 'Actinopteri', 'genus': 'Mola', 'order': 'Tetraodontiformes', 'family': 'Molidae', 'phylum': 'Chordata', 'kingdom': 'Animalia', 'license': 'http://creativecommons.org/licenses/by-nc/4.0/', 'modified': '2022-02-03 15:29:13', 'datasetID': '513', ...............
+}]
+
+Out [2]:
+    type        class  ...   dna                                             source
+0  Event  Actinopteri  ...  None  {'type': 'Event', 'class': 'Actinopterygii', '...
+
+[1 rows x 84 columns]
+```
+API Response details can be found here [OBIS v3 API](https://api.obis.org/#/Occurrence/).
+
+----
+*Using occurrences.grid(): to Fetch gridded occurrences as GeoJSON or KML.*
+| Input param     | Data Type | Description              |
+| --------------- | --------- | ------------------------ |
+| precision       | Integer   | Geohash precision        |
+| scientificname  | String    | Scientific name. Leave empty to include all taxa. |
+| taxonid         | String    | Taxon AphiaID                   |
+| datasetid       | String| Dataset UUID|
+|startdate|String|Start date formatted as YYYY-MM-DD|
+|enddate|String|End date formatted as YYYY-MM-DD|
+|startdepth|Integer|Start depth, in meters|
+|enddepth| Integer|End depth, in meters|
+|geometry|String|Geometry, formatted as WKT or GeoHash|
+|flags| String|Comma separated list of quality flags that need to be set|
+|redlist | Boolean| Red List species only, True/False.|
+| hab | Boolean | HAB species only, true/false.|
+| event|String| Include pure event records (include) or get pure event records exclusively (true).|
+| flags|String| Comma separated list of quality flags which need to be set.|
+| exclude| String| Comma separated list of quality flags to be excluded.|
+
+### update below
 *Example Usage*
 ```
 from pyobis import occurrences
