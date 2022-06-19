@@ -1,4 +1,15 @@
-# Proposed module/function changes
+# New tasks to do
+Tasks completed are striken-through ~~like this~~
++ ~~improve MoF accessiblity~~
++ Create tutorial usage of occurrence module
++ create CONTRIBUTING.md
++ update readme badges and/or review coveralls coverage plus reviewing tests
++ fix setup.py
++ Use CI push to PyPI
++ demo jupyter notebooks
++ create visualization module (or separate package)
+
+## Proposed module/function changes
 In continuation of the GSoC 2022 objective 1: Modifying API calls in the pyobis package.
 
 ## Reference:

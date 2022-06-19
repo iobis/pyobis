@@ -92,13 +92,8 @@ def search(scientificname=None,
             'hasextensions': hasextensions
         }, 'application/json; charset=utf-8', **kwargs)
     if (mof):
-        a = pd.json_normalize(out["results"], "mof", ["scientificName", "eventDate","id","scientificNameID","aphiaID",
-                                "decimalLatitude","phylumid","familyid","basisOfRecord","occurrenceStatus","modified",
-                                "maximumDepthInMeters","day","month","year","superfamily","eventDate","eventID",
-                                "superorder","samplingEffort","absence","order","dataset_id","node_id",
-                                "superorderid","genusid","marine","orderid","sex","geodeticDatum","kingdom",
-                                "classid","depth","phylum","lifeStage","species", "subclass","datasetID","family",
-                                "kingdomid","node_id","shoredistance","sst","bathymetry","flags"])
+        mofNormalized = pd.json_normalize(out["results"], "mof", ["scientificName","id", "eventDate"])
+        a = pd.merge(pd.DataFrame(out["results"]),mofNormalized,on='id',how='inner')
         ids = a.id.unique()
         return [a[a['id']==ids[i]] for i in range(len(ids))]
     return out
