@@ -331,6 +331,7 @@ Out [2]:
 
 [1 rows x 31 columns]
 ```
+----
 *Using taxa.taxon()*: Get taxon records.
 
 | Input param     | Data Type | Description              |
@@ -385,3 +386,98 @@ Out [2]:
 [1 rows x 10 columns]
 ```
 API Response details can be found here [OBIS v3 API](https://api.obis.org/#/Taxon/).
+
+----
+*Using taxa.taxon()*: Get taxon records.
+
+| Input param     | Data Type | Description              |
+| --------------- | --------- | ------------------------ |
+| id              | integer   | Taxon AphiaID (it is returned as "taxonID" in search results)|
+
+*Example Usage*
+```
+from pyobis import taxa
+res=taxa.taxon(id=138474)
+print(res["results"])
+print(pd.DataFrame(res["results"]))
+```
+
+**Expected Output**
+```
+Out [1]:
+[{'scientificName': 'Abra', 'scientificNameAuthorship': 'Lamarck, 1818', 'taxonID': 138474, 'ncbi_id': 121180, 'taxonRank': 'Genus', 'taxonomicStatus': 'accepted', 'acceptedNameUsage': 'Abra', 'acceptedNameUsageID': 138474, 'is_marine': True, 'kingdom': 'Animalia', 'phylum': 'Mollusca', 'class': 'Bivalvia', 'subclass': 'Autobranchia', 'infraclass': 'Heteroconchia',...........
+}]
+
+Out [2]:
+  scientificName scientificNameAuthorship  ...  familyid  genusid
+0           Abra            Lamarck, 1818  ...      1781   138474
+
+[1 rows x 31 columns]
+```
+----
+*Using taxa.annotations()* Get scientific name annotations by the WoRMS team.
+
+| Input param     | Data Type | Description              |
+| --------------- | --------- | ------------------------ |
+| scientificname  | String    | Scientific name. Leave empty to include all taxa.|
+
+*Example Usage*
+```
+from pyobis import taxa
+res=taxa.annotations(scientificname="Egg")
+print(res["results"])
+print(pd.DataFrame(res["results"]))
+```
+
+**Expected Output**
+```
+Out [1]:
+[{'scientificname': 'Egg', 'annotation_type': 'Black: no biota', 'annotation_comment': None, 'annotation_resolved_aphiaid': None, 'scientificnameid': 'CYCLOPS', 'phylum': None, 'class': None, 'order': None, 'family': None, 'genus': None
+}]
+
+Out [2]:
+  scientificname  annotation_type annotation_comment  ... order family genus
+0            Egg  Black: no biota               None  ...  None   None  None
+
+[1 rows x 10 columns]
+```
+API Response details can be found here [OBIS v3 API](https://api.obis.org/#/Taxon/).
+
+----
+
+## Checklist
+*Using checklist.list()*: to Generate an OBIS checklist
+
+Input Parameter Details
+
+| Input param     | Data Type | Description              |
+| --------------- | --------- | ------------------------ |
+| scientificname  | String, Array| One or more scientific names from the OBIS backbone. All included and synonym taxa are included in the search. Leave empty to include all taxa. |
+|taxonid| Fixnum| A obis occurrence identifier|
+| geometry| String| Well Known Text (WKT). A WKT shape written as either POINT, LINESTRING, LINEARRING or POLYGON. Example of a polygon: ((30.1 10.1, 20, 20 40, 40 40, 30.1 10.1)) would be queried as http://bit.ly/1BzNwDq|
+| nodeid| Fixnum| Node UUID.|
+| startdate| String| Start date YYYY-MM-DD|
+| enddate| String | End date YYYY-MM-DD|
+| startdepth| Fixnum| Start depth|
+| enddepth| Boolean| End depth|
+| flags| String| Comma separated list of quality flags which need to be set|
+
+Example Usage
+```
+from pyobis import checklist as ch
+res = ch.list(scientificname = 'Mola mola')
+print(res["results"])
+print(pd.DataFrame(res["results"]))
+```
+**Expected Output**
+```
+Out [1]:
+[{'type': 'Event', 'class': 'Actinopteri', 'genus': 'Mola', 'order': 'Tetraodontiformes', 'family': 'Molidae', 'phylum': 'Chordata', 'kingdom': 'Animalia', 'license': 'http://creativecommons.org/licenses/by-nc/4.0/', 'modified': '2022-02-03 15:29:13', 'datasetID': '513', 'eventDate': '2012-06-21T16:14:47', 'eventTime': '20:14:47Z', 'taxonRank': 'Species', 'waterBody': 'North Atlantic Ocean', ............
+}]
+
+Out [2]:
+  scientificName scientificNameAuthorship  ...  familyid  genusid
+0           Abra            Lamarck, 1818  ...      1781   138474
+
+[1 rows x 31 columns]
+```

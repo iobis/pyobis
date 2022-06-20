@@ -23,23 +23,3 @@ def test_taxa_annotations():
     assert dict == res.__class__
     assert 2 == len(res)
     assert list == list(res.keys()).__class__
-
-def test_taxa_taxon_search():
-    "taxa.taxon_search - basic test"
-    res = taxa.taxon_search(scientificname = 'Mola')
-    assert dict == res.__class__
-    assert list == list(res.keys()).__class__
-    assert 2 == len(res)
-    assert 'Mola' == res['results'][0]['genus']
-
-def test_taxa_common():
-    "taxa.common - basic test"
-    res = taxa.common(402913)
-    assert dict == res.__class__
-    assert 2 == len(res)
-    assert list == list(res.keys()).__class__
-    assert list == res['results'].__class__
-    if (list(res['results'])):
-        xx = list(res['results'][0].keys())
-        xx.sort()
-        assert ['language', 'name'] == xx

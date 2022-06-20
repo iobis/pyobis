@@ -40,7 +40,7 @@ __author__ = 'Scott Chamberlain'
 __license__ = 'MIT'
 
 from .occurrences import search, get, grid, getpoints, point, tile, centroid, download, ObisDownload
-from .taxa import search, taxon, annotations, common, taxon_search
+from .taxa import search, taxon, annotations
 from .nodes import search, activities
 from .dataset import get, search
 from .checklist import list, redlist, newest
