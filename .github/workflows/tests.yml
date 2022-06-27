@@ -2,8 +2,9 @@ name: Tests
 
 on:
   pull_request:
+    branches: [main]
   push:
-    branches: [gsoc2022-working-aa]
+    branches: [main]
 
 jobs:
   run:
