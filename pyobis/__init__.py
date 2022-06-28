@@ -5,8 +5,11 @@
 '''
 pyobis library
 ~~~~~~~~~~~~~~~~~~~~~
+
 pyobis is a Python client for OBIS.
+
 Example usage:
+
 # Import entire library
 import pyobis
 # or import modules as needed
@@ -18,6 +21,7 @@ from pyobis import taxa
 from pyobis import dataset
 ## checklist
 from pyobis import checklist
+
 ## use advanced logging
 ### setup first
 import requests
@@ -40,7 +44,7 @@ __author__ = 'Scott Chamberlain'
 __license__ = 'MIT'
 
 from .occurrences import search, get, grid, getpoints, point, tile, centroid, download, ObisDownload
-from .taxa import search, taxon, annotations
+from .taxa import search, taxon, annotations, common, taxon_search
 from .nodes import search, activities
 from .dataset import get, search
 from .checklist import list, redlist, newest

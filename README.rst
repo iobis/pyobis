@@ -6,7 +6,7 @@ pyobis
 Python client for the `OBIS API
 <https://api.obis.org/>`__.
 
-`Source on GitHub at iobis/pyobis <https://github.com/iobis/pyobis>`__
+`Source Code here  <https://github.com/iobis/pyobis>`__
 
 Other OBIS clients:
 
@@ -28,7 +28,7 @@ dev version
     pip install git+git://github.com/sckott/pyobis.git#egg=pyobis
 
 
-library API
+Library API
 ===========
 
 `pyobis` is split up into modules for each of the groups of API methods.
@@ -38,6 +38,11 @@ library API
 * `dataset` - Dataset
 * `nodes` - Nodes
 * `checklist` - Checklist
+
+
+
+Usage
+===========
 
 You can import the entire library, or each module individually as needed.
 
@@ -83,7 +88,7 @@ Dataset module
 
     from pyobis import dataset
     dataset.search(scientificname = ['Mola', 'Abra', 'Lanice', 'Pectinaria'])
-    dataset.get(id = 'ec9df3b9-3b2b-4d83-881b-27bcbcd57b95')
+    dataset.get(id = 2126)
 
 Nodes module
 ===========
@@ -104,7 +109,7 @@ Checklist module
 Meta
 ====
 
-* License: MIT, see `LICENSE file <LICENSE>`__
+* License: MIT,  `see LICENSE file <LICENSE>`__
 * Please note that this project is released with a `Contributor Code of Conduct <CONDUCT.md>`__. By participating in this project you agree to abide by its terms.
 
 .. |pypi| image:: https://img.shields.io/pypi/v/pyobis.svg
@@ -113,8 +118,8 @@ Meta
 .. |docs| image:: https://readthedocs.org/projects/pyobis/badge/?version=latest
    :target: http://pyobis.readthedocs.org/en/latest/?badge=latest
 
-.. |tests| image:: https://github.com/ayushanand18/pyobis/actions/workflows/tests.yml/badge.svg
-   :target: https://github.com/ayushanand18/pyobis/actions/workflows/tests.yml
+.. |tests| image:: https://github.com/iobis/pyobis/actions/workflows/tests.yml/badge.svg
+   :target: https://github.com/iobis/pyobis/actions/workflows/tests.yml
 
 .. |coverage| image:: https://coveralls.io/repos/sckott/pyobis/badge.svg?branch=master&service=github
-   :target: https://coveralls.io/github/sckott/pyobis?branch=gsoc2022
+   :target: https://coveralls.io/github/sckott/pyobis?branch=master

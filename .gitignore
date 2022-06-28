@@ -20,6 +20,6 @@
 test.py
 tests.sh
 .gitpod.yml
-.vscode
-.pytest_cache
+EXAMPLES.md
 Function_Changes.md
+.vscode
