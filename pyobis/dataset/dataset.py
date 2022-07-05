@@ -67,8 +67,7 @@ def get(id, **kwargs):
     Usage::
 
         from pyobis import dataset
-        dataset.get(103)
-        dataset.get(2126)
+        dataset.get('ec9df3b9-3b2b-4d83-881b-27bcbcd57b95')
     '''
     url = obis_baseurl + 'dataset/' + str(id)
     out = obis_GET(url, {}, 'application/json; charset=utf-8', **kwargs)

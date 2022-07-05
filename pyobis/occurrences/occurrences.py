@@ -1,5 +1,6 @@
+from tkinter.messagebox import NO
 from ..obisutils import *
-
+import pandas as pd
 
 def search(scientificname=None,
            taxonid=None,
@@ -66,11 +67,13 @@ def search(scientificname=None,
 
         # Get occurrences for a particular eventDate
         occ.search(aphiaid=res['worms_id'], year="2013", limit=20)
+
+        # Get mof response as list of pandas dataframes
+        occ.search(scientificname="Abra",mof=True,hasextensions="MeasurementOrFact")
     '''
     url = obis_baseurl + 'occurrence'
     scientificname = handle_arrstr(scientificname)
-    out = obis_GET(
-        url, {
+    out = obis_GET(url, {
             'taxonid': taxonid,
             'obisid': obisid,
             'datasetid': datasetid,
@@ -88,26 +91,261 @@ def search(scientificname=None,
             'mof': mof,
             'hasextensions': hasextensions
         }, 'application/json; charset=utf-8', **kwargs)
+    if (mof):
+        mofNormalized = pd.json_normalize(out["results"], "mof", ["scientificName","id", "eventDate"])
+        a = pd.merge(pd.DataFrame(out["results"]),mofNormalized,on='id',how='inner')
+        ids = a.id.unique()
+        return [a[a['id']==ids[i]] for i in range(len(ids))]
     return out
-
 
 def get(id, **kwargs):
     '''
     Get an OBIS occurrence
 
-    :param id: [Fixnum] An obis occurrence identifier
+    :param id: [Fixnum] An obis occurrence identifier. It is returned in the 'id' field with occurrences.search().
 
     :return: A dictionary
 
     Usage::
 
         from pyobis import occurrences as occ
-        occ.get(id = 14333)
-        occ.get(id = 135355)
-
-        # many at once
-        [ occ.get(id = x) for x in [14333, 135355, 276413] ]
+        occ.get(id = '00008e33-6faa-4d98-a00b-91a6ed1ed3ca')
     '''
     url = obis_baseurl + 'occurrence/' + str(id)
     out = obis_GET(url, {}, 'application/json; charset=utf-8', **kwargs)
+    return out
+
+def grid(precision, geojson=True, scientificname=None, taxonid=None,
+        datasetid=None, nodeid=None, startdate=None,enddate=None,
+        startdepth=None, enddepth=None, geometry=None, redlist=None,
+        hab=None, wrims=None, event=None, flags=None, exclude=None, **kwargs):
+    '''
+    Fetch gridded occurrences as GeoJSON or KML.
+
+    :param precision: [integer] Geohash precision.
+    :param scientificname: [string] Scientific name. Leave empty to include all taxa.
+    :param taxonid: [string] Taxon AphiaID.
+    :param datasetid: [string] Dataset UUID.
+    :param nodeid: [string] Node UUID.
+    :param startdate: [string] Start date formatted as YYYY-MM-DD.
+    :param enddate: [string] End date formatted as YYYY-MM-DD.
+    :param startdepth: [integer] Start depth, in meters.
+    :param enddepth: [integer] End depth, in meters.
+    :param geometry: [string] Geometry, formatted as WKT or GeoHash.
+    :param redlist: [boolean] Red List species only, True/False.
+    :param hab: [boolean] HAB species only, true/false.
+    :param wrims: [boolean] WRiMS species only, True/False.
+    :param event: [string] Include pure event records (include) or get pure event records exclusively (true).
+    :param flags: [string] Comma separated list of quality flags which need to be set.
+    :param exclude: [string] Comma separated list of quality flags to be excluded.
+
+    :return: A dictionary
+    
+    Usage::
+
+        from pyobis import occurrences as occ
+        occ.grid(100, True) // returns in GeoJSON format
+        occ.grid(1000, False)   // returns in KML format
+    '''
+    url = obis_baseurl + 'occurrence/grid/' + str(precision)
+    args = {"scientificname":scientificname,
+        'taxonid': taxonid,'datasetid':datasetid,
+        'nodeid': nodeid,'startdate': startdate,
+        'enddate': enddate,'startdepth':startdepth,
+        'enddepth': enddepth, 'geometry':geometry,
+        'redlist':redlist, 'hab':hab,
+        'wrims': wrims, 'event':event,
+        'flags': flags, 'exclude': exclude}
+
+    if not geojson: 
+        out = requests.get(url+'/kml', params=args, **kwargs)
+        out.raise_for_status()
+        stopifnot(out.headers['content-type'], "text/xml; charset=utf-8")
+        return out.content
+    out = obis_GET(url, args , 'application/json; charset=utf-8', **kwargs)
+    return out
+
+def getpoints(scientificname=None, taxonid=None,
+        datasetid=None, nodeid=None, startdate=None,enddate=None,
+        startdepth=None, enddepth=None, geometry=None, redlist=None,
+        hab=None, wrims=None, event=None, flags=None, exclude=None, **kwargs):
+    '''
+    Fetch point occurrences as GeoJSON (aggregated to Geohash precision 8).
+
+    :param scientificname: [string] Scientific name. Leave empty to include all taxa.
+    :param taxonid: [string] Taxon AphiaID.
+    :param datasetid: [string] Dataset UUID.
+    :param nodeid: [string] Node UUID.
+    :param startdate: [string] Start date formatted as YYYY-MM-DD.
+    :param enddate: [string] End date formatted as YYYY-MM-DD.
+    :param startdepth: [integer] Start depth, in meters.
+    :param enddepth: [integer] End depth, in meters.
+    :param geometry: [string] Geometry, formatted as WKT or GeoHash.
+    :param redlist: [boolean] Red List species only, True/False.
+    :param hab: [boolean] HAB species only, true/false.
+    :param wrims: [boolean] WRiMS species only, True/False.
+    :param event: [string] Include pure event records (include) or get pure event records exclusively (true).
+    :param flags: [string] Comma separated list of quality flags which need to be set.
+    :param exclude: [string] Comma separated list of quality flags to be excluded.
+
+    :return: A dictionary
+
+    Usage::
+
+        from pyobis import occurrences as occ
+        occ.getpoints(scientificname = 'Mola mola')
+        
+        ## Many names
+        occ.getpoints(scientificname = ['Mola mola','Abra alba'])
+    '''
+    url = obis_baseurl + 'occurrence/points'
+    scientificname = handle_arrstr(scientificname)
+    out = obis_GET(
+        url, {
+        "scientificname":scientificname, 'taxonid': taxonid,
+        'datasetid':datasetid, 'nodeid': nodeid,'startdate': startdate,
+        'enddate': enddate,'startdepth':startdepth, 'enddepth': enddepth, 
+        'geometry':geometry, 'redlist':redlist, 'hab':hab, 'wrims': wrims, 
+        'event':event, 'flags': flags, 'exclude': exclude
+        }, 'application/json; charset=utf-8', **kwargs)
+    return out
+
+def point(x,y,z=None,scientificname=None, taxonid=None,
+        datasetid=None, nodeid=None, startdate=None,enddate=None,
+        startdepth=None, enddepth=None, geometry=None, redlist=None,
+        hab=None, wrims=None, event=None, flags=None, exclude=None, **kwargs):
+    '''
+    Fetch point occurrences for a location (with Geohash precision 8 or variable Geohash precision) as GeoJSON.
+
+    :param x: [float] latitudes of a location
+    :param y: [float] laongitude of a location
+    :param z: [float] zoom level, if present then variable Geohash precision, if absent then precision 8
+    :param scientificname: [string] Scientific name. Leave empty to include all taxa.
+    :param taxonid: [string] Taxon AphiaID.
+    :param datasetid: [string] Dataset UUID.
+    :param nodeid: [string] Node UUID.
+    :param startdate: [string] Start date formatted as YYYY-MM-DD.
+    :param enddate: [string] End date formatted as YYYY-MM-DD.
+    :param startdepth: [integer] Start depth, in meters.
+    :param enddepth: [integer] End depth, in meters.
+    :param geometry: [string] Geometry, formatted as WKT or GeoHash.
+    :param redlist: [boolean] Red List species only, True/False.
+    :param hab: [boolean] HAB species only, true/false.
+    :param wrims: [boolean] WRiMS species only, True/False.
+    :param event: [string] Include pure event records (include) or get pure event records exclusively (true).
+    :param flags: [string] Comma separated list of quality flags which need to be set.
+    :param exclude: [string] Comma separated list of quality flags to be excluded.
+
+    :return: A dictionary
+
+    Usage::
+
+        from pyobis import occurrences as occ
+        occ.point(x=1.77,y=54.22,scientificname = 'Mola mola')
+        
+    '''
+    z = str(z) if z else '' 
+    url = obis_baseurl + 'occurrence/point/%s/%s/%s'%(str(x),str(y),z)
+    scientificname = handle_arrstr(scientificname)
+    out = obis_GET(
+        url, {
+        "scientificname":scientificname, 'taxonid': taxonid,
+        'datasetid':datasetid, 'nodeid': nodeid,'startdate': startdate,
+        'enddate': enddate,'startdepth':startdepth, 'enddepth': enddepth, 
+        'geometry':geometry, 'redlist':redlist, 'hab':hab, 'wrims': wrims, 
+        'event':event, 'flags': flags, 'exclude': exclude
+        }, 'application/json; charset=utf-8', **kwargs)
+    return out
+
+def tile(x,y,z,mvt=0,scientificname=None, taxonid=None,
+        datasetid=None, nodeid=None, startdate=None,enddate=None,
+        startdepth=None, enddepth=None, geometry=None, redlist=None,
+        hab=None, wrims=None, event=None, flags=None, exclude=None, **kwargs):
+    '''
+    Fetch point occurrences for a tile (aggregated using variable Geohash precision based on zoom level) as GeoJSON or MVT.
+
+    :param x: [float] latitudes of a location
+    :param y: [float] laongitude of a location
+    :param z: [float] zoom level
+    :param scientificname: [string] Scientific name. Leave empty to include all taxa.
+    :param taxonid: [string] Taxon AphiaID.
+    :param datasetid: [string] Dataset UUID.
+    :param nodeid: [string] Node UUID.
+    :param startdate: [string] Start date formatted as YYYY-MM-DD.
+    :param enddate: [string] End date formatted as YYYY-MM-DD.
+    :param startdepth: [integer] Start depth, in meters.
+    :param enddepth: [integer] End depth, in meters.
+    :param geometry: [string] Geometry, formatted as WKT or GeoHash.
+    :param redlist: [boolean] Red List species only, True/False.
+    :param hab: [boolean] HAB species only, true/false.
+    :param wrims: [boolean] WRiMS species only, True/False.
+    :param event: [string] Include pure event records (include) or get pure event records exclusively (true).
+    :param flags: [string] Comma separated list of quality flags which need to be set.
+    :param exclude: [string] Comma separated list of quality flags to be excluded.
+
+    :return: A dictionary
+
+    Usage::
+
+        from pyobis import occurrences as occ
+        occ.tile(x=1.77,y=52.26,z=0.5,mvt=0, scientificname = 'Mola mola')
+        occ.tile(x=1.77,y=52.26,z=0.5,mvt=1, scientificname = 'Mola mola')
+    '''
+    url = obis_baseurl + 'occurrence/tile/%s/%s/%s'%(str(x),str(y),str(z))
+    args =  {"scientificname":scientificname, 'taxonid': taxonid,
+        'datasetid':datasetid, 'nodeid': nodeid,'startdate': startdate,
+        'enddate': enddate,'startdepth':startdepth, 'enddepth': enddepth, 
+        'geometry':geometry, 'redlist':redlist, 'hab':hab, 'wrims': wrims, 
+        'event':event, 'flags': flags, 'exclude': exclude}
+    scientificname = handle_arrstr(scientificname)
+
+    if mvt:
+        out = requests.get(url+'.mvt', params=args, **kwargs)
+        out.raise_for_status()
+        # stopifnot(out.headers['content-type'], "text/xml; charset=utf-8")
+        return out.content
+
+    out = obis_GET(url, args , 'application/json; charset=utf-8', **kwargs)
+    return out
+
+def centroid(scientificname=None, taxonid=None,
+        datasetid=None, nodeid=None, startdate=None,enddate=None,
+        startdepth=None, enddepth=None, geometry=None, redlist=None,
+        hab=None, wrims=None, event=None, flags=None, exclude=None, **kwargs):
+    '''
+    Determine the centroid for a selection of occurrence records.
+
+    :param scientificname: [string] Scientific name. Leave empty to include all taxa.
+    :param taxonid: [string] Taxon AphiaID.
+    :param datasetid: [string] Dataset UUID.
+    :param nodeid: [string] Node UUID.
+    :param startdate: [string] Start date formatted as YYYY-MM-DD.
+    :param enddate: [string] End date formatted as YYYY-MM-DD.
+    :param startdepth: [integer] Start depth, in meters.
+    :param enddepth: [integer] End depth, in meters.
+    :param geometry: [string] Geometry, formatted as WKT or GeoHash.
+    :param redlist: [boolean] Red List species only, True/False.
+    :param hab: [boolean] HAB species only, true/false.
+    :param wrims: [boolean] WRiMS species only, True/False.
+    :param event: [string] Include pure event records (include) or get pure event records exclusively (true).
+    :param flags: [string] Comma separated list of quality flags which need to be set.
+    :param exclude: [string] Comma separated list of quality flags to be excluded.
+
+    :return: A dictionary
+
+    Usage::
+
+        from pyobis import occurrences as occ
+        occ.centroid(scientificname = 'Mola mola')
+    '''
+    url = obis_baseurl + 'occurrence/centroid'
+    scientificname = handle_arrstr(scientificname)
+    out = obis_GET(
+        url, {
+        "scientificname":scientificname, 'taxonid': taxonid,
+        'datasetid':datasetid, 'nodeid': nodeid,'startdate': startdate,
+        'enddate': enddate,'startdepth':startdepth, 'enddepth': enddepth, 
+        'geometry':geometry, 'redlist':redlist, 'hab':hab, 'wrims': wrims, 
+        'event':event, 'flags': flags, 'exclude': exclude
+        }, 'application/json; charset=utf-8', **kwargs)
     return out
