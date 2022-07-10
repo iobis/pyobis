@@ -1,6 +1,12 @@
 Changelog
 =========
 
+1.0.0 (2022-07-10)
+-----------------------
+- updated all modules to the new OBIS API v3
+    + updated checklist, nodes, occurrences, and taxa module
+- removed resources, added dataset module
+
 0.1.0 (2016-12-12)
 -----------------------
 - first push to pypi
