@@ -28,13 +28,13 @@ dev version
     pip install git+git://github.com/sckott/pyobis.git#egg=pyobis
 
 
-library API
+Library API
 ===========
 
 `pyobis` is split up into modules for each of the groups of API methods.
 
 * `taxa` - Taxonomic names
-* `occurrences` - Occurrence search, and occurrence downloads
+* `occurrences` - Occurrence search
 * `dataset` - Dataset
 * `nodes` - Nodes
 * `checklist` - Checklist
@@ -113,7 +113,7 @@ Meta
 .. |docs| image:: https://readthedocs.org/projects/pyobis/badge/?version=latest
    :target: http://pyobis.readthedocs.org/en/latest/?badge=latest
 
-.. |tests| image:: https://github.com/ayushanand18/pyobis/actions/workflows/tests.yml/badge.svg
+.. |tests| image:: https://github.com/iobis/pyobis/actions/workflows/tests.yml/badge.svg
    :target: https://github.com/iobis/pyobis/actions/workflows/tests.yml
 
 .. |coverage| image:: https://coveralls.io/repos/sckott/pyobis/badge.svg?branch=master&service=github

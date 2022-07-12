@@ -38,7 +38,7 @@ from pyobis import occurrence
 occurrence.search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))')
 '''
 
-__version__ = '0.1.0'
+__version__ = '1.0.0'
 __title__ = 'pyobis'
 __author__ = 'Scott Chamberlain'
 __license__ = 'MIT'
