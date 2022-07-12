@@ -6,7 +6,7 @@ pyobis
 Python client for the `OBIS API
 <https://api.obis.org/>`__.
 
-`Source Code here  <https://github.com/iobis/pyobis>`__
+`Source on GitHub at iobis/pyobis <https://github.com/iobis/pyobis>`__
 
 Other OBIS clients:
 
@@ -34,15 +34,10 @@ Library API
 `pyobis` is split up into modules for each of the groups of API methods.
 
 * `taxa` - Taxonomic names
-* `occurrences` - Occurrence search, and occurrence downloads
+* `occurrences` - Occurrence search
 * `dataset` - Dataset
 * `nodes` - Nodes
 * `checklist` - Checklist
-
-
-
-Usage
-===========
 
 You can import the entire library, or each module individually as needed.
 
@@ -88,7 +83,7 @@ Dataset module
 
     from pyobis import dataset
     dataset.search(scientificname = ['Mola', 'Abra', 'Lanice', 'Pectinaria'])
-    dataset.get(id = 2126)
+    dataset.get(id = 'ec9df3b9-3b2b-4d83-881b-27bcbcd57b95')
 
 Nodes module
 ===========
@@ -109,7 +104,7 @@ Checklist module
 Meta
 ====
 
-* License: MIT,  `see LICENSE file <LICENSE>`__
+* License: MIT, see `LICENSE file <LICENSE>`__
 * Please note that this project is released with a `Contributor Code of Conduct <CONDUCT.md>`__. By participating in this project you agree to abide by its terms.
 
 .. |pypi| image:: https://img.shields.io/pypi/v/pyobis.svg
@@ -122,4 +117,4 @@ Meta
    :target: https://github.com/iobis/pyobis/actions/workflows/tests.yml
 
 .. |coverage| image:: https://coveralls.io/repos/sckott/pyobis/badge.svg?branch=master&service=github
-   :target: https://coveralls.io/github/sckott/pyobis?branch=master
+   :target: https://coveralls.io/github/iobis/pyobis?branch=master
