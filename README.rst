@@ -117,4 +117,4 @@ Meta
    :target: https://github.com/iobis/pyobis/actions/workflows/tests.yml
 
 .. |coverage| image:: https://coveralls.io/repos/sckott/pyobis/badge.svg?branch=master&service=github
-   :target: https://coveralls.io/github/sckott/pyobis?branch=master
+   :target: https://coveralls.io/github/iobis/pyobis?branch=master
