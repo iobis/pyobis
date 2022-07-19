@@ -2,23 +2,9 @@ from tkinter.messagebox import NO
 from ..obisutils import *
 import pandas as pd
 
-def search(scientificname=None,
-           taxonid=None,
-           obisid=None,
-           datasetid=None,
-           startdate=None,
-           enddate=None,
-           startdepth=None,
-           enddepth=None,
-           geometry=None,
-           year=None,
-           flags=None,
-           fields=None,
-           limit=500,
-           offset=0,
-           mof=False,
-           hasextensions=None,
-           **kwargs):
+def search(scientificname=None,taxonid=None,obisid=None,datasetid=None,startdate=None,enddate=None,
+           startdepth=None,enddepth=None,geometry=None,year=None,flags=None,fields=None,size=5000,
+           offset=0,mof=False,hasextensions=None,**kwargs):
     '''
     Search OBIS occurrences
 
@@ -38,7 +24,7 @@ def search(scientificname=None,
     :param enddepth: [Boolean] End depth
     :param flags: Prev. qc [String] Quality control flags
     :param fields: [String] Comma seperated list of field names
-    :param limit: [Fixnum] Number of results to return. Default: 1000
+    :param size: [Fixnum] Number of results to return. Default: 5000
     :param offset: [Fixnum] Start at record. Default: 0
     :param mof: [Boolean] Include MeasurementOrFact records, true/false. Default: 0
     :param hasextensions: [String] Extensions that need to be present (e.g. MeasurementOrFact, DNADerivedData).
@@ -54,43 +40,40 @@ def search(scientificname=None,
 
         # Use paging parameters (limit and start) to page. Note the different results
         # for the two queries below.
-        occ.search(scientificname = 'Mola mola', offset=0, limit=10)
-        occ.search(scientificname = 'Mola mola', offset=10, limit=10)
+        occ.search(scientificname = 'Mola mola', offset=0, size=10)
+        occ.search(scientificname = 'Mola mola', offset=10, size=10)
 
         # Search on a bounding box
         ## in well known text format
         occ.search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit=20)
         from pyobis import taxa
         res = taxa.search(scientificname='Mola mola')['results'][0]
-        occ.search(obisid=res['id'], geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit=20)
-        occ.search(aphiaid=res['worms_id'], geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit=20)
-
-        # Get occurrences for a particular eventDate
-        occ.search(aphiaid=res['worms_id'], year="2013", limit=20)
+        occ.search(obisid=res['id'], geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', size=20)
+        occ.search(aphiaid=res['worms_id'], geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', size=20)
 
         # Get mof response as list of pandas dataframes
         occ.search(scientificname="Abra",mof=True,hasextensions="MeasurementOrFact")
     '''
     url = obis_baseurl + 'occurrence'
     scientificname = handle_arrstr(scientificname)
-    out = obis_GET(url, {
-            'taxonid': taxonid,
-            'obisid': obisid,
-            'datasetid': datasetid,
-            'scientificname': scientificname,
-            'startdate': startdate,
-            'enddate': enddate,
-            'startdepth': startdepth,
-            'enddepth': enddepth,
-            'geometry': geometry,
-            'year': year,
-            'fields': fields,
-            'flags': flags,
-            'limit': limit,
-            'offset': offset,
-            'mof': mof,
+    args = {
+            'taxonid': taxonid,'obisid': obisid,'datasetid': datasetid,
+            'scientificname': scientificname,'startdate': startdate,
+            'enddate': enddate,'startdepth': startdepth,'enddepth': enddepth,
+            'geometry': geometry,'year': year,'fields': fields,
+            'flags': flags,'offset': offset,'mof': mof,'size':0,
             'hasextensions': hasextensions
-        }, 'application/json; charset=utf-8', **kwargs)
+        }
+    out  = obis_GET(url,args,'application/json; charset=utf-8', **kwargs)
+    while (True):
+        if args["size"]!=0:
+            args['after'] = res["results"][4999].id
+            if not res["results"][4999]:
+                break
+        args['size'] = size
+        res=obis_GET(url, args, 'application/json; charset=utf-8', **kwargs)
+        out["results"].append(res["results"])
+    
     if (mof):
         mofNormalized = pd.json_normalize(out["results"], "mof", ["scientificName","id", "eventDate"])
         a = pd.merge(pd.DataFrame(out["results"]),mofNormalized,on='id',how='inner')
