@@ -2,7 +2,7 @@ from tkinter.messagebox import NO
 from ..obisutils import *
 import pandas as pd
 
-def search(scientificname=None,taxonid=None,obisid=None,datasetid=None,startdate=None,enddate=None,
+def search(scientificname=None,taxonid=None,nodeid=None,datasetid=None,startdate=None,enddate=None,
            startdepth=None,enddepth=None,geometry=None,year=None,flags=None,fields=None,size=5000,
            offset=0,mof=False,hasextensions=None,**kwargs):
     '''
@@ -15,7 +15,7 @@ def search(scientificname=None,taxonid=None,obisid=None,datasetid=None,startdate
        smaller,larger (e.g., '1990,1991', whereas '1991,1990' wouldn't work)
     :param geometry: [String] Well Known Text (WKT). A WKT shape written as either POINT, LINESTRING, LINEARRING
        or POLYGON. Example of a polygon: ((30.1 10.1, 20, 20 40, 40 40, 30.1 10.1)) would be queried as http://bit.ly/1BzNwDq
-    :param obisid: [Fixnum] An OBIS id. This is listed as the `id` or `valid_id` in `taxa`/`taxon` results
+    :param nodeid: [String] Node UUID
     :param taxonid: Prev. aphiaid [Fixnum] An Aphia id. This is listed as the `worms_id` in `taxa`/`taxon` results
     :param datasetid: Prev. resourceid [Fixnum] A resource id
     :param startdate: [Fixnum] Start date
@@ -57,7 +57,7 @@ def search(scientificname=None,taxonid=None,obisid=None,datasetid=None,startdate
     url = obis_baseurl + 'occurrence'
     scientificname = handle_arrstr(scientificname)
     args = {
-            'taxonid': taxonid,'obisid': obisid,'datasetid': datasetid,
+            'taxonid': taxonid,'nodeid': nodeid,'datasetid': datasetid,
             'scientificname': scientificname,'startdate': startdate,
             'enddate': enddate,'startdepth': startdepth,'enddepth': enddepth,
             'geometry': geometry,'year': year,'fields': fields,
@@ -67,9 +67,11 @@ def search(scientificname=None,taxonid=None,obisid=None,datasetid=None,startdate
     out  = obis_GET(url,args,'application/json; charset=utf-8', **kwargs)
     while (True):
         if args["size"]!=0:
-            args['after'] = res["results"][4999].id
-            if not res["results"][4999]:
+            try:
+                res["results"][4999]
+            except:
                 break
+            args['after'] = res["results"][4999]['id']
         args['size'] = size
         res=obis_GET(url, args, 'application/json; charset=utf-8', **kwargs)
         out["results"].append(res["results"])
