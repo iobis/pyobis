@@ -8,6 +8,9 @@ Python client for the `OBIS API
 
 `Source on GitHub at iobis/pyobis <https://github.com/iobis/pyobis>`__
 
+For examples of how to use this repo, see the jupyter notebooks in the `/notebooks/` directory.
+NOTE: GitHub's jupyter notebook display does not show interactive plots; open the notebooks in a jupyter hub (eg colab, binder, etc) for the full experience.
+
 Other OBIS clients:
 
 * R: `robis`, `iobis/robis <https://github.com/iobis/robis>`__
