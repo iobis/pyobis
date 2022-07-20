@@ -80,11 +80,10 @@ def search(scientificname=None,taxonid=None,nodeid=None,datasetid=None,startdate
     res=obis_GET(url, args, 'application/json; charset=utf-8', **kwargs)
     out["results"]+=res["results"]
     
-    if (mof):
+    if mof and out["total"]>0:
         mofNormalized = pd.json_normalize(out["results"], "mof", ["id"])
-        a = pd.merge(pd.DataFrame(out["results"]),mofNormalized,on='id',how='inner')
-        ids = a.id.unique()
-        return [a[a['id']==ids[i]] for i in range(len(ids))]
+        merged = pd.merge(pd.DataFrame(out["results"]),mofNormalized,on='id',how='inner')
+        return merged
     return out
 
 def get(id, **kwargs):
