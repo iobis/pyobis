@@ -65,19 +65,23 @@ def search(scientificname=None,taxonid=None,nodeid=None,datasetid=None,startdate
             'hasextensions': hasextensions
         }
     out  = obis_GET(url,args,'application/json; charset=utf-8', **kwargs)
-    while (True):
+    limit = out["total"] if size == 5000 else size
+    for i in range(5000,limit+1,5000):
         if args["size"]!=0:
             try:
                 res["results"][4999]
             except:
                 break
             args['after'] = res["results"][4999]['id']
-        args['size'] = size
+        args['size'] = 5000
         res=obis_GET(url, args, 'application/json; charset=utf-8', **kwargs)
-        out["results"].append(res["results"])
+        out["results"]+=res["results"]
+    args["size"] = limit%5000
+    res=obis_GET(url, args, 'application/json; charset=utf-8', **kwargs)
+    out["results"]+=res["results"]
     
     if (mof):
-        mofNormalized = pd.json_normalize(out["results"], "mof", ["scientificName","id", "eventDate"])
+        mofNormalized = pd.json_normalize(out["results"], "mof", ["id"])
         a = pd.merge(pd.DataFrame(out["results"]),mofNormalized,on='id',how='inner')
         ids = a.id.unique()
         return [a[a['id']==ids[i]] for i in range(len(ids))]
