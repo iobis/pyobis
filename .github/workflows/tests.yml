@@ -25,20 +25,20 @@ jobs:
         update-conda: true
         conda-channels: conda-forge
 
-    - name: Python ${{ matrix.python-version }}
+    - name: Install on Python ${{ matrix.python-version }}
       shell: bash -l {0}
       run: |
         conda create --name TEST python=${{ matrix.python-version }} --file requirements.txt --file requirements-dev.txt
         source activate TEST
         python -m pip install -e . --no-deps --force-reinstall
 
-    - name: Debug Installation
+    - name: Print environment info to aid w/ debugging.
       shell: bash -l {0}
       run: |
         source activate TEST
         which python
 
-    - name: Tests
+    - name: Run Tests
       shell: bash -l {0}
       run: |
         source activate TEST
