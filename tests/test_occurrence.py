@@ -4,12 +4,12 @@ from pyobis import occurrences as occ
 
 def test_occurrences_search():
     "occurrences.search - basic test"
-    res = occ.search(scientificname = 'Mola mola')
+    res = occ.search(scientificname = 'Mola mola', size=10100)
     assert 'dict' == res.__class__.__name__
     assert 2 == len(res)
     assert list == list(res.keys()).__class__
-    res = occ.search(scientificname="Abra",mof=True,hasextensions="MeasurementOrFact")
-    assert 4 == len(res[0]["year"][0])
+    res = occ.search(scientificname="Abra alba",mof=True,size=100, hasextensions="MeasurementOrFact")
+    assert "Abra alba"==res.scientificName[0]
 
 def test_occurrences_get():
     "occurrences.get - basic test"
