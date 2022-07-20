@@ -42,4 +42,5 @@ jobs:
         python -m pytest -rxs --cov=pyobis tests
 
     - name: Run Linter
+      shell: bash -l {0}
       run: python -m flake8 ./pyobis/
