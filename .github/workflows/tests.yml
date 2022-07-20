@@ -27,6 +27,7 @@ jobs:
         conda create --name TEST python=${{ matrix.python-version }} --file requirements.txt --file requirements-dev.txt
         source activate TEST
         python -m pip install -e . --no-deps --force-reinstall
+        python -m pip install -r requirements-dev.txt
 
     - name: Print environment info to aid w/ debugging.
       shell: bash -l {0}
