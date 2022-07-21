@@ -42,7 +42,7 @@ Install editable dev version from github for local development. System prerequis
     python -m pip install -r requirements-dev.txt 
     python -m pip install -e . 
     # test your installation
-    pytest
+    python -m pytest
 
 Library API
 ===========
