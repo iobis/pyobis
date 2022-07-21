@@ -3,7 +3,7 @@ from ..obisutils import *
 import pandas as pd
 
 def search(scientificname=None,taxonid=None,nodeid=None,datasetid=None,startdate=None,enddate=None,
-           startdepth=None,enddepth=None,geometry=None,year=None,flags=None,fields=None,size=5000,
+           startdepth=None,enddepth=None,geometry=None,year=None,flags=None,fields=None,size=None,
            offset=0,mof=False,hasextensions=None,**kwargs):
     '''
     Search OBIS occurrences
@@ -24,7 +24,7 @@ def search(scientificname=None,taxonid=None,nodeid=None,datasetid=None,startdate
     :param enddepth: [Boolean] End depth
     :param flags: Prev. qc [String] Quality control flags
     :param fields: [String] Comma seperated list of field names
-    :param size: [Fixnum] Number of results to return. Default: 5000
+    :param size: [Fixnum] Number of results to return. Default: All records
     :param offset: [Fixnum] Start at record. Default: 0
     :param mof: [Boolean] Include MeasurementOrFact records, true/false. Default: 0
     :param hasextensions: [String] Extensions that need to be present (e.g. MeasurementOrFact, DNADerivedData).
@@ -65,18 +65,14 @@ def search(scientificname=None,taxonid=None,nodeid=None,datasetid=None,startdate
             'hasextensions': hasextensions
         }
     out  = obis_GET(url,args,'application/json; charset=utf-8', **kwargs)
-    limit = out["total"] if size == 5000 else size
-    for i in range(5000,limit+1,5000):
-        if args["size"]!=0:
-            try:
-                res["results"][4999]
-            except:
-                break
+    size = out["total"] if not size else size # if the user has set some size or else we fetch all the records
+    for i in range(5000,size+1,5000):
+        if args["size"]!=0: # this condition is to make sure that we set the `after` parameter when fetching subsequent records only, and first batch gets fetched correctly without this `after` parameter
             args['after'] = res["results"][4999]['id']
         args['size'] = 5000
         res=obis_GET(url, args, 'application/json; charset=utf-8', **kwargs)
         out["results"]+=res["results"]
-    args["size"] = limit%5000
+    args["size"] = size%5000 # we have already fetched records as a set of 5000 records each time, now we need to get remaining records from the total
     res=obis_GET(url, args, 'application/json; charset=utf-8', **kwargs)
     out["results"]+=res["results"]
     
