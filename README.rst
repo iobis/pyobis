@@ -18,18 +18,30 @@ Other OBIS clients:
 Installation
 ============
 
-from pypi
+Install from pypi
 
 .. code-block:: console
 
     pip install pyobis
 
-dev version
+Install latest dev version from github
 
 .. code-block:: console
 
     pip install git+git://github.com/sckott/pyobis.git#egg=pyobis
 
+Install editable dev version from github for local development. System prerequisites: python3, conda
+
+.. code-block:: console
+
+    # fetch code
+    git clone git@github.com:iobis/pyobis.git
+    cd pyobis
+    # install
+    python -m pip install -e . 
+    python -m pip install -r requirements-dev.txt 
+    # test your installation
+    pytest
 
 Library API
 ===========
