@@ -1,3 +1,4 @@
+import sys
 from tkinter.messagebox import NO
 from ..obisutils import *
 import pandas as pd
@@ -70,11 +71,15 @@ def search(scientificname=None,taxonid=None,nodeid=None,datasetid=None,startdate
         if args["size"]!=0: # this condition is to make sure that we set the `after` parameter when fetching subsequent records only, and first batch gets fetched correctly without this `after` parameter
             args['after'] = res["results"][4999]['id']
         args['size'] = 5000
+        print("{}[{}{}] {}/{}".format("Fetching: ", "█"*int((i-1)*100/size), "."*(100-int((i+1)*100/size)), i, size), end='\r', file=sys.stdout, flush=True)
+        # print('Fetching {} of {} records -> {:.2f}%'.format(i,size, i*100/size))
         res=obis_GET(url, args, 'application/json; charset=utf-8', **kwargs)
         out["results"]+=res["results"]
     args["size"] = size%5000 # we have already fetched records as a set of 5000 records each time, now we need to get remaining records from the total
+    print("{}[{}{}] {}/{}".format("Fetching: ", "█"*100, "."*0, size, size), end='\r', file=sys.stdout, flush=True)
     res=obis_GET(url, args, 'application/json; charset=utf-8', **kwargs)
     out["results"]+=res["results"]
+    print("\nFetched {} records.".format(size))
     
     if mof and out["total"]>0:
         mofNormalized = pd.json_normalize(out["results"], "mof", ["id"])
