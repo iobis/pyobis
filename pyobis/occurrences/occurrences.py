@@ -72,7 +72,6 @@ def search(scientificname=None,taxonid=None,nodeid=None,datasetid=None,startdate
             args['after'] = res["results"][4999]['id']
         args['size'] = 5000
         print("{}[{}{}] {}/{}".format("Fetching: ", "█"*int((i-1)*100/size), "."*(100-int((i+1)*100/size)), i, size), end='\r', file=sys.stdout, flush=True)
-        # print('Fetching {} of {} records -> {:.2f}%'.format(i,size, i*100/size))
         res=obis_GET(url, args, 'application/json; charset=utf-8', **kwargs)
         out["results"]+=res["results"]
     args["size"] = size%5000 # we have already fetched records as a set of 5000 records each time, now we need to get remaining records from the total
