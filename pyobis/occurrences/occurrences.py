@@ -2,23 +2,9 @@ from tkinter.messagebox import NO
 from ..obisutils import *
 import pandas as pd
 
-def search(scientificname=None,
-           taxonid=None,
-           obisid=None,
-           datasetid=None,
-           startdate=None,
-           enddate=None,
-           startdepth=None,
-           enddepth=None,
-           geometry=None,
-           year=None,
-           flags=None,
-           fields=None,
-           limit=500,
-           offset=0,
-           mof=False,
-           hasextensions=None,
-           **kwargs):
+def search(scientificname=None,taxonid=None,nodeid=None,datasetid=None,startdate=None,enddate=None,
+           startdepth=None,enddepth=None,geometry=None,year=None,flags=None,fields=None,size=None,
+           offset=0,mof=False,hasextensions=None,**kwargs):
     '''
     Search OBIS occurrences
 
@@ -29,7 +15,7 @@ def search(scientificname=None,
        smaller,larger (e.g., '1990,1991', whereas '1991,1990' wouldn't work)
     :param geometry: [String] Well Known Text (WKT). A WKT shape written as either POINT, LINESTRING, LINEARRING
        or POLYGON. Example of a polygon: ((30.1 10.1, 20, 20 40, 40 40, 30.1 10.1)) would be queried as http://bit.ly/1BzNwDq
-    :param obisid: [Fixnum] An OBIS id. This is listed as the `id` or `valid_id` in `taxa`/`taxon` results
+    :param nodeid: [String] Node UUID
     :param taxonid: Prev. aphiaid [Fixnum] An Aphia id. This is listed as the `worms_id` in `taxa`/`taxon` results
     :param datasetid: Prev. resourceid [Fixnum] A resource id
     :param startdate: [Fixnum] Start date
@@ -38,7 +24,7 @@ def search(scientificname=None,
     :param enddepth: [Boolean] End depth
     :param flags: Prev. qc [String] Quality control flags
     :param fields: [String] Comma seperated list of field names
-    :param limit: [Fixnum] Number of results to return. Default: 1000
+    :param size: [Fixnum] Number of results to return. Default: All records
     :param offset: [Fixnum] Start at record. Default: 0
     :param mof: [Boolean] Include MeasurementOrFact records, true/false. Default: 0
     :param hasextensions: [String] Extensions that need to be present (e.g. MeasurementOrFact, DNADerivedData).
@@ -54,48 +40,46 @@ def search(scientificname=None,
 
         # Use paging parameters (limit and start) to page. Note the different results
         # for the two queries below.
-        occ.search(scientificname = 'Mola mola', offset=0, limit=10)
-        occ.search(scientificname = 'Mola mola', offset=10, limit=10)
+        occ.search(scientificname = 'Mola mola', offset=0, size=10)
+        occ.search(scientificname = 'Mola mola', offset=10, size=10)
 
         # Search on a bounding box
         ## in well known text format
         occ.search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit=20)
         from pyobis import taxa
         res = taxa.search(scientificname='Mola mola')['results'][0]
-        occ.search(obisid=res['id'], geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit=20)
-        occ.search(aphiaid=res['worms_id'], geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit=20)
-
-        # Get occurrences for a particular eventDate
-        occ.search(aphiaid=res['worms_id'], year="2013", limit=20)
+        occ.search(obisid=res['id'], geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', size=20)
+        occ.search(aphiaid=res['worms_id'], geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', size=20)
 
         # Get mof response as list of pandas dataframes
         occ.search(scientificname="Abra",mof=True,hasextensions="MeasurementOrFact")
     '''
     url = obis_baseurl + 'occurrence'
     scientificname = handle_arrstr(scientificname)
-    out = obis_GET(url, {
-            'taxonid': taxonid,
-            'obisid': obisid,
-            'datasetid': datasetid,
-            'scientificname': scientificname,
-            'startdate': startdate,
-            'enddate': enddate,
-            'startdepth': startdepth,
-            'enddepth': enddepth,
-            'geometry': geometry,
-            'year': year,
-            'fields': fields,
-            'flags': flags,
-            'limit': limit,
-            'offset': offset,
-            'mof': mof,
+    args = {
+            'taxonid': taxonid,'nodeid': nodeid,'datasetid': datasetid,
+            'scientificname': scientificname,'startdate': startdate,
+            'enddate': enddate,'startdepth': startdepth,'enddepth': enddepth,
+            'geometry': geometry,'year': year,'fields': fields,
+            'flags': flags,'offset': offset,'mof': mof,'size':0,
             'hasextensions': hasextensions
-        }, 'application/json; charset=utf-8', **kwargs)
-    if (mof):
-        mofNormalized = pd.json_normalize(out["results"], "mof", ["scientificName","id", "eventDate"])
-        a = pd.merge(pd.DataFrame(out["results"]),mofNormalized,on='id',how='inner')
-        ids = a.id.unique()
-        return [a[a['id']==ids[i]] for i in range(len(ids))]
+        }
+    out  = obis_GET(url,args,'application/json; charset=utf-8', **kwargs)
+    size = out["total"] if not size else size # if the user has set some size or else we fetch all the records
+    for i in range(5000,size+1,5000):
+        if args["size"]!=0: # this condition is to make sure that we set the `after` parameter when fetching subsequent records only, and first batch gets fetched correctly without this `after` parameter
+            args['after'] = res["results"][4999]['id']
+        args['size'] = 5000
+        res=obis_GET(url, args, 'application/json; charset=utf-8', **kwargs)
+        out["results"]+=res["results"]
+    args["size"] = size%5000 # we have already fetched records as a set of 5000 records each time, now we need to get remaining records from the total
+    res=obis_GET(url, args, 'application/json; charset=utf-8', **kwargs)
+    out["results"]+=res["results"]
+    
+    if mof and out["total"]>0:
+        mofNormalized = pd.json_normalize(out["results"], "mof", ["id"])
+        merged = pd.merge(pd.DataFrame(out["results"]),mofNormalized,on='id',how='inner')
+        return merged
     return out
 
 def get(id, **kwargs):
