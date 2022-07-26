@@ -30,7 +30,7 @@ setup(
   license          = "MIT",
   packages         = find_packages(exclude=['test-*']),
   install_requires = ['requests>2.7'],
-  classifiers      = (
+  classifiers      = [
     'Development Status :: 3 - Alpha',
     'Intended Audience :: Science/Research',
     'Topic :: Scientific/Engineering :: Bio-Informatics',
@@ -40,5 +40,5 @@ setup(
     'Programming Language :: Python :: 2.6',
     'Programming Language :: Python :: 2.7',
     'Programming Language :: Python :: 3'
-	)
+	],
 )
