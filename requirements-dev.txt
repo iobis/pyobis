@@ -18,5 +18,6 @@ pytest-sugar
 pytest-xdist
 setuptools_scm
 sphinx
+sphinx_rtd_theme
 twine
 wheel
