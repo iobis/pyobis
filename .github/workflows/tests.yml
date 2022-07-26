@@ -12,30 +12,22 @@ jobs:
       fail-fast: false
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
-    - name: Setup Conda
-      uses: s-weigand/setup-conda@v1
+    - name: Setup Micromamba
+      uses: mamba-org/provision-with-micromamba@main
       with:
-        activate-conda: false
-        update-conda: true
-        conda-channels: conda-forge
+        environment-file: false
 
     - name: Install on Python ${{ matrix.python-version }}
       shell: bash -l {0}
       run: |
-        conda create --name TEST python=${{ matrix.python-version }} --file requirements.txt --file requirements-dev.txt
-        source activate TEST
+        micromamba create --name TEST python=${{ matrix.python-version }} --file requirements.txt --file requirements-dev.txt --channel conda-forge
+        micromamba activate TEST
         python -m pip install -e . --no-deps --force-reinstall
-
-    - name: Print environment info to aid w/ debugging.
-      shell: bash -l {0}
-      run: |
-        source activate TEST
-        which python
 
     - name: Run Tests
       shell: bash -l {0}
       run: |
-        source activate TEST
+        micromamba activate TEST
         python -m pytest -rxs --cov=pyobis tests
