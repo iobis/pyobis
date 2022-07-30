@@ -143,8 +143,8 @@ Meta
 Further Reading
 ===============
 
-* In case you face data quality issues, please look at `OBIS QC repo <https://github.com/iobis/obis-qc>`
-* For issues with the package itself, feel free to open an issue here
+* In case you face data quality issues, please look at `OBIS QC repo <https://github.com/iobis/obis-qc>`__
+* For issues with the package itself, feel free to open an issue here!
 
 .. |pypi| image:: https://img.shields.io/pypi/v/pyobis.svg
    :target: https://pypi.python.org/pypi/pyobis
