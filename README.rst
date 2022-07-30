@@ -12,7 +12,7 @@ What is it?
 Pyobis is an interesting python package that helps users fetch data from OBIS API which
 holds a great amount of ocean open-data, with ease.
 
-`The Ocean Biodiversity Information System (OBIS) <https://obis.org>`, a global open-access data and
+`The Ocean Biodiversity Information System (OBIS), <https://obis.org>`__ a global open-access data and
 information clearing-house on marine biodiversity for science, conservation, and sustainable
 development, maintained by IOOS, harvests occurrence records from thousands of datasets
 and makes them available as a single integrated dataset via various services including the
@@ -65,7 +65,7 @@ Install editable dev version from github for local development. System prerequis
 
 Documentation
 =============
-The official documentation is hosted at readthedocs.io `https://pyobis.readthedocs.io/en/latest/ <https://pyobis.readthedocs.io/en/latest/>`
+The official documentation is hosted at readthedocs.io `https://pyobis.readthedocs.io/en/latest/ <https://pyobis.readthedocs.io/en/latest/>`__
 
 Library API
 ===========
