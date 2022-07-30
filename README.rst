@@ -140,6 +140,12 @@ Meta
 * Help make this project even more useful! Please read the `Contributing Guide <CONTRIBUTING.md>`__.
 * Please note that this project is released with a `Contributor Code of Conduct <CONDUCT.md>`__. By participating in this project you agree to abide by its terms.
 
+Further Reading
+===============
+
+* In case you face data quality issues, please look at `OBIS QC repo <https://github.com/iobis/obis-qc>`
+* For issues with the package itself, feel free to open an issue here
+
 .. |pypi| image:: https://img.shields.io/pypi/v/pyobis.svg
    :target: https://pypi.python.org/pypi/pyobis
 
