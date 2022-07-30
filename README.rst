@@ -27,10 +27,10 @@ Main Features
 Here are just a few of things pyOBIS can do:
 
 * Easy handling of OBIS data, easy fetching without handling the raw API response directly.
-* Built-in functions for `occurrence`, `taxon`, `node`, `checklist` and `dataset` endpoints of OBIS API. 
-* Provides easy export of data to `Pandas` DataFrame, and helps researchers focus more on analysis rather than data mining.
+* Built-in functions for ``occurrence``, ``taxon``, ``node``, ``checklist`` and ``dataset`` endpoints of OBIS API. 
+* Provides easy export of data to ``Pandas`` DataFrame, and helps researchers focus more on analysis rather than data mining.
 
-For examples of how to use this repo, see the jupyter notebooks in the `/notebooks/` directory.
+For examples of how to use this repo, see the jupyter notebooks in the ``/notebooks/`` directory.
 NOTE: GitHub's jupyter notebook display does not show interactive plots; open the notebooks in a jupyter hub (eg colab, binder, etc) for the full experience.
 
 Installation
@@ -71,18 +71,18 @@ The official documentation is hosted at readthedocs.io `https://pyobis.readthedo
 Library API
 ===========
 
-`pyobis` is split up into modules for each of the groups of API methods.
+``pyobis`` is split up into modules for each of the groups of API methods.
 
-* `taxa` - Taxonomic names
-* `occurrences` - Occurrence search
-* `dataset` - Dataset
-* `nodes` - Nodes
-* `checklist` - Checklist
+* ``taxa`` - Taxonomic names
+* ``occurrences`` - Occurrence search
+* ``dataset`` - Dataset
+* ``nodes``` - Nodes
+* ``checklist`` - Checklist
 
 You can import the entire library, or each module individually as needed.
 
 Taxa module
-===========
+###########
 
 .. code-block:: python
 
@@ -94,7 +94,7 @@ Taxa module
     taxa.taxon(127405)
 
 Occurrence module
-=================
+#################
 
 .. code-block:: python
 
@@ -104,7 +104,7 @@ Occurrence module
     occurrences.search(geometry="POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))", size=20)
 
 Dataset module
-===============
+##############
 
 .. code-block:: python
 
@@ -113,7 +113,7 @@ Dataset module
     dataset.get(id = "ec9df3b9-3b2b-4d83-881b-27bcbcd57b95")
 
 Nodes module
-============
+############
 
 .. code-block:: python
 
@@ -121,7 +121,7 @@ Nodes module
     nodes.search(scientificname = ["Mola", "Abra"] )
 
 Checklist module
-================
+################
 
 .. code-block:: python
 
