@@ -60,6 +60,12 @@ Install editable dev version from github for local development. System prerequis
     python -m pip install -e . 
     # test your installation
     python -m pytest
+    # test and generate a coverage report
+    python -m pytest -rxs --cov=pyobis tests
+
+Documentation
+=============
+The official documentation is hosted at readthedocs.io `https://pyobis.readthedocs.io/en/latest/<https://pyobis.readthedocs.io/en/latest/>`
 
 Library API
 ===========
