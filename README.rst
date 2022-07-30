@@ -128,10 +128,16 @@ Checklist module
     from pyobis import checklist as ch
     ch.list(scientificname = "Cetacea")
 
+Usage Guide
+===========
+
+For a detailed usage guide with information about inputs, output and module functions please read the `Usage Guide <notebooks/usage_guide.ipynb>`
+
 Meta
 ====
 
 * License: MIT, see `LICENSE file <LICENSE>`__
+* Help make this project even more useful! Please read the `Contributing Guide <CONTRIBUTING.md>`__.
 * Please note that this project is released with a `Contributor Code of Conduct <CONDUCT.md>`__. By participating in this project you agree to abide by its terms.
 
 .. |pypi| image:: https://img.shields.io/pypi/v/pyobis.svg
