@@ -131,7 +131,7 @@ Checklist module
 Usage Guide
 ===========
 
-For a detailed usage guide with information about inputs, output and module functions please read the `Usage Guide <notebooks/usage_guide.ipynb>`
+For a detailed usage guide with information about inputs, output and module functions please read the `Usage Guide <notebooks/usage_guide.ipynb>`__
 
 Meta
 ====
