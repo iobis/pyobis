@@ -25,6 +25,7 @@ Other OBIS clients:
 Main Features
 =============
 Here are just a few of things pyOBIS can do:
+
 * Easy handling of OBIS data, easy fetching without handling the raw API response directly.
 * Built-in functions for `occurrence`, `taxon`, `node`, `checklist` and `dataset` endpoints of OBIS API. 
 * Provides easy export of data to `Pandas` DataFrame, and helps researchers focus more on analysis rather than data mining.
