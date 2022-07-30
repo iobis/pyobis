@@ -90,30 +90,18 @@ Taxa module
     taxa.search(scientificname = "Mola mola")
     taxa.search(scientificname = "Mola mola", offset=10)
     taxa.search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))')
-    taxa.taxon(406296)
-    taxa.taxon(415282)
+    taxa.taxon(10332)
+    taxa.taxon(127405)
 
 Occurrence module
 =================
 
-Search
-
 .. code-block:: python
 
     from pyobis import occurrences
-    occurrences.search(scientificname = 'Mola mola')
-    occurrences.search(scientificname = 'Mola mola', offset=0, limit=10)
-    occurrences.search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit=20)
-    occurrences.search(aphiaid=key, year="2013", limit=20)
-
-Download
-
-.. code-block:: python
-
-    res = occ.download(year = 2001, scientificname = 'Orcinus')
-    res.uuid
-    res.status()
-    res.fetch()
+    occurrences.search(scientificname = "Mola mola")
+    occurrences.search(scientificname = "Mola mola", offset=0, size=10)
+    occurrences.search(geometry="POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))", size=20)
 
 Dataset module
 ================
