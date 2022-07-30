@@ -46,7 +46,7 @@ Install latest dev version from github
 
 .. code-block:: console
 
-    pip install git+git://github.com/sckott/pyobis.git#egg=pyobis
+    pip install git+git://github.com/iobis/pyobis.git#egg=pyobis
 
 Install editable dev version from github for local development. System prerequisites: python3, conda
 
@@ -87,10 +87,9 @@ Taxa module
 .. code-block:: python
 
     from pyobis import taxa
-    taxa.search(scientificname = 'Mola mola')
-    taxa.search(scientificname = 'Mola mola', offset=10, limit=10)
-    taxa.search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit=20)
-    taxa.search(aphiaid=key, year="2013", limit=20)
+    taxa.search(scientificname = "Mola mola")
+    taxa.search(scientificname = "Mola mola", offset=10)
+    taxa.search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))')
     taxa.taxon(406296)
     taxa.taxon(415282)
 
