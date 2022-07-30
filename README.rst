@@ -104,21 +104,21 @@ Occurrence module
     occurrences.search(geometry="POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))", size=20)
 
 Dataset module
-================
+===============
 
 .. code-block:: python
 
     from pyobis import dataset
-    dataset.search(scientificname = ['Mola', 'Abra', 'Lanice', 'Pectinaria'])
-    dataset.get(id = 'ec9df3b9-3b2b-4d83-881b-27bcbcd57b95')
+    dataset.search(scientificname = ["Mola", "Abra", "Lanice", "Pectinaria"])
+    dataset.get(id = "ec9df3b9-3b2b-4d83-881b-27bcbcd57b95")
 
 Nodes module
-===========
+============
 
 .. code-block:: python
 
     from pyobis import nodes
-    nodes.search(scientificname = ['Mola', 'Abra'] )
+    nodes.search(scientificname = ["Mola", "Abra"] )
 
 Checklist module
 ================
@@ -126,7 +126,7 @@ Checklist module
 .. code-block:: python
 
     from pyobis import checklist as ch
-    ch.list(year = 2005, scientificname = 'Cetacea')
+    ch.list(scientificname = "Cetacea")
 
 Meta
 ====
