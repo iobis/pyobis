@@ -1,5 +1,6 @@
+******
 pyobis
-======
+******
 
 |pypi| |docs| |tests|
 
@@ -76,7 +77,7 @@ Library API
 * ``taxa`` - Taxonomic names
 * ``occurrences`` - Occurrence search
 * ``dataset`` - Dataset
-* ``nodes``` - Nodes
+* ``nodes`` - Nodes
 * ``checklist`` - Checklist
 
 You can import the entire library, or each module individually as needed.
