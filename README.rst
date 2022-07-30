@@ -3,10 +3,20 @@ pyobis
 
 |pypi| |docs| |tests|
 
-Python client for the `OBIS API
-<https://api.obis.org/>`__.
+Python client for the `OBIS API<https://api.obis.org/>`__.
 
 `Source on GitHub at iobis/pyobis <https://github.com/iobis/pyobis>`__
+
+What is it?
+===========
+Pyobis is an interesting python package that helps users fetch data from OBIS API which
+holds a great amount of ocean open-data, with ease.
+
+`The Ocean Biodiversity Information System (OBIS)<https://obis.org>`, a global open-access data and
+information clearing-house on marine biodiversity for science, conservation, and sustainable
+development, maintained by IOOS, harvests occurrence records from thousands of datasets
+and makes them available as a single integrated dataset via various services including the
+OBIS API.
 
 For examples of how to use this repo, see the jupyter notebooks in the `/notebooks/` directory.
 NOTE: GitHub's jupyter notebook display does not show interactive plots; open the notebooks in a jupyter hub (eg colab, binder, etc) for the full experience.
