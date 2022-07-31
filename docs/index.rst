@@ -43,74 +43,49 @@ library API
 You can import the entire library, or each module individually as needed.
 
 Taxa module
-===========
+###########
 
 .. code-block:: python
 
     from pyobis import taxa
-    taxa.search(scientificname = 'Mola mola')
-    taxa.search(scientificname = 'Mola mola', offset=10, limit=10)
-    taxa.search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit=20)
-    taxa.search(aphiaid=key, year="2013", limit=20)
-    taxa.taxon(406296)
-    taxa.taxon(415282)
+    taxa.search(scientificname = "Mola mola")
+    taxa.search(scientificname = "Mola mola", offset=10)
+    taxa.search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))')
+    taxa.taxon(10332)
+    taxa.taxon(127405)
 
 Occurrence module
-=================
-
-Search
+#################
 
 .. code-block:: python
 
     from pyobis import occurrences
-    occurrences.search(scientificname = 'Mola mola')
-    occurrences.search(scientificname = 'Mola mola', offset=0, limit=10)
-    occurrences.search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit=20)
-    occurrences.search(aphiaid=key, year="2013", limit=20)
+    occurrences.search(scientificname = "Mola mola")
+    occurrences.search(scientificname = "Mola mola", offset=0, size=10)
+    occurrences.search(geometry="POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))", size=20)
 
-Download
-
-.. code-block:: python
-
-    res = occ.download(year = 2001, scientificname = 'Orcinus')
-    res.uuid
-    res.status()
-    res.fetch()
-
-Resources module
-================
+Dataset module
+##############
 
 .. code-block:: python
+    
+    from pyobis import dataset
+    dataset.search(scientificname = ["Mola", "Abra", "Lanice", "Pectinaria"])
+    dataset.get(id = "ec9df3b9-3b2b-4d83-881b-27bcbcd57b95")
 
-    from pyobis import resources
-    resources.search(scientificname = ['Mola', 'Abra', 'Lanice', 'Pectinaria'])
-    resources.resource(103)
-    resources.citation(scientificname = 'Mola mola')
-
-Groups module
-=============
-
-.. code-block:: python
-
-    from pyobis import groups
-    groups.group()
-    groups.group(limit = 3)
-
-Ndes module
-===========
+Nodes module
+############
 
 .. code-block:: python
-
     from pyobis import nodes
-    nodes.node()
+    nodes.search(scientificname = ["Mola", "Abra"] )
 
 Checklist module
-================
+################
 
 .. code-block:: python
-
     from pyobis import checklist as ch
-    ch.list(year = 2005, scientificname = 'Cetacea')
+    ch.list(scientificname = "Cetacea")
 
 Meta
 ====
