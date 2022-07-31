@@ -28,15 +28,14 @@ dev version
     pip install git+git://github.com/iobis/pyobis.git#egg=pyobis
 
 
-library API
+Library API
 ===========
 
 ``pyobis`` is split up into modules for each of the groups of API methods.
 
 * ``taxa`` - Taxonomic names
-* ``occurrences`` - Occurrence search, and occurrence downloads
-* ``resources`` - Resources
-* ``groups`` - Groups
+* ``occurrences`` - Occurrences
+* ``dataset`` - Dataset
 * ``nodes`` - Nodes
 * ``checklist`` - Checklist
 
@@ -92,8 +91,8 @@ Checklist module
 Meta
 ====
 
-* License: MIT, see `LICENSE file <LICENSE>`__
-* Please note that this project is released with a `Contributor Code of Conduct <CONDUCT.md>`__. By participating in this project you agree to abide by its terms.
+* License: MIT, see `LICENSE file <https://github.com/iobis/pyobis/blob/master/LICENSE>`__
+* Please note that this project is released with a `Contributor Code of Conduct <https://github.com/iobis/pyobis/blob/master/CONDUCT.md>`__. By participating in this project you agree to abide by its terms.
 
 .. |pypi| image:: https://img.shields.io/pypi/v/pyobis.svg
    :target: https://pypi.python.org/pypi/pyobis
@@ -107,7 +106,7 @@ Meta
 
 
 Contents
---------
+========
 
 .. toctree::
    :maxdepth: 2
@@ -120,13 +119,13 @@ Contents
    changelog_link
 
 License
--------
+=======
 
 MIT
 
 
 Indices and tables
-------------------
+==================
 
 * :ref:`genindex`
 * :ref:`modindex`

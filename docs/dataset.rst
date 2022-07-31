@@ -1,6 +1,6 @@
-.. _resources:
+.. _dataset:
 
-resources module
+dataset module
 ================
 
 .. py:module:: pyobis
