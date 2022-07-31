@@ -7,5 +7,8 @@ occurrences module
 
 .. automethod:: occurrences.search
 .. automethod:: occurrences.get
-.. automethod:: occurrences.download
-.. automethod:: occurrences.ObisDownload
+.. automethod:: occurrences.grid
+.. automethod:: occurrences.getpoints
+.. automethod:: occurrences.point
+.. automethod:: occurrences.tile
+.. automethod:: occurrences.centroid
