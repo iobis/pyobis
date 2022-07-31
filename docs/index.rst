@@ -77,6 +77,7 @@ Nodes module
 ############
 
 .. code-block:: python
+
     from pyobis import nodes
     nodes.search(scientificname = ["Mola", "Abra"] )
 
@@ -84,6 +85,7 @@ Checklist module
 ################
 
 .. code-block:: python
+
     from pyobis import checklist as ch
     ch.list(scientificname = "Cetacea")
 
@@ -112,8 +114,7 @@ Contents
 
    occurrences
    taxa
-   groups
-   resources
+   dataset
    nodes
    checklist
    changelog_link
