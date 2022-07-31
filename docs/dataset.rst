@@ -5,8 +5,5 @@ resources module
 
 .. py:module:: pyobis
 
-.. automethod:: resources.search
-
-.. automethod:: resources.resource
-
-.. automethod:: resources.citation
+.. automethod:: dataset.get
+.. automethod:: dataset.search
