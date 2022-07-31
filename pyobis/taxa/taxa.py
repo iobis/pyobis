@@ -48,6 +48,7 @@ def annotations(scientificname, **kwargs):
     :return: A dictionary
 
     Usage::
+    
         from pyobis import taxa
         taxa.annotations(Abra)
     '''
