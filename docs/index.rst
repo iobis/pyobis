@@ -1,12 +1,12 @@
 pyobis
 ======
 
-|pypi| |docs| |travis| |coverage|
+|pypi| |docs|
 
 Python client for the `OBIS API
 <https://github.com/iobis/api-docs>`__.
 
-`Source on GitHub at sckott/pyobis <https://github.com/sckott/pyobis>`__
+`Source on GitHub at iobis/pyobis <https://github.com/iobis/pyobis>`__
 
 Other OBIS clients:
 
@@ -25,20 +25,20 @@ dev version
 
 .. code-block:: console
 
-    pip install git+git://github.com/sckott/pyobis.git#egg=pyobis
+    pip install git+git://github.com/iobis/pyobis.git#egg=pyobis
 
 
 library API
 ===========
 
-`pyobis` is split up into modules for each of the groups of API methods.
+``pyobis`` is split up into modules for each of the groups of API methods.
 
-* `taxa` - Taxonomic names
-* `occurrences` - Occurrence search, and occurrence downloads
-* `resources` - Resources
-* `groups` - Groups
-* `nodes` - Nodes
-* `checklist` - Checklist
+* ``taxa`` - Taxonomic names
+* ``occurrences`` - Occurrence search, and occurrence downloads
+* ``resources`` - Resources
+* ``groups`` - Groups
+* ``nodes`` - Nodes
+* ``checklist`` - Checklist
 
 You can import the entire library, or each module individually as needed.
 
@@ -123,12 +123,6 @@ Meta
 
 .. |docs| image:: https://readthedocs.org/projects/pyobis/badge/?version=latest
    :target: http://pyobis.readthedocs.org/en/latest/?badge=latest
-
-.. |travis| image:: https://travis-ci.org/sckott/pyobis.svg
-   :target: https://travis-ci.org/sckott/pyobis
-
-.. |coverage| image:: https://coveralls.io/repos/sckott/pyobis/badge.svg?branch=master&service=github
-   :target: https://coveralls.io/github/sckott/pyobis?branch=master
 
 
 
