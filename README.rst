@@ -134,6 +134,12 @@ Usage Guide
 
 For a detailed usage guide with information about inputs, output and module functions please read the `Usage Guide <notebooks/usage_guide.ipynb>`__
 
+Sample analysis
+===============
+
+Some Jupyter Notebook based sample analysis and visualization of data grabbed through ``pyobis`` have been made available through ``/notebooks/`` directory.
+To get full experience of the interactive plots (eg. geoplots, etc) please open notebooks in a Jupyter Hub (eg. through Google Colab, Binder, local installation, etc.)
+
 Meta
 ====
 
