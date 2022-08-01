@@ -1,10 +1,10 @@
 # Contributing to pyobis
 ## Why contribute to the Open Source?
-Contributing to the Open Source is a good way to learn, practice and build experience in every skill you want in life (both soft and hard), if not the best way. 
+Contributing to the Open Source is a good way to learn, practice and build experience in every skill you want in life (both soft and hard), if not the best way.
 + You get the chance to improve the software you rely on, or *the world relies on*.
 + It helps you improve existing skills, in an exponential manner.
 + You not only get to meet people who are really interested in similar things but are also really cool.
-+ You get the chance to find mentors and even teach others. 
++ You get the chance to find mentors and even teach others.
 + You get the feeling of being in a community that's interesting and as good as anything. It feels empowered when you make changes (even smaller ones).
 + You don't always have to code, you can suggest some great ideas or fix a typo in the documentation.
 
@@ -47,7 +47,7 @@ We use GitHub issues to track public bugs. Report a bug by [opening a new issue]
 - A quick summary and/or background
 - Steps to reproduce
   - Be specific!
-  - Give sample code if you can, so that *anyone* with the base python setup can reproduce. 
+  - Give sample code if you can, so that *anyone* with the base python setup can reproduce.
 - What you expected would happen
 - What actually happens
 - Notes (possibly including why you think this might be happening, or stuff you tried that didn't work)

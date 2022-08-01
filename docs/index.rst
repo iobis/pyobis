@@ -48,9 +48,12 @@ Taxa module
 .. code-block:: python
 
     from pyobis import taxa
-    taxa.search(scientificname = 'Mola mola')
-    taxa.search(scientificname = 'Mola mola', offset=10, limit=10)
-    taxa.search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit=20)
+
+    taxa.search(scientificname="Mola mola")
+    taxa.search(scientificname="Mola mola", offset=10, limit=10)
+    taxa.search(
+        geometry="POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))", limit=20
+    )
     taxa.search(aphiaid=key, year="2013", limit=20)
     taxa.taxon(406296)
     taxa.taxon(415282)
@@ -63,16 +66,19 @@ Search
 .. code-block:: python
 
     from pyobis import occurrences
-    occurrences.search(scientificname = 'Mola mola')
-    occurrences.search(scientificname = 'Mola mola', offset=0, limit=10)
-    occurrences.search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit=20)
+
+    occurrences.search(scientificname="Mola mola")
+    occurrences.search(scientificname="Mola mola", offset=0, limit=10)
+    occurrences.search(
+        geometry="POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))", limit=20
+    )
     occurrences.search(aphiaid=key, year="2013", limit=20)
 
 Download
 
 .. code-block:: python
 
-    res = occ.download(year = 2001, scientificname = 'Orcinus')
+    res = occ.download(year=2001, scientificname="Orcinus")
     res.uuid
     res.status()
     res.fetch()
@@ -83,9 +89,10 @@ Resources module
 .. code-block:: python
 
     from pyobis import resources
-    resources.search(scientificname = ['Mola', 'Abra', 'Lanice', 'Pectinaria'])
+
+    resources.search(scientificname=["Mola", "Abra", "Lanice", "Pectinaria"])
     resources.resource(103)
-    resources.citation(scientificname = 'Mola mola')
+    resources.citation(scientificname="Mola mola")
 
 Groups module
 =============
@@ -93,8 +100,9 @@ Groups module
 .. code-block:: python
 
     from pyobis import groups
+
     groups.group()
-    groups.group(limit = 3)
+    groups.group(limit=3)
 
 Ndes module
 ===========
@@ -102,6 +110,7 @@ Ndes module
 .. code-block:: python
 
     from pyobis import nodes
+
     nodes.node()
 
 Checklist module
@@ -110,7 +119,8 @@ Checklist module
 .. code-block:: python
 
     from pyobis import checklist as ch
-    ch.list(year = 2005, scientificname = 'Cetacea')
+
+    ch.list(year=2005, scientificname="Cetacea")
 
 Meta
 ====
@@ -161,4 +171,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-

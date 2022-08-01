@@ -39,8 +39,8 @@ Install editable dev version from github for local development. System prerequis
     cd pyobis
     # install
     python -m pip install -r requirements.txt
-    python -m pip install -r requirements-dev.txt 
-    python -m pip install -e . 
+    python -m pip install -r requirements-dev.txt
+    python -m pip install -e .
     # test your installation
     python -m pytest
 
@@ -63,9 +63,12 @@ Taxa module
 .. code-block:: python
 
     from pyobis import taxa
-    taxa.search(scientificname = 'Mola mola')
-    taxa.search(scientificname = 'Mola mola', offset=10, limit=10)
-    taxa.search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit=20)
+
+    taxa.search(scientificname="Mola mola")
+    taxa.search(scientificname="Mola mola", offset=10, limit=10)
+    taxa.search(
+        geometry="POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))", limit=20
+    )
     taxa.search(aphiaid=key, year="2013", limit=20)
     taxa.taxon(406296)
     taxa.taxon(415282)
@@ -78,16 +81,19 @@ Search
 .. code-block:: python
 
     from pyobis import occurrences
-    occurrences.search(scientificname = 'Mola mola')
-    occurrences.search(scientificname = 'Mola mola', offset=0, limit=10)
-    occurrences.search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit=20)
+
+    occurrences.search(scientificname="Mola mola")
+    occurrences.search(scientificname="Mola mola", offset=0, limit=10)
+    occurrences.search(
+        geometry="POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))", limit=20
+    )
     occurrences.search(aphiaid=key, year="2013", limit=20)
 
 Download
 
 .. code-block:: python
 
-    res = occ.download(year = 2001, scientificname = 'Orcinus')
+    res = occ.download(year=2001, scientificname="Orcinus")
     res.uuid
     res.status()
     res.fetch()
@@ -98,8 +104,9 @@ Dataset module
 .. code-block:: python
 
     from pyobis import dataset
-    dataset.search(scientificname = ['Mola', 'Abra', 'Lanice', 'Pectinaria'])
-    dataset.get(id = 'ec9df3b9-3b2b-4d83-881b-27bcbcd57b95')
+
+    dataset.search(scientificname=["Mola", "Abra", "Lanice", "Pectinaria"])
+    dataset.get(id="ec9df3b9-3b2b-4d83-881b-27bcbcd57b95")
 
 Nodes module
 ===========
@@ -107,7 +114,8 @@ Nodes module
 .. code-block:: python
 
     from pyobis import nodes
-    nodes.search(scientificname = ['Mola', 'Abra'] )
+
+    nodes.search(scientificname=["Mola", "Abra"])
 
 Checklist module
 ================
@@ -115,7 +123,8 @@ Checklist module
 .. code-block:: python
 
     from pyobis import checklist as ch
-    ch.list(year = 2005, scientificname = 'Cetacea')
+
+    ch.list(year=2005, scientificname="Cetacea")
 
 Meta
 ====
@@ -130,4 +139,4 @@ Meta
    :target: http://pyobis.readthedocs.org/en/latest/?badge=latest
 
 .. |tests| image:: https://github.com/iobis/pyobis/actions/workflows/tests.yml/badge.svg
-   :target: https://github.com/iobis/pyobis/actions/workflows/tests.yml   
+   :target: https://github.com/iobis/pyobis/actions/workflows/tests.yml

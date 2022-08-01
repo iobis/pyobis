@@ -1,8 +1,6 @@
-# -*- coding: utf-8 -*-
-
 # pyobis
 
-'''
+"""
 pyobis library
 ~~~~~~~~~~~~~~~~~~~~~
 
@@ -36,15 +34,15 @@ requests_log.propagate = True
 ### then make request
 from pyobis import occurrence
 occurrence.search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))')
-'''
+"""
 
-__version__ = '1.0.0'
-__title__ = 'pyobis'
-__author__ = 'Scott Chamberlain'
-__license__ = 'MIT'
+__version__ = "1.0.0"
+__title__ = "pyobis"
+__author__ = "Scott Chamberlain"
+__license__ = "MIT"
 
-from .occurrences import search, get, grid, getpoints, point, tile, centroid
-from .taxa import search, taxon, annotations
-from .nodes import search, activities
+from .checklist import list, newest, redlist
 from .dataset import get, search
-from .checklist import list, redlist, newest
+from .nodes import activities, search
+from .occurrences import centroid, get, getpoints, grid, point, search, tile
+from .taxa import annotations, search, taxon
