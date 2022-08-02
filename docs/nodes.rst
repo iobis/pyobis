@@ -5,4 +5,5 @@ nodes module
 
 .. py:module:: pyobis
 
-.. automethod:: nodes.node
+.. automethod:: nodes.search
+.. automethod:: nodes.activities    

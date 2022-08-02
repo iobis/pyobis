@@ -4,7 +4,7 @@ def search(scientificname=None, **kwargs):
     '''
     Get taxon records.
     :param scientificname: [String,Array] One or more scientific names from the OBIS backbone. All included and synonym taxa
-       are included in the search.
+    are included in the search.
     
     :return: A dictionary
 
@@ -48,6 +48,7 @@ def annotations(scientificname, **kwargs):
     :return: A dictionary
 
     Usage::
+    
         from pyobis import taxa
         taxa.annotations(Abra)
     '''
