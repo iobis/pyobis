@@ -1,19 +1,38 @@
+******
 pyobis
-======
+******
 
 |pypi| |docs| |tests|
 
-Python client for the `OBIS API
-<https://api.obis.org/>`__.
+Python client for the `OBIS API <https://api.obis.org/>`__.
 
 `Source on GitHub at iobis/pyobis <https://github.com/iobis/pyobis>`__
 
-For examples of how to use this repo, see the jupyter notebooks in the `/notebooks/` directory.
-NOTE: GitHub's jupyter notebook display does not show interactive plots; open the notebooks in a jupyter hub (eg colab, binder, etc) for the full experience.
+What is it?
+===========
+Pyobis is an interesting python package that helps users fetch data from OBIS API which
+holds a great amount of ocean open-data, with ease.
+
+`The Ocean Biodiversity Information System (OBIS), <https://obis.org>`__ a global open-access data and
+information clearing-house on marine biodiversity for science, conservation, and sustainable
+development, maintained by IOOS, harvests occurrence records from thousands of datasets
+and makes them available as a single integrated dataset via various services including the
+OBIS API.
 
 Other OBIS clients:
 
 * R: `robis`, `iobis/robis <https://github.com/iobis/robis>`__
+
+Main Features
+=============
+Here are just a few of things pyOBIS can do:
+
+* Easy handling of OBIS data, easy fetching without handling the raw API response directly.
+* Built-in functions for ``occurrence``, ``taxon``, ``node``, ``checklist`` and ``dataset`` endpoints of OBIS API. 
+* Provides easy export of data to ``Pandas`` DataFrame, and helps researchers focus more on analysis rather than data mining.
+
+For examples of how to use this repo, see the jupyter notebooks in the ``/notebooks/`` directory.
+NOTE: GitHub's jupyter notebook display does not show interactive plots; open the notebooks in a jupyter hub (eg colab, binder, etc) for the full experience.
 
 Installation
 ============
@@ -28,7 +47,7 @@ Install latest dev version from github
 
 .. code-block:: console
 
-    pip install git+git://github.com/sckott/pyobis.git#egg=pyobis
+    pip install git+git://github.com/iobis/pyobis.git#egg=pyobis
 
 Install editable dev version from github for local development. System prerequisites: python3, conda
 
@@ -43,85 +62,96 @@ Install editable dev version from github for local development. System prerequis
     python -m pip install -e . 
     # test your installation
     python -m pytest
+    # test and generate a coverage report
+    python -m pytest -rxs --cov=pyobis tests
+
+Documentation
+=============
+The official documentation is hosted at readthedocs.io `https://pyobis.readthedocs.io/en/latest/ <https://pyobis.readthedocs.io/en/latest/>`__
 
 Library API
 ===========
 
-`pyobis` is split up into modules for each of the groups of API methods.
+``pyobis`` is split up into modules for each of the groups of API methods.
 
-* `taxa` - Taxonomic names
-* `occurrences` - Occurrence search
-* `dataset` - Dataset
-* `nodes` - Nodes
-* `checklist` - Checklist
+* ``taxa`` - Taxonomic names
+* ``occurrences`` - Occurrence search
+* ``dataset`` - Dataset
+* ``nodes`` - Nodes
+* ``checklist`` - Checklist
 
 You can import the entire library, or each module individually as needed.
 
 Taxa module
-===========
+###########
 
 .. code-block:: python
 
     from pyobis import taxa
-    taxa.search(scientificname = 'Mola mola')
-    taxa.search(scientificname = 'Mola mola', offset=10, limit=10)
-    taxa.search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit=20)
-    taxa.search(aphiaid=key, year="2013", limit=20)
-    taxa.taxon(406296)
-    taxa.taxon(415282)
+    taxa.search(scientificname = "Mola mola")
+    taxa.search(scientificname = "Mola mola", offset=10)
+    taxa.search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))')
+    taxa.taxon(10332)
+    taxa.taxon(127405)
 
 Occurrence module
-=================
-
-Search
+#################
 
 .. code-block:: python
 
     from pyobis import occurrences
-    occurrences.search(scientificname = 'Mola mola')
-    occurrences.search(scientificname = 'Mola mola', offset=0, limit=10)
-    occurrences.search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit=20)
-    occurrences.search(aphiaid=key, year="2013", limit=20)
-
-Download
-
-.. code-block:: python
-
-    res = occ.download(year = 2001, scientificname = 'Orcinus')
-    res.uuid
-    res.status()
-    res.fetch()
+    occurrences.search(scientificname = "Mola mola")
+    occurrences.search(scientificname = "Mola mola", offset=0, size=10)
+    occurrences.search(geometry="POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))", size=20)
 
 Dataset module
-================
+##############
 
 .. code-block:: python
 
     from pyobis import dataset
-    dataset.search(scientificname = ['Mola', 'Abra', 'Lanice', 'Pectinaria'])
-    dataset.get(id = 'ec9df3b9-3b2b-4d83-881b-27bcbcd57b95')
+    dataset.search(scientificname = ["Mola", "Abra", "Lanice", "Pectinaria"])
+    dataset.get(id = "ec9df3b9-3b2b-4d83-881b-27bcbcd57b95")
 
 Nodes module
-===========
+############
 
 .. code-block:: python
 
     from pyobis import nodes
-    nodes.search(scientificname = ['Mola', 'Abra'] )
+    nodes.search(scientificname = ["Mola", "Abra"] )
 
 Checklist module
-================
+################
 
 .. code-block:: python
 
     from pyobis import checklist as ch
-    ch.list(year = 2005, scientificname = 'Cetacea')
+    ch.list(scientificname = "Cetacea")
+
+Usage Guide
+===========
+
+For a detailed usage guide with information about inputs, output and module functions please read the `Usage Guide <notebooks/usage_guide.ipynb>`__
+
+Sample analysis
+===============
+
+Some Jupyter Notebook based sample analysis and visualization of data grabbed through ``pyobis`` have been made available through ``/notebooks/`` directory.
+To get full experience of the interactive plots (eg. geoplots, etc) please open notebooks in a Jupyter Hub (eg. through Google Colab, Binder, local installation, etc.)
 
 Meta
 ====
 
 * License: MIT, see `LICENSE file <LICENSE>`__
+* Help make this project even more useful! Please read the `Contributing Guide <CONTRIBUTING.md>`__.
 * Please note that this project is released with a `Contributor Code of Conduct <CONDUCT.md>`__. By participating in this project you agree to abide by its terms.
+
+Further Reading
+===============
+
+* In case you face data quality issues, please look at `OBIS QC repo <https://github.com/iobis/obis-qc>`__
+* For issues with the package itself, feel free to open an issue here!
 
 .. |pypi| image:: https://img.shields.io/pypi/v/pyobis.svg
    :target: https://pypi.python.org/pypi/pyobis
