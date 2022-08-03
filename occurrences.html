@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>occurrences module &mdash; pyobis 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="taxa module" href="taxa.html" />
+    <link rel="prev" title="pyobis" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> pyobis
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">occurrences module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="taxa.html">taxa module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataset.html">dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nodes.html">nodes module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="checklist.html">checklist module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog_link.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyobis</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>occurrences module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/occurrences.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-pyobis">
+<span id="occurrences-module"></span><span id="occurrences"></span><h1>occurrences module<a class="headerlink" href="#module-pyobis" title="Permalink to this heading"></a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyobis.occurrences.search">
+<span class="sig-prename descclassname"><span class="pre">occurrences.</span></span><span class="sig-name descname"><span class="pre">search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">taxonid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodeid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datasetid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">startdate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enddate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">startdepth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enddepth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fields</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mof</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hasextensions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyobis.occurrences.search" title="Permalink to this definition"></a></dt>
+<dd><p>Search OBIS occurrences</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>taxonid</strong> – [Fixnum] A obis occurrence identifier</p></li>
+<li><p><strong>scientificname</strong> – [String,Array] One or more scientific names from the OBIS backbone. All included and
+synonym taxa are included in the search.</p></li>
+<li><p><strong>year</strong> – Removed in v3 API. [Fixnum] The 4 digit year. A year of 98 will be interpreted as AD 98. Supports range queries,
+smaller,larger (e.g., ‘1990,1991’, whereas ‘1991,1990’ wouldn’t work)</p></li>
+<li><p><strong>geometry</strong> – [String] Well Known Text (WKT). A WKT shape written as either POINT, LINESTRING, LINEARRING
+or POLYGON. Example of a polygon: ((30.1 10.1, 20, 20 40, 40 40, 30.1 10.1)) would be queried as <a class="reference external" href="http://bit.ly/1BzNwDq">http://bit.ly/1BzNwDq</a></p></li>
+<li><p><strong>nodeid</strong> – [String] Node UUID</p></li>
+<li><p><strong>taxonid</strong> – Prev. aphiaid [Fixnum] An Aphia id. This is listed as the <cite>worms_id</cite> in <cite>taxa</cite>/<cite>taxon</cite> results</p></li>
+<li><p><strong>datasetid</strong> – Prev. resourceid [Fixnum] A resource id</p></li>
+<li><p><strong>startdate</strong> – [Fixnum] Start date</p></li>
+<li><p><strong>enddate</strong> – [Boolean] End date</p></li>
+<li><p><strong>startdepth</strong> – [Fixnum] Start depth</p></li>
+<li><p><strong>enddepth</strong> – [Boolean] End depth</p></li>
+<li><p><strong>flags</strong> – Prev. qc [String] Quality control flags</p></li>
+<li><p><strong>fields</strong> – [String] Comma seperated list of field names</p></li>
+<li><p><strong>size</strong> – [Fixnum] Number of results to return. Default: All records</p></li>
+<li><p><strong>offset</strong> – [Fixnum] Start at record. Default: 0</p></li>
+<li><p><strong>mof</strong> – [Boolean] Include MeasurementOrFact records, true/false. Default: 0</p></li>
+<li><p><strong>hasextensions</strong> – [String] Extensions that need to be present (e.g. MeasurementOrFact, DNADerivedData).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dictionary</p>
+</dd>
+</dl>
+<p>Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">occurrences</span> <span class="k">as</span> <span class="n">occ</span>
+<span class="n">occ</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">)</span>
+
+<span class="c1"># Many names</span>
+<span class="n">occ</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Mola&#39;</span><span class="p">,</span> <span class="s1">&#39;Abra&#39;</span><span class="p">,</span> <span class="s1">&#39;Lanice&#39;</span><span class="p">,</span> <span class="s1">&#39;Pectinaria&#39;</span><span class="p">])</span>
+
+<span class="c1"># Use paging parameters (limit and start) to page. Note the different results</span>
+<span class="c1"># for the two queries below.</span>
+<span class="n">occ</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">occ</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Search on a bounding box</span>
+<span class="c1">## in well known text format</span>
+<span class="n">occ</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">geometry</span><span class="o">=</span><span class="s1">&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">taxa</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">taxa</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="s1">&#39;Mola mola&#39;</span><span class="p">)[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">occ</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">obisid</span><span class="o">=</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span> <span class="n">geometry</span><span class="o">=</span><span class="s1">&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">occ</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">aphiaid</span><span class="o">=</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;worms_id&#39;</span><span class="p">],</span> <span class="n">geometry</span><span class="o">=</span><span class="s1">&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="c1"># Get mof response as list of pandas dataframes</span>
+<span class="n">occ</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="s2">&quot;Abra&quot;</span><span class="p">,</span><span class="n">mof</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">hasextensions</span><span class="o">=</span><span class="s2">&quot;MeasurementOrFact&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyobis.occurrences.get">
+<span class="sig-prename descclassname"><span class="pre">occurrences.</span></span><span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyobis.occurrences.get" title="Permalink to this definition"></a></dt>
+<dd><p>Get an OBIS occurrence</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>id</strong> – [Fixnum] An obis occurrence identifier. It is returned in the ‘id’ field with occurrences.search().</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dictionary</p>
+</dd>
+</dl>
+<p>Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">occurrences</span> <span class="k">as</span> <span class="n">occ</span>
+<span class="n">occ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;00008e33-6faa-4d98-a00b-91a6ed1ed3ca&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyobis.occurrences.grid">
+<span class="sig-prename descclassname"><span class="pre">occurrences.</span></span><span class="sig-name descname"><span class="pre">grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geojson</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scientificname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">taxonid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datasetid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodeid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">startdate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enddate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">startdepth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enddepth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">redlist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hab</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wrims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyobis.occurrences.grid" title="Permalink to this definition"></a></dt>
+<dd><p>Fetch gridded occurrences as GeoJSON or KML.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>precision</strong> – [integer] Geohash precision.</p></li>
+<li><p><strong>scientificname</strong> – [string] Scientific name. Leave empty to include all taxa.</p></li>
+<li><p><strong>taxonid</strong> – [string] Taxon AphiaID.</p></li>
+<li><p><strong>datasetid</strong> – [string] Dataset UUID.</p></li>
+<li><p><strong>nodeid</strong> – [string] Node UUID.</p></li>
+<li><p><strong>startdate</strong> – [string] Start date formatted as YYYY-MM-DD.</p></li>
+<li><p><strong>enddate</strong> – [string] End date formatted as YYYY-MM-DD.</p></li>
+<li><p><strong>startdepth</strong> – [integer] Start depth, in meters.</p></li>
+<li><p><strong>enddepth</strong> – [integer] End depth, in meters.</p></li>
+<li><p><strong>geometry</strong> – [string] Geometry, formatted as WKT or GeoHash.</p></li>
+<li><p><strong>redlist</strong> – [boolean] Red List species only, True/False.</p></li>
+<li><p><strong>hab</strong> – [boolean] HAB species only, true/false.</p></li>
+<li><p><strong>wrims</strong> – [boolean] WRiMS species only, True/False.</p></li>
+<li><p><strong>event</strong> – [string] Include pure event records (include) or get pure event records exclusively (true).</p></li>
+<li><p><strong>flags</strong> – [string] Comma separated list of quality flags which need to be set.</p></li>
+<li><p><strong>exclude</strong> – [string] Comma separated list of quality flags to be excluded.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dictionary</p>
+</dd>
+</dl>
+<p>Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">occurrences</span> <span class="k">as</span> <span class="n">occ</span>
+<span class="n">occ</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span> <span class="o">//</span> <span class="n">returns</span> <span class="ow">in</span> <span class="n">GeoJSON</span> <span class="nb">format</span>
+<span class="n">occ</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>   <span class="o">//</span> <span class="n">returns</span> <span class="ow">in</span> <span class="n">KML</span> <span class="nb">format</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyobis.occurrences.getpoints">
+<span class="sig-prename descclassname"><span class="pre">occurrences.</span></span><span class="sig-name descname"><span class="pre">getpoints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">taxonid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datasetid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodeid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">startdate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enddate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">startdepth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enddepth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">redlist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hab</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wrims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyobis.occurrences.getpoints" title="Permalink to this definition"></a></dt>
+<dd><p>Fetch point occurrences as GeoJSON (aggregated to Geohash precision 8).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scientificname</strong> – [string] Scientific name. Leave empty to include all taxa.</p></li>
+<li><p><strong>taxonid</strong> – [string] Taxon AphiaID.</p></li>
+<li><p><strong>datasetid</strong> – [string] Dataset UUID.</p></li>
+<li><p><strong>nodeid</strong> – [string] Node UUID.</p></li>
+<li><p><strong>startdate</strong> – [string] Start date formatted as YYYY-MM-DD.</p></li>
+<li><p><strong>enddate</strong> – [string] End date formatted as YYYY-MM-DD.</p></li>
+<li><p><strong>startdepth</strong> – [integer] Start depth, in meters.</p></li>
+<li><p><strong>enddepth</strong> – [integer] End depth, in meters.</p></li>
+<li><p><strong>geometry</strong> – [string] Geometry, formatted as WKT or GeoHash.</p></li>
+<li><p><strong>redlist</strong> – [boolean] Red List species only, True/False.</p></li>
+<li><p><strong>hab</strong> – [boolean] HAB species only, true/false.</p></li>
+<li><p><strong>wrims</strong> – [boolean] WRiMS species only, True/False.</p></li>
+<li><p><strong>event</strong> – [string] Include pure event records (include) or get pure event records exclusively (true).</p></li>
+<li><p><strong>flags</strong> – [string] Comma separated list of quality flags which need to be set.</p></li>
+<li><p><strong>exclude</strong> – [string] Comma separated list of quality flags to be excluded.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dictionary</p>
+</dd>
+</dl>
+<p>Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">occurrences</span> <span class="k">as</span> <span class="n">occ</span>
+<span class="n">occ</span><span class="o">.</span><span class="n">getpoints</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">)</span>
+
+<span class="c1">## Many names</span>
+<span class="n">occ</span><span class="o">.</span><span class="n">getpoints</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Mola mola&#39;</span><span class="p">,</span><span class="s1">&#39;Abra alba&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyobis.occurrences.point">
+<span class="sig-prename descclassname"><span class="pre">occurrences.</span></span><span class="sig-name descname"><span class="pre">point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scientificname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">taxonid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datasetid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodeid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">startdate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enddate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">startdepth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enddepth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">redlist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hab</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wrims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyobis.occurrences.point" title="Permalink to this definition"></a></dt>
+<dd><p>Fetch point occurrences for a location (with Geohash precision 8 or variable Geohash precision) as GeoJSON.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – [float] latitudes of a location</p></li>
+<li><p><strong>y</strong> – [float] laongitude of a location</p></li>
+<li><p><strong>z</strong> – [float] zoom level, if present then variable Geohash precision, if absent then precision 8</p></li>
+<li><p><strong>scientificname</strong> – [string] Scientific name. Leave empty to include all taxa.</p></li>
+<li><p><strong>taxonid</strong> – [string] Taxon AphiaID.</p></li>
+<li><p><strong>datasetid</strong> – [string] Dataset UUID.</p></li>
+<li><p><strong>nodeid</strong> – [string] Node UUID.</p></li>
+<li><p><strong>startdate</strong> – [string] Start date formatted as YYYY-MM-DD.</p></li>
+<li><p><strong>enddate</strong> – [string] End date formatted as YYYY-MM-DD.</p></li>
+<li><p><strong>startdepth</strong> – [integer] Start depth, in meters.</p></li>
+<li><p><strong>enddepth</strong> – [integer] End depth, in meters.</p></li>
+<li><p><strong>geometry</strong> – [string] Geometry, formatted as WKT or GeoHash.</p></li>
+<li><p><strong>redlist</strong> – [boolean] Red List species only, True/False.</p></li>
+<li><p><strong>hab</strong> – [boolean] HAB species only, true/false.</p></li>
+<li><p><strong>wrims</strong> – [boolean] WRiMS species only, True/False.</p></li>
+<li><p><strong>event</strong> – [string] Include pure event records (include) or get pure event records exclusively (true).</p></li>
+<li><p><strong>flags</strong> – [string] Comma separated list of quality flags which need to be set.</p></li>
+<li><p><strong>exclude</strong> – [string] Comma separated list of quality flags to be excluded.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dictionary</p>
+</dd>
+</dl>
+<p>Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">occurrences</span> <span class="k">as</span> <span class="n">occ</span>
+<span class="n">occ</span><span class="o">.</span><span class="n">point</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.77</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mf">54.22</span><span class="p">,</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyobis.occurrences.tile">
+<span class="sig-prename descclassname"><span class="pre">occurrences.</span></span><span class="sig-name descname"><span class="pre">tile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mvt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scientificname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">taxonid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datasetid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodeid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">startdate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enddate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">startdepth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enddepth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">redlist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hab</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wrims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyobis.occurrences.tile" title="Permalink to this definition"></a></dt>
+<dd><p>Fetch point occurrences for a tile (aggregated using variable Geohash precision based on zoom level) as GeoJSON or MVT.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – [float] latitudes of a location</p></li>
+<li><p><strong>y</strong> – [float] laongitude of a location</p></li>
+<li><p><strong>z</strong> – [float] zoom level</p></li>
+<li><p><strong>scientificname</strong> – [string] Scientific name. Leave empty to include all taxa.</p></li>
+<li><p><strong>taxonid</strong> – [string] Taxon AphiaID.</p></li>
+<li><p><strong>datasetid</strong> – [string] Dataset UUID.</p></li>
+<li><p><strong>nodeid</strong> – [string] Node UUID.</p></li>
+<li><p><strong>startdate</strong> – [string] Start date formatted as YYYY-MM-DD.</p></li>
+<li><p><strong>enddate</strong> – [string] End date formatted as YYYY-MM-DD.</p></li>
+<li><p><strong>startdepth</strong> – [integer] Start depth, in meters.</p></li>
+<li><p><strong>enddepth</strong> – [integer] End depth, in meters.</p></li>
+<li><p><strong>geometry</strong> – [string] Geometry, formatted as WKT or GeoHash.</p></li>
+<li><p><strong>redlist</strong> – [boolean] Red List species only, True/False.</p></li>
+<li><p><strong>hab</strong> – [boolean] HAB species only, true/false.</p></li>
+<li><p><strong>wrims</strong> – [boolean] WRiMS species only, True/False.</p></li>
+<li><p><strong>event</strong> – [string] Include pure event records (include) or get pure event records exclusively (true).</p></li>
+<li><p><strong>flags</strong> – [string] Comma separated list of quality flags which need to be set.</p></li>
+<li><p><strong>exclude</strong> – [string] Comma separated list of quality flags to be excluded.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dictionary</p>
+</dd>
+</dl>
+<p>Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">occurrences</span> <span class="k">as</span> <span class="n">occ</span>
+<span class="n">occ</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.77</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mf">52.26</span><span class="p">,</span><span class="n">z</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">mvt</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">)</span>
+<span class="n">occ</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.77</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mf">52.26</span><span class="p">,</span><span class="n">z</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">mvt</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyobis.occurrences.centroid">
+<span class="sig-prename descclassname"><span class="pre">occurrences.</span></span><span class="sig-name descname"><span class="pre">centroid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">taxonid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datasetid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodeid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">startdate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enddate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">startdepth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enddepth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">redlist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hab</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wrims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyobis.occurrences.centroid" title="Permalink to this definition"></a></dt>
+<dd><p>Determine the centroid for a selection of occurrence records.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scientificname</strong> – [string] Scientific name. Leave empty to include all taxa.</p></li>
+<li><p><strong>taxonid</strong> – [string] Taxon AphiaID.</p></li>
+<li><p><strong>datasetid</strong> – [string] Dataset UUID.</p></li>
+<li><p><strong>nodeid</strong> – [string] Node UUID.</p></li>
+<li><p><strong>startdate</strong> – [string] Start date formatted as YYYY-MM-DD.</p></li>
+<li><p><strong>enddate</strong> – [string] End date formatted as YYYY-MM-DD.</p></li>
+<li><p><strong>startdepth</strong> – [integer] Start depth, in meters.</p></li>
+<li><p><strong>enddepth</strong> – [integer] End depth, in meters.</p></li>
+<li><p><strong>geometry</strong> – [string] Geometry, formatted as WKT or GeoHash.</p></li>
+<li><p><strong>redlist</strong> – [boolean] Red List species only, True/False.</p></li>
+<li><p><strong>hab</strong> – [boolean] HAB species only, true/false.</p></li>
+<li><p><strong>wrims</strong> – [boolean] WRiMS species only, True/False.</p></li>
+<li><p><strong>event</strong> – [string] Include pure event records (include) or get pure event records exclusively (true).</p></li>
+<li><p><strong>flags</strong> – [string] Comma separated list of quality flags which need to be set.</p></li>
+<li><p><strong>exclude</strong> – [string] Comma separated list of quality flags to be excluded.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dictionary</p>
+</dd>
+</dl>
+<p>Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">occurrences</span> <span class="k">as</span> <span class="n">occ</span>
+<span class="n">occ</span><span class="o">.</span><span class="n">centroid</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="pyobis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="taxa.html" class="btn btn-neutral float-right" title="taxa module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2016, Scott Chamberlain.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

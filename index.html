@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pyobis &mdash; pyobis 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="occurrences module" href="occurrences.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="#" class="icon icon-home"> pyobis
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="occurrences.html">occurrences module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="taxa.html">taxa module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataset.html">dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nodes.html">nodes module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="checklist.html">checklist module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog_link.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">pyobis</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+      <li>pyobis</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pyobis">
+<h1>pyobis<a class="headerlink" href="#pyobis" title="Permalink to this heading"></a></h1>
+<p><a class="reference external" href="https://pypi.python.org/pypi/pyobis"><img alt="pypi" src="https://img.shields.io/pypi/v/pyobis.svg" /></a> <a class="reference external" href="http://pyobis.readthedocs.org/en/latest/?badge=latest"><img alt="docs" src="https://readthedocs.org/projects/pyobis/badge/?version=latest" /></a></p>
+<p>Python client for the <a class="reference external" href="https://api.obis.org/">OBIS API</a>.</p>
+<p><a class="reference external" href="https://github.com/iobis/pyobis">Source on GitHub at iobis/pyobis</a></p>
+<p>Other OBIS clients:</p>
+<ul class="simple">
+<li><p>R: <cite>robis</cite>, <a class="reference external" href="https://github.com/iobis/robis">iobis/robis</a></p></li>
+</ul>
+</section>
+<section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h1>
+<p>from pypi</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install pyobis</span>
+</pre></div>
+</div>
+<p>dev version</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install git+git://github.com/iobis/pyobis.git#egg=pyobis</span>
+</pre></div>
+</div>
+</section>
+<section id="library-api">
+<h1>Library API<a class="headerlink" href="#library-api" title="Permalink to this heading"></a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">pyobis</span></code> is split up into modules for each of the groups of API methods.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">taxa</span></code> - Taxonomic names</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">occurrences</span></code> - Occurrences</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dataset</span></code> - Dataset</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nodes</span></code> - Nodes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">checklist</span></code> - Checklist</p></li>
+</ul>
+<p>You can import the entire library, or each module individually as needed.</p>
+<section id="taxa-module">
+<h2>Taxa module<a class="headerlink" href="#taxa-module" title="Permalink to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">taxa</span>
+<span class="n">taxa</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s2">&quot;Mola mola&quot;</span><span class="p">)</span>
+<span class="n">taxa</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s2">&quot;Mola mola&quot;</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">taxa</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">geometry</span><span class="o">=</span><span class="s1">&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;</span><span class="p">)</span>
+<span class="n">taxa</span><span class="o">.</span><span class="n">taxon</span><span class="p">(</span><span class="mi">10332</span><span class="p">)</span>
+<span class="n">taxa</span><span class="o">.</span><span class="n">taxon</span><span class="p">(</span><span class="mi">127405</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="occurrence-module">
+<h2>Occurrence module<a class="headerlink" href="#occurrence-module" title="Permalink to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">occurrences</span>
+<span class="n">occurrences</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s2">&quot;Mola mola&quot;</span><span class="p">)</span>
+<span class="n">occurrences</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s2">&quot;Mola mola&quot;</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">occurrences</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">geometry</span><span class="o">=</span><span class="s2">&quot;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="dataset-module">
+<h2>Dataset module<a class="headerlink" href="#dataset-module" title="Permalink to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">dataset</span>
+<span class="n">dataset</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Mola&quot;</span><span class="p">,</span> <span class="s2">&quot;Abra&quot;</span><span class="p">,</span> <span class="s2">&quot;Lanice&quot;</span><span class="p">,</span> <span class="s2">&quot;Pectinaria&quot;</span><span class="p">])</span>
+<span class="n">dataset</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s2">&quot;ec9df3b9-3b2b-4d83-881b-27bcbcd57b95&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="nodes-module">
+<h2>Nodes module<a class="headerlink" href="#nodes-module" title="Permalink to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">nodes</span>
+<span class="n">nodes</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Mola&quot;</span><span class="p">,</span> <span class="s2">&quot;Abra&quot;</span><span class="p">]</span> <span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="checklist-module">
+<h2>Checklist module<a class="headerlink" href="#checklist-module" title="Permalink to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">checklist</span> <span class="k">as</span> <span class="n">ch</span>
+<span class="n">ch</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s2">&quot;Cetacea&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="meta">
+<h1>Meta<a class="headerlink" href="#meta" title="Permalink to this heading"></a></h1>
+<ul class="simple">
+<li><p>License: MIT, see <a class="reference external" href="https://github.com/iobis/pyobis/blob/master/LICENSE">LICENSE file</a></p></li>
+<li><p>Please note that this project is released with a <a class="reference external" href="https://github.com/iobis/pyobis/blob/master/CONDUCT.md">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p></li>
+</ul>
+</section>
+<section id="contents">
+<h1>Contents<a class="headerlink" href="#contents" title="Permalink to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="occurrences.html">occurrences module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="taxa.html">taxa module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataset.html">dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nodes.html">nodes module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="checklist.html">checklist module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog_link.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog_link.html#id1">1.0.0 (2022-07-10)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog_link.html#id2">0.1.0 (2016-12-12)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog_link.html#id3">0.0.6.9000 (2016-05-12)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog_link.html#id4">0.0.1 (2015-12-11)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="license">
+<h1>License<a class="headerlink" href="#license" title="Permalink to this heading"></a></h1>
+<p>MIT</p>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="occurrences.html" class="btn btn-neutral float-right" title="occurrences module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2016, Scott Chamberlain.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
