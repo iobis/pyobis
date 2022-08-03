@@ -4,7 +4,7 @@ pyobis
 |pypi| |docs|
 
 Python client for the `OBIS API
-<https://github.com/iobis/api-docs>`__.
+<https://api.obis.org/>`__.
 
 `Source on GitHub at iobis/pyobis <https://github.com/iobis/pyobis>`__
 
