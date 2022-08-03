@@ -5,7 +5,6 @@ on:
     branches:
       - master
       - main
-      - fix-docs
 
 jobs:
   build-docs:
