@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>61.0"]
+requires = ["setuptools>61.0", "requests>2.7", "pandas"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -9,7 +9,7 @@ authors = [
   { name="Scott Chamberlain", email="myrmecocystus@gmail.com" },
 ]
 description = "Python client for OBIS"
-readme = "README.md"
+readme = "README.rst"
 license = { file="LICENSE" }
 requires-python = ">=3.7"
 classifiers = [
