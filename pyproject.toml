@@ -22,7 +22,6 @@ dependencies = [
 ]
 license = { file="LICENSE" }
 requires-python = ">=3.7"
-urls = {    repository = "https://github.com/iobis/pyobis"  }
 classifiers = [
     "Development Status :: 4 - Alpha",
     "Intended Audience :: Science/Research",
