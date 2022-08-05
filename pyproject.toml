@@ -13,9 +13,13 @@ readme = "README.md"
 license = { file="LICENSE" }
 requires-python = ">=3.7"
 classifiers = [
-    "Programming Language :: Python :: 3",
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",    
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
 ]
 
 [project.urls]
