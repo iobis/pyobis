@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyobis"
+version = "1.0.0"
+authors = [
+  { name="Scott Chamberlain", email="myrmecocystus@gmail.com" },
+]
+description = "Python client for OBIS"
+readme = "README.md"
+license = { file="LICENSE" }
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/iobis/pyobis"
+"Bug Tracker" = "https://github.com/iobis/pyobis/issues"
