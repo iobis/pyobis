@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>61.0", "requests>2.7", "pandas"]
+requires = ["setuptools>61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -10,6 +10,16 @@ authors = [
 ]
 description = "Python client for OBIS"
 readme = "README.rst"
+keywords = [
+    "OBIS",
+    "ocean data",
+    "marine science",
+    "GBIF",
+]
+dependencies = [
+    "requests>2.7",
+    "pandas",
+]
 license = { file="LICENSE" }
 requires-python = ">=3.7"
 urls = {    repository = "https://github.com/iobis/pyobis"  }

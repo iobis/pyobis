@@ -6,7 +6,7 @@ build:
 	python setup.py build
 
 install:
-	python setup.py install
+	python -m pip install -e .
 
 test:
 	nosetests -v --with-coverage --cover-package=pyobis
