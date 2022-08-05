@@ -12,8 +12,9 @@ description = "Python client for OBIS"
 readme = "README.rst"
 license = { file="LICENSE" }
 requires-python = ">=3.7"
+urls = {    repository = "https://github.com/iobis/pyobis"  }
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Alpha",
     "Intended Audience :: Science/Research",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
@@ -25,3 +26,30 @@ classifiers = [
 [project.urls]
 "Homepage" = "https://github.com/iobis/pyobis"
 "Bug Tracker" = "https://github.com/iobis/pyobis/issues"
+
+[project.optional_dependencies]
+dev = [
+    "black",
+    "check-manifest",
+    "flake8",
+    "flake8-builtins",
+    "flake8-comprehensions",
+    "flake8-mutable",
+    "flake8-print",
+    "interrogate",
+    "isort",
+    "nbsphinx",
+    "pre-commit",
+    "pydocstyle",
+    "pylint",
+    "pytest",
+    "pytest-cov",
+    "pytest-flake8",
+    "pytest-sugar",
+    "pytest-xdist",
+    "setuptools_scm",
+    "sphinx",
+    "sphinx_rtd_theme",
+    "twine",
+    "wheel",
+]
