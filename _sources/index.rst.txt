@@ -47,9 +47,10 @@ Taxa module
 .. code-block:: python
 
     from pyobis import taxa
-    taxa.search(scientificname = "Mola mola")
-    taxa.search(scientificname = "Mola mola", offset=10)
-    taxa.search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))')
+
+    taxa.search(scientificname="Mola mola")
+    taxa.search(scientificname="Mola mola", offset=10)
+    taxa.search(geometry="POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))")
     taxa.taxon(10332)
     taxa.taxon(127405)
 
@@ -59,18 +60,22 @@ Occurrence module
 .. code-block:: python
 
     from pyobis import occurrences
-    occurrences.search(scientificname = "Mola mola")
-    occurrences.search(scientificname = "Mola mola", offset=0, size=10)
-    occurrences.search(geometry="POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))", size=20)
+
+    occurrences.search(scientificname="Mola mola")
+    occurrences.search(scientificname="Mola mola", offset=0, size=10)
+    occurrences.search(
+        geometry="POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))", size=20
+    )
 
 Dataset module
 ##############
 
 .. code-block:: python
-    
+
     from pyobis import dataset
-    dataset.search(scientificname = ["Mola", "Abra", "Lanice", "Pectinaria"])
-    dataset.get(id = "ec9df3b9-3b2b-4d83-881b-27bcbcd57b95")
+
+    dataset.search(scientificname=["Mola", "Abra", "Lanice", "Pectinaria"])
+    dataset.get(id="ec9df3b9-3b2b-4d83-881b-27bcbcd57b95")
 
 Nodes module
 ############
@@ -78,7 +83,8 @@ Nodes module
 .. code-block:: python
 
     from pyobis import nodes
-    nodes.search(scientificname = ["Mola", "Abra"] )
+
+    nodes.search(scientificname=["Mola", "Abra"])
 
 Checklist module
 ################
@@ -86,7 +92,8 @@ Checklist module
 .. code-block:: python
 
     from pyobis import checklist as ch
-    ch.list(scientificname = "Cetacea")
+
+    ch.list(scientificname="Cetacea")
 
 Meta
 ====
@@ -130,4 +137,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-
