@@ -46,9 +46,9 @@ from .occurrences import occurrences
 from .taxa import taxa
 
 __all__ = [
-    'checklist',
-    'dataset',
-    'nodes',
-    'occurrences',
-    'taxa',
+    "checklist",
+    "dataset",
+    "nodes",
+    "occurrences",
+    "taxa",
 ]

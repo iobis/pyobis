@@ -1,7 +1,7 @@
 import sys
-import requests
 
 import pandas as pd
+import requests
 
 from ..obisutils import handle_arrstr, obis_baseurl, obis_GET, stopifnot
 
@@ -118,9 +118,7 @@ def search(
         out["total"] if not size else size
     )  # if the user has set some size or else we fetch all the records
     for i in range(5000, size + 1, 5000):
-        if (
-            args["size"] != 0
-        ):
+        if args["size"] != 0:
             # this condition is to make sure that we set the `after` parameter
             # when fetching subsequent records only, and first batch
             # gets fetched correctly without this `after` parameter
@@ -140,9 +138,7 @@ def search(
         )
         res = obis_GET(url, args, "application/json; charset=utf-8", **kwargs)
         out["results"] += res["results"]
-    args["size"] = (
-        size % 5000
-    )
+    args["size"] = size % 5000
     # we have already fetched records as a set of 5000 records each time,
     # now we need to get remaining records from the total
     print(
