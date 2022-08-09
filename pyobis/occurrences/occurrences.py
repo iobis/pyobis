@@ -28,14 +28,20 @@ def search(
     Search OBIS occurrences
 
     :param taxonid: [Fixnum] A obis occurrence identifier
-    :param scientificname: [String,Array] One or more scientific names from the OBIS backbone. All included and
-       synonym taxa are included in the search.
-    :param year: Removed in v3 API. [Fixnum] The 4 digit year. A year of 98 will be interpreted as AD 98. Supports range queries,
-       smaller,larger (e.g., '1990,1991', whereas '1991,1990' wouldn't work)
-    :param geometry: [String] Well Known Text (WKT). A WKT shape written as either POINT, LINESTRING, LINEARRING
-       or POLYGON. Example of a polygon: ((30.1 10.1, 20, 20 40, 40 40, 30.1 10.1)) would be queried as http://bit.ly/1BzNwDq
+    :param scientificname: [String,Array] One or more scientific names from the
+        OBIS backbone. All included and
+        synonym taxa are included in the search.
+    :param year: Removed in v3 API. [Fixnum] The 4 digit year. A year of 98
+        will be interpreted as AD 98. Supports range queries,
+        smaller,larger (e.g., '1990,1991', whereas '1991,1990' wouldn't work)
+    :param geometry: [String] Well Known Text (WKT). A WKT shape written
+        as either POINT, LINESTRING, LINEARRING
+        or POLYGON.
+        Example of a polygon: ((30.1 10.1, 20, 20 40, 40 40, 30.1 10.1)) would
+        be queried as http://bit.ly/1BzNwDq
     :param nodeid: [String] Node UUID
-    :param taxonid: Prev. aphiaid [Fixnum] An Aphia id. This is listed as the `worms_id` in `taxa`/`taxon` results
+    :param taxonid: Prev. aphiaid [Fixnum] An Aphia id. This is listed as
+        the `worms_id` in `taxa`/`taxon` results
     :param datasetid: Prev. resourceid [Fixnum] A resource id
     :param startdate: [Fixnum] Start date
     :param enddate: [Boolean] End date
@@ -45,8 +51,10 @@ def search(
     :param fields: [String] Comma seperated list of field names
     :param size: [Fixnum] Number of results to return. Default: All records
     :param offset: [Fixnum] Start at record. Default: 0
-    :param mof: [Boolean] Include MeasurementOrFact records, true/false. Default: 0
-    :param hasextensions: [String] Extensions that need to be present (e.g. MeasurementOrFact, DNADerivedData).
+    :param mof: [Boolean] Include MeasurementOrFact records, true/false.
+        Default: 0
+    :param hasextensions: [String] Extensions that need to be present
+        (e.g. MeasurementOrFact, DNADerivedData).
     :return: A dictionary
 
     Usage::
@@ -57,18 +65,29 @@ def search(
         # Many names
         occ.search(scientificname = ['Mola', 'Abra', 'Lanice', 'Pectinaria'])
 
-        # Use paging parameters (limit and start) to page. Note the different results
-        # for the two queries below.
+        # Use paging parameters (limit and start) to page.
+        # Note the different results for the two queries below.
         occ.search(scientificname = 'Mola mola', offset=0, size=10)
         occ.search(scientificname = 'Mola mola', offset=10, size=10)
 
         # Search on a bounding box
         ## in well known text format
-        occ.search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit=20)
+        occ.search(
+            geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))',
+            limit=20
+        )
         from pyobis import taxa
         res = taxa.search(scientificname='Mola mola')['results'][0]
-        occ.search(obisid=res['id'], geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', size=20)
-        occ.search(aphiaid=res['worms_id'], geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', size=20)
+        occ.search(
+            obisid=res['id'],
+            geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))',
+            size=20
+        )
+        occ.search(
+            aphiaid=res['worms_id'],
+            geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))',
+            size=20
+        )
 
         # Get mof response as list of pandas dataframes
         occ.search(scientificname="Abra",mof=True,hasextensions="MeasurementOrFact")
@@ -100,7 +119,10 @@ def search(
     for i in range(5000, size + 1, 5000):
         if (
             args["size"] != 0
-        ):  # this condition is to make sure that we set the `after` parameter when fetching subsequent records only, and first batch gets fetched correctly without this `after` parameter
+        ):
+            # this condition is to make sure that we set the `after` parameter
+            # when fetching subsequent records only, and first batch
+            # gets fetched correctly without this `after` parameter
             args["after"] = res["results"][4999]["id"]
         args["size"] = 5000
         print(
@@ -119,7 +141,9 @@ def search(
         out["results"] += res["results"]
     args["size"] = (
         size % 5000
-    )  # we have already fetched records as a set of 5000 records each time, now we need to get remaining records from the total
+    )
+    # we have already fetched records as a set of 5000 records each time,
+    # now we need to get remaining records from the total
     print(
         "{}[{}{}] {}/{}".format("Fetching: ", "█" * 100, "." * 0, size, size),
         end="\r",
@@ -146,7 +170,8 @@ def get(id, **kwargs):
     """
     Get an OBIS occurrence
 
-    :param id: [Fixnum] An obis occurrence identifier. It is returned in the 'id' field with occurrences.search().
+    :param id: [Fixnum] An obis occurrence identifier.
+        It is returned in the 'id' field with occurrences.search().
 
     :return: A dictionary
 
@@ -184,7 +209,8 @@ def grid(
     Fetch gridded occurrences as GeoJSON or KML.
 
     :param precision: [integer] Geohash precision.
-    :param scientificname: [string] Scientific name. Leave empty to include all taxa.
+    :param scientificname: [string] Scientific name.
+        Leave empty to include all taxa.
     :param taxonid: [string] Taxon AphiaID.
     :param datasetid: [string] Dataset UUID.
     :param nodeid: [string] Node UUID.
@@ -196,9 +222,11 @@ def grid(
     :param redlist: [boolean] Red List species only, True/False.
     :param hab: [boolean] HAB species only, true/false.
     :param wrims: [boolean] WRiMS species only, True/False.
-    :param event: [string] Include pure event records (include) or get pure event records exclusively (true).
-    :param flags: [string] Comma separated list of quality flags which need to be set.
-    :param exclude: [string] Comma separated list of quality flags to be excluded.
+    :param event: [string] Include pure event records (include) or get pure
+        event records exclusively (true).
+    :param flags: [string] Comma separated list of required quality flags.
+    :param exclude: [string] Comma separated list of quality flags
+        to be excluded.
 
     :return: A dictionary
 
@@ -257,7 +285,8 @@ def getpoints(
     """
     Fetch point occurrences as GeoJSON (aggregated to Geohash precision 8).
 
-    :param scientificname: [string] Scientific name. Leave empty to include all taxa.
+    :param scientificname: [string] Scientific name. Leave empty to include all
+        taxa.
     :param taxonid: [string] Taxon AphiaID.
     :param datasetid: [string] Dataset UUID.
     :param nodeid: [string] Node UUID.
@@ -269,9 +298,12 @@ def getpoints(
     :param redlist: [boolean] Red List species only, True/False.
     :param hab: [boolean] HAB species only, true/false.
     :param wrims: [boolean] WRiMS species only, True/False.
-    :param event: [string] Include pure event records (include) or get pure event records exclusively (true).
-    :param flags: [string] Comma separated list of quality flags which need to be set.
-    :param exclude: [string] Comma separated list of quality flags to be excluded.
+    :param event: [string] Include pure event records (include) or get pure0
+        event records exclusively (true).
+    :param flags: [string] Comma separated list of quality flags which need to
+        be set.
+    :param exclude: [string] Comma separated list of quality flags to be
+        excluded.
 
     :return: A dictionary
 
@@ -332,12 +364,15 @@ def point(
     **kwargs,
 ):
     """
-    Fetch point occurrences for a location (with Geohash precision 8 or variable Geohash precision) as GeoJSON.
+    Fetch point occurrences for a location (with Geohash precision 8 or
+        variable Geohash precision) as GeoJSON.
 
     :param x: [float] latitudes of a location
     :param y: [float] laongitude of a location
-    :param z: [float] zoom level, if present then variable Geohash precision, if absent then precision 8
-    :param scientificname: [string] Scientific name. Leave empty to include all taxa.
+    :param z: [float] zoom level, if present then variable Geohash precision,
+        if absent then precision 8
+    :param scientificname: [string] Scientific name. Leave empty to include all
+        taxa.
     :param taxonid: [string] Taxon AphiaID.
     :param datasetid: [string] Dataset UUID.
     :param nodeid: [string] Node UUID.
@@ -349,9 +384,12 @@ def point(
     :param redlist: [boolean] Red List species only, True/False.
     :param hab: [boolean] HAB species only, true/false.
     :param wrims: [boolean] WRiMS species only, True/False.
-    :param event: [string] Include pure event records (include) or get pure event records exclusively (true).
-    :param flags: [string] Comma separated list of quality flags which need to be set.
-    :param exclude: [string] Comma separated list of quality flags to be excluded.
+    :param event: [string] Include pure event records (include) or get pure
+        event records exclusively (true).
+    :param flags: [string] Comma separated list of quality flags which need
+        to be set.
+    :param exclude: [string] Comma separated list of quality flags to be
+        excluded.
 
     :return: A dictionary
 
@@ -412,12 +450,14 @@ def tile(
     **kwargs,
 ):
     """
-    Fetch point occurrences for a tile (aggregated using variable Geohash precision based on zoom level) as GeoJSON or MVT.
+    Fetch point occurrences for a tile (aggregated using variable Geohash
+        precision based on zoom level) as GeoJSON or MVT.
 
     :param x: [float] latitudes of a location
     :param y: [float] laongitude of a location
     :param z: [float] zoom level
-    :param scientificname: [string] Scientific name. Leave empty to include all taxa.
+    :param scientificname: [string] Scientific name. Leave empty to include
+        all taxa.
     :param taxonid: [string] Taxon AphiaID.
     :param datasetid: [string] Dataset UUID.
     :param nodeid: [string] Node UUID.
@@ -429,9 +469,12 @@ def tile(
     :param redlist: [boolean] Red List species only, True/False.
     :param hab: [boolean] HAB species only, true/false.
     :param wrims: [boolean] WRiMS species only, True/False.
-    :param event: [string] Include pure event records (include) or get pure event records exclusively (true).
-    :param flags: [string] Comma separated list of quality flags which need to be set.
-    :param exclude: [string] Comma separated list of quality flags to be excluded.
+    :param event: [string] Include pure event records (include) or get pure
+        event records exclusively (true).
+    :param flags: [string] Comma separated list of quality flags which need to
+        be set.
+    :param exclude: [string] Comma separated list of quality flags to be
+        excluded.
 
     :return: A dictionary
 
@@ -492,7 +535,8 @@ def centroid(
     """
     Determine the centroid for a selection of occurrence records.
 
-    :param scientificname: [string] Scientific name. Leave empty to include all taxa.
+    :param scientificname: [string] Scientific name. Leave empty to include all
+        taxa.
     :param taxonid: [string] Taxon AphiaID.
     :param datasetid: [string] Dataset UUID.
     :param nodeid: [string] Node UUID.
@@ -504,9 +548,11 @@ def centroid(
     :param redlist: [boolean] Red List species only, True/False.
     :param hab: [boolean] HAB species only, true/false.
     :param wrims: [boolean] WRiMS species only, True/False.
-    :param event: [string] Include pure event records (include) or get pure event records exclusively (true).
-    :param flags: [string] Comma separated list of quality flags which need to be set.
-    :param exclude: [string] Comma separated list of quality flags to be excluded.
+    :param event: [string] Include pure event records (include) or get pure
+        event records exclusively (true).
+    :param flags: [string] Comma separated list of required quality flags.
+    :param exclude: [string] Comma separated list of quality flags to be
+        excluded.
 
     :return: A dictionary
 

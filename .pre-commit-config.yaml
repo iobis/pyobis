@@ -18,7 +18,7 @@ repos:
   rev: 4.0.1
   hooks:
     - id: flake8
-      exclude: docs/source/conf.py
+      exclude: ^(docs/source/conf.py|pyobis/obisissues.py)
       args: [--max-line-length=105]
 
 - repo: https://github.com/pycqa/isort
