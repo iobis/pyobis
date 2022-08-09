@@ -1,6 +1,4 @@
 """Tests for nodes module"""
-import os
-
 from pyobis import nodes
 
 

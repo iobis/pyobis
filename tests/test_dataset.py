@@ -1,6 +1,4 @@
 """Tests for dataset module"""
-import os
-
 from pyobis import dataset
 
 

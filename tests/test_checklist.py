@@ -1,6 +1,4 @@
 """Tests for checklist module"""
-import os
-
 from pyobis import checklist as ch
 
 

@@ -1,5 +1,4 @@
 import sys
-from tkinter.messagebox import NO
 
 import pandas as pd
 

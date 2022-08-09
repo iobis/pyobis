@@ -1,6 +1,4 @@
 """Tests for occurrences module - search methods"""
-import os
-
 from pyobis import occurrences as occ
 
 

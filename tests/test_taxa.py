@@ -1,6 +1,4 @@
 """Tests for taxa module - search methods"""
-import os
-
 from pyobis import taxa
 
 
