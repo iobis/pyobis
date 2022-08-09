@@ -23,7 +23,7 @@ def search(
     offset=0,
     mof=False,
     hasextensions=None,
-    **kwargs
+    **kwargs,
 ):
     """
     Search OBIS occurrences
@@ -134,7 +134,10 @@ def search(
     if mof and out["total"] > 0:
         mofNormalized = pd.json_normalize(out["results"], "mof", ["id"])
         merged = pd.merge(
-            pd.DataFrame(out["results"]), mofNormalized, on="id", how="inner",
+            pd.DataFrame(out["results"]),
+            mofNormalized,
+            on="id",
+            how="inner",
         )
         return merged
     return out
@@ -176,7 +179,7 @@ def grid(
     event=None,
     flags=None,
     exclude=None,
-    **kwargs
+    **kwargs,
 ):
     """
     Fetch gridded occurrences as GeoJSON or KML.
@@ -250,7 +253,7 @@ def getpoints(
     event=None,
     flags=None,
     exclude=None,
-    **kwargs
+    **kwargs,
 ):
     """
     Fetch point occurrences as GeoJSON (aggregated to Geohash precision 8).
@@ -303,7 +306,7 @@ def getpoints(
             "exclude": exclude,
         },
         "application/json; charset=utf-8",
-        **kwargs
+        **kwargs,
     )
     return out
 
@@ -327,7 +330,7 @@ def point(
     event=None,
     flags=None,
     exclude=None,
-    **kwargs
+    **kwargs,
 ):
     """
     Fetch point occurrences for a location (with Geohash precision 8 or variable Geohash precision) as GeoJSON.
@@ -360,7 +363,7 @@ def point(
 
     """
     z = str(z) if z else ""
-    url = obis_baseurl + "occurrence/point/{}/{}/{}".format(str(x), str(y), z)
+    url = obis_baseurl + f"occurrence/point/{str(x)}/{str(y)}/{z}"
     scientificname = handle_arrstr(scientificname)
     out = obis_GET(
         url,
@@ -382,7 +385,7 @@ def point(
             "exclude": exclude,
         },
         "application/json; charset=utf-8",
-        **kwargs
+        **kwargs,
     )
     return out
 
@@ -407,7 +410,7 @@ def tile(
     event=None,
     flags=None,
     exclude=None,
-    **kwargs
+    **kwargs,
 ):
     """
     Fetch point occurrences for a tile (aggregated using variable Geohash precision based on zoom level) as GeoJSON or MVT.
@@ -439,7 +442,7 @@ def tile(
         occ.tile(x=1.77,y=52.26,z=0.5,mvt=0, scientificname = 'Mola mola')
         occ.tile(x=1.77,y=52.26,z=0.5,mvt=1, scientificname = 'Mola mola')
     """
-    url = obis_baseurl + "occurrence/tile/{}/{}/{}".format(str(x), str(y), str(z))
+    url = obis_baseurl + f"occurrence/tile/{str(x)}/{str(y)}/{str(z)}"
     args = {
         "scientificname": scientificname,
         "taxonid": taxonid,
@@ -485,7 +488,7 @@ def centroid(
     event=None,
     flags=None,
     exclude=None,
-    **kwargs
+    **kwargs,
 ):
     """
     Determine the centroid for a selection of occurrence records.
@@ -535,6 +538,6 @@ def centroid(
             "exclude": exclude,
         },
         "application/json; charset=utf-8",
-        **kwargs
+        **kwargs,
     )
     return out

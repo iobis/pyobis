@@ -10,6 +10,7 @@ class NoResultException(Exception):
     """
     Thrown when query returns no results.
     """
+
     pass
 
 
