@@ -52,7 +52,7 @@ repos:
   hooks:
     - id: interrogate
       exclude: ^(docs|setup.py|tests)
-      args: [--config=pyproject.toml]
+      args: [-vv, --config=pyproject.toml]
 
 # - repo: https://github.com/codespell-project/codespell
 #   rev: v2.1.0
