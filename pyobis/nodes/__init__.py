@@ -1,3 +1,1 @@
-# -*- coding: utf-8 -*-
-
-from .nodes import search, activities
+from .nodes import activities, search
