@@ -1,3 +1,3 @@
-# -*- coding: utf-8 -*-
+from .checklist import list, newest, redlist
 
-from .checklist import list, redlist, newest
+__all__ = ["list", "newest", "redlist"]

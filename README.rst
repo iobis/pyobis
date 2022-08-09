@@ -28,7 +28,7 @@ Main Features
 Here are just a few of things pyOBIS can do:
 
 * Easy handling of OBIS data, easy fetching without handling the raw API response directly.
-* Built-in functions for ``occurrence``, ``taxon``, ``node``, ``checklist`` and ``dataset`` endpoints of OBIS API. 
+* Built-in functions for ``occurrence``, ``taxon``, ``node``, ``checklist`` and ``dataset`` endpoints of OBIS API.
 * Provides easy export of data to ``Pandas`` DataFrame, and helps researchers focus more on analysis rather than data mining.
 
 For examples of how to use this repo, see the jupyter notebooks in the ``/notebooks/`` directory.
@@ -58,8 +58,8 @@ Install editable dev version from github for local development. System prerequis
     cd pyobis
     # install
     python -m pip install -r requirements.txt
-    python -m pip install -r requirements-dev.txt 
-    python -m pip install -e . 
+    python -m pip install -r requirements-dev.txt
+    python -m pip install -e .
     # test your installation
     python -m pytest
     # test and generate a coverage report
@@ -88,9 +88,10 @@ Taxa module
 .. code-block:: python
 
     from pyobis import taxa
-    taxa.search(scientificname = "Mola mola")
-    taxa.search(scientificname = "Mola mola", offset=10)
-    taxa.search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))')
+
+    taxa.search(scientificname="Mola mola")
+    taxa.search(scientificname="Mola mola", offset=10)
+    taxa.search(geometry="POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))")
     taxa.taxon(10332)
     taxa.taxon(127405)
 
@@ -100,9 +101,12 @@ Occurrence module
 .. code-block:: python
 
     from pyobis import occurrences
-    occurrences.search(scientificname = "Mola mola")
-    occurrences.search(scientificname = "Mola mola", offset=0, size=10)
-    occurrences.search(geometry="POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))", size=20)
+
+    occurrences.search(scientificname="Mola mola")
+    occurrences.search(scientificname="Mola mola", offset=0, size=10)
+    occurrences.search(
+        geometry="POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))", size=20
+    )
 
 Dataset module
 ##############
@@ -110,8 +114,9 @@ Dataset module
 .. code-block:: python
 
     from pyobis import dataset
-    dataset.search(scientificname = ["Mola", "Abra", "Lanice", "Pectinaria"])
-    dataset.get(id = "ec9df3b9-3b2b-4d83-881b-27bcbcd57b95")
+
+    dataset.search(scientificname=["Mola", "Abra", "Lanice", "Pectinaria"])
+    dataset.get(id="ec9df3b9-3b2b-4d83-881b-27bcbcd57b95")
 
 Nodes module
 ############
@@ -119,7 +124,8 @@ Nodes module
 .. code-block:: python
 
     from pyobis import nodes
-    nodes.search(scientificname = ["Mola", "Abra"] )
+
+    nodes.search(scientificname=["Mola", "Abra"])
 
 Checklist module
 ################
@@ -127,7 +133,8 @@ Checklist module
 .. code-block:: python
 
     from pyobis import checklist as ch
-    ch.list(scientificname = "Cetacea")
+
+    ch.list(scientificname="Cetacea")
 
 Usage Guide
 ===========
@@ -160,4 +167,4 @@ Further Reading
    :target: http://pyobis.readthedocs.org/en/latest/?badge=latest
 
 .. |tests| image:: https://github.com/iobis/pyobis/actions/workflows/tests.yml/badge.svg
-   :target: https://github.com/iobis/pyobis/actions/workflows/tests.yml   
+   :target: https://github.com/iobis/pyobis/actions/workflows/tests.yml

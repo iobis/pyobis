@@ -18,7 +18,7 @@ repos:
   rev: 4.0.1
   hooks:
     - id: flake8
-      exclude: docs/source/conf.py
+      exclude: ^(docs/source/conf.py|pyobis/obisissues.py)
       args: [--max-line-length=105]
 
 - repo: https://github.com/pycqa/isort
@@ -51,19 +51,19 @@ repos:
   rev: 1.5.0
   hooks:
     - id: interrogate
-      exclude: ^(docs|setup.py|tests)
-      args: [--config=pyproject.toml]
+      exclude: ^(docs|setup.py|tests|.*__init__.py)
+      args: [-vv, --config=pyproject.toml]
 
-- repo: https://github.com/codespell-project/codespell
-  rev: v2.1.0
-  hooks:
-    - id: codespell
-      exclude: >
-          (?x)^(
-              .*\.yaml
-          )$
-      args:
-        - --quiet-level=2
+# - repo: https://github.com/codespell-project/codespell
+#   rev: v2.1.0
+#   hooks:
+#     - id: codespell
+#       exclude: >
+#           (?x)^(
+#               .*\.yaml
+#           )$
+#       args:
+#         - --quiet-level=2
 
 - repo: https://github.com/asottile/pyupgrade
   rev: v2.34.0
@@ -77,11 +77,11 @@ repos:
   hooks:
     - id: add-trailing-comma
 
--   repo: https://github.com/pycqa/pydocstyle
-    rev: 6.1.1
-    hooks:
-      - id: pydocstyle
-        exclude: ^(docs|setup.py)
+# - repo: https://github.com/pycqa/pydocstyle
+#   rev: 6.1.1
+#   hooks:
+#     - id: pydocstyle
+#   exclude: ^(docs|setup.py)
 
 ci:
     autofix_commit_msg: |

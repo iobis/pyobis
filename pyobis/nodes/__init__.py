@@ -1,3 +1,3 @@
-# -*- coding: utf-8 -*-
+from .nodes import activities, search
 
-from .nodes import search, activities
+__all__ = ["activities", "search"]

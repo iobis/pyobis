@@ -1,3 +1,3 @@
-# -*- coding: utf-8 -*-
+from .taxa import annotations, search, taxon
 
-from .taxa import search, taxon, annotations
+__all__ = ["annotations", "search", "taxon"]

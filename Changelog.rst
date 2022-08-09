@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.0 (2022-07-10)
+1.0.0 (2022-7-10)
 -----------------------
 - updated all modules to the new OBIS API v3
     + updated checklist, nodes, occurrences, and taxa module
@@ -12,7 +12,7 @@ Changelog
 - first push to pypi
 - finished off all OBIS API routes
 
-0.0.6.9000 (2016-05-12)
+0.0.6.9000 (2016-5-12)
 -----------------------
 - Updated modules with missing methods
 - Added modules: groups, resources

@@ -1,22 +1,37 @@
-from ..obisutils import *
+from ..obisutils import handle_arrstr, obis_baseurl, obis_GET
 
-def list(scientificname=None, taxonid=None, nodeid=None,
-   startdate=None, enddate=None, startdepth=None, enddepth=None,
-   geometry=None, flags=None, **kwargs):
-    '''
+
+def list(
+    scientificname=None,
+    taxonid=None,
+    nodeid=None,
+    startdate=None,
+    enddate=None,
+    startdepth=None,
+    enddepth=None,
+    geometry=None,
+    flags=None,
+    **kwargs
+):
+    """
     Generate an OBIS checklist
 
     :param taxonid: [Fixnum] A obis occurrence identifier
-    :param scientificname: [String,Array] One or more scientific names from the OBIS backbone. All included and
-       synonym taxa are included in the search.
-    :param geometry: [String] Well Known Text (WKT). A WKT shape written as either POINT, LINESTRING, LINEARRING
-       or POLYGON. Example of a polygon: ((30.1 10.1, 20, 20 40, 40 40, 30.1 10.1)) would be queried as http://bit.ly/1BzNwDq
+    :param scientificname: [String,Array] One or more scientific names from
+        the OBIS backbone. All included and synonym taxa are included in
+        the search.
+    :param geometry: [String] Well Known Text (WKT). A WKT shape written as
+        either POINT, LINESTRING, LINEARRING
+        or POLYGON.
+        Example of a polygon: ((30.1 10.1, 20, 20 40, 40 40, 30.1 10.1)) would
+        be queried as http://bit.ly/1BzNwDq
     :param nodeid: [Fixnum] Node UUID.
     :param startdate: [String] Start date YYYY-MM-DD
     :param enddate: [String] End date YYYY-MM-DD
     :param startdepth: [Fixnum] Start depth
     :param enddepth: [Boolean] End depth
-    :param flags: [String] Comma separated list of quality flags which need to be set
+    :param flags: [String] Comma separated list of quality flags which need
+        to be set
 
     :return: A dictionary
 
@@ -27,74 +42,132 @@ def list(scientificname=None, taxonid=None, nodeid=None,
 
         # taxonid of 3013
         ch.list(taxonid = 3013)
-    '''
-    url = obis_baseurl + 'checklist'
+    """
+    url = obis_baseurl + "checklist"
     scientificname = handle_arrstr(scientificname)
-    out = obis_GET(url, {'taxonid': taxonid, 'nodeid': nodeid,
-        'scientificname': scientificname, 'startdate': startdate, 
-        'enddate': enddate, 'startdepth': startdepth, 'enddepth': enddepth,
-        'geometry': geometry,'flags': flags},
-        'application/json; charset=utf-8', **kwargs)
+    out = obis_GET(
+        url,
+        {
+            "taxonid": taxonid,
+            "nodeid": nodeid,
+            "scientificname": scientificname,
+            "startdate": startdate,
+            "enddate": enddate,
+            "startdepth": startdepth,
+            "enddepth": enddepth,
+            "geometry": geometry,
+            "flags": flags,
+        },
+        "application/json; charset=utf-8",
+        **kwargs
+    )
     return out
 
-def redlist(scientificname=None, taxonid=None, nodeid=None, startdate=None,
-   enddate=None, startdepth=None, enddepth=None, geometry=None, flags=None, **kwargs):
-   '''
-   Generate a checklist of IUCN Red List species.
 
-   :param scientificname: [String] Scientific name. Leave empty to include all taxa.
-   :param taxonid: [String] Taxon AphiaID.
-   :param nodeid: [String] Node UUID.
-   :param startdate: [String] Start date formatted as YYYY-MM-DD.
-   :param enddate: [String] End date formatted as YYYY-MM-DD.
-   :param startdepth: [Integer] Start depth, in meters.
-   :param enddepth: [Integer] End depth, in meters.
-   :param geometry: [String] Geometry, formatted as WKT or GeoHash.
-   :param flags: [String] Comma separated list of quality flags which need to be set.
+def redlist(
+    scientificname=None,
+    taxonid=None,
+    nodeid=None,
+    startdate=None,
+    enddate=None,
+    startdepth=None,
+    enddepth=None,
+    geometry=None,
+    flags=None,
+    **kwargs
+):
+    """
+    Generate a checklist of IUCN Red List species.
 
-   :return: A dictionary
+    :param scientificname: [String] Scientific name. Leave empty to include
+        all taxa.
+    :param taxonid: [String] Taxon AphiaID.
+    :param nodeid: [String] Node UUID.
+    :param startdate: [String] Start date formatted as YYYY-MM-DD.
+    :param enddate: [String] End date formatted as YYYY-MM-DD.
+    :param startdepth: [Integer] Start depth, in meters.
+    :param enddepth: [Integer] End depth, in meters.
+    :param geometry: [String] Geometry, formatted as WKT or GeoHash.
+    :param flags: [String] Comma separated list of quality flags which need
+        to be set.
 
-   Usage::
+    :return: A dictionary
 
-      from pyobis import checklist as ch
-      ch.redlist(scientificname='Abra Alba')
-'''
-   url = obis_baseurl + 'checklist/redlist'
-   scientificname = handle_arrstr(scientificname)
-   out = obis_GET(url, {'taxonid': taxonid, 'nodeid': nodeid,
-        'scientificname': scientificname, 'startdate': startdate, 
-        'enddate': enddate, 'startdepth': startdepth, 'enddepth': enddepth,
-        'geometry': geometry,'flags': flags},
-        'application/json; charset=utf-8', **kwargs)
-   return out
+    Usage::
 
-def newest(scientificname=None, taxonid=None, nodeid=None, startdate=None,
-   enddate=None, startdepth=None, enddepth=None, geometry=None, flags=None, **kwargs):
-   '''
-   Generate a checklist of most recently added species.
+       from pyobis import checklist as ch
+       ch.redlist(scientificname='Abra Alba')"""
+    url = obis_baseurl + "checklist/redlist"
+    scientificname = handle_arrstr(scientificname)
+    out = obis_GET(
+        url,
+        {
+            "taxonid": taxonid,
+            "nodeid": nodeid,
+            "scientificname": scientificname,
+            "startdate": startdate,
+            "enddate": enddate,
+            "startdepth": startdepth,
+            "enddepth": enddepth,
+            "geometry": geometry,
+            "flags": flags,
+        },
+        "application/json; charset=utf-8",
+        **kwargs
+    )
+    return out
 
-   :param scientificname: [String] Scientific name. Leave empty to include all taxa.
-   :param taxonid: [String] Taxon AphiaID.
-   :param nodeid: [String] Node UUID.
-   :param startdate: [String] Start date formatted as YYYY-MM-DD.
-   :param enddate: [String] End date formatted as YYYY-MM-DD.
-   :param startdepth: [Integer] Start depth, in meters.
-   :param enddepth: [Integer] End depth, in meters.
-   :param geometry: [String] Geometry, formatted as WKT or GeoHash.
-   :param flags: [String] Comma separated list of quality flags which need to be set.
 
-   :return: A dictionary
+def newest(
+    scientificname=None,
+    taxonid=None,
+    nodeid=None,
+    startdate=None,
+    enddate=None,
+    startdepth=None,
+    enddepth=None,
+    geometry=None,
+    flags=None,
+    **kwargs
+):
+    """
+    Generate a checklist of most recently added species.
 
-   Usage::
+    :param scientificname: [String] Scientific name. Leave empty to include
+        all taxa.
+    :param taxonid: [String] Taxon AphiaID.
+    :param nodeid: [String] Node UUID.
+    :param startdate: [String] Start date formatted as YYYY-MM-DD.
+    :param enddate: [String] End date formatted as YYYY-MM-DD.
+    :param startdepth: [Integer] Start depth, in meters.
+    :param enddepth: [Integer] End depth, in meters.
+    :param geometry: [String] Geometry, formatted as WKT or GeoHash.
+    :param flags: [String] Comma separated list of quality flags which need to
+        be set.
 
-      from pyobis import checklist as ch
-      ch.newest(scientificname='Abra Alba')
-   '''
-   url = obis_baseurl + 'checklist/newest'
-   scientificname = handle_arrstr(scientificname)
-   out = obis_GET(url, {'taxonid': taxonid, 'nodeid': nodeid,
-        'scientificname': scientificname, 'startdate': startdate, 
-        'enddate': enddate, 'startdepth': startdepth, 'enddepth': enddepth,
-        'geometry': geometry,'flags': flags},
-        'application/json; charset=utf-8', **kwargs)
-   return out
+    :return: A dictionary
+
+    Usage::
+
+       from pyobis import checklist as ch
+       ch.newest(scientificname='Abra Alba')
+    """
+    url = obis_baseurl + "checklist/newest"
+    scientificname = handle_arrstr(scientificname)
+    out = obis_GET(
+        url,
+        {
+            "taxonid": taxonid,
+            "nodeid": nodeid,
+            "scientificname": scientificname,
+            "startdate": startdate,
+            "enddate": enddate,
+            "startdepth": startdepth,
+            "enddepth": enddepth,
+            "geometry": geometry,
+            "flags": flags,
+        },
+        "application/json; charset=utf-8",
+        **kwargs
+    )
+    return out

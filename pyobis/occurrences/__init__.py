@@ -1,3 +1,3 @@
-# -*- coding: utf-8 -*-
+from .occurrences import centroid, get, getpoints, grid, point, search, tile
 
-from .occurrences import search, get, grid, getpoints, point, tile, centroid
+__all__ = ["centroid", "get", "getpoints", "grid", "point", "search", "tile"]
