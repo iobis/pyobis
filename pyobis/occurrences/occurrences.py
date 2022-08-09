@@ -1,8 +1,9 @@
 import sys
+import requests
 
 import pandas as pd
 
-from ..obisutils import *
+from ..obisutils import handle_arrstr, obis_baseurl, obis_GET, stopifnot
 
 
 def search(

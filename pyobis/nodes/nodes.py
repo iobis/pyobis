@@ -1,7 +1,7 @@
 """
 /nodes/ API endpoints as documented on https://api.obis.org/.
 """
-from ..obisutils import *
+from ..obisutils import obis_baseurl, obis_GET
 
 
 def search(id=None, **kwargs):
