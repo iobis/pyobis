@@ -118,11 +118,6 @@ def search(
         out["total"] if not size else size
     )  # if the user has set some size or else we fetch all the records
     for i in range(5000, size + 1, 5000):
-        if args["size"] != 0:
-            # this condition is to make sure that we set the `after` parameter
-            # when fetching subsequent records only, and first batch
-            # gets fetched correctly without this `after` parameter
-            args["after"] = res["results"][4999]["id"]
         args["size"] = 5000
         print(
             "{}[{}{}] {}/{}".format(
