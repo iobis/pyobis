@@ -1,13 +1,20 @@
+"""
+Utility functions for internal use across various modules.
+"""
 import requests
 
 obis_baseurl = "https://api.obis.org/v3/"
 
 
 class NoResultException(Exception):
+    """
+    Thrown when query returns no results.
+    """
     pass
 
 
 def obis_GET(url, args, ctype, **kwargs):
+    """Handles technical details of sending GET request to the API"""
     out = requests.get(url, params=args, **kwargs)
     out.raise_for_status()
     stopifnot(out.headers["content-type"], ctype)
@@ -34,6 +41,7 @@ def stop(x):
 
 
 def handle_arrstr(x):
+    """Converts array arguments into comma-separated strings if applicable."""
     if x.__class__.__name__ == "NoneType":
         pass
     else:

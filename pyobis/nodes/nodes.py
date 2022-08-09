@@ -1,3 +1,6 @@
+"""
+/nodes/ API endpoints as documented on https://api.obis.org/.
+"""
 from ..obisutils import *
 
 

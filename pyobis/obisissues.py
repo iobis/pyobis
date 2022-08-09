@@ -24,6 +24,10 @@ def occ_issues_lookup(issue=None, code=None):
 
 
 def trymatch(pattern, string):
+    """
+    Returns string if regex matches, else returns None.
+    This prevents attributeError when trying temp.string
+    """
     temp = re.match(pattern, string)
     if temp is None:
         return None
