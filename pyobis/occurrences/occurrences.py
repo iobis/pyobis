@@ -133,6 +133,8 @@ def search(
         )
         res = obis_GET(url, args, "application/json; charset=utf-8", **kwargs)
         out["results"] += res["results"]
+        # make sure that we set the `after` parameter when fetching subsequent records
+        args["after"] = res["results"][4999]["id"]
     args["size"] = size % 5000
     # we have already fetched records as a set of 5000 records each time,
     # now we need to get remaining records from the total
