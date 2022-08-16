@@ -7,6 +7,7 @@ from ..obisutils import handle_arrstr, obis_baseurl, obis_GET
 def search(scientificname=None, **kwargs):
     """
     Get taxon records.
+
     :param scientificname: [String,Array] One or more scientific names from the
         OBIS backbone. All included and synonym taxa are included in the search
 
@@ -55,6 +56,7 @@ def taxon(id, **kwargs):
 def annotations(scientificname, **kwargs):
     """
     Get scientific name annotations by the WoRMS team.
+
     :param scientificname: [String] Scientific name. Leave empty to include all taxa.
     :return: A dictionary
 
