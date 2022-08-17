@@ -104,8 +104,8 @@ Meta
 .. |pypi| image:: https://img.shields.io/pypi/v/pyobis.svg
    :target: https://pypi.python.org/pypi/pyobis
 
-.. |docs| image:: https://readthedocs.org/projects/pyobis/badge/?version=latest
-   :target: http://pyobis.readthedocs.org/en/latest/?badge=latest
+.. |docs| image:: https://github.com/iobis/pyobis/actions/workflows/deploy-docs.yml/badge.svg
+   :target: https://iobis.github.io/pyobis
 
 
 
