@@ -28,8 +28,8 @@ def list(
     :param nodeid: [Fixnum] Node UUID.
     :param startdate: [String] Start date YYYY-MM-DD
     :param enddate: [String] End date YYYY-MM-DD
-    :param startdepth: [Fixnum] Start depth
-    :param enddepth: [Boolean] End depth
+    :param startdepth: [Fixnum] Start depth, in meters. Depth below sea level are treated as positive numbers.
+    :param enddepth: [Fixnum] End depth, in meters. Depth below sea level are treated as positive numbers.
     :param flags: [String] Comma separated list of quality flags which need
         to be set
 
@@ -85,8 +85,8 @@ def redlist(
     :param nodeid: [String] Node UUID.
     :param startdate: [String] Start date formatted as YYYY-MM-DD.
     :param enddate: [String] End date formatted as YYYY-MM-DD.
-    :param startdepth: [Integer] Start depth, in meters.
-    :param enddepth: [Integer] End depth, in meters.
+    :param startdepth: [Fixnum] Start depth, in meters. Depth below sea level are treated as positive numbers.
+    :param enddepth: [Fixnum] End depth, in meters. Depth below sea level are treated as positive numbers.
     :param geometry: [String] Geometry, formatted as WKT or GeoHash.
     :param flags: [String] Comma separated list of quality flags which need
         to be set.
@@ -139,8 +139,8 @@ def newest(
     :param nodeid: [String] Node UUID.
     :param startdate: [String] Start date formatted as YYYY-MM-DD.
     :param enddate: [String] End date formatted as YYYY-MM-DD.
-    :param startdepth: [Integer] Start depth, in meters.
-    :param enddepth: [Integer] End depth, in meters.
+    :param startdepth: [Fixnum] Start depth, in meters. Depth below sea level are treated as positive numbers.
+    :param enddepth: [Fixnum] End depth, in meters. Depth below sea level are treated as positive numbers.
     :param geometry: [String] Geometry, formatted as WKT or GeoHash.
     :param flags: [String] Comma separated list of quality flags which need to
         be set.
