@@ -118,8 +118,10 @@ GeoHash.</p></li>
 <li><p><strong>nodeid</strong> – [Fixnum] Node UUID.</p></li>
 <li><p><strong>startdate</strong> – [Fixnum] Start date</p></li>
 <li><p><strong>enddate</strong> – [Boolean] End date</p></li>
-<li><p><strong>startdepth</strong> – [Fixnum] Start depth</p></li>
-<li><p><strong>enddepth</strong> – [Boolean] End depth</p></li>
+<li><p><strong>startdepth</strong> – [Fixnum] Start depth, in meters. Depth below sea level are treated as
+positive numbers.</p></li>
+<li><p><strong>enddepth</strong> – [Fixnum] End depth, in meters. Depth below sea level are treated as
+positive numbers.</p></li>
 <li><p><strong>flags</strong> – [String, Array] Comma separated list of quality flags that
 need to be set</p></li>
 <li><p><strong>offset</strong> – [Fixnum] Start at record. Default: 0</p></li>

@@ -101,8 +101,10 @@ the <cite>worms_id</cite> in <cite>taxa</cite>/<cite>taxon</cite> results</p></l
 <li><p><strong>datasetid</strong> – Prev. resourceid [Fixnum] A resource id</p></li>
 <li><p><strong>startdate</strong> – [Fixnum] Start date</p></li>
 <li><p><strong>enddate</strong> – [Boolean] End date</p></li>
-<li><p><strong>startdepth</strong> – [Fixnum] Start depth</p></li>
-<li><p><strong>enddepth</strong> – [Boolean] End depth</p></li>
+<li><p><strong>startdepth</strong> – [Fixnum] Start depth, in meters. Depth below sea level are treated as
+positive numbers.</p></li>
+<li><p><strong>enddepth</strong> – [Boolean] End depth, in meters. Depth below sea level are treated as
+positive numbers.</p></li>
 <li><p><strong>flags</strong> – Prev. qc [String] Quality control flags</p></li>
 <li><p><strong>fields</strong> – [String] Comma seperated list of field names</p></li>
 <li><p><strong>size</strong> – [Fixnum] Number of results to return. Default: All records</p></li>
@@ -189,8 +191,10 @@ Leave empty to include all taxa.</p></li>
 <li><p><strong>nodeid</strong> – [string] Node UUID.</p></li>
 <li><p><strong>startdate</strong> – [string] Start date formatted as YYYY-MM-DD.</p></li>
 <li><p><strong>enddate</strong> – [string] End date formatted as YYYY-MM-DD.</p></li>
-<li><p><strong>startdepth</strong> – [integer] Start depth, in meters.</p></li>
-<li><p><strong>enddepth</strong> – [integer] End depth, in meters.</p></li>
+<li><p><strong>startdepth</strong> – [integer] Start depth, in meters. Depth below sea level are treated as
+positive numbers.</p></li>
+<li><p><strong>enddepth</strong> – [integer] End depth, in meters. Depth below sea level are treated as
+positive numbers.</p></li>
 <li><p><strong>geometry</strong> – [string] Geometry, formatted as WKT or GeoHash.</p></li>
 <li><p><strong>redlist</strong> – [boolean] Red List species only, True/False.</p></li>
 <li><p><strong>hab</strong> – [boolean] HAB species only, true/false.</p></li>
@@ -228,8 +232,10 @@ taxa.</p></li>
 <li><p><strong>nodeid</strong> – [string] Node UUID.</p></li>
 <li><p><strong>startdate</strong> – [string] Start date formatted as YYYY-MM-DD.</p></li>
 <li><p><strong>enddate</strong> – [string] End date formatted as YYYY-MM-DD.</p></li>
-<li><p><strong>startdepth</strong> – [integer] Start depth, in meters.</p></li>
-<li><p><strong>enddepth</strong> – [integer] End depth, in meters.</p></li>
+<li><p><strong>startdepth</strong> – [integer] Start depth, in meters. Depth below sea level are treated as
+positive numbers.</p></li>
+<li><p><strong>enddepth</strong> – [integer] End depth, in meters. Depth below sea level are treated as
+positive numbers.</p></li>
 <li><p><strong>geometry</strong> – [string] Geometry, formatted as WKT or GeoHash.</p></li>
 <li><p><strong>redlist</strong> – [boolean] Red List species only, True/False.</p></li>
 <li><p><strong>hab</strong> – [boolean] HAB species only, true/false.</p></li>
@@ -277,8 +283,10 @@ taxa.</p></li>
 <li><p><strong>nodeid</strong> – [string] Node UUID.</p></li>
 <li><p><strong>startdate</strong> – [string] Start date formatted as YYYY-MM-DD.</p></li>
 <li><p><strong>enddate</strong> – [string] End date formatted as YYYY-MM-DD.</p></li>
-<li><p><strong>startdepth</strong> – [integer] Start depth, in meters.</p></li>
-<li><p><strong>enddepth</strong> – [integer] End depth, in meters.</p></li>
+<li><p><strong>startdepth</strong> – [integer] Start depth, in meters. Depth below sea level are treated as
+positive numbers.</p></li>
+<li><p><strong>enddepth</strong> – [integer] End depth, in meters. Depth below sea level are treated as
+positive numbers.</p></li>
 <li><p><strong>geometry</strong> – [string] Geometry, formatted as WKT or GeoHash.</p></li>
 <li><p><strong>redlist</strong> – [boolean] Red List species only, True/False.</p></li>
 <li><p><strong>hab</strong> – [boolean] HAB species only, true/false.</p></li>
@@ -322,8 +330,10 @@ all taxa.</p></li>
 <li><p><strong>nodeid</strong> – [string] Node UUID.</p></li>
 <li><p><strong>startdate</strong> – [string] Start date formatted as YYYY-MM-DD.</p></li>
 <li><p><strong>enddate</strong> – [string] End date formatted as YYYY-MM-DD.</p></li>
-<li><p><strong>startdepth</strong> – [integer] Start depth, in meters.</p></li>
-<li><p><strong>enddepth</strong> – [integer] End depth, in meters.</p></li>
+<li><p><strong>startdepth</strong> – [integer] Start depth, in meters. Depth below sea level are treated as
+positive numbers.</p></li>
+<li><p><strong>enddepth</strong> – [integer] End depth, in meters. Depth below sea level are treated as
+positive numbers.</p></li>
 <li><p><strong>geometry</strong> – [string] Geometry, formatted as WKT or GeoHash.</p></li>
 <li><p><strong>redlist</strong> – [boolean] Red List species only, True/False.</p></li>
 <li><p><strong>hab</strong> – [boolean] HAB species only, true/false.</p></li>
@@ -362,8 +372,10 @@ taxa.</p></li>
 <li><p><strong>nodeid</strong> – [string] Node UUID.</p></li>
 <li><p><strong>startdate</strong> – [string] Start date formatted as YYYY-MM-DD.</p></li>
 <li><p><strong>enddate</strong> – [string] End date formatted as YYYY-MM-DD.</p></li>
-<li><p><strong>startdepth</strong> – [integer] Start depth, in meters.</p></li>
-<li><p><strong>enddepth</strong> – [integer] End depth, in meters.</p></li>
+<li><p><strong>startdepth</strong> – [integer] Start depth, in meters. Depth below sea level are treated as
+positive numbers.</p></li>
+<li><p><strong>enddepth</strong> – [integer] End depth, in meters. Depth below sea level are treated as
+positive numbers.</p></li>
 <li><p><strong>geometry</strong> – [string] Geometry, formatted as WKT or GeoHash.</p></li>
 <li><p><strong>redlist</strong> – [boolean] Red List species only, True/False.</p></li>
 <li><p><strong>hab</strong> – [boolean] HAB species only, true/false.</p></li>
