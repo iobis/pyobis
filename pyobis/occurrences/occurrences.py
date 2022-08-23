@@ -46,8 +46,8 @@ def search(
     :param datasetid: Prev. resourceid [Fixnum] A resource id
     :param startdate: [Fixnum] Start date
     :param enddate: [Boolean] End date
-    :param startdepth: [Fixnum] Start depth
-    :param enddepth: [Boolean] End depth
+    :param startdepth: [Fixnum] Start depth, in meters. Depth below sea level are treated as positive numbers.
+    :param enddepth: [Boolean] End depth, in meters. Depth below sea level are treated as positive numbers.
     :param flags: Prev. qc [String] Quality control flags
     :param fields: [String] Comma seperated list of field names
     :param size: [Fixnum] Number of results to return. Default: All records
@@ -210,8 +210,8 @@ def grid(
     :param nodeid: [string] Node UUID.
     :param startdate: [string] Start date formatted as YYYY-MM-DD.
     :param enddate: [string] End date formatted as YYYY-MM-DD.
-    :param startdepth: [integer] Start depth, in meters.
-    :param enddepth: [integer] End depth, in meters.
+    :param startdepth: [integer] Start depth, in meters. Depth below sea level are treated as positive numbers.
+    :param enddepth: [integer] End depth, in meters. Depth below sea level are treated as positive numbers.
     :param geometry: [string] Geometry, formatted as WKT or GeoHash.
     :param redlist: [boolean] Red List species only, True/False.
     :param hab: [boolean] HAB species only, true/false.
@@ -286,8 +286,8 @@ def getpoints(
     :param nodeid: [string] Node UUID.
     :param startdate: [string] Start date formatted as YYYY-MM-DD.
     :param enddate: [string] End date formatted as YYYY-MM-DD.
-    :param startdepth: [integer] Start depth, in meters.
-    :param enddepth: [integer] End depth, in meters.
+    :param startdepth: [integer] Start depth, in meters. Depth below sea level are treated as positive numbers.
+    :param enddepth: [integer] End depth, in meters. Depth below sea level are treated as positive numbers.
     :param geometry: [string] Geometry, formatted as WKT or GeoHash.
     :param redlist: [boolean] Red List species only, True/False.
     :param hab: [boolean] HAB species only, true/false.
@@ -372,8 +372,8 @@ def point(
     :param nodeid: [string] Node UUID.
     :param startdate: [string] Start date formatted as YYYY-MM-DD.
     :param enddate: [string] End date formatted as YYYY-MM-DD.
-    :param startdepth: [integer] Start depth, in meters.
-    :param enddepth: [integer] End depth, in meters.
+    :param startdepth: [integer] Start depth, in meters. Depth below sea level are treated as positive numbers.
+    :param enddepth: [integer] End depth, in meters. Depth below sea level are treated as positive numbers.
     :param geometry: [string] Geometry, formatted as WKT or GeoHash.
     :param redlist: [boolean] Red List species only, True/False.
     :param hab: [boolean] HAB species only, true/false.
@@ -457,8 +457,8 @@ def tile(
     :param nodeid: [string] Node UUID.
     :param startdate: [string] Start date formatted as YYYY-MM-DD.
     :param enddate: [string] End date formatted as YYYY-MM-DD.
-    :param startdepth: [integer] Start depth, in meters.
-    :param enddepth: [integer] End depth, in meters.
+    :param startdepth: [integer] Start depth, in meters. Depth below sea level are treated as positive numbers.
+    :param enddepth: [integer] End depth, in meters. Depth below sea level are treated as positive numbers.
     :param geometry: [string] Geometry, formatted as WKT or GeoHash.
     :param redlist: [boolean] Red List species only, True/False.
     :param hab: [boolean] HAB species only, true/false.
@@ -536,8 +536,8 @@ def centroid(
     :param nodeid: [string] Node UUID.
     :param startdate: [string] Start date formatted as YYYY-MM-DD.
     :param enddate: [string] End date formatted as YYYY-MM-DD.
-    :param startdepth: [integer] Start depth, in meters.
-    :param enddepth: [integer] End depth, in meters.
+    :param startdepth: [integer] Start depth, in meters. Depth below sea level are treated as positive numbers.
+    :param enddepth: [integer] End depth, in meters. Depth below sea level are treated as positive numbers.
     :param geometry: [string] Geometry, formatted as WKT or GeoHash.
     :param redlist: [boolean] Red List species only, True/False.
     :param hab: [boolean] HAB species only, true/false.
