@@ -37,8 +37,8 @@ def search(
     :param nodeid: [Fixnum] Node UUID.
     :param startdate: [Fixnum] Start date
     :param enddate: [Boolean] End date
-    :param startdepth: [Fixnum] Start depth
-    :param enddepth: [Boolean] End depth
+    :param startdepth: [Fixnum] Start depth, in meters. Depth below sea level are treated as positive numbers.
+    :param enddepth: [Fixnum] End depth, in meters. Depth below sea level are treated as positive numbers.
     :param flags: [String, Array] Comma separated list of quality flags that
         need to be set
     :param offset: [Fixnum] Start at record. Default: 0
