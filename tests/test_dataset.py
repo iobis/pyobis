@@ -1,6 +1,7 @@
 """Tests for dataset module"""
-from pyobis import dataset
-
+import requests
+from pyobis.nodes import OBISQueryResult as OQR
+dataset = OQR()
 
 def test_dataset_get():
     "dataset.get - basic test"
@@ -8,6 +9,8 @@ def test_dataset_get():
     assert "dict" == res.__class__.__name__
     assert 2 == len(res)
     assert dict == res["results"][0].__class__
+    assert requests.get(dataset.get_search_url()).status_code == 200
+    assert requests.get(dataset.get_mapper_url()).status_code == 200
 
 
 def test_dataset():
