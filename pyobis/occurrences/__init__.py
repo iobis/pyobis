@@ -1,3 +1,7 @@
-from .occurrences import centroid, get, getpoints, grid, point, search, tile
+from .occurrences import (
+    OBISQueryResult,  # centroid, get, getpoints, grid, point, search, tile
+)
 
-__all__ = ["centroid", "get", "getpoints", "grid", "point", "search", "tile"]
+__all__ = [
+    "OBISQueryResult",
+]  # centroid", "get", "getpoints", "grid", "point", "search", "tile"]
