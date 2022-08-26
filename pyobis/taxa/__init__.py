@@ -1,3 +1,3 @@
-from .taxa import annotations, search, taxon
+from .taxa import OBISQueryResult
 
-__all__ = ["annotations", "search", "taxon"]
+__all__ = ["OBISQueryResult"]

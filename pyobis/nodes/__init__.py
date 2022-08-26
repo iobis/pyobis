@@ -1,3 +1,3 @@
-from .nodes import activities, search
+from .nodes import OBISQueryResult
 
-__all__ = ["activities", "search"]
+__all__ = ["OBISQueryResult"]

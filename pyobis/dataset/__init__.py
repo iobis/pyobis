@@ -1,3 +1,3 @@
-from .dataset import get, search
+from .dataset import OBISQueryResult
 
-__all__ = ["get", "search"]
+__all__ = ["OBISQueryResult"]
