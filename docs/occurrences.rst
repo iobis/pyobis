@@ -18,7 +18,7 @@ Usage
 
     query = OQR()
     data = query.search(args, **kwargs)
-    api_url = query.get_query_url()
+    api_url = query.get_search_url()
 
 Methods:
 ########
