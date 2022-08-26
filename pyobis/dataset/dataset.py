@@ -112,6 +112,7 @@ class OBISQueryResult:
             "application/json; charset=utf-8",
             **kwargs
         )
+        self.mapper = False
         return out
 
 
@@ -130,7 +131,10 @@ class OBISQueryResult:
         """
         self.url = obis_baseurl + "dataset/" + str(id)
         self.args = {}
+        self.mapper = True
+        self.datasetid = str(id) # necessary to get mapper url
         out = obis_GET(self.url, self.args, "application/json; charset=utf-8", **kwargs)
+
         return out
 
     def get_search_url(self):
@@ -163,24 +167,7 @@ class OBISQueryResult:
             api_url = query.get_mapper_url()
             print(api_url)
         """
-        if not self.args["taxonid"] and self.args["scientificname"]:
-            self.args["taxonid"] = self.lookup_taxon(self.args["scientificname"])[0]["id"]
-
-        return "https://mapper.obis.org/" + "?" + urlencode({k:v for k, v in self.args.items() if not v == None})
-    
-    def lookup_taxon(self, scientificname):
-        """
-        Lookup for taxon metadata with scientificname
+        if self.mapper:
+            return "https://mapper.obis.org/?datasetid=" + self.datasetid
         
-        :param scientificname: [String] Scientific Name
-
-        :return: A dictionary of taxon metadata for the best matches to the input
-        Usage::
-
-            from pyobis.checklist import OBISQueryresult as OQR
-            query = OQR()
-            lookup_data = query.lookup_taxon(scientificname="Mola mola")
-            print(lookup_data)
-        """
-        res = requests.get(f"https://api.obis.org/v3/taxon/complete/{scientificname}")
-        return res.json()
+        return "An OBIS mapper URL doesnot exist for this query"    

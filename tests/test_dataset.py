@@ -1,6 +1,6 @@
 """Tests for dataset module"""
 import requests
-from pyobis.nodes import OBISQueryResult as OQR
+from pyobis.dataset import OBISQueryResult as OQR
 dataset = OQR()
 
 def test_dataset_get():
@@ -19,3 +19,4 @@ def test_dataset():
     assert "dict" == res.__class__.__name__
     assert 2 == len(res)
     assert dict == res["results"][0].__class__
+    assert dataset.get_mapper_url() == "An OBIS mapper URL doesnot exist for this query"
