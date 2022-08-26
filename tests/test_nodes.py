@@ -1,5 +1,7 @@
 """Tests for nodes module"""
-from pyobis import nodes
+import requests
+from pyobis.nodes import OBISQueryResult as OQR
+nodes = OQR()
 
 
 def test_nodes():
@@ -10,6 +12,8 @@ def test_nodes():
     assert dict == res["results"][0].__class__
     assert str == str(res["results"][0]["description"]).__class__
     assert str == res["results"][0]["id"].__class__
+    assert requests.get(nodes.get_search_url()).status_code == 200
+    assert requests.get(nodes.get_mapper_url()).status_code == 200
 
 
 def test_nodes_activities():
