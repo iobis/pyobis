@@ -32,3 +32,4 @@ Methods:
 .. automethod:: OBISQueryResult.centroid
 .. automethod:: OBISQueryResult.get_search_url
 .. automethod:: OBISQueryResult.get_mapper_url
+.. automethod:: OBISQueryResult.lookup_taxon
