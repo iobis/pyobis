@@ -1,6 +1,6 @@
 """Tests for checklist module"""
-from pyobis import checklist as ch
-
+from pyobis.checklist import OBISQueryResult as OQR
+ch = OQR()
 
 def test_checklist():
     "checklist.list - basic test"

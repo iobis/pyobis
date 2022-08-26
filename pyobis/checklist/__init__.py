@@ -1,3 +1,3 @@
-from .checklist import list, newest, redlist
+from .checklist import OBISQueryResult
 
-__all__ = ["list", "newest", "redlist"]
+__all__ = ["OBISQueryResult"]
