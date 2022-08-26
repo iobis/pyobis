@@ -1,6 +1,7 @@
 """Tests for taxa module - search methods"""
-from pyobis import taxa
-
+import requests
+from pyobis.nodes import OBISQueryResult as OQR
+taxa = OQR()
 
 def test_taxa_search():
     "taxa.search - basic test"
@@ -8,6 +9,8 @@ def test_taxa_search():
     assert "dict" == res.__class__.__name__
     assert list == list(res.keys()).__class__
     assert 2 == len(res)
+    assert requests.get(taxa.get_search_url()).status_code == 200
+    assert requests.get(taxa.get_mapper_url()).status_code == 200
 
 
 def test_taxa_taxon():
