@@ -3,8 +3,6 @@
 """
 from urllib.parse import urlencode
 
-import requests
-
 from ..obisutils import obis_baseurl, obis_GET
 
 
@@ -71,7 +69,7 @@ class OBISQueryResult:
         return (
             self.url
             + "?"
-            + urlencode({k: v for k, v in self.args.items() if not v == None})
+            + urlencode({k: v for k, v in self.args.items() if v is not None})
         )
 
     def get_mapper_url(self):

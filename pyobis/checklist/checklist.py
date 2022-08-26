@@ -195,7 +195,7 @@ class OBISQueryResult:
         return (
             self.url
             + "?"
-            + urlencode({k: v for k, v in self.args.items() if not v == None})
+            + urlencode({k: v for k, v in self.args.items() if v is not None})
         )
 
     def get_mapper_url(self):
@@ -220,7 +220,7 @@ class OBISQueryResult:
         return (
             "https://mapper.obis.org/"
             + "?"
-            + urlencode({k: v for k, v in self.args.items() if not v == None})
+            + urlencode({k: v for k, v in self.args.items() if v is not None})
         )
 
     def lookup_taxon(self, scientificname):
