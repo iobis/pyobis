@@ -1,15 +1,17 @@
 """
 /nodes/ API endpoints as documented on https://api.obis.org/.
 """
-import requests
 from urllib.parse import urlencode
+
+import requests
+
 from ..obisutils import obis_baseurl, obis_GET
 
 
 class OBISQueryResult:
     def __init__(self):
         """
-        An OBISQueryResult object for fetching occurrence records. 
+        An OBISQueryResult object for fetching occurrence records.
         """
 
     def search(self, id=None, **kwargs):
@@ -28,11 +30,10 @@ class OBISQueryResult:
         self.url = obis_baseurl + "node/" + id
         self.mapper = True
         self.args = {}
-        self.nodeid = id # necessary to get mapper url
+        self.nodeid = id  # necessary to get mapper url
         out = obis_GET(self.url, self.args, "application/json; charset=utf-8", **kwargs)
-        
-        return out
 
+        return out
 
     def activities(self, id=None, **kwargs):
         """
@@ -48,7 +49,7 @@ class OBISQueryResult:
             nodes.activities(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc")
         """
         self.url = obis_baseurl + "node/" + id + "/activities"
-        self.args= {}
+        self.args = {}
         self.mapper = False
         out = obis_GET(self.url, self.args, "application/json; charset=utf-8", **kwargs)
         return out
@@ -67,16 +68,20 @@ class OBISQueryResult:
             api_url = query.get_search_url()
             print(api_url)
         """
-        return self.url + "?" + urlencode({k:v for k, v in self.args.items() if not v == None})
-    
+        return (
+            self.url
+            + "?"
+            + urlencode({k: v for k, v in self.args.items() if not v == None})
+        )
+
     def get_mapper_url(self):
         """
         Get the corresponding API URL for the query.
-        
+
         :return: OBIS Mapper URL for the corresponding query
 
         Usage::
-        
+
             from pyobis.checklist import OBISQueryresult as OQR
             query = OQR()
             data = query.list(scientificname="Mola mola")
@@ -85,5 +90,5 @@ class OBISQueryResult:
         """
         if self.mapper:
             return "https://mapper.obis.org/?nodeid=" + self.nodeid
-        
+
         return "An OBIS mapper URL doesnot exist for this query"

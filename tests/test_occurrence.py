@@ -1,6 +1,7 @@
 """Tests for occurrences module methods"""
-from pyobis.occurrences import OBISQueryResult as OQR
 import requests
+
+from pyobis.occurrences import OBISQueryResult as OQR
 
 data = OQR()
 

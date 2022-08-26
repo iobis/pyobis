@@ -15,6 +15,7 @@ Usage
 .. code-block:: python
 
     from pyobis.occurrences import OBISQueryResult as OQR
+
     query = OQR()
     data = query.search(args, **kwargs)
     api_url = query.get_query_url()

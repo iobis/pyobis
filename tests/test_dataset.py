@@ -1,7 +1,10 @@
 """Tests for dataset module"""
 import requests
+
 from pyobis.dataset import OBISQueryResult as OQR
+
 dataset = OQR()
+
 
 def test_dataset_get():
     "dataset.get - basic test"

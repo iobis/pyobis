@@ -608,16 +608,20 @@ class OBISQueryResult:
             api_url = query.get_search_url()
             print(api_url)
         """
-        return self.url + "?" + urlencode({k:v for k, v in self.args.items() if not v == None})
-    
+        return (
+            self.url
+            + "?"
+            + urlencode({k: v for k, v in self.args.items() if not v == None})
+        )
+
     def get_mapper_url(self):
         """
         Get the corresponding API URL for the query.
-        
+
         :return: OBIS Mapper URL for the corresponding query
 
         Usage::
-        
+
             from pyobis.occurrences import OBISQueryresult as OQR
             query = OQR()
             data = query.search(scientificname="Mola mola")
@@ -625,14 +629,20 @@ class OBISQueryResult:
             print(api_url)
         """
         if not self.args["taxonid"] and self.args["scientificname"]:
-            self.args["taxonid"] = self.lookup_taxon(self.args["scientificname"])[0]["id"]
+            self.args["taxonid"] = self.lookup_taxon(self.args["scientificname"])[0][
+                "id"
+            ]
 
-        return "https://mapper.obis.org/" + "?" + urlencode({k:v for k, v in self.args.items() if not v == None})
-    
+        return (
+            "https://mapper.obis.org/"
+            + "?"
+            + urlencode({k: v for k, v in self.args.items() if not v == None})
+        )
+
     def lookup_taxon(self, scientificname):
         """
         Lookup for taxon metadata with scientificname
-        
+
         :param scientificname: [String] Scientific Name
 
         :return: A dictionary of taxon metadata for the best matches to the input

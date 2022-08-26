@@ -1,15 +1,17 @@
 """
 /dataset/ API endpoints as documented on https://api.obis.org/.
 """
-import requests
 from urllib.parse import urlencode
+
+import requests
+
 from ..obisutils import handle_arrstr, obis_baseurl, obis_GET
 
 
 class OBISQueryResult:
     def __init__(self):
         """
-        An OBISQueryResult object for fetching occurrence records. 
+        An OBISQueryResult object for fetching occurrence records.
         """
 
     def search(
@@ -95,26 +97,20 @@ class OBISQueryResult:
         self.url = obis_baseurl + "dataset"
         scientificname = handle_arrstr(scientificname)
         self.args = {
-                "taxonid": taxonid,
-                "nodeid": nodeid,
-                "scientificname": scientificname,
-                "startdate": startdate,
-                "enddate": enddate,
-                "startdepth": startdepth,
-                "enddepth": enddepth,
-                "geometry": geometry,
-                "offset": offset,
-                "size":limit,
-            }
-        out = obis_GET(
-            self.url,
-            self.args,
-            "application/json; charset=utf-8",
-            **kwargs
-        )
+            "taxonid": taxonid,
+            "nodeid": nodeid,
+            "scientificname": scientificname,
+            "startdate": startdate,
+            "enddate": enddate,
+            "startdepth": startdepth,
+            "enddepth": enddepth,
+            "geometry": geometry,
+            "offset": offset,
+            "size": limit,
+        }
+        out = obis_GET(self.url, self.args, "application/json; charset=utf-8", **kwargs)
         self.mapper = False
         return out
-
 
     def get(self, id, **kwargs):
         """
@@ -132,7 +128,7 @@ class OBISQueryResult:
         self.url = obis_baseurl + "dataset/" + str(id)
         self.args = {}
         self.mapper = True
-        self.datasetid = str(id) # necessary to get mapper url
+        self.datasetid = str(id)  # necessary to get mapper url
         out = obis_GET(self.url, self.args, "application/json; charset=utf-8", **kwargs)
 
         return out
@@ -151,16 +147,20 @@ class OBISQueryResult:
             api_url = query.get_search_url()
             print(api_url)
         """
-        return self.url + "?" + urlencode({k:v for k, v in self.args.items() if not v == None})
-    
+        return (
+            self.url
+            + "?"
+            + urlencode({k: v for k, v in self.args.items() if not v == None})
+        )
+
     def get_mapper_url(self):
         """
         Get the corresponding API URL for the query.
-        
+
         :return: OBIS Mapper URL for the corresponding query
 
         Usage::
-        
+
             from pyobis.checklist import OBISQueryresult as OQR
             query = OQR()
             data = query.list(scientificname="Mola mola")
@@ -169,5 +169,5 @@ class OBISQueryResult:
         """
         if self.mapper:
             return "https://mapper.obis.org/?datasetid=" + self.datasetid
-        
-        return "An OBIS mapper URL doesnot exist for this query"    
+
+        return "An OBIS mapper URL doesnot exist for this query"

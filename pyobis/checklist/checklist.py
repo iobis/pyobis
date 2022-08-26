@@ -1,5 +1,7 @@
-import requests
 from urllib.parse import urlencode
+
+import requests
+
 from ..obisutils import handle_arrstr, obis_baseurl, obis_GET
 
 
@@ -21,7 +23,7 @@ class OBISQueryResult:
         enddepth=None,
         geometry=None,
         flags=None,
-        **kwargs
+        **kwargs,
     ):
         """
         Generate an OBIS checklist
@@ -58,24 +60,18 @@ class OBISQueryResult:
         self.url = obis_baseurl + "checklist"
         scientificname = handle_arrstr(scientificname)
         self.args = {
-                "taxonid": taxonid,
-                "nodeid": nodeid,
-                "scientificname": scientificname,
-                "startdate": startdate,
-                "enddate": enddate,
-                "startdepth": startdepth,
-                "enddepth": enddepth,
-                "geometry": geometry,
-                "flags": flags,
-            }
-        out = obis_GET(
-            self.url,
-            self.args,
-            "application/json; charset=utf-8",
-            **kwargs
-        )
+            "taxonid": taxonid,
+            "nodeid": nodeid,
+            "scientificname": scientificname,
+            "startdate": startdate,
+            "enddate": enddate,
+            "startdepth": startdepth,
+            "enddepth": enddepth,
+            "geometry": geometry,
+            "flags": flags,
+        }
+        out = obis_GET(self.url, self.args, "application/json; charset=utf-8", **kwargs)
         return out
-
 
     def redlist(
         self,
@@ -88,7 +84,7 @@ class OBISQueryResult:
         enddepth=None,
         geometry=None,
         flags=None,
-        **kwargs
+        **kwargs,
     ):
         """
         Generate a checklist of IUCN Red List species.
@@ -116,24 +112,18 @@ class OBISQueryResult:
         self.url = obis_baseurl + "checklist/redlist"
         scientificname = handle_arrstr(scientificname)
         self.args = {
-                "taxonid": taxonid,
-                "nodeid": nodeid,
-                "scientificname": scientificname,
-                "startdate": startdate,
-                "enddate": enddate,
-                "startdepth": startdepth,
-                "enddepth": enddepth,
-                "geometry": geometry,
-                "flags": flags,
-            }
-        out = obis_GET(
-            self.url,
-            self.args,
-            "application/json; charset=utf-8",
-            **kwargs
-        )
+            "taxonid": taxonid,
+            "nodeid": nodeid,
+            "scientificname": scientificname,
+            "startdate": startdate,
+            "enddate": enddate,
+            "startdepth": startdepth,
+            "enddepth": enddepth,
+            "geometry": geometry,
+            "flags": flags,
+        }
+        out = obis_GET(self.url, self.args, "application/json; charset=utf-8", **kwargs)
         return out
-
 
     def newest(
         self,
@@ -146,7 +136,7 @@ class OBISQueryResult:
         enddepth=None,
         geometry=None,
         flags=None,
-        **kwargs
+        **kwargs,
     ):
         """
         Generate a checklist of most recently added species.
@@ -175,22 +165,17 @@ class OBISQueryResult:
         self.url = obis_baseurl + "checklist/newest"
         scientificname = handle_arrstr(scientificname)
         self.args = {
-                "taxonid": taxonid,
-                "nodeid": nodeid,
-                "scientificname": scientificname,
-                "startdate": startdate,
-                "enddate": enddate,
-                "startdepth": startdepth,
-                "enddepth": enddepth,
-                "geometry": geometry,
-                "flags": flags,
-            }
-        out = obis_GET(
-            self.url,
-            self.args,
-            "application/json; charset=utf-8",
-            **kwargs
-        )
+            "taxonid": taxonid,
+            "nodeid": nodeid,
+            "scientificname": scientificname,
+            "startdate": startdate,
+            "enddate": enddate,
+            "startdepth": startdepth,
+            "enddepth": enddepth,
+            "geometry": geometry,
+            "flags": flags,
+        }
+        out = obis_GET(self.url, self.args, "application/json; charset=utf-8", **kwargs)
         return out
 
     def get_search_url(self):
@@ -207,16 +192,20 @@ class OBISQueryResult:
             api_url = query.get_search_url()
             print(api_url)
         """
-        return self.url + "?" + urlencode({k:v for k, v in self.args.items() if not v == None})
-    
+        return (
+            self.url
+            + "?"
+            + urlencode({k: v for k, v in self.args.items() if not v == None})
+        )
+
     def get_mapper_url(self):
         """
         Get the corresponding API URL for the query.
-        
+
         :return: OBIS Mapper URL for the corresponding query
 
         Usage::
-        
+
             from pyobis.checklist import OBISQueryresult as OQR
             query = OQR()
             data = query.list(scientificname="Mola mola")
@@ -224,14 +213,20 @@ class OBISQueryResult:
             print(api_url)
         """
         if not self.args["taxonid"] and self.args["scientificname"]:
-            self.args["taxonid"] = self.lookup_taxon(self.args["scientificname"])[0]["id"]
+            self.args["taxonid"] = self.lookup_taxon(self.args["scientificname"])[0][
+                "id"
+            ]
 
-        return "https://mapper.obis.org/" + "?" + urlencode({k:v for k, v in self.args.items() if not v == None})
-    
+        return (
+            "https://mapper.obis.org/"
+            + "?"
+            + urlencode({k: v for k, v in self.args.items() if not v == None})
+        )
+
     def lookup_taxon(self, scientificname):
         """
         Lookup for taxon metadata with scientificname
-        
+
         :param scientificname: [String] Scientific Name
 
         :return: A dictionary of taxon metadata for the best matches to the input

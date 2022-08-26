@@ -1,6 +1,8 @@
 """Tests for nodes module"""
 import requests
+
 from pyobis.nodes import OBISQueryResult as OQR
+
 nodes = OQR()
 
 
@@ -24,4 +26,4 @@ def test_nodes_activities():
     assert dict == res["results"][0].__class__
     assert str == str(res["results"][0]["description"]).__class__
     assert str == res["results"][0]["id"].__class__
-    assert nodes.get_mapper_url() == "An OBIS mapper URL doesnot exist for this query"   
+    assert nodes.get_mapper_url() == "An OBIS mapper URL doesnot exist for this query"

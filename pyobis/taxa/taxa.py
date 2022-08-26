@@ -1,17 +1,19 @@
 """
 /taxon/ API endpoints as documented on https://api.obis.org/.
 """
-import requests
 from urllib.parse import urlencode
+
+import requests
+
 from ..obisutils import handle_arrstr, obis_baseurl, obis_GET
 
 
 class OBISQueryResult:
     def __init__(self):
         """
-        An OBISQueryResult object for fetching occurrence records. 
+        An OBISQueryResult object for fetching occurrence records.
         """
-    
+
     def search(self, scientificname=None, **kwargs):
         """
         Get taxon records.
@@ -31,14 +33,8 @@ class OBISQueryResult:
         scientificname = handle_arrstr(scientificname)
         self.url = obis_baseurl + "taxon/" + scientificname
         self.args = {"scientificname": scientificname}
-        out = obis_GET(
-            self.url,
-            self.args,
-            "application/json; charset=utf-8",
-            **kwargs
-        )
+        out = obis_GET(self.url, self.args, "application/json; charset=utf-8", **kwargs)
         return out
-
 
     def taxon(self, id, **kwargs):
         """
@@ -61,7 +57,6 @@ class OBISQueryResult:
         out = obis_GET(self.url, self.args, "application/json; charset=utf-8", **kwargs)
         return out
 
-
     def annotations(self, scientificname, **kwargs):
         """
         Get scientific name annotations by the WoRMS team.
@@ -77,14 +72,9 @@ class OBISQueryResult:
         self.url = obis_baseurl + "taxon/annotations"
         scientificname = handle_arrstr(scientificname)
         self.args = {"scientificname": scientificname}
-        out = obis_GET(
-            self.url,
-            self.args,
-            "application/json; charset=utf-8",
-            **kwargs
-        )
+        out = obis_GET(self.url, self.args, "application/json; charset=utf-8", **kwargs)
         return out
-    
+
     def get_search_url(self):
         """
         Get the corresponding API URL for the query.
@@ -99,5 +89,8 @@ class OBISQueryResult:
             api_url = query.get_search_url()
             print(api_url)
         """
-        return self.url + "?" + urlencode({k:v for k, v in self.args.items() if not v == None})
-    
+        return (
+            self.url
+            + "?"
+            + urlencode({k: v for k, v in self.args.items() if not v == None})
+        )

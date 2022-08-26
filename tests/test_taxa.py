@@ -1,7 +1,10 @@
 """Tests for taxa module - search methods"""
 import requests
+
 from pyobis.taxa import OBISQueryResult as OQR
+
 taxa = OQR()
+
 
 def test_taxa_search():
     "taxa.search - basic test"
