@@ -55,11 +55,9 @@ class OBISQueryResult:
             # taxonid of 3013
             ch.list(taxonid = 3013)
         """
-        url = obis_baseurl + "checklist"
+        self.url = obis_baseurl + "checklist"
         scientificname = handle_arrstr(scientificname)
-        out = obis_GET(
-            url,
-            {
+        self.args = {
                 "taxonid": taxonid,
                 "nodeid": nodeid,
                 "scientificname": scientificname,
@@ -69,7 +67,10 @@ class OBISQueryResult:
                 "enddepth": enddepth,
                 "geometry": geometry,
                 "flags": flags,
-            },
+            }
+        out = obis_GET(
+            self.url,
+            self.args,
             "application/json; charset=utf-8",
             **kwargs
         )
@@ -77,6 +78,7 @@ class OBISQueryResult:
 
 
     def redlist(
+        self,
         scientificname=None,
         taxonid=None,
         nodeid=None,
@@ -111,11 +113,9 @@ class OBISQueryResult:
 
         from pyobis import checklist as ch
         ch.redlist(scientificname='Abra Alba')"""
-        url = obis_baseurl + "checklist/redlist"
+        self.url = obis_baseurl + "checklist/redlist"
         scientificname = handle_arrstr(scientificname)
-        out = obis_GET(
-            url,
-            {
+        self.args = {
                 "taxonid": taxonid,
                 "nodeid": nodeid,
                 "scientificname": scientificname,
@@ -125,7 +125,10 @@ class OBISQueryResult:
                 "enddepth": enddepth,
                 "geometry": geometry,
                 "flags": flags,
-            },
+            }
+        out = obis_GET(
+            self.url,
+            self.args,
             "application/json; charset=utf-8",
             **kwargs
         )
@@ -133,6 +136,7 @@ class OBISQueryResult:
 
 
     def newest(
+        self,
         scientificname=None,
         taxonid=None,
         nodeid=None,
@@ -168,11 +172,9 @@ class OBISQueryResult:
         from pyobis import checklist as ch
         ch.newest(scientificname='Abra Alba')
         """
-        url = obis_baseurl + "checklist/newest"
+        self.url = obis_baseurl + "checklist/newest"
         scientificname = handle_arrstr(scientificname)
-        out = obis_GET(
-            url,
-            {
+        self.args = {
                 "taxonid": taxonid,
                 "nodeid": nodeid,
                 "scientificname": scientificname,
@@ -182,7 +184,10 @@ class OBISQueryResult:
                 "enddepth": enddepth,
                 "geometry": geometry,
                 "flags": flags,
-            },
+            }
+        out = obis_GET(
+            self.url,
+            self.args,
             "application/json; charset=utf-8",
             **kwargs
         )
