@@ -122,6 +122,7 @@ class OBISQueryResult:
             "hasextensions": hasextensions,
         }
         self.args = args
+        self.mapper = True
         out = obis_GET(self.url, args, "application/json; charset=utf-8", **kwargs)
         size = (
             out["total"] if not size else size
@@ -179,11 +180,13 @@ class OBISQueryResult:
 
         Usage::
 
-            from pyobis import occurrences as occ
+            from pyobis.occurrences import OBISQueryResult as OQR
+            occ = OQR()
             occ.get(id = '00008e33-6faa-4d98-a00b-91a6ed1ed3ca')
         """
         self.url = obis_baseurl + "occurrence/" + str(id)
         self.args = {}
+        self.mapper = False
         out = obis_GET(self.url, self.args, "application/json; charset=utf-8", **kwargs)
         return out
 
@@ -235,7 +238,8 @@ class OBISQueryResult:
 
         Usage::
 
-            from pyobis import occurrences as occ
+            from pyobis.occurrences import OBISQueryResult as OQR
+            occ = OQR()
             occ.grid(100, True) // returns in GeoJSON format
             occ.grid(1000, False)   // returns in KML format
         """
@@ -257,7 +261,7 @@ class OBISQueryResult:
             "flags": flags,
             "exclude": exclude,
         }
-
+        self.mapper = False
         if not geojson:
             self.url += "/kml"
             out = requests.get(self.url, params=self.args, **kwargs)
@@ -313,7 +317,8 @@ class OBISQueryResult:
 
         Usage::
 
-            from pyobis import occurrences as occ
+            from pyobis.occurrences import OBISQueryResult as OQR
+            occ = OQR()
             occ.getpoints(scientificname = 'Mola mola')
 
             ## Many names
@@ -338,6 +343,7 @@ class OBISQueryResult:
             "flags": flags,
             "exclude": exclude,
         }
+        self.mapper = False
         out = obis_GET(
             self.url,
             self.args,
@@ -399,7 +405,8 @@ class OBISQueryResult:
 
         Usage::
 
-            from pyobis import occurrences as occ
+            from pyobis.occurrences import OBISQueryResult as OQR
+            occ = OQR()
             occ.point(x=1.77,y=54.22,scientificname = 'Mola mola')
 
         """
@@ -423,6 +430,7 @@ class OBISQueryResult:
             "flags": flags,
             "exclude": exclude,
         }
+        self.mapper = False
         out = obis_GET(
             self.url,
             self.args,
@@ -485,11 +493,13 @@ class OBISQueryResult:
 
         Usage::
 
-            from pyobis import occurrences as occ
+            from pyobis.occurrences import OBISQueryResult as OQR
+            occ = OQR()
             occ.tile(x=1.77,y=52.26,z=0.5,mvt=0, scientificname = 'Mola mola')
             occ.tile(x=1.77,y=52.26,z=0.5,mvt=1, scientificname = 'Mola mola')
         """
         self.url = obis_baseurl + f"occurrence/tile/{str(x)}/{str(y)}/{str(z)}"
+        scientificname = handle_arrstr(scientificname)
         self.args = {
             "scientificname": scientificname,
             "taxonid": taxonid,
@@ -507,8 +517,7 @@ class OBISQueryResult:
             "flags": flags,
             "exclude": exclude,
         }
-        scientificname = handle_arrstr(scientificname)
-
+        self.mapper = False
         if mvt:
             self.url += ".mvt"
             out = requests.get(self.url, params=self.args, **kwargs)
@@ -564,7 +573,8 @@ class OBISQueryResult:
 
         Usage::
 
-            from pyobis import occurrences as occ
+            from pyobis.occurrences import OBISQueryResult as OQR
+            occ = OQR()
             occ.centroid(scientificname = 'Mola mola')
         """
         self.url = obis_baseurl + "occurrence/centroid"
@@ -586,6 +596,7 @@ class OBISQueryResult:
             "flags": flags,
             "exclude": exclude,
         }
+        self.mapper = False
         out = obis_GET(
             self.url,
             self.args,
@@ -603,9 +614,9 @@ class OBISQueryResult:
         Usage::
 
             from pyobis.occurrences import OBISQueryresult as OQR
-            query = OQR()
-            data = query.search(scientificname="Mola mola")
-            api_url = query.get_search_url()
+            occ = OQR()
+            data = occ.search(scientificname="Mola mola")
+            api_url = occ.get_search_url()
             print(api_url)
         """
         return (
@@ -623,21 +634,23 @@ class OBISQueryResult:
         Usage::
 
             from pyobis.occurrences import OBISQueryresult as OQR
-            query = OQR()
-            data = query.search(scientificname="Mola mola")
-            api_url = query.get_mapper_url()
+            occ = OQR()
+            data = occ.search(scientificname="Mola mola")
+            api_url = occ.get_mapper_url()
             print(api_url)
         """
-        if not self.args["taxonid"] and self.args["scientificname"]:
-            self.args["taxonid"] = self.lookup_taxon(self.args["scientificname"])[0][
-                "id"
-            ]
+        if self.mapper:
+            if not self.args["taxonid"] and self.args["scientificname"]:
+                self.args["taxonid"] = self.lookup_taxon(self.args["scientificname"])[0][
+                    "id"
+                ]
 
-        return (
-            "https://mapper.obis.org/"
-            + "?"
-            + urlencode({k: v for k, v in self.args.items() if v is not None})
-        )
+            return (
+                "https://mapper.obis.org/"
+                + "?"
+                + urlencode({k: v for k, v in self.args.items() if v is not None})
+            )
+        return "An OBIS mapper URL doesnot exist for this query"
 
     def lookup_taxon(self, scientificname):
         """
