@@ -1,3 +1,6 @@
+"""
+/checklist/ API endpoints as documented on https://api.obis.org/.
+"""
 from urllib.parse import urlencode
 
 from ..obisutils import handle_arrstr, obis_baseurl, obis_GET
