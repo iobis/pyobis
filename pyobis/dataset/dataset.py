@@ -76,7 +76,11 @@ class OBISQueryResult:
             dataset.search(
                 geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))'
             )
-            from pyobis import taxa
+            from pyobis.taxa import OBISQueryResult as OQRt
+            from pyobis.dataset import OBISQueryResult as OQRd
+            taxa = OQRt()
+            dataset = OQRd()
+
             res = taxa.search(scientificname='Mola mola')['results'][0]
             dataset.search(
                 taxonid=res['id'],
@@ -120,7 +124,8 @@ class OBISQueryResult:
 
         Usage::
 
-            from pyobis import dataset
+            from pyobis.dataset import OBISQueryResult as OQR
+            dataset = OQR()
             dataset.get('ec9df3b9-3b2b-4d83-881b-27bcbcd57b95')
         """
         self.url = obis_baseurl + "dataset/" + str(id)
@@ -139,10 +144,10 @@ class OBISQueryResult:
 
         Usage::
 
-            from pyobis.checklist import OBISQueryresult as OQR
-            query = OQR()
-            data = query.list(scientificname="Mola mola")
-            api_url = query.get_search_url()
+            from pyobis.dataset import OBISQueryResult as OQR
+            dataset = OQR()
+            data = dataset.search(scientificname="Mola mola")
+            api_url = dataset.get_search_url()
             print(api_url)
         """
         return (
@@ -159,10 +164,10 @@ class OBISQueryResult:
 
         Usage::
 
-            from pyobis.checklist import OBISQueryresult as OQR
-            query = OQR()
-            data = query.list(scientificname="Mola mola")
-            api_url = query.get_mapper_url()
+            from pyobis.dataset import OBISQueryResult as OQR
+            dataset = OQR()
+            data = dataset.get('ec9df3b9-3b2b-4d83-881b-27bcbcd57b95')
+            api_url = dataset.get_mapper_url()
             print(api_url)
         """
         if self.mapper:
