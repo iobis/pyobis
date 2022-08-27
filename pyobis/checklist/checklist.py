@@ -1,7 +1,5 @@
 from urllib.parse import urlencode
 
-import requests
-
 from ..obisutils import handle_arrstr, obis_baseurl, obis_GET
 
 
