@@ -22,7 +22,8 @@ class OBISQueryResult:
 
         Usage::
 
-            from pyobis import nodes
+            from pyobis.nodes import OBISQueryResult as OQR
+            nodes = OQR()
             nodes.search(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc")
         """
         self.url = obis_baseurl + "node/" + id
@@ -43,7 +44,8 @@ class OBISQueryResult:
 
         Usage::
 
-            from pyobis import nodes
+            from pyobis.nodes import OBISQueryResult as OQR
+            nodes = OQR()
             nodes.activities(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc")
         """
         self.url = obis_baseurl + "node/" + id + "/activities"
@@ -80,10 +82,10 @@ class OBISQueryResult:
 
         Usage::
 
-            from pyobis.checklist import OBISQueryresult as OQR
-            query = OQR()
-            data = query.list(scientificname="Mola mola")
-            api_url = query.get_mapper_url()
+            from pyobis.nodes import OBISQueryResult as OQR
+            nodes = OQR()
+            data = nodes.search(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc")
+            api_url = nodes.get_mapper_url()
             print(api_url)
         """
         if self.mapper:
