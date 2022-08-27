@@ -641,9 +641,9 @@ class OBISQueryResult:
         """
         if self.mapper:
             if not self.args["taxonid"] and self.args["scientificname"]:
-                self.args["taxonid"] = self.lookup_taxon(self.args["scientificname"])[0][
-                    "id"
-                ]
+                self.args["taxonid"] = self.lookup_taxon(self.args["scientificname"])[
+                    0
+                ]["id"]
 
             return (
                 "https://mapper.obis.org/"

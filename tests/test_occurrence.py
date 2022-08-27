@@ -38,6 +38,7 @@ def test_occurrences_grid():
     assert 2 == len(res)
     assert list == list(res.keys()).__class__
     res = data.grid(5, geojson=False, scientificname="Mola mola")
+    assert data.get_mapper_url() == "An OBIS mapper URL doesnot exist for this query"
 
 
 def test_occurrences_getpoints():
