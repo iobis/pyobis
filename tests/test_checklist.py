@@ -15,7 +15,6 @@ def test_checklist():
     assert int == res["results"][0]["taxonID"].__class__
     assert "Mola mola" == res["results"][0]["species"]
     assert requests.get(ch.get_search_url()).status_code == 200
-    assert requests.get(ch.get_mapper_url()).status_code == 200
 
 
 def test_checklist_redlist():
