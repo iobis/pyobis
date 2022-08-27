@@ -27,4 +27,3 @@ Methods:
 .. automethod:: OBISQueryResult.redlist
 .. automethod:: OBISQueryResult.newest
 .. automethod:: OBISQueryResult.get_search_url
-.. automethod:: OBISQueryResult.get_mapper_url
