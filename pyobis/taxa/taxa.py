@@ -23,7 +23,8 @@ class OBISQueryResult:
 
         Usage::
 
-            from pyobis import taxa
+            from pyobis.taxa import OBISQueryResult
+            taxa = OQR()
             taxa.search(scientificname = 'Mola mola')
             taxa.search(scientificname=['Mola mola','Abra alba'])
         """
@@ -44,7 +45,8 @@ class OBISQueryResult:
 
         Usage::
 
-            from pyobis import taxa
+            from pyobis.taxa import OBISQueryResult
+            taxa = OQR()
             taxa.taxon(545439)
             taxa.taxon(402913)
             taxa.taxon(406296)
@@ -64,7 +66,8 @@ class OBISQueryResult:
 
         Usage::
 
-            from pyobis import taxa
+            from pyobis.taxa import OBISQueryResult
+            taxa = OQR()
             taxa.annotations(Abra)
         """
         self.url = obis_baseurl + "taxon/annotations"
