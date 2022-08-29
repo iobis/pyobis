@@ -96,9 +96,9 @@ class DatasetQuery(OBISQueryResult):
             # Get resources for a particular eventDate
             dataset.search(taxonid=res['worms_id'])
         """
-        self.url = obis_baseurl + "dataset"
+        OBISQueryResult.url = obis_baseurl + "dataset"
         scientificname = handle_arrstr(scientificname)
-        self.args = {
+        OBISQueryResult.args = {
             "taxonid": taxonid,
             "nodeid": nodeid,
             "scientificname": scientificname,
@@ -110,7 +110,7 @@ class DatasetQuery(OBISQueryResult):
             "offset": offset,
             "size": limit,
         }
-        out = obis_GET(self.url, self.args, "application/json; charset=utf-8", **kwargs)
+        out = obis_GET(OBISQueryResult.url, OBISQueryResult.args, "application/json; charset=utf-8", **kwargs)
         self.mapper = False
         return out
 
@@ -128,11 +128,11 @@ class DatasetQuery(OBISQueryResult):
             dataset = OQR()
             dataset.get('ec9df3b9-3b2b-4d83-881b-27bcbcd57b95')
         """
-        self.url = obis_baseurl + "dataset/" + str(id)
-        self.args = {}
+        OBISQueryResult.url = obis_baseurl + "dataset/" + str(id)
+        OBISQueryResult.args = {}
         self.mapper = True
         self.datasetid = str(id)  # necessary to get mapper url
-        out = obis_GET(self.url, self.args, "application/json; charset=utf-8", **kwargs)
+        out = obis_GET(OBISQueryResult.url, OBISQueryResult.args, "application/json; charset=utf-8", **kwargs)
 
         return out
 
