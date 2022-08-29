@@ -1,3 +1,3 @@
-from .checklist import OBISQueryResult
+from .checklist import ChecklistQuery
 
-__all__ = ["OBISQueryResult"]
+__all__ = ["ChecklistQuery"]

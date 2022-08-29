@@ -1,3 +1,3 @@
-from .dataset import OBISQueryResult
+from .dataset import DatasetQuery
 
-__all__ = ["OBISQueryResult"]
+__all__ = ["DatasetQuery"]

@@ -3,10 +3,10 @@
 """
 from urllib.parse import urlencode
 
-from ..obisutils import handle_arrstr, obis_baseurl, obis_GET
+from ..obisutils import OBISQueryResult, handle_arrstr, obis_baseurl, obis_GET
 
 
-class OBISQueryResult(OBISQueryResult):
+class ChecklistQuery(OBISQueryResult):
     def __init__(self):
         """
         OBISQueryResult Object for Checklist module
