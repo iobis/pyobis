@@ -1,3 +1,3 @@
-from .nodes import OBISQueryResult
+from .nodes import NodesQuery
 
-__all__ = ["OBISQueryResult"]
+__all__ = ["NodesQuery"]
