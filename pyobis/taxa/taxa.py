@@ -7,7 +7,7 @@ from ..obisutils import OBISQueryResult, handle_arrstr, obis_baseurl, obis_GET
 class TaxaQuery(OBISQueryResult):
     def __init__(self):
         """
-        An OBISQueryResult object for fetching occurrence records.
+        An TaxaQuery object for fetching Taxa records.
         """
 
     def search(self, scientificname=None, **kwargs):
@@ -21,8 +21,8 @@ class TaxaQuery(OBISQueryResult):
 
         Usage::
 
-            from pyobis.taxa import OBISQueryResult
-            taxa = OQR()
+            from pyobis.taxa import TaxaQuery as TQR
+            taxa = TQR()
             taxa.search(scientificname = 'Mola mola')
             taxa.search(scientificname=['Mola mola','Abra alba'])
         """
@@ -48,8 +48,8 @@ class TaxaQuery(OBISQueryResult):
 
         Usage::
 
-            from pyobis.taxa import OBISQueryResult
-            taxa = OQR()
+            from pyobis.taxa import TaxaQuery as TQR
+            taxa = TQR()
             taxa.taxon(545439)
             taxa.taxon(402913)
             taxa.taxon(406296)
@@ -74,8 +74,8 @@ class TaxaQuery(OBISQueryResult):
 
         Usage::
 
-            from pyobis.taxa import OBISQueryResult
-            taxa = OQR()
+            from pyobis.taxa import TaxaQuery as TQR
+            taxa = TQR()
             taxa.annotations(Abra)
         """
         OBISQueryResult.url = obis_baseurl + "taxon/annotations"

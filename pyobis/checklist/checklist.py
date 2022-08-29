@@ -8,7 +8,7 @@ from ..obisutils import OBISQueryResult, handle_arrstr, obis_baseurl, obis_GET
 class ChecklistQuery(OBISQueryResult):
     def __init__(self):
         """
-        OBISQueryResult Object for Checklist module
+        ChecklistQuery Object for Checklist module
         """
         pass
 
@@ -51,8 +51,8 @@ class ChecklistQuery(OBISQueryResult):
 
         Usage::
 
-            from pyobis.checklist import OBISQueryResult as OQR
-            ch = OQR()
+            from pyobis.checklist import ChecklistQuery as CQR
+            ch = CQR()
             ch.list(scientificname = 'Mola mola')
 
             # taxonid of 3013
@@ -113,8 +113,8 @@ class ChecklistQuery(OBISQueryResult):
 
         Usage::
 
-        from pyobis.checklist import OBISQueryResult as OQR
-        ch = OQR()
+        from pyobis.checklist import ChecklistQuery as CQR
+        ch = CQR()
         ch.redlist(scientificname='Abra Alba')"""
         OBISQueryResult.url = obis_baseurl + "checklist/redlist"
         scientificname = handle_arrstr(scientificname)
@@ -171,8 +171,8 @@ class ChecklistQuery(OBISQueryResult):
 
         Usage::
 
-        from pyobis.checklist import OBISQueryResult as OQR
-        ch = OQR()
+        from pyobis.checklist import ChecklistQuery as CQR
+        ch = CQR()
         ch.newest(scientificname='Abra Alba')
         """
         OBISQueryResult.url = obis_baseurl + "checklist/newest"

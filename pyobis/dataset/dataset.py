@@ -8,7 +8,7 @@ from ..obisutils import OBISQueryResult, handle_arrstr, obis_baseurl, obis_GET
 class DatasetQuery(OBISQueryResult):
     def __init__(self):
         """
-        An OBISQueryResult object for fetching occurrence records.
+        A DatasetQuery object for fetching dataset records.
         """
 
     def search(
@@ -75,10 +75,10 @@ class DatasetQuery(OBISQueryResult):
             dataset.search(
                 geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))'
             )
-            from pyobis.taxa import OBISQueryResult as OQRt
-            from pyobis.dataset import OBISQueryResult as OQRd
-            taxa = OQRt()
-            dataset = OQRd()
+            from pyobis.taxa import TaxaQuery as TQR
+            from pyobis.dataset import DatasetQuery as DQR
+            taxa = TQR()
+            dataset = DQR()
 
             res = taxa.search(scientificname='Mola mola')['results'][0]
             dataset.search(
@@ -128,8 +128,8 @@ class DatasetQuery(OBISQueryResult):
 
         Usage::
 
-            from pyobis.dataset import OBISQueryResult as OQR
-            dataset = OQR()
+            from pyobis.dataset import DatasetQuery as DQR
+            dataset = DQR()
             dataset.get('ec9df3b9-3b2b-4d83-881b-27bcbcd57b95')
         """
         OBISQueryResult.url = obis_baseurl + "dataset/" + str(id)
@@ -153,8 +153,8 @@ class DatasetQuery(OBISQueryResult):
 
         Usage::
 
-            from pyobis.dataset import OBISQueryResult as OQR
-            dataset = OQR()
+            from pyobis.dataset import DatasetQuery as DQR
+            dataset = DQR()
             data = dataset.get('ec9df3b9-3b2b-4d83-881b-27bcbcd57b95')
             api_url = dataset.get_mapper_url()
             print(api_url)

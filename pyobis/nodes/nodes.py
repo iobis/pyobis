@@ -8,7 +8,7 @@ from ..obisutils import OBISQueryResult, obis_baseurl, obis_GET
 class NodesQuery(OBISQueryResult):
     def __init__(self):
         """
-        An OBISQueryResult object for fetching occurrence records.
+        A NodesQuery object for fetching Nodes records.
         """
 
     def search(self, id=None, **kwargs):
@@ -21,8 +21,8 @@ class NodesQuery(OBISQueryResult):
 
         Usage::
 
-            from pyobis.nodes import OBISQueryResult as OQR
-            nodes = OQR()
+            from pyobis.nodes import NodesQuery as NQR
+            nodes = NQR()
             nodes.search(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc")
         """
         OBISQueryResult.url = obis_baseurl + "node/" + id
@@ -48,8 +48,8 @@ class NodesQuery(OBISQueryResult):
 
         Usage::
 
-            from pyobis.nodes import OBISQueryResult as OQR
-            nodes = OQR()
+            from pyobis.nodes import NodesQuery as NQR
+            nodes = NQR()
             nodes.activities(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc")
         """
         OBISQueryResult.url = obis_baseurl + "node/" + id + "/activities"
@@ -71,8 +71,8 @@ class NodesQuery(OBISQueryResult):
 
         Usage::
 
-            from pyobis.nodes import OBISQueryResult as OQR
-            nodes = OQR()
+            from pyobis.nodes import NodesQuery as NQR
+            nodes = NQR()
             data = nodes.search(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc")
             api_url = nodes.get_mapper_url()
             print(api_url)
