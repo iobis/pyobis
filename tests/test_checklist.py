@@ -1,9 +1,9 @@
 """Tests for checklist module"""
 import requests
 
-from pyobis.checklist import OBISQueryResult as OQR
+from pyobis.checklist import ChecklistQuery as CQR
 
-ch = OQR()
+ch = CQR()
 
 
 def test_checklist():

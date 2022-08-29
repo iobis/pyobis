@@ -1,9 +1,9 @@
 """Tests for nodes module"""
 import requests
 
-from pyobis.nodes import OBISQueryResult as OQR
+from pyobis.nodes import NodesQuery as NQR
 
-nodes = OQR()
+nodes = NQR()
 
 
 def test_nodes():
