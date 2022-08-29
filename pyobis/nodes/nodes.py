@@ -1,8 +1,6 @@
 """
 /nodes/ API endpoints as documented on https://api.obis.org/.
 """
-from urllib.parse import urlencode
-
 from ..obisutils import OBISQueryResult, obis_baseurl, obis_GET
 
 

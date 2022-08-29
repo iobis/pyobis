@@ -1,8 +1,6 @@
 """
 /dataset/ API endpoints as documented on https://api.obis.org/.
 """
-from urllib.parse import urlencode
-
 from ..obisutils import OBISQueryResult, handle_arrstr, obis_baseurl, obis_GET
 
 

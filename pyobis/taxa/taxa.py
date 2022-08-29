@@ -1,12 +1,11 @@
 """
 /taxon/ API endpoints as documented on https://api.obis.org/.
 """
-from urllib.parse import urlencode
 
-from ..obisutils import handle_arrstr, obis_baseurl, obis_GET
+from ..obisutils import OBISQueryResult, handle_arrstr, obis_baseurl, obis_GET
 
 
-class OBISQueryResult:
+class TaxaQuery(OBISQueryResult):
     def __init__(self):
         """
         An OBISQueryResult object for fetching occurrence records.
@@ -30,9 +29,9 @@ class OBISQueryResult:
         """
 
         scientificname = handle_arrstr(scientificname)
-        self.url = obis_baseurl + "taxon/" + scientificname
-        self.args = {"scientificname": scientificname}
-        out = obis_GET(self.url, self.args, "application/json; charset=utf-8", **kwargs)
+        OBISQueryResult.url = obis_baseurl + "taxon/" + scientificname
+        OBISQueryResult.args = {"scientificname": scientificname}
+        out = obis_GET(OBISQueryResult.url, OBISQueryResult.args, "application/json; charset=utf-8", **kwargs)
         return out
 
     def taxon(self, id, **kwargs):
@@ -52,9 +51,9 @@ class OBISQueryResult:
             taxa.taxon(406296)
             taxa.taxon(415282)
         """
-        self.url = obis_baseurl + "taxon/" + str(id)
-        self.args = {}
-        out = obis_GET(self.url, self.args, "application/json; charset=utf-8", **kwargs)
+        OBISQueryResult.url = obis_baseurl + "taxon/" + str(id)
+        OBISQueryResult.args = {}
+        out = obis_GET(OBISQueryResult.url, OBISQueryResult.args, "application/json; charset=utf-8", **kwargs)
         return out
 
     def annotations(self, scientificname, **kwargs):
@@ -70,28 +69,8 @@ class OBISQueryResult:
             taxa = OQR()
             taxa.annotations(Abra)
         """
-        self.url = obis_baseurl + "taxon/annotations"
+        OBISQueryResult.url = obis_baseurl + "taxon/annotations"
         scientificname = handle_arrstr(scientificname)
-        self.args = {"scientificname": scientificname}
-        out = obis_GET(self.url, self.args, "application/json; charset=utf-8", **kwargs)
+        OBISQueryResult.args = {"scientificname": scientificname}
+        out = obis_GET(OBISQueryResult.url, OBISQueryResult.args, "application/json; charset=utf-8", **kwargs)
         return out
-
-    def get_search_url(self):
-        """
-        Get the corresponding API URL for the query.
-
-        :return: OBIS API URL for the corresponding query
-
-        Usage::
-
-            from pyobis.checklist import OBISQueryresult as OQR
-            query = OQR()
-            data = query.list(scientificname="Mola mola")
-            api_url = query.get_search_url()
-            print(api_url)
-        """
-        return (
-            self.url
-            + "?"
-            + urlencode({k: v for k, v in self.args.items() if v is not None})
-        )
