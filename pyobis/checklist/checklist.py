@@ -1,6 +1,7 @@
 """
 /checklist/ API endpoints as documented on https://api.obis.org/.
 """
+
 from ..obisutils import OBISQueryResult, handle_arrstr, obis_baseurl, obis_GET
 
 
@@ -70,7 +71,12 @@ class ChecklistQuery(OBISQueryResult):
             "geometry": geometry,
             "flags": flags,
         }
-        out = obis_GET(OBISQueryResult.url, OBISQueryResult.args, "application/json; charset=utf-8", **kwargs)
+        out = obis_GET(
+            OBISQueryResult.url,
+            OBISQueryResult.args,
+            "application/json; charset=utf-8",
+            **kwargs,
+        )
         return out
 
     def redlist(
@@ -123,7 +129,12 @@ class ChecklistQuery(OBISQueryResult):
             "geometry": geometry,
             "flags": flags,
         }
-        out = obis_GET(OBISQueryResult.url, OBISQueryResult.args, "application/json; charset=utf-8", **kwargs)
+        out = obis_GET(
+            OBISQueryResult.url,
+            OBISQueryResult.args,
+            "application/json; charset=utf-8",
+            **kwargs,
+        )
         return out
 
     def newest(
@@ -177,5 +188,10 @@ class ChecklistQuery(OBISQueryResult):
             "geometry": geometry,
             "flags": flags,
         }
-        out = obis_GET(OBISQueryResult.url, OBISQueryResult.args, "application/json; charset=utf-8", **kwargs)
+        out = obis_GET(
+            OBISQueryResult.url,
+            OBISQueryResult.args,
+            "application/json; charset=utf-8",
+            **kwargs,
+        )
         return out

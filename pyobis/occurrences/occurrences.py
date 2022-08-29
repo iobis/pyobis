@@ -1,10 +1,20 @@
+"""
+/occurrences/ API endpoints as documented on https://api.obis.org/.
+"""
+
 import sys
 from urllib.parse import urlencode
 
 import pandas as pd
 import requests
 
-from ..obisutils import OBISQueryResult, handle_arrstr, obis_baseurl, obis_GET, stopifnot
+from ..obisutils import (
+    OBISQueryResult,
+    handle_arrstr,
+    obis_baseurl,
+    obis_GET,
+    stopifnot,
+)
 
 
 class OccQuery(OBISQueryResult):
@@ -123,7 +133,9 @@ class OccQuery(OBISQueryResult):
         }
         OBISQueryResult.args = args
         self.mapper = True
-        out = obis_GET(OBISQueryResult.url, args, "application/json; charset=utf-8", **kwargs)
+        out = obis_GET(
+            OBISQueryResult.url, args, "application/json; charset=utf-8", **kwargs
+        )
         size = (
             out["total"] if not size else size
         )  # if the user has set some size or else we fetch all the records
@@ -141,7 +153,9 @@ class OccQuery(OBISQueryResult):
                 file=sys.stdout,
                 flush=True,
             )
-            res = obis_GET(OBISQueryResult.url, args, "application/json; charset=utf-8", **kwargs)
+            res = obis_GET(
+                OBISQueryResult.url, args, "application/json; charset=utf-8", **kwargs
+            )
             out["results"] += res["results"]
             # make sure that we set the `after` parameter when fetching subsequent records
             args["after"] = res["results"][4999]["id"]
@@ -154,7 +168,9 @@ class OccQuery(OBISQueryResult):
             file=sys.stdout,
             flush=True,
         )
-        res = obis_GET(OBISQueryResult.url, args, "application/json; charset=utf-8", **kwargs)
+        res = obis_GET(
+            OBISQueryResult.url, args, "application/json; charset=utf-8", **kwargs
+        )
         out["results"] += res["results"]
         print(f"\nFetched {size} records.")
 
@@ -187,7 +203,12 @@ class OccQuery(OBISQueryResult):
         OBISQueryResult.url = obis_baseurl + "occurrence/" + str(id)
         OBISQueryResult.args = {}
         self.mapper = False
-        out = obis_GET(OBISQueryResult.url, OBISQueryResult.args, "application/json; charset=utf-8", **kwargs)
+        out = obis_GET(
+            OBISQueryResult.url,
+            OBISQueryResult.args,
+            "application/json; charset=utf-8",
+            **kwargs,
+        )
         return out
 
     def grid(
@@ -264,11 +285,18 @@ class OccQuery(OBISQueryResult):
         self.mapper = False
         if not geojson:
             OBISQueryResult.url += "/kml"
-            out = requests.get(OBISQueryResult.url, params=OBISQueryResult.args, **kwargs)
+            out = requests.get(
+                OBISQueryResult.url, params=OBISQueryResult.args, **kwargs
+            )
             out.raise_for_status()
             stopifnot(out.headers["content-type"], "text/xml; charset=utf-8")
             return out.content
-        out = obis_GET(OBISQueryResult.url, OBISQueryResult.args, "application/json; charset=utf-8", **kwargs)
+        out = obis_GET(
+            OBISQueryResult.url,
+            OBISQueryResult.args,
+            "application/json; charset=utf-8",
+            **kwargs,
+        )
         return out
 
     def getpoints(
@@ -498,7 +526,9 @@ class OccQuery(OBISQueryResult):
             occ.tile(x=1.77,y=52.26,z=0.5,mvt=0, scientificname = 'Mola mola')
             occ.tile(x=1.77,y=52.26,z=0.5,mvt=1, scientificname = 'Mola mola')
         """
-        OBISQueryResult.url = obis_baseurl + f"occurrence/tile/{str(x)}/{str(y)}/{str(z)}"
+        OBISQueryResult.url = (
+            obis_baseurl + f"occurrence/tile/{str(x)}/{str(y)}/{str(z)}"
+        )
         scientificname = handle_arrstr(scientificname)
         OBISQueryResult.args = {
             "scientificname": scientificname,
@@ -520,12 +550,19 @@ class OccQuery(OBISQueryResult):
         self.mapper = False
         if mvt:
             OBISQueryResult.url += ".mvt"
-            out = requests.get(OBISQueryResult.url, params=OBISQueryResult.args, **kwargs)
+            out = requests.get(
+                OBISQueryResult.url, params=OBISQueryResult.args, **kwargs
+            )
             out.raise_for_status()
             # stopifnot(out.headers['content-type'], "text/xml; charset=utf-8")
             return out.content
 
-        out = obis_GET(OBISQueryResult.url, OBISQueryResult.args, "application/json; charset=utf-8", **kwargs)
+        out = obis_GET(
+            OBISQueryResult.url,
+            OBISQueryResult.args,
+            "application/json; charset=utf-8",
+            **kwargs,
+        )
         return out
 
     def centroid(
@@ -620,15 +657,20 @@ class OccQuery(OBISQueryResult):
             print(api_url)
         """
         if self.mapper:
-            if not OBISQueryResult.args["taxonid"] and OBISQueryResult.args["scientificname"]:
-                OBISQueryResult.args["taxonid"] = self.lookup_taxon(OBISQueryResult.args["scientificname"])[
-                    0
-                ]["id"]
+            if (
+                not OBISQueryResult.args["taxonid"]
+                and OBISQueryResult.args["scientificname"]
+            ):
+                OBISQueryResult.args["taxonid"] = self.lookup_taxon(
+                    OBISQueryResult.args["scientificname"],
+                )[0]["id"]
 
             return (
                 "https://mapper.obis.org/"
                 + "?"
-                + urlencode({k: v for k, v in OBISQueryResult.args.items() if v is not None})
+                + urlencode(
+                    {k: v for k, v in OBISQueryResult.args.items() if v is not None},
+                )
             )
         return "An OBIS mapper URL doesnot exist for this query"
 

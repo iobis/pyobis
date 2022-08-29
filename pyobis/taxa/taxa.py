@@ -1,7 +1,6 @@
 """
 /taxon/ API endpoints as documented on https://api.obis.org/.
 """
-
 from ..obisutils import OBISQueryResult, handle_arrstr, obis_baseurl, obis_GET
 
 
@@ -31,7 +30,12 @@ class TaxaQuery(OBISQueryResult):
         scientificname = handle_arrstr(scientificname)
         OBISQueryResult.url = obis_baseurl + "taxon/" + scientificname
         OBISQueryResult.args = {"scientificname": scientificname}
-        out = obis_GET(OBISQueryResult.url, OBISQueryResult.args, "application/json; charset=utf-8", **kwargs)
+        out = obis_GET(
+            OBISQueryResult.url,
+            OBISQueryResult.args,
+            "application/json; charset=utf-8",
+            **kwargs
+        )
         return out
 
     def taxon(self, id, **kwargs):
@@ -53,7 +57,12 @@ class TaxaQuery(OBISQueryResult):
         """
         OBISQueryResult.url = obis_baseurl + "taxon/" + str(id)
         OBISQueryResult.args = {}
-        out = obis_GET(OBISQueryResult.url, OBISQueryResult.args, "application/json; charset=utf-8", **kwargs)
+        out = obis_GET(
+            OBISQueryResult.url,
+            OBISQueryResult.args,
+            "application/json; charset=utf-8",
+            **kwargs
+        )
         return out
 
     def annotations(self, scientificname, **kwargs):
@@ -72,5 +81,10 @@ class TaxaQuery(OBISQueryResult):
         OBISQueryResult.url = obis_baseurl + "taxon/annotations"
         scientificname = handle_arrstr(scientificname)
         OBISQueryResult.args = {"scientificname": scientificname}
-        out = obis_GET(OBISQueryResult.url, OBISQueryResult.args, "application/json; charset=utf-8", **kwargs)
+        out = obis_GET(
+            OBISQueryResult.url,
+            OBISQueryResult.args,
+            "application/json; charset=utf-8",
+            **kwargs
+        )
         return out

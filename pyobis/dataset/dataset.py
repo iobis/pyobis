@@ -1,6 +1,7 @@
 """
 /dataset/ API endpoints as documented on https://api.obis.org/.
 """
+
 from ..obisutils import OBISQueryResult, handle_arrstr, obis_baseurl, obis_GET
 
 
@@ -108,7 +109,12 @@ class DatasetQuery(OBISQueryResult):
             "offset": offset,
             "size": limit,
         }
-        out = obis_GET(OBISQueryResult.url, OBISQueryResult.args, "application/json; charset=utf-8", **kwargs)
+        out = obis_GET(
+            OBISQueryResult.url,
+            OBISQueryResult.args,
+            "application/json; charset=utf-8",
+            **kwargs
+        )
         self.mapper = False
         return out
 
@@ -130,7 +136,12 @@ class DatasetQuery(OBISQueryResult):
         OBISQueryResult.args = {}
         self.mapper = True
         self.datasetid = str(id)  # necessary to get mapper url
-        out = obis_GET(OBISQueryResult.url, OBISQueryResult.args, "application/json; charset=utf-8", **kwargs)
+        out = obis_GET(
+            OBISQueryResult.url,
+            OBISQueryResult.args,
+            "application/json; charset=utf-8",
+            **kwargs
+        )
 
         return out
 

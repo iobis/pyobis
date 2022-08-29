@@ -2,6 +2,7 @@
 Utility functions for internal use across various modules.
 """
 from urllib.parse import urlencode
+
 import requests
 
 obis_baseurl = "https://api.obis.org/v3/"
@@ -14,10 +15,12 @@ class NoResultException(Exception):
 
     pass
 
+
 class OBISQueryResult:
     """
     Return OBIS API URL
-    """    
+    """
+
     def get_search_url(self):
         """
         Get the corresponding API URL for the query.
@@ -29,6 +32,7 @@ class OBISQueryResult:
             + "?"
             + urlencode({k: v for k, v in self.args.items() if v is not None})
         )
+
 
 def obis_GET(url, args, ctype, **kwargs):
     """Handles technical details of sending GET request to the API"""

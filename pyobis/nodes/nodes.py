@@ -1,6 +1,7 @@
 """
 /nodes/ API endpoints as documented on https://api.obis.org/.
 """
+
 from ..obisutils import OBISQueryResult, obis_baseurl, obis_GET
 
 
@@ -28,7 +29,12 @@ class NodesQuery(OBISQueryResult):
         self.mapper = True
         OBISQueryResult.args = {}
         self.nodeid = id  # necessary to get mapper url
-        out = obis_GET(OBISQueryResult.url, OBISQueryResult.args, "application/json; charset=utf-8", **kwargs)
+        out = obis_GET(
+            OBISQueryResult.url,
+            OBISQueryResult.args,
+            "application/json; charset=utf-8",
+            **kwargs
+        )
 
         return out
 
@@ -49,7 +55,12 @@ class NodesQuery(OBISQueryResult):
         OBISQueryResult.url = obis_baseurl + "node/" + id + "/activities"
         OBISQueryResult.args = {}
         self.mapper = False
-        out = obis_GET(OBISQueryResult.url, OBISQueryResult.args, "application/json; charset=utf-8", **kwargs)
+        out = obis_GET(
+            OBISQueryResult.url,
+            OBISQueryResult.args,
+            "application/json; charset=utf-8",
+            **kwargs
+        )
         return out
 
     def get_mapper_url(self):
