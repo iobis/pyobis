@@ -3,10 +3,10 @@
 """
 from urllib.parse import urlencode
 
-from ..obisutils import handle_arrstr, obis_baseurl, obis_GET
+from ..obisutils import OBISQueryResult, handle_arrstr, obis_baseurl, obis_GET
 
 
-class OBISQueryResult:
+class DatasetQuery(OBISQueryResult):
     def __init__(self):
         """
         An OBISQueryResult object for fetching occurrence records.
@@ -135,26 +135,6 @@ class OBISQueryResult:
         out = obis_GET(self.url, self.args, "application/json; charset=utf-8", **kwargs)
 
         return out
-
-    def get_search_url(self):
-        """
-        Get the corresponding API URL for the query.
-
-        :return: OBIS API URL for the corresponding query
-
-        Usage::
-
-            from pyobis.dataset import OBISQueryResult as OQR
-            dataset = OQR()
-            data = dataset.search(scientificname="Mola mola")
-            api_url = dataset.get_search_url()
-            print(api_url)
-        """
-        return (
-            self.url
-            + "?"
-            + urlencode({k: v for k, v in self.args.items() if v is not None})
-        )
 
     def get_mapper_url(self):
         """
