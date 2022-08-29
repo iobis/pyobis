@@ -6,7 +6,7 @@ from urllib.parse import urlencode
 from ..obisutils import handle_arrstr, obis_baseurl, obis_GET
 
 
-class OBISQueryResult:
+class OBISQueryResult(OBISQueryResult):
     def __init__(self):
         """
         OBISQueryResult Object for Checklist module
@@ -59,9 +59,9 @@ class OBISQueryResult:
             # taxonid of 3013
             ch.list(taxonid = 3013)
         """
-        self.url = obis_baseurl + "checklist"
+        OBISQueryResult.url = obis_baseurl + "checklist"
         scientificname = handle_arrstr(scientificname)
-        self.args = {
+        OBISQueryResult.args = {
             "taxonid": taxonid,
             "nodeid": nodeid,
             "scientificname": scientificname,
@@ -72,7 +72,7 @@ class OBISQueryResult:
             "geometry": geometry,
             "flags": flags,
         }
-        out = obis_GET(self.url, self.args, "application/json; charset=utf-8", **kwargs)
+        out = obis_GET(OBISQueryResult.url, OBISQueryResult.args, "application/json; charset=utf-8", **kwargs)
         return out
 
     def redlist(
@@ -112,9 +112,9 @@ class OBISQueryResult:
         from pyobis.checklist import OBISQueryResult as OQR
         ch = OQR()
         ch.redlist(scientificname='Abra Alba')"""
-        self.url = obis_baseurl + "checklist/redlist"
+        OBISQueryResult.url = obis_baseurl + "checklist/redlist"
         scientificname = handle_arrstr(scientificname)
-        self.args = {
+        OBISQueryResult.args = {
             "taxonid": taxonid,
             "nodeid": nodeid,
             "scientificname": scientificname,
@@ -125,7 +125,7 @@ class OBISQueryResult:
             "geometry": geometry,
             "flags": flags,
         }
-        out = obis_GET(self.url, self.args, "application/json; charset=utf-8", **kwargs)
+        out = obis_GET(OBISQueryResult.url, OBISQueryResult.args, "application/json; charset=utf-8", **kwargs)
         return out
 
     def newest(
@@ -166,9 +166,9 @@ class OBISQueryResult:
         ch = OQR()
         ch.newest(scientificname='Abra Alba')
         """
-        self.url = obis_baseurl + "checklist/newest"
+        OBISQueryResult.url = obis_baseurl + "checklist/newest"
         scientificname = handle_arrstr(scientificname)
-        self.args = {
+        OBISQueryResult.args = {
             "taxonid": taxonid,
             "nodeid": nodeid,
             "scientificname": scientificname,
@@ -179,25 +179,5 @@ class OBISQueryResult:
             "geometry": geometry,
             "flags": flags,
         }
-        out = obis_GET(self.url, self.args, "application/json; charset=utf-8", **kwargs)
+        out = obis_GET(OBISQueryResult.url, OBISQueryResult.args, "application/json; charset=utf-8", **kwargs)
         return out
-
-    def get_search_url(self):
-        """
-        Get the corresponding API URL for the query.
-
-        :return: OBIS API URL for the corresponding query
-
-        Usage::
-
-            from pyobis.checklist import OBISQueryresult as OQR
-            query = OQR()
-            data = query.list(scientificname="Mola mola")
-            api_url = query.get_search_url()
-            print(api_url)
-        """
-        return (
-            self.url
-            + "?"
-            + urlencode({k: v for k, v in self.args.items() if v is not None})
-        )
