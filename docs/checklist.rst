@@ -5,25 +5,25 @@ checklist module
 
 .. py:module:: pyobis.checklist
 
-.. autoclass:: OBISQueryResult
+.. autoclass:: ChecklistQuery
 
-An OBISQueryResult object for fetching checklist records.
+An ChecklistQuery object for fetching checklist records.
 
 Usage
 #####
 
 .. code-block:: python
 
-    from pyobis.checklist import OBISQueryResult as OQR
+    from pyobis.checklist import ChecklistQuery
 
-    query = OQR()
+    query = ChecklistQuery()
     data = query.search(args, **kwargs)
     api_url = query.get_search_url()
 
 Methods:
 ########
 
-.. automethod:: OBISQueryResult.list
-.. automethod:: OBISQueryResult.redlist
-.. automethod:: OBISQueryResult.newest
-.. automethod:: OBISQueryResult.get_search_url
+.. automethod:: ChecklistQuery.list
+.. automethod:: ChecklistQuery.redlist
+.. automethod:: ChecklistQuery.newest
+.. automethod:: ChecklistQuery.get_search_url
