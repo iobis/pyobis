@@ -1,6 +1,9 @@
 Changelog
 =========
 
+1.1.4 (2022-08-30)
+- rm obisissues (issue https://github.com/iobis/pyobis/issues/72)
+
 1.1.3 (2023-7-24)
 - adding a progress bar while fetching occurrence records
     + added a progress bar to `occurrences.search()` function to make the process more
