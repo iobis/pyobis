@@ -5,25 +5,25 @@ nodes module
 
 .. py:module:: pyobis.nodes
 
-.. autoclass:: OBISQueryResult
+.. autoclass:: NodesQuery
 
-An OBISQueryResult object for fetching nodes records.
+An NodesQuery object for fetching nodes records.
 
 Usage
 #####
 
 .. code-block:: python
 
-    from pyobis.nodes import OBISQueryResult as OQR
+    from pyobis.nodes import NodesQuery
 
-    query = OQR()
+    query = NodesQuery()
     data = query.search(args, **kwargs)
     api_url = query.get_search_url()
 
 Methods:
 ########
 
-.. automethod:: OBISQueryResult.search
-.. automethod:: OBISQueryResult.activities
-.. automethod:: OBISQueryResult.get_search_url
-.. automethod:: OBISQueryResult.get_mapper_url
+.. automethod:: NodesQuery.search
+.. automethod:: NodesQuery.activities
+.. automethod:: NodesQuery.get_search_url
+.. automethod:: NodesQuery.get_mapper_url
