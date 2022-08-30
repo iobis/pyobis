@@ -1,4 +1,4 @@
-name: Publish to PyPI
+ name: Publish to PyPI
 
 on: ["push", "pull_request"]
 
@@ -39,7 +39,7 @@ jobs:
 
     - name: Publish a Python distribution to PyPI
       if: ${{ github.event_name == 'release' }}
-      uses: pypa/gh-action-pypi-publish@master
+      uses: pypa/gh-action-pypi-publish@v1.5.1
       with:
         user: __token__
         password: ${{ secrets.PYPI_PASSWORD }}
