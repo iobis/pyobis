@@ -5,25 +5,25 @@ dataset module
 
 .. py:module:: pyobis.dataset
 
-.. autoclass:: OBISQueryResult
+.. autoclass:: DatasetQuery
 
-An OBISQueryResult object for fetching dataset records.
+An DatasetQuery object for fetching dataset records.
 
 Usage
 #####
 
 .. code-block:: python
 
-    from pyobis.dataset import OBISQueryResult as OQR
+    from pyobis.dataset import DatasetQuery
 
-    query = OQR()
+    query = DatasetQuery()
     data = query.search(args, **kwargs)
     api_url = query.get_search_url()
 
 Methods:
 ########
 
-.. automethod:: OBISQueryResult.get
-.. automethod:: OBISQueryResult.search
-.. automethod:: OBISQueryResult.get_search_url
-.. automethod:: OBISQueryResult.get_mapper_url
+.. automethod:: DatasetQuery.get
+.. automethod:: DatasetQuery.search
+.. automethod:: DatasetQuery.get_search_url
+.. automethod:: DatasetQuery.get_mapper_url
