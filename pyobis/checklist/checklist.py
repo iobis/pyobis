@@ -4,12 +4,8 @@
 
 from ..obisutils import OBISQueryResult, handle_arrstr, obis_baseurl, obis_GET
 
-<<<<<<< HEAD
 
 class ChecklistQuery(OBISQueryResult):
-=======
-class OBISQueryResult:
->>>>>>> updated checklist module
     def __init__(self):
         """
         ChecklistQuery Object for Checklist module
