@@ -5,25 +5,25 @@ taxa module
 
 .. py:module:: pyobis.taxa
 
-.. autoclass:: OBISQueryResult
+.. autoclass:: TaxaQuery
 
-An OBISQueryResult object for fetching taxa records.
+An TaxaQuery object for fetching taxa records.
 
 Usage
 #####
 
 .. code-block:: python
 
-    from pyobis.taxa import OBISQueryResult as OQR
+    from pyobis.taxa import TaxaQuery
 
-    query = OQR()
+    query = TaxaQuery()
     data = query.search(args, **kwargs)
     api_url = query.get_search_url()
 
 Methods:
 ########
 
-.. automethod:: taxa.search
-.. automethod:: taxa.taxon
-.. automethod:: taxa.annotations
-.. automethod:: taxa.get_search_url
+.. automethod:: TaxaQuery.search
+.. automethod:: TaxaQuery.taxon
+.. automethod:: TaxaQuery.annotations
+.. automethod:: TaxaQuery.get_search_url
