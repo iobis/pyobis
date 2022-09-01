@@ -7,7 +7,7 @@ taxa module
 
 .. autoclass:: TaxaQuery
 
-An TaxaQuery object for fetching taxa records.
+A TaxaQuery object for fetching taxa records.
 
 Usage
 #####
