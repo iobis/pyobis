@@ -12,7 +12,6 @@
 import os
 import sys
 
-sys.path.insert(0, os.path.abspath(".."))
 import pyobis
 
 # If extensions (or modules to document with autodoc) are in another directory,
