@@ -28,13 +28,13 @@ class OBISQueryResult:
         :return: OBIS API URL for the corresponding query
 
         Usage::
-        
+
             # supports usage for any query from any module
             from pyobis.taxa import TaxaQuery
             query = TaxaQuery
             query.search(scientificname="Mola mola")
             query.get_search_url()
-            
+
         """
         return (
             self.url

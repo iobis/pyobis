@@ -47,6 +47,7 @@ Taxa module
 .. code-block:: python
 
     from pyobis.taxa import TaxaQuery
+
     query = TaxaQuery()
 
     query.search(scientificname="Mola mola")
@@ -62,6 +63,7 @@ Occurrence module
 .. code-block:: python
 
     from pyobis.occurrences import OccQuery
+
     query = OccQuery()
 
     query.search(scientificname="Mola mola")
@@ -77,6 +79,7 @@ Dataset module
 .. code-block:: python
 
     from pyobis.dataset import DatasetQuery
+
     query = DatasetQuery()
 
     query.search(scientificname=["Mola", "Abra", "Lanice", "Pectinaria"])
@@ -88,8 +91,9 @@ Nodes module
 .. code-block:: python
 
     from pyobis.nodes import NodesQuery
+
     query = NodesQuery()
-    
+
     query.search(scientificname=["Mola", "Abra"])
     query.get_search_url()
 
@@ -99,6 +103,7 @@ Checklist module
 .. code-block:: python
 
     from pyobis.checklist import ChecklistQuery
+
     query = ChecklistQuery()
 
     query.list(scientificname="Cetacea")

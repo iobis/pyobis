@@ -650,6 +650,9 @@ class OccQuery(OBISQueryResult):
 
         :return: OBIS Mapper URL for the corresponding query
 
+        Note: For correct output, query for records using multiple (single) Taxon IDs or one
+        Scientific Name.
+
         Usage::
 
             from pyobis.occurrences import OccQuery
@@ -683,7 +686,7 @@ class OccQuery(OBISQueryResult):
         :param scientificname: [String] Scientific Name
 
         :return: A dictionary of taxon metadata for the best matches to the input
-        
+
         Usage::
 
             from pyobis.occurrences import OccQuery

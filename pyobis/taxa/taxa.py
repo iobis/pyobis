@@ -76,7 +76,7 @@ class TaxaQuery(OBISQueryResult):
 
             from pyobis.taxa import TaxaQuery
             taxa = TaxaQuery()
-            taxa.annotations(Abra)
+            taxa.annotations(scientificname="Abra")
         """
         OBISQueryResult.url = obis_baseurl + "taxon/annotations"
         scientificname = handle_arrstr(scientificname)
