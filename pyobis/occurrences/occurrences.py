@@ -245,8 +245,8 @@ class OccQuery(OBISQueryResult):
         :param nodeid: [string] Node UUID.
         :param startdate: [string] Start date formatted as YYYY-MM-DD.
         :param enddate: [string] End date formatted as YYYY-MM-DD.
-        :param startdepth: [integer] Start depth, in meters.
-        :param enddepth: [integer] End depth, in meters.
+        :param startdepth: [integer] Start depth, in meters. Depth below sea level are treated as positive numbers.
+        :param enddepth: [integer] End depth, in meters. Depth below sea level are treated as positive numbers.
         :param geometry: [string] Geometry, formatted as WKT or GeoHash.
         :param redlist: [boolean] Red List species only, True/False.
         :param hab: [boolean] HAB species only, true/false.
@@ -330,8 +330,8 @@ class OccQuery(OBISQueryResult):
         :param nodeid: [string] Node UUID.
         :param startdate: [string] Start date formatted as YYYY-MM-DD.
         :param enddate: [string] End date formatted as YYYY-MM-DD.
-        :param startdepth: [integer] Start depth, in meters.
-        :param enddepth: [integer] End depth, in meters.
+        :param startdepth: [integer] Start depth, in meters. Depth below sea level are treated as positive numbers.
+        :param enddepth: [integer] End depth, in meters. Depth below sea level are treated as positive numbers.
         :param geometry: [string] Geometry, formatted as WKT or GeoHash.
         :param redlist: [boolean] Red List species only, True/False.
         :param hab: [boolean] HAB species only, true/false.
@@ -418,8 +418,8 @@ class OccQuery(OBISQueryResult):
         :param nodeid: [string] Node UUID.
         :param startdate: [string] Start date formatted as YYYY-MM-DD.
         :param enddate: [string] End date formatted as YYYY-MM-DD.
-        :param startdepth: [integer] Start depth, in meters.
-        :param enddepth: [integer] End depth, in meters.
+        :param startdepth: [integer] Start depth, in meters. Depth below sea level are treated as positive numbers.
+        :param enddepth: [integer] End depth, in meters. Depth below sea level are treated as positive numbers.
         :param geometry: [string] Geometry, formatted as WKT or GeoHash.
         :param redlist: [boolean] Red List species only, True/False.
         :param hab: [boolean] HAB species only, true/false.
@@ -506,8 +506,8 @@ class OccQuery(OBISQueryResult):
         :param nodeid: [string] Node UUID.
         :param startdate: [string] Start date formatted as YYYY-MM-DD.
         :param enddate: [string] End date formatted as YYYY-MM-DD.
-        :param startdepth: [integer] Start depth, in meters.
-        :param enddepth: [integer] End depth, in meters.
+        :param startdepth: [integer] Start depth, in meters. Depth below sea level are treated as positive numbers.
+        :param enddepth: [integer] End depth, in meters. Depth below sea level are treated as positive numbers.
         :param geometry: [string] Geometry, formatted as WKT or GeoHash.
         :param redlist: [boolean] Red List species only, True/False.
         :param hab: [boolean] HAB species only, true/false.
@@ -596,8 +596,8 @@ class OccQuery(OBISQueryResult):
         :param nodeid: [string] Node UUID.
         :param startdate: [string] Start date formatted as YYYY-MM-DD.
         :param enddate: [string] End date formatted as YYYY-MM-DD.
-        :param startdepth: [integer] Start depth, in meters.
-        :param enddepth: [integer] End depth, in meters.
+        :param startdepth: [integer] Start depth, in meters. Depth below sea level are treated as positive numbers.
+        :param enddepth: [integer] End depth, in meters. Depth below sea level are treated as positive numbers.
         :param geometry: [string] Geometry, formatted as WKT or GeoHash.
         :param redlist: [boolean] Red List species only, True/False.
         :param hab: [boolean] HAB species only, true/false.
