@@ -494,7 +494,7 @@ class OccQuery(OBISQueryResult):
     ):
         """
         Fetch point occurrences for a tile (aggregated using variable Geohash
-            precision based on zoom level) as GeoJSON or MVT.
+        precision based on zoom level) as GeoJSON or MVT.
 
         :param x: [float] latitudes of a location
         :param y: [float] longitude of a location
