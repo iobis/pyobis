@@ -7,7 +7,7 @@ nodes module
 
 .. autoclass:: NodesQuery
 
-An NodesQuery object for fetching nodes records.
+A NodesQuery object for fetching nodes records.
 
 Usage
 #####
