@@ -1,5 +1,9 @@
 """Tests for dataset module"""
-from pyobis import dataset
+import requests
+
+from pyobis.dataset import DatasetQuery as DQR
+
+dataset = DQR()
 
 
 def test_dataset_get():
@@ -8,6 +12,8 @@ def test_dataset_get():
     assert "dict" == res.__class__.__name__
     assert 2 == len(res)
     assert dict == res["results"][0].__class__
+    assert requests.get(dataset.get_search_url()).status_code == 200
+    assert requests.get(dataset.get_mapper_url()).status_code == 200
 
 
 def test_dataset():
@@ -16,3 +22,4 @@ def test_dataset():
     assert "dict" == res.__class__.__name__
     assert 2 == len(res)
     assert dict == res["results"][0].__class__
+    assert dataset.get_mapper_url() == "An OBIS mapper URL doesnot exist for this query"

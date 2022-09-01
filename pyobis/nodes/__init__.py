@@ -1,3 +1,3 @@
-from .nodes import activities, search
+from .nodes import NodesQuery
 
-__all__ = ["activities", "search"]
+__all__ = ["NodesQuery"]

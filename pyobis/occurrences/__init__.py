@@ -1,3 +1,3 @@
-from .occurrences import centroid, get, getpoints, grid, point, search, tile
+from .occurrences import OccQuery
 
-__all__ = ["centroid", "get", "getpoints", "grid", "point", "search", "tile"]
+__all__ = ["OccQuery"]
