@@ -51,8 +51,8 @@ class ChecklistQuery(OBISQueryResult):
 
         Usage::
 
-            from pyobis.checklist import ChecklistQuery as CQR
-            ch = CQR()
+            from pyobis.checklist import ChecklistQuery
+            ch = ChecklistQuery()
             ch.list(scientificname = 'Mola mola')
 
             # taxonid of 3013
@@ -113,9 +113,10 @@ class ChecklistQuery(OBISQueryResult):
 
         Usage::
 
-        from pyobis.checklist import ChecklistQuery as CQR
-        ch = CQR()
-        ch.redlist(scientificname='Abra Alba')"""
+            from pyobis.checklist import ChecklistQuery
+            ch = ChecklistQuery()
+            ch.redlist(scientificname='Abra Alba')
+        """
         OBISQueryResult.url = obis_baseurl + "checklist/redlist"
         scientificname = handle_arrstr(scientificname)
         OBISQueryResult.args = {
@@ -171,9 +172,9 @@ class ChecklistQuery(OBISQueryResult):
 
         Usage::
 
-        from pyobis.checklist import ChecklistQuery as CQR
-        ch = CQR()
-        ch.newest(scientificname='Abra Alba')
+            from pyobis.checklist import ChecklistQuery
+            ch = ChecklistQuery()
+            ch.newest(scientificname='Abra Alba')
         """
         OBISQueryResult.url = obis_baseurl + "checklist/newest"
         scientificname = handle_arrstr(scientificname)
