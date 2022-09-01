@@ -46,7 +46,7 @@ class OccQuery(OBISQueryResult):
         """
         Search OBIS occurrences
 
-        :param taxonid: [Fixnum] A obis occurrence identifier
+        :param taxonid: [Fixnum] A OBIS occurrence identifier
         :param scientificname: [String,Array] One or more scientific names from the
             OBIS backbone. All included and
             synonym taxa are included in the search.
@@ -78,7 +78,8 @@ class OccQuery(OBISQueryResult):
 
         Usage::
 
-            from pyobis import occurrences as occ
+            from pyobis.occurrences import OccQuery
+            occ = OccQuery()
             occ.search(scientificname = 'Mola mola')
 
             # Many names
@@ -93,9 +94,10 @@ class OccQuery(OBISQueryResult):
             ## in well known text format
             occ.search(
                 geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))',
-                limit=20
+                size=20
             )
-            from pyobis import taxa
+            from pyobis.taxa import TaxaQuery
+            taxa = TaxaQuery()
             res = taxa.search(scientificname='Mola mola')['results'][0]
             occ.search(
                 obisid=res['id'],
@@ -108,8 +110,8 @@ class OccQuery(OBISQueryResult):
                 size=20
             )
 
-            # Get mof response as list of pandas dataframes
-            occ.search(scientificname="Abra",mof=True,hasextensions="MeasurementOrFact")
+            # Get mof response as a pandas dataframe
+            occ.search(scientificname="Abra", mof=True, hasextensions="MeasurementOrFact", size=100)
         """
         OBISQueryResult.url = obis_baseurl + "occurrence"
         scientificname = handle_arrstr(scientificname)
@@ -196,8 +198,8 @@ class OccQuery(OBISQueryResult):
 
         Usage::
 
-            from pyobis.occurrences import OccQuery as OQR
-            occ = OQR()
+            from pyobis.occurrences import OccQuery
+            occ = OccQuery()
             occ.get(id = '00008e33-6faa-4d98-a00b-91a6ed1ed3ca')
         """
         OBISQueryResult.url = obis_baseurl + "occurrence/" + str(id)
@@ -259,8 +261,8 @@ class OccQuery(OBISQueryResult):
 
         Usage::
 
-            from pyobis.occurrences import OccQuery as OQR
-            occ = OQR()
+            from pyobis.occurrences import OccQuery
+            occ = OccQuery()
             occ.grid(100, True) // returns in GeoJSON format
             occ.grid(1000, False)   // returns in KML format
         """
@@ -345,8 +347,8 @@ class OccQuery(OBISQueryResult):
 
         Usage::
 
-            from pyobis.occurrences import OccQuery as OQR
-            occ = OQR()
+            from pyobis.occurrences import OccQuery
+            occ = OccQuery()
             occ.getpoints(scientificname = 'Mola mola')
 
             ## Many names
@@ -433,8 +435,8 @@ class OccQuery(OBISQueryResult):
 
         Usage::
 
-            from pyobis.occurrences import OccQuery as OQR
-            occ = OQR()
+            from pyobis.occurrences import OccQuery
+            occ = OccQuery()
             occ.point(x=1.77,y=54.22,scientificname = 'Mola mola')
 
         """
@@ -521,8 +523,8 @@ class OccQuery(OBISQueryResult):
 
         Usage::
 
-            from pyobis.occurrences import OccQuery as OQR
-            occ = OQR()
+            from pyobis.occurrences import OccQuery
+            occ = OccQuery()
             occ.tile(x=1.77,y=52.26,z=0.5,mvt=0, scientificname = 'Mola mola')
             occ.tile(x=1.77,y=52.26,z=0.5,mvt=1, scientificname = 'Mola mola')
         """
@@ -610,8 +612,8 @@ class OccQuery(OBISQueryResult):
 
         Usage::
 
-            from pyobis.occurrences import OccQuery as OQR
-            occ = OQR()
+            from pyobis.occurrences import OccQuery
+            occ = OccQuery()
             occ.centroid(scientificname = 'Mola mola')
         """
         OBISQueryResult.url = obis_baseurl + "occurrence/centroid"
@@ -650,9 +652,9 @@ class OccQuery(OBISQueryResult):
 
         Usage::
 
-            from pyobis.occurrences import OccQuery as OQR
-            occ = OQR()
-            data = occ.search(scientificname="Mola mola")
+            from pyobis.occurrences import OccQuery
+            occ = OccQuery()
+            data = occ.search(scientificname="Mola mola", size=20)
             api_url = occ.get_mapper_url()
             print(api_url)
         """
@@ -683,8 +685,8 @@ class OccQuery(OBISQueryResult):
         :return: A dictionary of taxon metadata for the best matches to the input
         Usage::
 
-            from pyobis.occurrences import OccQuery as OQR
-            query = OQR()
+            from pyobis.occurrences import OccQuery
+            query = OccQuery()
             lookup_data = query.lookup_taxon(scientificname="Mola mola")
             print(lookup_data)
         """
