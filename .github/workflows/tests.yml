@@ -26,8 +26,8 @@ jobs:
         micromamba activate TEST
         python -m pip install -e . --no-deps --force-reinstall
 
-    - name: Run Tests
+    - name: Run Unit Tests
       shell: bash -l {0}
       run: |
         micromamba activate TEST
-        python -m pytest -rxs --cov=pyobis tests
+        python -m pytest -rxs --cov=pyobis ./pyobis
