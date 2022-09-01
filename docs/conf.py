@@ -1,5 +1,5 @@
-# pyobis documentation build configuration file, created by
-# sphinx-quickstart on Sun Nov  1 00:54:02 2015.
+# pyobis documentation build configuration file, based on
+# sphinx-quickstart on Sun, 2015 Nov 10 00:54:02.
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -45,8 +45,8 @@ master_doc = "index"
 
 # General information about the project.
 project = "pyobis"
-copyright = "2016, Scott Chamberlain"
-author = "Scott Chamberlain"
+copyright = "2022, pyOBIS Community"
+author = "pyOBIS Community "
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
