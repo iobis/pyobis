@@ -46,7 +46,7 @@ class OccQuery(OBISQueryResult):
         """
         Search OBIS occurrences
 
-        :param taxonid: [Fixnum] A OBIS occurrence identifier
+        :param taxonid: [Fixnum] An OBIS occurrence identifier
         :param scientificname: [String,Array] One or more scientific names from the
             OBIS backbone. All included and
             synonym taxa are included in the search.
