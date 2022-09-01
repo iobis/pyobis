@@ -7,7 +7,7 @@ checklist module
 
 .. autoclass:: ChecklistQuery
 
-An ChecklistQuery object for fetching checklist records.
+A ChecklistQuery object for fetching checklist records.
 
 Usage
 #####
