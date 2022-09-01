@@ -46,54 +46,67 @@ Taxa module
 
 .. code-block:: python
 
-    from pyobis import taxa
+    from pyobis.taxa import TaxaQuery
 
-    taxa.search(scientificname="Mola mola")
-    taxa.search(scientificname="Mola mola", offset=10)
-    taxa.search(geometry="POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))")
-    taxa.taxon(10332)
-    taxa.taxon(127405)
+    query = TaxaQuery()
+
+    query.search(scientificname="Mola mola")
+    query.search(scientificname="Mola mola", offset=10)
+    query.search(geometry="POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))")
+    query.taxon(10332)
+    query.taxon(127405)
+    query.get_search_url()
 
 Occurrence module
 #################
 
 .. code-block:: python
 
-    from pyobis import occurrences
+    from pyobis.occurrences import OccQuery
 
-    occurrences.search(scientificname="Mola mola")
-    occurrences.search(scientificname="Mola mola", offset=0, size=10)
-    occurrences.search(
+    query = OccQuery()
+
+    query.search(scientificname="Mola mola")
+    query.search(scientificname="Mola mola", offset=0, size=10)
+    query.search(
         geometry="POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))", size=20
     )
+    query.get_mapper_url()
 
 Dataset module
 ##############
 
 .. code-block:: python
 
-    from pyobis import dataset
+    from pyobis.dataset import DatasetQuery
 
-    dataset.search(scientificname=["Mola", "Abra", "Lanice", "Pectinaria"])
-    dataset.get(id="ec9df3b9-3b2b-4d83-881b-27bcbcd57b95")
+    query = DatasetQuery()
+
+    query.search(scientificname=["Mola", "Abra", "Lanice", "Pectinaria"])
+    query.get(id="ec9df3b9-3b2b-4d83-881b-27bcbcd57b95")
 
 Nodes module
 ############
 
 .. code-block:: python
 
-    from pyobis import nodes
+    from pyobis.nodes import NodesQuery
 
-    nodes.search(scientificname=["Mola", "Abra"])
+    query = NodesQuery()
+
+    query.search(scientificname=["Mola", "Abra"])
+    query.get_search_url()
 
 Checklist module
 ################
 
 .. code-block:: python
 
-    from pyobis import checklist as ch
+    from pyobis.checklist import ChecklistQuery
 
-    ch.list(scientificname="Cetacea")
+    query = ChecklistQuery()
+
+    query.list(scientificname="Cetacea")
 
 Meta
 ====

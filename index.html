@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pyobis &mdash; pyobis 1.1.4 documentation</title>
+  <title>pyobis &mdash; pyobis 1.2.4 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -30,7 +30,7 @@
             <a href="#" class="icon icon-home"> pyobis
           </a>
               <div class="version">
-                1.1.4
+                1.2.4
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -107,50 +107,63 @@
 <p>You can import the entire library, or each module individually as needed.</p>
 <section id="taxa-module">
 <h2>Taxa module<a class="headerlink" href="#taxa-module" title="Permalink to this heading"></a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">taxa</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis.taxa</span> <span class="kn">import</span> <span class="n">TaxaQuery</span>
 
-<span class="n">taxa</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="s2">&quot;Mola mola&quot;</span><span class="p">)</span>
-<span class="n">taxa</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="s2">&quot;Mola mola&quot;</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">taxa</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">geometry</span><span class="o">=</span><span class="s2">&quot;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&quot;</span><span class="p">)</span>
-<span class="n">taxa</span><span class="o">.</span><span class="n">taxon</span><span class="p">(</span><span class="mi">10332</span><span class="p">)</span>
-<span class="n">taxa</span><span class="o">.</span><span class="n">taxon</span><span class="p">(</span><span class="mi">127405</span><span class="p">)</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">TaxaQuery</span><span class="p">()</span>
+
+<span class="n">query</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="s2">&quot;Mola mola&quot;</span><span class="p">)</span>
+<span class="n">query</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="s2">&quot;Mola mola&quot;</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">query</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">geometry</span><span class="o">=</span><span class="s2">&quot;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&quot;</span><span class="p">)</span>
+<span class="n">query</span><span class="o">.</span><span class="n">taxon</span><span class="p">(</span><span class="mi">10332</span><span class="p">)</span>
+<span class="n">query</span><span class="o">.</span><span class="n">taxon</span><span class="p">(</span><span class="mi">127405</span><span class="p">)</span>
+<span class="n">query</span><span class="o">.</span><span class="n">get_search_url</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>
 <section id="occurrence-module">
 <h2>Occurrence module<a class="headerlink" href="#occurrence-module" title="Permalink to this heading"></a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">occurrences</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis.occurrences</span> <span class="kn">import</span> <span class="n">OccQuery</span>
 
-<span class="n">occurrences</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="s2">&quot;Mola mola&quot;</span><span class="p">)</span>
-<span class="n">occurrences</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="s2">&quot;Mola mola&quot;</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">occurrences</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">OccQuery</span><span class="p">()</span>
+
+<span class="n">query</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="s2">&quot;Mola mola&quot;</span><span class="p">)</span>
+<span class="n">query</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="s2">&quot;Mola mola&quot;</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">query</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
     <span class="n">geometry</span><span class="o">=</span><span class="s2">&quot;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span>
 <span class="p">)</span>
+<span class="n">query</span><span class="o">.</span><span class="n">get_mapper_url</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>
 <section id="dataset-module">
 <h2>Dataset module<a class="headerlink" href="#dataset-module" title="Permalink to this heading"></a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">dataset</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis.dataset</span> <span class="kn">import</span> <span class="n">DatasetQuery</span>
 
-<span class="n">dataset</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Mola&quot;</span><span class="p">,</span> <span class="s2">&quot;Abra&quot;</span><span class="p">,</span> <span class="s2">&quot;Lanice&quot;</span><span class="p">,</span> <span class="s2">&quot;Pectinaria&quot;</span><span class="p">])</span>
-<span class="n">dataset</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;ec9df3b9-3b2b-4d83-881b-27bcbcd57b95&quot;</span><span class="p">)</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">DatasetQuery</span><span class="p">()</span>
+
+<span class="n">query</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Mola&quot;</span><span class="p">,</span> <span class="s2">&quot;Abra&quot;</span><span class="p">,</span> <span class="s2">&quot;Lanice&quot;</span><span class="p">,</span> <span class="s2">&quot;Pectinaria&quot;</span><span class="p">])</span>
+<span class="n">query</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;ec9df3b9-3b2b-4d83-881b-27bcbcd57b95&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="nodes-module">
 <h2>Nodes module<a class="headerlink" href="#nodes-module" title="Permalink to this heading"></a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">nodes</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis.nodes</span> <span class="kn">import</span> <span class="n">NodesQuery</span>
 
-<span class="n">nodes</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Mola&quot;</span><span class="p">,</span> <span class="s2">&quot;Abra&quot;</span><span class="p">])</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">NodesQuery</span><span class="p">()</span>
+
+<span class="n">query</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Mola&quot;</span><span class="p">,</span> <span class="s2">&quot;Abra&quot;</span><span class="p">])</span>
+<span class="n">query</span><span class="o">.</span><span class="n">get_search_url</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>
 <section id="checklist-module">
 <h2>Checklist module<a class="headerlink" href="#checklist-module" title="Permalink to this heading"></a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">checklist</span> <span class="k">as</span> <span class="n">ch</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis.checklist</span> <span class="kn">import</span> <span class="n">ChecklistQuery</span>
 
-<span class="n">ch</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="s2">&quot;Cetacea&quot;</span><span class="p">)</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">ChecklistQuery</span><span class="p">()</span>
+
+<span class="n">query</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="s2">&quot;Cetacea&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -171,15 +184,37 @@
 <li class="toctree-l2"><a class="reference internal" href="occurrences.html#methods">Methods:</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="taxa.html">taxa module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dataset.html">dataset module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nodes.html">nodes module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="checklist.html">checklist module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="taxa.html">taxa module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="taxa.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="taxa.html#methods">Methods:</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dataset.html">dataset module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dataset.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset.html#methods">Methods:</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nodes.html">nodes module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nodes.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodes.html#methods">Methods:</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="checklist.html">checklist module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="checklist.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checklist.html#methods">Methods:</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="changelog_link.html">Changelog</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="changelog_link.html#id1">1.0.0 (2022-7-10)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="changelog_link.html#id2">0.1.0 (2016-12-12)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="changelog_link.html#id3">0.0.6.9000 (2016-5-12)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="changelog_link.html#id4">0.0.1 (2015-12-11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog_link.html#id1">1.2.4 (2022-08-30)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog_link.html#id2">1.1.4 (2022-08-30)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog_link.html#id3">1.1.3 (2022-7-24)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog_link.html#id4">1.0.3 (2022-7-22)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog_link.html#id5">1.0.2 (2022-7-22)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog_link.html#id6">1.0.1 (2022-7-21)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog_link.html#id7">1.0.0 (2022-7-10)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog_link.html#id8">0.1.0 (2016-12-12)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog_link.html#id9">0.0.6.9000 (2016-5-12)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog_link.html#id10">0.0.1 (2015-12-11)</a></li>
 </ul>
 </li>
 </ul>
@@ -208,7 +243,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2016, Scott Chamberlain.</p>
+    <p>&#169; Copyright 2022, pyOBIS Community.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -3,7 +3,27 @@
 nodes module
 ============
 
-.. py:module:: pyobis
+.. py:module:: pyobis.nodes
 
-.. automethod:: nodes.search
-.. automethod:: nodes.activities
+.. autoclass:: NodesQuery
+
+A NodesQuery object for fetching nodes records.
+
+Usage
+#####
+
+.. code-block:: python
+
+    from pyobis.nodes import NodesQuery
+
+    query = NodesQuery()
+    data = query.search(args, **kwargs)
+    api_url = query.get_search_url()
+
+Methods:
+########
+
+.. automethod:: NodesQuery.search
+.. automethod:: NodesQuery.activities
+.. automethod:: NodesQuery.get_search_url
+.. automethod:: NodesQuery.get_mapper_url

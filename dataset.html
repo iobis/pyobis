@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>dataset module &mdash; pyobis 1.1.4 documentation</title>
+  <title>dataset module &mdash; pyobis 1.2.4 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -31,7 +31,7 @@
             <a href="index.html" class="icon icon-home"> pyobis
           </a>
               <div class="version">
-                1.1.4
+                1.2.4
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -44,7 +44,11 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="occurrences.html">occurrences module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="taxa.html">taxa module</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">dataset module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">dataset module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#methods">Methods:</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="nodes.html">nodes module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="checklist.html">checklist module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog_link.html">Changelog</a></li>
@@ -74,8 +78,164 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-pyobis">
-<span id="dataset-module"></span><span id="dataset"></span><h1>dataset module<a class="headerlink" href="#module-pyobis" title="Permalink to this heading"></a></h1>
+  <section id="module-pyobis.dataset">
+<span id="dataset-module"></span><span id="dataset"></span><h1>dataset module<a class="headerlink" href="#module-pyobis.dataset" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyobis.dataset.DatasetQuery">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyobis.dataset.</span></span><span class="sig-name descname"><span class="pre">DatasetQuery</span></span><a class="reference internal" href="_modules/pyobis/dataset/dataset.html#DatasetQuery"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyobis.dataset.DatasetQuery" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>A DatasetQuery object for fetching dataset records.</p>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis.dataset</span> <span class="kn">import</span> <span class="n">DatasetQuery</span>
+
+<span class="n">query</span> <span class="o">=</span> <span class="n">DatasetQuery</span><span class="p">()</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="n">api_url</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">get_search_url</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="methods">
+<h2>Methods:<a class="headerlink" href="#methods" title="Permalink to this heading"></a></h2>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyobis.dataset.DatasetQuery.get">
+<span class="sig-prename descclassname"><span class="pre">DatasetQuery.</span></span><span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyobis/dataset/dataset.html#DatasetQuery.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyobis.dataset.DatasetQuery.get" title="Permalink to this definition"></a></dt>
+<dd><p>Get dataset by ID</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>id</strong> – [Fixnum] An OBIS dataset identifier.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dictionary</p>
+</dd>
+</dl>
+<p>Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis.dataset</span> <span class="kn">import</span> <span class="n">DatasetQuery</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">DatasetQuery</span><span class="p">()</span>
+<span class="n">dataset</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ec9df3b9-3b2b-4d83-881b-27bcbcd57b95&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyobis.dataset.DatasetQuery.search">
+<span class="sig-prename descclassname"><span class="pre">DatasetQuery.</span></span><span class="sig-name descname"><span class="pre">search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scientificname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">taxonid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodeid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">startdate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enddate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">startdepth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enddepth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyobis/dataset/dataset.html#DatasetQuery.search"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyobis.dataset.DatasetQuery.search" title="Permalink to this definition"></a></dt>
+<dd><p>Find dataset records.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>taxonid</strong> – [Fixnum] A obis Taxon AphiaID.</p></li>
+<li><p><strong>scientificname</strong> – [String, Array] One or more scientific names from
+the OBIS backbone. All included and synonym taxa are
+included in the search.</p></li>
+<li><p><strong>year</strong> – [Fixnum] The 4 digit year. A year of 98 will be interpreted
+as AD 98. Supports range queries,
+smaller,larger (e.g., ‘1990,1991’, whereas ‘1991,1990’ wouldn’t work)</p></li>
+<li><p><strong>geometry</strong> – [String] Well Known Text (WKT). A WKT shape written as
+either POINT, LINESTRING, LINEARRING
+or POLYGON.
+Example of a polygon: ((30.1 10.1, 20, 20 40, 40 40, 30.1 10.1)) would
+be queried as <a class="reference external" href="http://bit.ly/1BzNwDq">http://bit.ly/1BzNwDq</a>. Geometry, formatted as WKT or
+GeoHash.</p></li>
+<li><p><strong>nodeid</strong> – [Fixnum] Node UUID.</p></li>
+<li><p><strong>startdate</strong> – [Fixnum] Start date</p></li>
+<li><p><strong>enddate</strong> – [Boolean] End date</p></li>
+<li><p><strong>startdepth</strong> – [Fixnum] Start depth, in meters. Depth below sea level are treated as
+positive numbers.</p></li>
+<li><p><strong>enddepth</strong> – [Fixnum] End depth, in meters. Depth below sea level are treated as
+positive numbers.</p></li>
+<li><p><strong>flags</strong> – [String, Array] Comma separated list of quality flags that
+need to be set</p></li>
+<li><p><strong>offset</strong> – [Fixnum] Start at record. Default: 0</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dictionary</p>
+</dd>
+</dl>
+<p>Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis.dataset</span> <span class="kn">import</span> <span class="n">DatasetQuery</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">DatasetQuery</span><span class="p">()</span>
+<span class="n">dataset</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">)</span>
+
+<span class="c1"># Many names</span>
+<span class="n">dataset</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
+    <span class="n">scientificname</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Mola&#39;</span><span class="p">,</span> <span class="s1">&#39;Abra&#39;</span><span class="p">,</span> <span class="s1">&#39;Lanice&#39;</span><span class="p">,</span> <span class="s1">&#39;Pectinaria&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Use paging parameters (limit and start) to page.</span>
+<span class="c1"># Note the different results for the two queries below.</span>
+<span class="n">dataset</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">)</span>
+<span class="n">dataset</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">)</span>
+
+<span class="c1"># Search on a bounding box</span>
+<span class="c1">## in well known text format</span>
+<span class="n">dataset</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
+    <span class="n">geometry</span><span class="o">=</span><span class="s1">&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">pyobis.taxa</span> <span class="kn">import</span> <span class="n">TaxaQuery</span>
+<span class="kn">from</span> <span class="nn">pyobis.dataset</span> <span class="kn">import</span> <span class="n">DatasetQuery</span>
+<span class="n">taxa</span> <span class="o">=</span> <span class="n">TaxaQuery</span><span class="p">()</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">DatasetQuery</span><span class="p">()</span>
+
+<span class="n">res</span> <span class="o">=</span> <span class="n">taxa</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="s1">&#39;Mola mola&#39;</span><span class="p">)[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">dataset</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
+    <span class="n">taxonid</span><span class="o">=</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span>
+    <span class="n">geometry</span><span class="o">=</span><span class="s1">&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;</span><span class="p">,</span>
+    <span class="n">limit</span><span class="o">=</span><span class="mi">20</span>
+<span class="p">)</span>
+<span class="n">dataset</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
+    <span class="n">aphiaid</span><span class="o">=</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;worms_id&#39;</span><span class="p">],</span>
+    <span class="n">geometry</span><span class="o">=</span><span class="s1">&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;</span><span class="p">,</span>
+    <span class="n">limit</span><span class="o">=</span><span class="mi">20</span>
+<span class="p">)</span>
+
+<span class="c1"># Get resources for a particular eventDate</span>
+<span class="n">dataset</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">taxonid</span><span class="o">=</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;worms_id&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyobis.dataset.DatasetQuery.get_search_url">
+<span class="sig-prename descclassname"><span class="pre">DatasetQuery.</span></span><span class="sig-name descname"><span class="pre">get_search_url</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyobis.dataset.DatasetQuery.get_search_url" title="Permalink to this definition"></a></dt>
+<dd><p>Get the corresponding API URL for the query.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>OBIS API URL for the corresponding query</p>
+</dd>
+</dl>
+<p>Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># supports usage for any query from any module</span>
+<span class="kn">from</span> <span class="nn">pyobis.taxa</span> <span class="kn">import</span> <span class="n">TaxaQuery</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">TaxaQuery</span>
+<span class="n">query</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="s2">&quot;Mola mola&quot;</span><span class="p">)</span>
+<span class="n">query</span><span class="o">.</span><span class="n">get_search_url</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyobis.dataset.DatasetQuery.get_mapper_url">
+<span class="sig-prename descclassname"><span class="pre">DatasetQuery.</span></span><span class="sig-name descname"><span class="pre">get_mapper_url</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyobis/dataset/dataset.html#DatasetQuery.get_mapper_url"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyobis.dataset.DatasetQuery.get_mapper_url" title="Permalink to this definition"></a></dt>
+<dd><p>Get the corresponding API URL for the query.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>OBIS Mapper URL for the corresponding query</p>
+</dd>
+</dl>
+<p>Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis.dataset</span> <span class="kn">import</span> <span class="n">DatasetQuery</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">DatasetQuery</span><span class="p">()</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ec9df3b9-3b2b-4d83-881b-27bcbcd57b95&#39;</span><span class="p">)</span>
+<span class="n">api_url</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">get_mapper_url</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">api_url</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
 </section>
 
 
@@ -89,7 +249,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2016, Scott Chamberlain.</p>
+    <p>&#169; Copyright 2022, pyOBIS Community.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

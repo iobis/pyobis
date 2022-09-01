@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pyobis.occurrences.occurrences &mdash; pyobis 1.2.4 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> pyobis
+          </a>
+              <div class="version">
+                1.2.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../occurrences.html">occurrences module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../taxa.html">taxa module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dataset.html">dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nodes.html">nodes module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../checklist.html">checklist module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog_link.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">pyobis</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>pyobis.occurrences.occurrences</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pyobis.occurrences.occurrences</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">/occurrences/ API endpoints as documented on https://api.obis.org/.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlencode</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="kn">from</span> <span class="nn">..obisutils</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">OBISQueryResult</span><span class="p">,</span>
+    <span class="n">handle_arrstr</span><span class="p">,</span>
+    <span class="n">obis_baseurl</span><span class="p">,</span>
+    <span class="n">obis_GET</span><span class="p">,</span>
+    <span class="n">stopifnot</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<div class="viewcode-block" id="OccQuery"><a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.OccQuery">[docs]</a><span class="k">class</span> <span class="nc">OccQuery</span><span class="p">(</span><span class="n">OBISQueryResult</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        An OccQuery object for fetching occurrence records.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="OccQuery.search"><a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.OccQuery.search">[docs]</a>    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">scientificname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">taxonid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">nodeid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">datasetid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">startdate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">enddate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">startdepth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">enddepth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">geometry</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">year</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">flags</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">fields</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">mof</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">hasextensions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Search OBIS occurrences</span>
+
+<span class="sd">        :param taxonid: [Fixnum] An OBIS occurrence identifier</span>
+<span class="sd">        :param scientificname: [String,Array] One or more scientific names from the</span>
+<span class="sd">            OBIS backbone. All included and</span>
+<span class="sd">            synonym taxa are included in the search.</span>
+<span class="sd">        :param year: Removed in v3 API. [Fixnum] The 4 digit year. A year of 98</span>
+<span class="sd">            will be interpreted as AD 98. Supports range queries,</span>
+<span class="sd">            smaller,larger (e.g., &#39;1990,1991&#39;, whereas &#39;1991,1990&#39; wouldn&#39;t work)</span>
+<span class="sd">        :param geometry: [String] Well Known Text (WKT). A WKT shape written</span>
+<span class="sd">            as either POINT, LINESTRING, LINEARRING</span>
+<span class="sd">            or POLYGON.</span>
+<span class="sd">            Example of a polygon: ((30.1 10.1, 20, 20 40, 40 40, 30.1 10.1)) would</span>
+<span class="sd">            be queried as http://bit.ly/1BzNwDq</span>
+<span class="sd">        :param nodeid: [String] Node UUID</span>
+<span class="sd">        :param taxonid: Prev. aphiaid [Fixnum] An Aphia id. This is listed as</span>
+<span class="sd">            the `worms_id` in `taxa`/`taxon` results</span>
+<span class="sd">        :param datasetid: Prev. resourceid [Fixnum] A resource id</span>
+<span class="sd">        :param startdate: [Fixnum] Start date, formatted as YYYY-MM-DD</span>
+<span class="sd">        :param enddate: [Boolean] End date, formatted as YYYY-MM-DD</span>
+<span class="sd">        :param startdepth: [Fixnum] Start depth, in meters. Depth below sea level are treated</span>
+<span class="sd">            as positive numbers.</span>
+<span class="sd">        :param enddepth: [Boolean] End depth, in meters. Depth below sea level are treated</span>
+<span class="sd">            as positive numbers.</span>
+<span class="sd">        :param flags: Prev. qc [String] Quality control flags</span>
+<span class="sd">        :param fields: [String] Comma seperated list of field names</span>
+<span class="sd">        :param size: [Fixnum] Number of results to return. Default: All records</span>
+<span class="sd">        :param offset: [Fixnum] Start at record. Default: 0</span>
+<span class="sd">        :param mof: [Boolean] Include MeasurementOrFact records, true/false.</span>
+<span class="sd">            Default: 0</span>
+<span class="sd">        :param hasextensions: [String] Extensions that need to be present</span>
+<span class="sd">            (e.g. MeasurementOrFact, DNADerivedData).</span>
+<span class="sd">        :return: A dictionary</span>
+
+<span class="sd">        Usage::</span>
+
+<span class="sd">            from pyobis.occurrences import OccQuery</span>
+<span class="sd">            occ = OccQuery()</span>
+<span class="sd">            occ.search(scientificname = &#39;Mola mola&#39;)</span>
+
+<span class="sd">            # Many names</span>
+<span class="sd">            occ.search(scientificname = [&#39;Mola&#39;, &#39;Abra&#39;, &#39;Lanice&#39;, &#39;Pectinaria&#39;])</span>
+
+<span class="sd">            # Use paging parameters (limit and start) to page.</span>
+<span class="sd">            # Note the different results for the two queries below.</span>
+<span class="sd">            occ.search(scientificname = &#39;Mola mola&#39;, offset=0, size=10)</span>
+<span class="sd">            occ.search(scientificname = &#39;Mola mola&#39;, offset=10, size=10)</span>
+
+<span class="sd">            # Search on a bounding box</span>
+<span class="sd">            ## in well known text format</span>
+<span class="sd">            occ.search(</span>
+<span class="sd">                geometry=&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;,</span>
+<span class="sd">                size=20</span>
+<span class="sd">            )</span>
+<span class="sd">            from pyobis.taxa import TaxaQuery</span>
+<span class="sd">            taxa = TaxaQuery()</span>
+<span class="sd">            res = taxa.search(scientificname=&#39;Mola mola&#39;)[&#39;results&#39;][0]</span>
+<span class="sd">            occ.search(</span>
+<span class="sd">                obisid=res[&#39;id&#39;],</span>
+<span class="sd">                geometry=&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;,</span>
+<span class="sd">                size=20</span>
+<span class="sd">            )</span>
+<span class="sd">            occ.search(</span>
+<span class="sd">                aphiaid=res[&#39;worms_id&#39;],</span>
+<span class="sd">                geometry=&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;,</span>
+<span class="sd">                size=20</span>
+<span class="sd">            )</span>
+
+<span class="sd">            # Get mof response as a pandas dataframe</span>
+<span class="sd">            occ.search(scientificname=&quot;Abra&quot;, mof=True, hasextensions=&quot;MeasurementOrFact&quot;, size=100)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s2">&quot;occurrence&quot;</span>
+        <span class="n">scientificname</span> <span class="o">=</span> <span class="n">handle_arrstr</span><span class="p">(</span><span class="n">scientificname</span><span class="p">)</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;taxonid&quot;</span><span class="p">:</span> <span class="n">taxonid</span><span class="p">,</span>
+            <span class="s2">&quot;nodeid&quot;</span><span class="p">:</span> <span class="n">nodeid</span><span class="p">,</span>
+            <span class="s2">&quot;datasetid&quot;</span><span class="p">:</span> <span class="n">datasetid</span><span class="p">,</span>
+            <span class="s2">&quot;scientificname&quot;</span><span class="p">:</span> <span class="n">scientificname</span><span class="p">,</span>
+            <span class="s2">&quot;startdate&quot;</span><span class="p">:</span> <span class="n">startdate</span><span class="p">,</span>
+            <span class="s2">&quot;enddate&quot;</span><span class="p">:</span> <span class="n">enddate</span><span class="p">,</span>
+            <span class="s2">&quot;startdepth&quot;</span><span class="p">:</span> <span class="n">startdepth</span><span class="p">,</span>
+            <span class="s2">&quot;enddepth&quot;</span><span class="p">:</span> <span class="n">enddepth</span><span class="p">,</span>
+            <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="n">geometry</span><span class="p">,</span>
+            <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="n">year</span><span class="p">,</span>
+            <span class="s2">&quot;fields&quot;</span><span class="p">:</span> <span class="n">fields</span><span class="p">,</span>
+            <span class="s2">&quot;flags&quot;</span><span class="p">:</span> <span class="n">flags</span><span class="p">,</span>
+            <span class="s2">&quot;offset&quot;</span><span class="p">:</span> <span class="n">offset</span><span class="p">,</span>
+            <span class="s2">&quot;mof&quot;</span><span class="p">:</span> <span class="n">mof</span><span class="p">,</span>
+            <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s2">&quot;hasextensions&quot;</span><span class="p">:</span> <span class="n">hasextensions</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="n">args</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mapper</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">obis_GET</span><span class="p">(</span>
+            <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="s2">&quot;application/json; charset=utf-8&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">out</span><span class="p">[</span><span class="s2">&quot;total&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">size</span> <span class="k">else</span> <span class="n">size</span>
+        <span class="p">)</span>  <span class="c1"># if the user has set some size or else we fetch all the records</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5000</span><span class="p">,</span> <span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5000</span><span class="p">):</span>
+            <span class="n">args</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5000</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">[</span><span class="si">{}{}</span><span class="s2">] </span><span class="si">{}</span><span class="s2">/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="s2">&quot;Fetching: &quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;█&quot;</span> <span class="o">*</span> <span class="nb">int</span><span class="p">((</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">/</span> <span class="n">size</span><span class="p">),</span>
+                    <span class="s2">&quot;.&quot;</span> <span class="o">*</span> <span class="p">(</span><span class="mi">100</span> <span class="o">-</span> <span class="nb">int</span><span class="p">((</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">/</span> <span class="n">size</span><span class="p">)),</span>
+                    <span class="n">i</span><span class="p">,</span>
+                    <span class="n">size</span><span class="p">,</span>
+                <span class="p">),</span>
+                <span class="n">end</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span>
+                <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">obis_GET</span><span class="p">(</span>
+                <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="s2">&quot;application/json; charset=utf-8&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+            <span class="p">)</span>
+            <span class="n">out</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">]</span>
+            <span class="c1"># make sure that we set the `after` parameter when fetching subsequent records</span>
+            <span class="n">args</span><span class="p">[</span><span class="s2">&quot;after&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">][</span><span class="mi">4999</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
+        <span class="n">args</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">size</span> <span class="o">%</span> <span class="mi">5000</span>
+        <span class="c1"># we have already fetched records as a set of 5000 records each time,</span>
+        <span class="c1"># now we need to get remaining records from the total</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">[</span><span class="si">{}{}</span><span class="s2">] </span><span class="si">{}</span><span class="s2">/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;Fetching: &quot;</span><span class="p">,</span> <span class="s2">&quot;█&quot;</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span> <span class="o">*</span> <span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">),</span>
+            <span class="n">end</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span>
+            <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">obis_GET</span><span class="p">(</span>
+            <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="s2">&quot;application/json; charset=utf-8&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
+        <span class="n">out</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Fetched </span><span class="si">{</span><span class="n">size</span><span class="si">}</span><span class="s2"> records.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">mof</span> <span class="ow">and</span> <span class="n">out</span><span class="p">[</span><span class="s2">&quot;total&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">mofNormalized</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">],</span> <span class="s2">&quot;mof&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">])</span>
+            <span class="n">merged</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+                <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">]),</span>
+                <span class="n">mofNormalized</span><span class="p">,</span>
+                <span class="n">on</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">,</span>
+                <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="n">merged</span>
+        <span class="k">return</span> <span class="n">out</span></div>
+
+<div class="viewcode-block" id="OccQuery.get"><a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.OccQuery.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get an OBIS occurrence</span>
+
+<span class="sd">        :param id: [Fixnum] An obis occurrence identifier.</span>
+<span class="sd">            It is returned in the &#39;id&#39; field with occurrences.search().</span>
+
+<span class="sd">        :return: A dictionary</span>
+
+<span class="sd">        Usage::</span>
+
+<span class="sd">            from pyobis.occurrences import OccQuery</span>
+<span class="sd">            occ = OccQuery()</span>
+<span class="sd">            occ.get(id = &#39;00008e33-6faa-4d98-a00b-91a6ed1ed3ca&#39;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s2">&quot;occurrence/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+        <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mapper</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">obis_GET</span><span class="p">(</span>
+            <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">url</span><span class="p">,</span>
+            <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">args</span><span class="p">,</span>
+            <span class="s2">&quot;application/json; charset=utf-8&quot;</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">out</span></div>
+
+<div class="viewcode-block" id="OccQuery.grid"><a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.OccQuery.grid">[docs]</a>    <span class="k">def</span> <span class="nf">grid</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">precision</span><span class="p">,</span>
+        <span class="n">geojson</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">scientificname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">taxonid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">datasetid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">nodeid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">startdate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">enddate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">startdepth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">enddepth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">geometry</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">redlist</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">hab</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">wrims</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">event</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">flags</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fetch gridded occurrences as GeoJSON or KML.</span>
+
+<span class="sd">        :param precision: [integer] Geohash precision.</span>
+<span class="sd">        :param scientificname: [string] Scientific name.</span>
+<span class="sd">            Leave empty to include all taxa.</span>
+<span class="sd">        :param taxonid: [string] Taxon AphiaID.</span>
+<span class="sd">        :param datasetid: [string] Dataset UUID.</span>
+<span class="sd">        :param nodeid: [string] Node UUID.</span>
+<span class="sd">        :param startdate: [string] Start date formatted as YYYY-MM-DD.</span>
+<span class="sd">        :param enddate: [string] End date formatted as YYYY-MM-DD.</span>
+<span class="sd">        :param startdepth: [integer] Start depth, in meters. Depth below sea level are treated</span>
+<span class="sd">            as positive numbers.</span>
+<span class="sd">        :param enddepth: [integer] End depth, in meters. Depth below sea level are treated</span>
+<span class="sd">            as positive numbers.</span>
+<span class="sd">        :param geometry: [string] Geometry, formatted as WKT or GeoHash.</span>
+<span class="sd">        :param redlist: [boolean] Red List species only, True/False.</span>
+<span class="sd">        :param hab: [boolean] HAB species only, true/false.</span>
+<span class="sd">        :param wrims: [boolean] WRiMS species only, True/False.</span>
+<span class="sd">        :param event: [string] Include pure event records (include) or get pure</span>
+<span class="sd">            event records exclusively (true).</span>
+<span class="sd">        :param flags: [string] Comma separated list of required quality flags.</span>
+<span class="sd">        :param exclude: [string] Comma separated list of quality flags</span>
+<span class="sd">            to be excluded.</span>
+
+<span class="sd">        :return: A dictionary</span>
+
+<span class="sd">        Usage::</span>
+
+<span class="sd">            from pyobis.occurrences import OccQuery</span>
+<span class="sd">            occ = OccQuery()</span>
+<span class="sd">            occ.grid(100, True) // returns in GeoJSON format</span>
+<span class="sd">            occ.grid(1000, False)   // returns in KML format</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s2">&quot;occurrence/grid/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">precision</span><span class="p">)</span>
+        <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;scientificname&quot;</span><span class="p">:</span> <span class="n">scientificname</span><span class="p">,</span>
+            <span class="s2">&quot;taxonid&quot;</span><span class="p">:</span> <span class="n">taxonid</span><span class="p">,</span>
+            <span class="s2">&quot;datasetid&quot;</span><span class="p">:</span> <span class="n">datasetid</span><span class="p">,</span>
+            <span class="s2">&quot;nodeid&quot;</span><span class="p">:</span> <span class="n">nodeid</span><span class="p">,</span>
+            <span class="s2">&quot;startdate&quot;</span><span class="p">:</span> <span class="n">startdate</span><span class="p">,</span>
+            <span class="s2">&quot;enddate&quot;</span><span class="p">:</span> <span class="n">enddate</span><span class="p">,</span>
+            <span class="s2">&quot;startdepth&quot;</span><span class="p">:</span> <span class="n">startdepth</span><span class="p">,</span>
+            <span class="s2">&quot;enddepth&quot;</span><span class="p">:</span> <span class="n">enddepth</span><span class="p">,</span>
+            <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="n">geometry</span><span class="p">,</span>
+            <span class="s2">&quot;redlist&quot;</span><span class="p">:</span> <span class="n">redlist</span><span class="p">,</span>
+            <span class="s2">&quot;hab&quot;</span><span class="p">:</span> <span class="n">hab</span><span class="p">,</span>
+            <span class="s2">&quot;wrims&quot;</span><span class="p">:</span> <span class="n">wrims</span><span class="p">,</span>
+            <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="n">event</span><span class="p">,</span>
+            <span class="s2">&quot;flags&quot;</span><span class="p">:</span> <span class="n">flags</span><span class="p">,</span>
+            <span class="s2">&quot;exclude&quot;</span><span class="p">:</span> <span class="n">exclude</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mapper</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">geojson</span><span class="p">:</span>
+            <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">url</span> <span class="o">+=</span> <span class="s2">&quot;/kml&quot;</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+            <span class="p">)</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+            <span class="n">stopifnot</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;content-type&quot;</span><span class="p">],</span> <span class="s2">&quot;text/xml; charset=utf-8&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">out</span><span class="o">.</span><span class="n">content</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">obis_GET</span><span class="p">(</span>
+            <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">url</span><span class="p">,</span>
+            <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">args</span><span class="p">,</span>
+            <span class="s2">&quot;application/json; charset=utf-8&quot;</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">out</span></div>
+
+<div class="viewcode-block" id="OccQuery.getpoints"><a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.OccQuery.getpoints">[docs]</a>    <span class="k">def</span> <span class="nf">getpoints</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">scientificname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">taxonid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">datasetid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">nodeid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">startdate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">enddate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">startdepth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">enddepth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">geometry</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">redlist</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">hab</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">wrims</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">event</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">flags</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fetch point occurrences as GeoJSON (aggregated to Geohash precision 8).</span>
+
+<span class="sd">        :param scientificname: [string] Scientific name. Leave empty to include all</span>
+<span class="sd">            taxa.</span>
+<span class="sd">        :param taxonid: [string] Taxon AphiaID.</span>
+<span class="sd">        :param datasetid: [string] Dataset UUID.</span>
+<span class="sd">        :param nodeid: [string] Node UUID.</span>
+<span class="sd">        :param startdate: [string] Start date formatted as YYYY-MM-DD.</span>
+<span class="sd">        :param enddate: [string] End date formatted as YYYY-MM-DD.</span>
+<span class="sd">        :param startdepth: [integer] Start depth, in meters. Depth below sea level are treated</span>
+<span class="sd">            as positive numbers.</span>
+<span class="sd">        :param enddepth: [integer] End depth, in meters. Depth below sea level are treated</span>
+<span class="sd">            as positive numbers.</span>
+<span class="sd">        :param geometry: [string] Geometry, formatted as WKT or GeoHash.</span>
+<span class="sd">        :param redlist: [boolean] Red List species only, True/False.</span>
+<span class="sd">        :param hab: [boolean] HAB species only, true/false.</span>
+<span class="sd">        :param wrims: [boolean] WRiMS species only, True/False.</span>
+<span class="sd">        :param event: [string] Include pure event records (include) or get pure0</span>
+<span class="sd">            event records exclusively (true).</span>
+<span class="sd">        :param flags: [string] Comma separated list of quality flags which need to</span>
+<span class="sd">            be set.</span>
+<span class="sd">        :param exclude: [string] Comma separated list of quality flags to be</span>
+<span class="sd">            excluded.</span>
+
+<span class="sd">        :return: A dictionary</span>
+
+<span class="sd">        Usage::</span>
+
+<span class="sd">            from pyobis.occurrences import OccQuery</span>
+<span class="sd">            occ = OccQuery()</span>
+<span class="sd">            occ.getpoints(scientificname = &#39;Mola mola&#39;)</span>
+
+<span class="sd">            ## Many names</span>
+<span class="sd">            occ.getpoints(scientificname = [&#39;Mola mola&#39;,&#39;Abra alba&#39;])</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s2">&quot;occurrence/points&quot;</span>
+        <span class="n">scientificname</span> <span class="o">=</span> <span class="n">handle_arrstr</span><span class="p">(</span><span class="n">scientificname</span><span class="p">)</span>
+        <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;scientificname&quot;</span><span class="p">:</span> <span class="n">scientificname</span><span class="p">,</span>
+            <span class="s2">&quot;taxonid&quot;</span><span class="p">:</span> <span class="n">taxonid</span><span class="p">,</span>
+            <span class="s2">&quot;datasetid&quot;</span><span class="p">:</span> <span class="n">datasetid</span><span class="p">,</span>
+            <span class="s2">&quot;nodeid&quot;</span><span class="p">:</span> <span class="n">nodeid</span><span class="p">,</span>
+            <span class="s2">&quot;startdate&quot;</span><span class="p">:</span> <span class="n">startdate</span><span class="p">,</span>
+            <span class="s2">&quot;enddate&quot;</span><span class="p">:</span> <span class="n">enddate</span><span class="p">,</span>
+            <span class="s2">&quot;startdepth&quot;</span><span class="p">:</span> <span class="n">startdepth</span><span class="p">,</span>
+            <span class="s2">&quot;enddepth&quot;</span><span class="p">:</span> <span class="n">enddepth</span><span class="p">,</span>
+            <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="n">geometry</span><span class="p">,</span>
+            <span class="s2">&quot;redlist&quot;</span><span class="p">:</span> <span class="n">redlist</span><span class="p">,</span>
+            <span class="s2">&quot;hab&quot;</span><span class="p">:</span> <span class="n">hab</span><span class="p">,</span>
+            <span class="s2">&quot;wrims&quot;</span><span class="p">:</span> <span class="n">wrims</span><span class="p">,</span>
+            <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="n">event</span><span class="p">,</span>
+            <span class="s2">&quot;flags&quot;</span><span class="p">:</span> <span class="n">flags</span><span class="p">,</span>
+            <span class="s2">&quot;exclude&quot;</span><span class="p">:</span> <span class="n">exclude</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mapper</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">obis_GET</span><span class="p">(</span>
+            <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">url</span><span class="p">,</span>
+            <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">args</span><span class="p">,</span>
+            <span class="s2">&quot;application/json; charset=utf-8&quot;</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">out</span></div>
+
+<div class="viewcode-block" id="OccQuery.point"><a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.OccQuery.point">[docs]</a>    <span class="k">def</span> <span class="nf">point</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">x</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">,</span>
+        <span class="n">z</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">scientificname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">taxonid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">datasetid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">nodeid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">startdate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">enddate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">startdepth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">enddepth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">geometry</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">redlist</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">hab</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">wrims</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">event</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">flags</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fetch point occurrences for a location (with Geohash precision 8 or</span>
+<span class="sd">        variable Geohash precision) as GeoJSON.</span>
+
+<span class="sd">        :param x: [float] latitudes of a location</span>
+<span class="sd">        :param y: [float] longitude of a location</span>
+<span class="sd">        :param z: [float] vertical datum (geodatic datum WGS84)</span>
+<span class="sd">        :param scientificname: [string] Scientific name. Leave empty to include all</span>
+<span class="sd">            taxa.</span>
+<span class="sd">        :param taxonid: [string] Taxon AphiaID.</span>
+<span class="sd">        :param datasetid: [string] Dataset UUID.</span>
+<span class="sd">        :param nodeid: [string] Node UUID.</span>
+<span class="sd">        :param startdate: [string] Start date formatted as YYYY-MM-DD.</span>
+<span class="sd">        :param enddate: [string] End date formatted as YYYY-MM-DD.</span>
+<span class="sd">        :param startdepth: [integer] Start depth, in meters. Depth below sea level are treated</span>
+<span class="sd">            as positive numbers.</span>
+<span class="sd">        :param enddepth: [integer] End depth, in meters. Depth below sea level are treated</span>
+<span class="sd">            as positive numbers.</span>
+<span class="sd">        :param geometry: [string] Geometry, formatted as WKT or GeoHash.</span>
+<span class="sd">        :param redlist: [boolean] Red List species only, True/False.</span>
+<span class="sd">        :param hab: [boolean] HAB species only, true/false.</span>
+<span class="sd">        :param wrims: [boolean] WRiMS species only, True/False.</span>
+<span class="sd">        :param event: [string] Include pure event records (include) or get pure</span>
+<span class="sd">            event records exclusively (true).</span>
+<span class="sd">        :param flags: [string] Comma separated list of quality flags which need</span>
+<span class="sd">            to be set.</span>
+<span class="sd">        :param exclude: [string] Comma separated list of quality flags to be</span>
+<span class="sd">            excluded.</span>
+
+<span class="sd">        :return: A dictionary</span>
+
+<span class="sd">        Usage::</span>
+
+<span class="sd">            from pyobis.occurrences import OccQuery</span>
+<span class="sd">            occ = OccQuery()</span>
+<span class="sd">            occ.point(x=1.77,y=54.22,scientificname = &#39;Mola mola&#39;)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="k">if</span> <span class="n">z</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;occurrence/point/</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">z</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">scientificname</span> <span class="o">=</span> <span class="n">handle_arrstr</span><span class="p">(</span><span class="n">scientificname</span><span class="p">)</span>
+        <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;scientificname&quot;</span><span class="p">:</span> <span class="n">scientificname</span><span class="p">,</span>
+            <span class="s2">&quot;taxonid&quot;</span><span class="p">:</span> <span class="n">taxonid</span><span class="p">,</span>
+            <span class="s2">&quot;datasetid&quot;</span><span class="p">:</span> <span class="n">datasetid</span><span class="p">,</span>
+            <span class="s2">&quot;nodeid&quot;</span><span class="p">:</span> <span class="n">nodeid</span><span class="p">,</span>
+            <span class="s2">&quot;startdate&quot;</span><span class="p">:</span> <span class="n">startdate</span><span class="p">,</span>
+            <span class="s2">&quot;enddate&quot;</span><span class="p">:</span> <span class="n">enddate</span><span class="p">,</span>
+            <span class="s2">&quot;startdepth&quot;</span><span class="p">:</span> <span class="n">startdepth</span><span class="p">,</span>
+            <span class="s2">&quot;enddepth&quot;</span><span class="p">:</span> <span class="n">enddepth</span><span class="p">,</span>
+            <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="n">geometry</span><span class="p">,</span>
+            <span class="s2">&quot;redlist&quot;</span><span class="p">:</span> <span class="n">redlist</span><span class="p">,</span>
+            <span class="s2">&quot;hab&quot;</span><span class="p">:</span> <span class="n">hab</span><span class="p">,</span>
+            <span class="s2">&quot;wrims&quot;</span><span class="p">:</span> <span class="n">wrims</span><span class="p">,</span>
+            <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="n">event</span><span class="p">,</span>
+            <span class="s2">&quot;flags&quot;</span><span class="p">:</span> <span class="n">flags</span><span class="p">,</span>
+            <span class="s2">&quot;exclude&quot;</span><span class="p">:</span> <span class="n">exclude</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mapper</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">obis_GET</span><span class="p">(</span>
+            <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">url</span><span class="p">,</span>
+            <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">args</span><span class="p">,</span>
+            <span class="s2">&quot;application/json; charset=utf-8&quot;</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">out</span></div>
+
+<div class="viewcode-block" id="OccQuery.tile"><a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.OccQuery.tile">[docs]</a>    <span class="k">def</span> <span class="nf">tile</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">x</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">,</span>
+        <span class="n">z</span><span class="p">,</span>
+        <span class="n">mvt</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">scientificname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">taxonid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">datasetid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">nodeid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">startdate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">enddate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">startdepth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">enddepth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">geometry</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">redlist</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">hab</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">wrims</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">event</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">flags</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fetch point occurrences for a tile (aggregated using variable Geohash</span>
+<span class="sd">        precision based on zoom level) as GeoJSON or MVT.</span>
+
+<span class="sd">        :param x: [float] latitudes of a location</span>
+<span class="sd">        :param y: [float] longitude of a location</span>
+<span class="sd">        :param z: [float] vertical datum (geodatic datum WGS84)</span>
+<span class="sd">        :param scientificname: [string] Scientific name. Leave empty to include</span>
+<span class="sd">            all taxa.</span>
+<span class="sd">        :param taxonid: [string] Taxon AphiaID.</span>
+<span class="sd">        :param datasetid: [string] Dataset UUID.</span>
+<span class="sd">        :param nodeid: [string] Node UUID.</span>
+<span class="sd">        :param startdate: [string] Start date formatted as YYYY-MM-DD.</span>
+<span class="sd">        :param enddate: [string] End date formatted as YYYY-MM-DD.</span>
+<span class="sd">        :param startdepth: [integer] Start depth, in meters. Depth below sea level are treated</span>
+<span class="sd">            as positive numbers.</span>
+<span class="sd">        :param enddepth: [integer] End depth, in meters. Depth below sea level are treated</span>
+<span class="sd">            as positive numbers.</span>
+<span class="sd">        :param geometry: [string] Geometry, formatted as WKT or GeoHash.</span>
+<span class="sd">        :param redlist: [boolean] Red List species only, True/False.</span>
+<span class="sd">        :param hab: [boolean] HAB species only, true/false.</span>
+<span class="sd">        :param wrims: [boolean] WRiMS species only, True/False.</span>
+<span class="sd">        :param event: [string] Include pure event records (include) or get pure</span>
+<span class="sd">            event records exclusively (true).</span>
+<span class="sd">        :param flags: [string] Comma separated list of quality flags which need to</span>
+<span class="sd">            be set.</span>
+<span class="sd">        :param exclude: [string] Comma separated list of quality flags to be</span>
+<span class="sd">            excluded.</span>
+
+<span class="sd">        :return: A dictionary</span>
+
+<span class="sd">        Usage::</span>
+
+<span class="sd">            from pyobis.occurrences import OccQuery</span>
+<span class="sd">            occ = OccQuery()</span>
+<span class="sd">            occ.tile(x=1.77,y=52.26,z=0.5,mvt=0, scientificname = &#39;Mola mola&#39;)</span>
+<span class="sd">            occ.tile(x=1.77,y=52.26,z=0.5,mvt=1, scientificname = &#39;Mola mola&#39;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;occurrence/tile/</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+        <span class="n">scientificname</span> <span class="o">=</span> <span class="n">handle_arrstr</span><span class="p">(</span><span class="n">scientificname</span><span class="p">)</span>
+        <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;scientificname&quot;</span><span class="p">:</span> <span class="n">scientificname</span><span class="p">,</span>
+            <span class="s2">&quot;taxonid&quot;</span><span class="p">:</span> <span class="n">taxonid</span><span class="p">,</span>
+            <span class="s2">&quot;datasetid&quot;</span><span class="p">:</span> <span class="n">datasetid</span><span class="p">,</span>
+            <span class="s2">&quot;nodeid&quot;</span><span class="p">:</span> <span class="n">nodeid</span><span class="p">,</span>
+            <span class="s2">&quot;startdate&quot;</span><span class="p">:</span> <span class="n">startdate</span><span class="p">,</span>
+            <span class="s2">&quot;enddate&quot;</span><span class="p">:</span> <span class="n">enddate</span><span class="p">,</span>
+            <span class="s2">&quot;startdepth&quot;</span><span class="p">:</span> <span class="n">startdepth</span><span class="p">,</span>
+            <span class="s2">&quot;enddepth&quot;</span><span class="p">:</span> <span class="n">enddepth</span><span class="p">,</span>
+            <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="n">geometry</span><span class="p">,</span>
+            <span class="s2">&quot;redlist&quot;</span><span class="p">:</span> <span class="n">redlist</span><span class="p">,</span>
+            <span class="s2">&quot;hab&quot;</span><span class="p">:</span> <span class="n">hab</span><span class="p">,</span>
+            <span class="s2">&quot;wrims&quot;</span><span class="p">:</span> <span class="n">wrims</span><span class="p">,</span>
+            <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="n">event</span><span class="p">,</span>
+            <span class="s2">&quot;flags&quot;</span><span class="p">:</span> <span class="n">flags</span><span class="p">,</span>
+            <span class="s2">&quot;exclude&quot;</span><span class="p">:</span> <span class="n">exclude</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mapper</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="n">mvt</span><span class="p">:</span>
+            <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">url</span> <span class="o">+=</span> <span class="s2">&quot;.mvt&quot;</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+            <span class="p">)</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+            <span class="c1"># stopifnot(out.headers[&#39;content-type&#39;], &quot;text/xml; charset=utf-8&quot;)</span>
+            <span class="k">return</span> <span class="n">out</span><span class="o">.</span><span class="n">content</span>
+
+        <span class="n">out</span> <span class="o">=</span> <span class="n">obis_GET</span><span class="p">(</span>
+            <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">url</span><span class="p">,</span>
+            <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">args</span><span class="p">,</span>
+            <span class="s2">&quot;application/json; charset=utf-8&quot;</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">out</span></div>
+
+<div class="viewcode-block" id="OccQuery.centroid"><a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.OccQuery.centroid">[docs]</a>    <span class="k">def</span> <span class="nf">centroid</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">scientificname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">taxonid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">datasetid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">nodeid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">startdate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">enddate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">startdepth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">enddepth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">geometry</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">redlist</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">hab</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">wrims</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">event</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">flags</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Determine the centroid for a selection of occurrence records.</span>
+
+<span class="sd">        :param scientificname: [string] Scientific name. Leave empty to include all</span>
+<span class="sd">            taxa.</span>
+<span class="sd">        :param taxonid: [string] Taxon AphiaID.</span>
+<span class="sd">        :param datasetid: [string] Dataset UUID.</span>
+<span class="sd">        :param nodeid: [string] Node UUID.</span>
+<span class="sd">        :param startdate: [string] Start date formatted as YYYY-MM-DD.</span>
+<span class="sd">        :param enddate: [string] End date formatted as YYYY-MM-DD.</span>
+<span class="sd">        :param startdepth: [integer] Start depth, in meters. Depth below sea level are treated</span>
+<span class="sd">            as positive numbers.</span>
+<span class="sd">        :param enddepth: [integer] End depth, in meters. Depth below sea level are treated</span>
+<span class="sd">            as positive numbers.</span>
+<span class="sd">        :param geometry: [string] Geometry, formatted as WKT or GeoHash.</span>
+<span class="sd">        :param redlist: [boolean] Red List species only, True/False.</span>
+<span class="sd">        :param hab: [boolean] HAB species only, true/false.</span>
+<span class="sd">        :param wrims: [boolean] WRiMS species only, True/False.</span>
+<span class="sd">        :param event: [string] Include pure event records (include) or get pure</span>
+<span class="sd">            event records exclusively (true).</span>
+<span class="sd">        :param flags: [string] Comma separated list of required quality flags.</span>
+<span class="sd">        :param exclude: [string] Comma separated list of quality flags to be</span>
+<span class="sd">            excluded.</span>
+
+<span class="sd">        :return: A dictionary</span>
+
+<span class="sd">        Usage::</span>
+
+<span class="sd">            from pyobis.occurrences import OccQuery</span>
+<span class="sd">            occ = OccQuery()</span>
+<span class="sd">            occ.centroid(scientificname = &#39;Mola mola&#39;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s2">&quot;occurrence/centroid&quot;</span>
+        <span class="n">scientificname</span> <span class="o">=</span> <span class="n">handle_arrstr</span><span class="p">(</span><span class="n">scientificname</span><span class="p">)</span>
+        <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;scientificname&quot;</span><span class="p">:</span> <span class="n">scientificname</span><span class="p">,</span>
+            <span class="s2">&quot;taxonid&quot;</span><span class="p">:</span> <span class="n">taxonid</span><span class="p">,</span>
+            <span class="s2">&quot;datasetid&quot;</span><span class="p">:</span> <span class="n">datasetid</span><span class="p">,</span>
+            <span class="s2">&quot;nodeid&quot;</span><span class="p">:</span> <span class="n">nodeid</span><span class="p">,</span>
+            <span class="s2">&quot;startdate&quot;</span><span class="p">:</span> <span class="n">startdate</span><span class="p">,</span>
+            <span class="s2">&quot;enddate&quot;</span><span class="p">:</span> <span class="n">enddate</span><span class="p">,</span>
+            <span class="s2">&quot;startdepth&quot;</span><span class="p">:</span> <span class="n">startdepth</span><span class="p">,</span>
+            <span class="s2">&quot;enddepth&quot;</span><span class="p">:</span> <span class="n">enddepth</span><span class="p">,</span>
+            <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="n">geometry</span><span class="p">,</span>
+            <span class="s2">&quot;redlist&quot;</span><span class="p">:</span> <span class="n">redlist</span><span class="p">,</span>
+            <span class="s2">&quot;hab&quot;</span><span class="p">:</span> <span class="n">hab</span><span class="p">,</span>
+            <span class="s2">&quot;wrims&quot;</span><span class="p">:</span> <span class="n">wrims</span><span class="p">,</span>
+            <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="n">event</span><span class="p">,</span>
+            <span class="s2">&quot;flags&quot;</span><span class="p">:</span> <span class="n">flags</span><span class="p">,</span>
+            <span class="s2">&quot;exclude&quot;</span><span class="p">:</span> <span class="n">exclude</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mapper</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">obis_GET</span><span class="p">(</span>
+            <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">url</span><span class="p">,</span>
+            <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">args</span><span class="p">,</span>
+            <span class="s2">&quot;application/json; charset=utf-8&quot;</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">out</span></div>
+
+<div class="viewcode-block" id="OccQuery.get_mapper_url"><a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.OccQuery.get_mapper_url">[docs]</a>    <span class="k">def</span> <span class="nf">get_mapper_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the corresponding API URL for the query.</span>
+
+<span class="sd">        :return: OBIS Mapper URL for the corresponding query</span>
+
+<span class="sd">        Note: For correct output, query for records using multiple (single) Taxon IDs or one</span>
+<span class="sd">        Scientific Name.</span>
+
+<span class="sd">        Usage::</span>
+
+<span class="sd">            from pyobis.occurrences import OccQuery</span>
+<span class="sd">            occ = OccQuery()</span>
+<span class="sd">            data = occ.search(scientificname=&quot;Mola mola&quot;, size=20)</span>
+<span class="sd">            api_url = occ.get_mapper_url()</span>
+<span class="sd">            print(api_url)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mapper</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span>
+                <span class="ow">not</span> <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="s2">&quot;taxonid&quot;</span><span class="p">]</span>
+                <span class="ow">and</span> <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="s2">&quot;scientificname&quot;</span><span class="p">]</span>
+            <span class="p">):</span>
+                <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="s2">&quot;taxonid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lookup_taxon</span><span class="p">(</span>
+                    <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="s2">&quot;scientificname&quot;</span><span class="p">],</span>
+                <span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
+
+            <span class="k">return</span> <span class="p">(</span>
+                <span class="s2">&quot;https://mapper.obis.org/&quot;</span>
+                <span class="o">+</span> <span class="s2">&quot;?&quot;</span>
+                <span class="o">+</span> <span class="n">urlencode</span><span class="p">(</span>
+                    <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">OBISQueryResult</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">},</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;An OBIS mapper URL doesnot exist for this query&quot;</span></div>
+
+<div class="viewcode-block" id="OccQuery.lookup_taxon"><a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.OccQuery.lookup_taxon">[docs]</a>    <span class="k">def</span> <span class="nf">lookup_taxon</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scientificname</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Lookup for taxon metadata with scientificname</span>
+
+<span class="sd">        :param scientificname: [String] Scientific Name</span>
+
+<span class="sd">        :return: A dictionary of taxon metadata for the best matches to the input</span>
+
+<span class="sd">        Usage::</span>
+
+<span class="sd">            from pyobis.occurrences import OccQuery</span>
+<span class="sd">            query = OccQuery()</span>
+<span class="sd">            lookup_data = query.lookup_taxon(scientificname=&quot;Mola mola&quot;)</span>
+<span class="sd">            print(lookup_data)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;https://api.obis.org/v3/taxon/complete/</span><span class="si">{</span><span class="n">scientificname</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="n">json</span><span class="p">()</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, pyOBIS Community.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
