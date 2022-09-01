@@ -1,26 +1,34 @@
 Changelog
 =========
 
+1.2.4 (2022-08-30)
+-----------------------
+
 1.1.4 (2022-08-30)
+-----------------------
 - rm obisissues (issue https://github.com/iobis/pyobis/issues/72)
 
-1.1.3 (2023-7-24)
+1.1.3 (2022-7-24)
+-----------------------
 - adding a progress bar while fetching occurrence records
     + added a progress bar to `occurrences.search()` function to make the process more
     informative to the end user.
 
 1.0.3 (2022-7-22)
+-----------------------
 - resolved issue: package throwing error for MoFs with occurrence records
     + Added a null-check function when accessing MoF records. Previously, accessing MoF records
     for species without any occurrence records resulted in an error.
 
 1.0.2 (2022-7-22)
+-----------------------
 - resolved issue: MoF accessibility (duplicate columns)
     + resolved duplicate column issue when fetching MoF records. Some columns like
     scientificName and eventID were being repeated when performing inner_join on normalized
     and non-normalized DataFrame.
 
 1.0.1 (2022-7-21)
+-----------------------
 - resolved occurrence pagination bug wherein subsequent records were not being fetched
     + fixed the bug while fetching occurrence records iteratively, w/ and w/o user-specified limits
 

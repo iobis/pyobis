@@ -683,6 +683,7 @@ class OccQuery(OBISQueryResult):
         :param scientificname: [String] Scientific Name
 
         :return: A dictionary of taxon metadata for the best matches to the input
+        
         Usage::
 
             from pyobis.occurrences import OccQuery
