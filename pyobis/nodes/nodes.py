@@ -21,8 +21,8 @@ class NodesQuery(OBISQueryResult):
 
         Usage::
 
-            from pyobis.nodes import NodesQuery as NQR
-            nodes = NQR()
+            from pyobis.nodes import NodesQuery
+            nodes = NodesQuery()
             nodes.search(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc")
         """
         OBISQueryResult.url = obis_baseurl + "node/" + id
@@ -48,8 +48,8 @@ class NodesQuery(OBISQueryResult):
 
         Usage::
 
-            from pyobis.nodes import NodesQuery as NQR
-            nodes = NQR()
+            from pyobis.nodes import NodesQuery
+            nodes = NodesQuery()
             nodes.activities(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc")
         """
         OBISQueryResult.url = obis_baseurl + "node/" + id + "/activities"
@@ -71,8 +71,8 @@ class NodesQuery(OBISQueryResult):
 
         Usage::
 
-            from pyobis.nodes import NodesQuery as NQR
-            nodes = NQR()
+            from pyobis.nodes import NodesQuery
+            nodes = NodesQuery()
             data = nodes.search(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc")
             api_url = nodes.get_mapper_url()
             print(api_url)
