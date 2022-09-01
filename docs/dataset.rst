@@ -7,7 +7,7 @@ dataset module
 
 .. autoclass:: DatasetQuery
 
-An DatasetQuery object for fetching dataset records.
+A DatasetQuery object for fetching dataset records.
 
 Usage
 #####
