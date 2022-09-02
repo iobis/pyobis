@@ -2,6 +2,7 @@
 /occurrences/ API endpoints as documented on https://api.obis.org/.
 """
 
+import json
 import sys
 from urllib.parse import urlencode
 
@@ -132,7 +133,7 @@ class OccQuery(OBISQueryResult):
             "flags": flags,
             "offset": offset,
             "mof": mof,
-            "size": 0,
+            "size": 1,
             "hasextensions": hasextensions,
         }
         OBISQueryResult.args = args
@@ -143,6 +144,9 @@ class OccQuery(OBISQueryResult):
         size = (
             out["total"] if not size else size
         )  # if the user has set some size or else we fetch all the records
+
+        outdf = pd.DataFrame(columns=pd.DataFrame(out["results"]).columns)
+
         for i in range(5000, size + 1, 5000):
             args["size"] = 5000
             print(
@@ -160,9 +164,10 @@ class OccQuery(OBISQueryResult):
             res = obis_GET(
                 OBISQueryResult.url, args, "application/json; charset=utf-8", **kwargs
             )
-            out["results"] += res["results"]
+            outdf = pd.concat([outdf, pd.DataFrame(res["results"])], ignore_index=True)
             # make sure that we set the `after` parameter when fetching subsequent records
-            args["after"] = res["results"][4999]["id"]
+            args["after"] = outdf["id"].iloc[-1]
+
         args["size"] = size % 5000
         # we have already fetched records as a set of 5000 records each time,
         # now we need to get remaining records from the total
@@ -175,19 +180,19 @@ class OccQuery(OBISQueryResult):
         res = obis_GET(
             OBISQueryResult.url, args, "application/json; charset=utf-8", **kwargs
         )
-        out["results"] += res["results"]
+        outdf = pd.concat([outdf, pd.DataFrame(res["results"])], ignore_index=True)
         print(f"\nFetched {size} records.")
 
         if mof and out["total"] > 0:
-            mofNormalized = pd.json_normalize(out["results"], "mof", ["id"])
+            mofNormalized = pd.json_normalize(json.loads(outdf.to_json(orient='records')), "mof", ["id"])
             merged = pd.merge(
-                pd.DataFrame(out["results"]),
+                outdf,
                 mofNormalized,
                 on="id",
                 how="inner",
             )
             return merged
-        return out
+        return outdf
 
     def get(self, id, **kwargs):
         """

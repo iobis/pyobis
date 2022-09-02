@@ -8,10 +8,10 @@ data = OQR()
 
 def test_occurrences_search():
     "occurrences.search - basic test"
-    res = data.search(scientificname="Mola mola", size=10100)
-    assert "dict" == res.__class__.__name__
-    assert 2 == len(res)
-    assert list == list(res.keys()).__class__
+    size = 10100
+    res = data.search(scientificname="Mola mola", size=size)
+    assert size == len(res)
+    assert "Mola mola" == res.scientificName[0]
     res = data.search(
         scientificname="Abra alba",
         mof=True,
