@@ -184,7 +184,9 @@ class OccQuery(OBISQueryResult):
         print(f"\nFetched {size} records.")
 
         if mof and out["total"] > 0:
-            mofNormalized = pd.json_normalize(json.loads(outdf.to_json(orient='records')), "mof", ["id"])
+            mofNormalized = pd.json_normalize(
+                json.loads(outdf.to_json(orient="records")), "mof", ["id"],
+            )
             merged = pd.merge(
                 outdf,
                 mofNormalized,
