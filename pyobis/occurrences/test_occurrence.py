@@ -23,6 +23,20 @@ def test_occurrences_search():
     assert requests.get(data.get_mapper_url()).status_code == 200
 
 
+def test_occurrences_search_61():
+    """
+    Search returns same object-type regardless of mof=True or mof=False.
+    Tests for https://github.com/iobis/pyobis/issues/61.
+    """
+    TEST_QUERY = dict(
+        scientificname="Mola mola",
+        size=2,
+    )
+    res1 = data.search(mof=True, **TEST_QUERY)
+    res2 = data.search(mof=False, **TEST_QUERY)
+    assert type(res1) == type(res2)
+
+
 def test_occurrences_get():
     "occurrences.get - basic test"
     res = data.get(id="00023244-457b-48be-8db1-1334d44d6624")
