@@ -34,7 +34,11 @@ from pyobis import occurrence
 occurrence.search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))')
 """
 
-__version__ = "1.2.5"
+try:
+    from ._version import __version__
+except ImportError:
+    __version__ = "unknown"
+
 __title__ = "pyobis"
 __author__ = "pyOBIS Community"
 __license__ = "MIT"

@@ -24,3 +24,4 @@ EXAMPLES.md
 Function_Changes.md
 .vscode
 _build
+pyobis/_version.py
