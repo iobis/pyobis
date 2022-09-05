@@ -8,10 +8,10 @@ data = OQR()
 
 def test_occurrences_search():
     "occurrences.search - basic test"
-    res = data.search(scientificname="Mola mola", size=10100)
-    assert "dict" == res.__class__.__name__
-    assert 2 == len(res)
-    assert list == list(res.keys()).__class__
+    size = 10100
+    res = data.search(scientificname="Mola mola", size=size)
+    assert size == len(res)
+    assert "Mola mola" == res.scientificName[0]
     res = data.search(
         scientificname="Abra alba",
         mof=True,
@@ -21,6 +21,20 @@ def test_occurrences_search():
     assert "Abra alba" == res.scientificName[0]
     assert requests.get(data.get_search_url()).status_code == 200
     assert requests.get(data.get_mapper_url()).status_code == 200
+
+
+def test_occurrences_search_61():
+    """
+    Search returns same object-type regardless of mof=True or mof=False.
+    Tests for https://github.com/iobis/pyobis/issues/61.
+    """
+    TEST_QUERY = dict(
+        scientificname="Mola mola",
+        size=2,
+    )
+    res1 = data.search(mof=True, **TEST_QUERY)
+    res2 = data.search(mof=False, **TEST_QUERY)
+    assert type(res1) == type(res2)
 
 
 def test_occurrences_get():
