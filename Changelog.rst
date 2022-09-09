@@ -1,6 +1,15 @@
 Changelog
 =========
 
+1.2.6 (2022-09-05)
+-----------------------
+- fixing PyPI publishing via github actions (https://github.com/iobis/pyobis/pull/85)
+- Occurrences.search function update to bring in consistency in response (https://github.com/iobis/pyobis/pull/86)
+
+1.2.5 (2022-09-05)
+-----------------------
+- updated analysis notebooks after feature upgrade (https://github.com/iobis/pyobis/pull/81)
+
 1.2.4 (2022-08-30)
 -----------------------
 - made all modules class-ified i.e. creating response classes for each module.
