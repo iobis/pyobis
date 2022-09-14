@@ -1,6 +1,7 @@
 """
 /checklist/ API endpoints as documented on https://api.obis.org/.
 """
+import sys
 
 from ..obisutils import OBISQueryResult, handle_arrstr, obis_baseurl, obis_GET
 
@@ -70,6 +71,8 @@ class ChecklistQuery(OBISQueryResult):
             "enddepth": enddepth,
             "geometry": geometry,
             "flags": flags,
+            "skip": 0,
+            "size": 10,
         }
         out = obis_GET(
             OBISQueryResult.url,
@@ -77,6 +80,34 @@ class ChecklistQuery(OBISQueryResult):
             "application/json; charset=utf-8",
             **kwargs,
         )
+        OBISQueryResult.args["skip"] += 10
+
+        for i in range(10, out["total"], 5000):
+            OBISQueryResult.args["size"] = 5000
+            print(
+                "{}[{}{}] {}/{}".format(
+                    "Fetching: ",
+                    "█" * int((i) * 100 / out["total"]),
+                    "." * (100 - int((i + 1) * 100 / out["total"])),
+                    i,
+                    out["total"],
+                ),
+                end="\r",
+                file=sys.stdout,
+                flush=True,
+            )
+            res = obis_GET(
+                OBISQueryResult.url,
+                OBISQueryResult.args,
+                "application/json; charset=utf-8",
+                **kwargs,
+            )
+            print(len(res["results"]))
+            out["results"] += res["results"]
+            OBISQueryResult.args["skip"] = len(out["results"])
+
+        print(f"\nFetched {out['total']} records.")
+
         return out
 
     def redlist(
