@@ -81,32 +81,53 @@ class ChecklistQuery(OBISQueryResult):
             **kwargs,
         )
         OBISQueryResult.args["skip"] += 10
+        OBISQueryResult.args["size"] = 5000
+        i = 10
 
-        for i in range(10, out["total"], 5000):
-            OBISQueryResult.args["size"] = 5000
-            print(
-                "{}[{}{}] {}/{}".format(
-                    "Fetching: ",
-                    "█" * int((i) * 100 / out["total"]),
-                    "." * (100 - int((i + 1) * 100 / out["total"])),
-                    i,
-                    out["total"],
-                ),
-                end="\r",
-                file=sys.stdout,
-                flush=True,
-            )
+        # an error check is necessary, otherwise print statement throws "division by zero" error
+        try:
+            out["error"]
+            return out["error"]
+        except KeyError:
+            pass
+
+        print(f"Estimated records: {out['total']}")
+        print(
+            "{}[{}{}] {}".format(
+                "Fetching: ",
+                "█" * int(len(out["results"]) * 100 / out["total"]),
+                "." * (100 - int(len(out["results"]) * 100 / out["total"])),
+                len(out["results"]),
+            ),
+            end="\r",
+            file=sys.stdout,
+            flush=True,
+        )
+        while True:
             res = obis_GET(
                 OBISQueryResult.url,
                 OBISQueryResult.args,
                 "application/json; charset=utf-8",
                 **kwargs,
             )
-            print(len(res["results"]))
+            if len(res["results"]) == 0:
+                break
             out["results"] += res["results"]
+            print(
+                "{}[{}{}] {}".format(
+                    "Fetching: ",
+                    "█" * int(len(out["results"]) * 100 / out["total"]),
+                    "." * (100 - int(len(out["results"]) * 100 / out["total"])),
+                    len(out["results"]),
+                ),
+                end="\r",
+                file=sys.stdout,
+                flush=True,
+            )
             OBISQueryResult.args["skip"] = len(out["results"])
-
-        print(f"\nFetched {out['total']} records.")
+            i += 5000
+        # print another time to reset the number of fetched records to the correct value
+        print(f"\nFetched {len(out['results'])} records.")
 
         return out
 
