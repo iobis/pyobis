@@ -91,6 +91,7 @@ class ChecklistQuery(OBISQueryResult):
         except KeyError:
             pass
 
+        # fetch first 10 records, and print number of estimated records
         print(f"Estimated records: {out['total']}")
         print(
             "{}[{}{}] {}".format(
@@ -103,6 +104,7 @@ class ChecklistQuery(OBISQueryResult):
             file=sys.stdout,
             flush=True,
         )
+        # now paginate until the response is null
         while True:
             res = obis_GET(
                 OBISQueryResult.url,
@@ -110,9 +112,11 @@ class ChecklistQuery(OBISQueryResult):
                 "application/json; charset=utf-8",
                 **kwargs,
             )
+            # when we find that no records are there, we break out of loop
             if len(res["results"]) == 0:
                 break
             out["results"] += res["results"]
+            # print the progress bar
             print(
                 "{}[{}{}] {}".format(
                     "Fetching: ",
@@ -125,8 +129,9 @@ class ChecklistQuery(OBISQueryResult):
                 flush=True,
             )
             OBISQueryResult.args["skip"] = len(out["results"])
+            # continue to fetch next 5000 records
             i += 5000
-        # print another time to reset the number of fetched records to the correct value
+        # print actual number of fetched records
         print(f"\nFetched {len(out['results'])} records.")
 
         return out
