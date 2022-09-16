@@ -1,6 +1,7 @@
 """
 /checklist/ API endpoints as documented on https://api.obis.org/.
 """
+import sys
 
 from ..obisutils import OBISQueryResult, handle_arrstr, obis_baseurl, obis_GET
 
@@ -70,6 +71,8 @@ class ChecklistQuery(OBISQueryResult):
             "enddepth": enddepth,
             "geometry": geometry,
             "flags": flags,
+            "skip": 0,
+            "size": 10,
         }
         out = obis_GET(
             OBISQueryResult.url,
@@ -77,6 +80,60 @@ class ChecklistQuery(OBISQueryResult):
             "application/json; charset=utf-8",
             **kwargs,
         )
+        OBISQueryResult.args["skip"] += 10
+        OBISQueryResult.args["size"] = 5000
+        i = 10
+
+        # an error check is necessary, otherwise print statement throws "division by zero" error
+        try:
+            out["error"]
+            return out["error"]
+        except KeyError:
+            pass
+
+        # fetch first 10 records, and print number of estimated records
+        print(f"Estimated records: {out['total']}")
+        print(
+            "{}[{}{}] {}".format(
+                "Fetching: ",
+                "█" * int(len(out["results"]) * 100 / out["total"]),
+                "." * (100 - int(len(out["results"]) * 100 / out["total"])),
+                len(out["results"]),
+            ),
+            end="\r",
+            file=sys.stdout,
+            flush=True,
+        )
+        # now paginate until the response is null
+        while True:
+            res = obis_GET(
+                OBISQueryResult.url,
+                OBISQueryResult.args,
+                "application/json; charset=utf-8",
+                **kwargs,
+            )
+            # when we find that no records are there, we break out of loop
+            if len(res["results"]) == 0:
+                break
+            out["results"] += res["results"]
+            # print the progress bar
+            print(
+                "{}[{}{}] {}".format(
+                    "Fetching: ",
+                    "█" * int(len(out["results"]) * 100 / out["total"]),
+                    "." * (100 - int(len(out["results"]) * 100 / out["total"])),
+                    len(out["results"]),
+                ),
+                end="\r",
+                file=sys.stdout,
+                flush=True,
+            )
+            OBISQueryResult.args["skip"] = len(out["results"])
+            # continue to fetch next 5000 records
+            i += 5000
+        # print actual number of fetched records
+        print(f"\nFetched {len(out['results'])} records.")
+
         return out
 
     def redlist(
