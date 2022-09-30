@@ -211,7 +211,7 @@ class OccQuery(OBISQueryResult):
 
             from pyobis.occurrences import OccQuery
             occ = OccQuery()
-            occ.get(id = '00008e33-6faa-4d98-a00b-91a6ed1ed3ca')
+            occ.get(id = '00003cf7-f2fc-4c53-98a6-7d846e70f5d1')
         """
         OBISQueryResult.url = obis_baseurl + "occurrence/" + str(id)
         OBISQueryResult.args = {}
