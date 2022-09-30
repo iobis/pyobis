@@ -282,6 +282,8 @@ class OccQuery(OBISQueryResult):
             occ.grid(1000, False)   // returns in KML format
         """
         OBISQueryResult.url = obis_baseurl + "occurrence/grid/" + str(precision)
+        scientificname = handle_arrstr(scientificname)
+        taxonid = handle_arrint(taxonid)
         OBISQueryResult.args = {
             "scientificname": scientificname,
             "taxonid": taxonid,
