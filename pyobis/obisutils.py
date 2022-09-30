@@ -79,3 +79,14 @@ def handle_arrstr(x):
             return x
         else:
             return ",".join(x)
+
+def handle_arrint(x):
+    """Converts array arguments into comma-separated integers if applicable."""
+    if x.__class__.__name__ == "NoneType":
+        pass
+    else:
+        if x.__class__.__name__ == "int":
+            return x
+        else:
+            x = list(map(str, x))
+            return ",".join(x)
