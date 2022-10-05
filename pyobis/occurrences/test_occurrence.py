@@ -39,7 +39,7 @@ def test_occurrences_search_61():
 
 def test_occurrences_get():
     "occurrences.get - basic test"
-    res = data.get(id="00023244-457b-48be-8db1-1334d44d6624")
+    res = data.get(id="00003cf7-f2fc-4c53-98a6-7d846e70f5d1")
     assert "dict" == res.__class__.__name__
     assert 2 == len(res)
     assert list == list(res.keys()).__class__
