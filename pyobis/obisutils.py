@@ -22,6 +22,7 @@ def build_api_url(url, args):
         + urlencode({k: v for k, v in args.items() if v is not None})
     )
 
+<<<<<<< HEAD
 def build_api_url(url, args):
     return url + "?" + urlencode({k: v for k, v in args.items() if v is not None})
 
@@ -53,6 +54,8 @@ class OBISQueryResult:
         )
 
 
+=======
+>>>>>>> delete. delete redundant code
 def obis_GET(url, args, ctype, **kwargs):
     """Handles technical details of sending GET request to the API"""
     out = requests.get(url, params=args, **kwargs)
