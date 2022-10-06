@@ -56,12 +56,13 @@ Installing pyobis from the conda-forge channel can be achieved by adding conda-f
 Once the conda-forge channel has been enabled, pyobis can be installed with conda:
 
 .. code-blocks:: console
+    
     conda install pyobis
 
 or with mamba:
 
 .. code-block:: console
-    
+
     mamba install pyobis
 
 `More information here <https://github.com/conda-forge/pyobis-feedstock>`__
