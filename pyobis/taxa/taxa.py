@@ -1,8 +1,55 @@
 """
 /taxon/ API endpoints as documented on https://api.obis.org/.
 """
-from ..obisutils import OBISQueryResult, handle_arrstr, obis_baseurl, obis_GET
+from ..obisutils import OBISQueryResult, build_api_url, handle_arrstr, obis_baseurl, obis_GET
+import pandas as pd
 
+def search(scientificname=None, **kwargs):
+    """
+    Get taxon records.
+
+    :param scientificname: [String,Array] One or more scientific names from the
+        OBIS backbone. All included and synonym taxa are included in the search
+
+    :return: A dictionary
+
+    Usage::
+
+        from pyobis.taxa import TaxaQuery
+        taxa = TaxaQuery()
+        taxa.search(scientificname = 'Mola mola')
+        taxa.search(scientificname=['Mola mola','Abra alba'])
+    """
+
+    scientificname = handle_arrstr(scientificname)
+    url = obis_baseurl + "taxon/" + scientificname
+    args = {"scientificname": scientificname}
+    # return a taxa response class
+    
+    return TaxaResponse(url, args)
+
+class TaxaResponse():
+    """
+    Taxa Response Class
+    """
+    def __init__(self, url, args):
+        self.data = None
+        self.api_url = build_api_url(url, args)
+        self.mapper_url = None
+        self._args_ = args
+        self._url_ = url
+    
+    def fetch(self, **kwargs):
+        out = obis_GET(
+            self._url_,
+            self._args_,
+            "application/json; charset=utf-8",
+            **kwargs
+            )
+        self.data = out
+    
+    def to_pandas(self):
+        return pd.DataFrame(self.data["results"])
 
 class TaxaQuery(OBISQueryResult):
     def __init__(self):
@@ -36,6 +83,7 @@ class TaxaQuery(OBISQueryResult):
             "application/json; charset=utf-8",
             **kwargs
         )
+
         return out
 
     def taxon(self, id, **kwargs):
@@ -88,3 +136,6 @@ class TaxaQuery(OBISQueryResult):
             **kwargs
         )
         return out
+    
+    def execute():
+        return
