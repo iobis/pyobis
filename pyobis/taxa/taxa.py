@@ -28,7 +28,7 @@ def search(scientificname=None, **kwargs):
     
     return TaxaResponse(url, args)
 
-def taxon(self, id, **kwargs):
+def taxon(id, **kwargs):
     """
     Get taxon by ID
 
@@ -58,7 +58,7 @@ def taxon(self, id, **kwargs):
     # return a TaxaResponse Object
     return TaxaResponse(url, args)
 
-def annotations(self, scientificname, **kwargs):
+def annotations(scientificname, **kwargs):
     """
     Get scientific name annotations by the WoRMS team.
 
@@ -95,7 +95,7 @@ class TaxaResponse():
         self.api_url = build_api_url(url, args)
         self.mapper_url = None
         
-        # protected members
+        # private members
         self.__args = args
         self.__url = url
     

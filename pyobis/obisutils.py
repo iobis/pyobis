@@ -73,6 +73,31 @@ def obis_write_disk(url, path, ctype, **kwargs):
                 f.write(chunk)
     return path
 
+class OBISQueryResult:
+    """
+    Return OBIS API URL
+    """
+
+    def get_search_url(self):
+        """
+        Get the corresponding API URL for the query.
+
+        :return: OBIS API URL for the corresponding query
+
+        Usage::
+
+            # supports usage for any query from any module
+            from pyobis.taxa import TaxaQuery
+            query = TaxaQuery
+            query.search(scientificname="Mola mola")
+            query.get_search_url()
+
+        """
+        return (
+            self.url
+            + "?"
+            + urlencode({k: v for k, v in self.args.items() if v is not None})
+        )
 
 def stopifnot(x, ctype):
     if x != ctype:
