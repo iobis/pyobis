@@ -47,7 +47,7 @@ def activities(id=None, **kwargs):
 
 class NodesResponse():
     """
-    Taxa Response Class
+    Nodes Response Class
     """
     def __init__(self, url, args, mapper):
         # public members
