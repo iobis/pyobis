@@ -15,8 +15,8 @@ def test_dataset_get_data():
 
 def test_dataset_get_url():
     query = dataset.get(id="ec9df3b9-3b2b-4d83-881b-27bcbcd57b95")
-    assert requests.get(query.api_url()).status_code == 200
-    assert requests.get(query.get_mapper_url()).status_code == 200
+    assert requests.get(query.api_url).status_code == 200
+    assert requests.get(query.mapper_url).status_code == 200
 
 def test_dataset_search_data():
     "dataset.search - test for data"
@@ -30,5 +30,5 @@ def test_dataset_search_data():
 
 def test_dataset_search_url():
     query = dataset.search(scientificname="Mola mola")
-    assert requests.get(query.api_url()).status_code == 200
-    assert not query.mapper_url()
+    assert requests.get(query.api_url).status_code == 200
+    assert not query.mapper_url
