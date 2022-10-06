@@ -15,12 +15,10 @@ class NoResultException(Exception):
 
     pass
 
+
 def build_api_url(url, args):
-    return (
-        url
-        + "?"
-        + urlencode({k: v for k, v in args.items() if v is not None})
-    )
+    return url + "?" + urlencode({k: v for k, v in args.items() if v is not None})
+
 
 <<<<<<< HEAD
 def build_api_url(url, args):
@@ -73,6 +71,7 @@ def obis_write_disk(url, path, ctype, **kwargs):
                 f.write(chunk)
     return path
 
+
 class OBISQueryResult:
     """
     Return OBIS API URL
@@ -98,6 +97,7 @@ class OBISQueryResult:
             + "?"
             + urlencode({k: v for k, v in self.args.items() if v is not None})
         )
+
 
 def stopifnot(x, ctype):
     if x != ctype:

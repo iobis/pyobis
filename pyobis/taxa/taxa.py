@@ -1,8 +1,10 @@
 """
 /taxon/ API endpoints as documented on https://api.obis.org/.
 """
-from ..obisutils import build_api_url, handle_arrstr, obis_baseurl, obis_GET
 import pandas as pd
+
+from ..obisutils import build_api_url, handle_arrstr, obis_baseurl, obis_GET
+
 
 def search(scientificname=None, **kwargs):
     """
@@ -25,8 +27,9 @@ def search(scientificname=None, **kwargs):
     url = obis_baseurl + "taxon/" + scientificname
     args = {"scientificname": scientificname}
     # return a taxa response class
-    
+
     return TaxaResponse(url, args)
+
 
 def taxon(id, **kwargs):
     """
@@ -48,7 +51,7 @@ def taxon(id, **kwargs):
         # returns the OBIS API URL
         query1.mapper_url
         # returns the OBIS Mapper URL for easy visualization
-        
+
         taxa.taxon(402913).execute().data
         q2 = taxa.taxon(406296)
         q3 = taxa.taxon(415282)
@@ -57,6 +60,7 @@ def taxon(id, **kwargs):
     args = {}
     # return a TaxaResponse Object
     return TaxaResponse(url, args)
+
 
 def annotations(scientificname, **kwargs):
     """
@@ -76,8 +80,8 @@ def annotations(scientificname, **kwargs):
         query1.api_url
         # returns the OBIS API URL
         query1.mapper_url
-        # returns the OBIS Mapper URL for easy visualization      
-        
+        # returns the OBIS Mapper URL for easy visualization
+
     """
     url = obis_baseurl + "taxon/annotations"
     scientificname = handle_arrstr(scientificname)
@@ -85,28 +89,27 @@ def annotations(scientificname, **kwargs):
     # return a TaxaResponse Object
     return TaxaResponse(url, args)
 
-class TaxaResponse():
+
+class TaxaResponse:
     """
     Taxa Response Class
     """
+
     def __init__(self, url, args):
         # public members
         self.data = None
         self.api_url = build_api_url(url, args)
         self.mapper_url = None
-        
+
         # private members
         self.__args = args
         self.__url = url
-    
+
     def execute(self, **kwargs):
         out = obis_GET(
-            self.__url,
-            self.__args,
-            "application/json; charset=utf-8",
-            **kwargs
-            )
+            self.__url, self.__args, "application/json; charset=utf-8", **kwargs
+        )
         self.data = out
-    
+
     def to_pandas(self):
         return pd.DataFrame(self.data["results"])
