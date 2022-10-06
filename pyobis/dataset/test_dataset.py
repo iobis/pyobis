@@ -25,6 +25,7 @@ def test_dataset_search_data():
     assert "dict" == query.data.__class__.__name__
     assert 2 == len(query.data)
     assert dict == query.data["results"][0].__class__
+    assert query.to_pandas().__class__.__name__ == "DataFrame"
 
 def test_dataset_search_url():
     query = dataset.search(scientificname="Mola mola")
