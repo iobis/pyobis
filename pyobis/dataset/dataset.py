@@ -159,7 +159,7 @@ def search(
     enddepth=None,
     geometry=None,
     flags=None,
-    limit=500,
+    limit=None,
     offset=0,
     **kwargs
 ):
@@ -286,7 +286,7 @@ class DatasetResponse():
         self.api_url = build_api_url(url, args)
         self.mapper_url = None
         if mapper:
-            return f"https://mapper.obis.org/?datasetid={url.split('/')[-1]}"
+            self.mapper_url = f"https://mapper.obis.org/?datasetid={url.split('/')[-1]}"
 
         # private members
         self.__args = args
