@@ -72,4 +72,17 @@ class NodesResponse():
         self.data = out
     
     def to_pandas(self):
-        return pd.json_normalize(self.data["results"], "contacts", "id")
+        if "contacts" in self.data["results"][0].keys()
+            return pd.merge(
+                pd.DataFrame(self.data["results"]),
+                pd.json_normalize(self.data["results"], "contacts", "id"),
+                on="id",
+                how="inner",
+                ).drop("contacts", axis=1)
+        
+        return pd.merge(
+                pd.DataFrame(self.data["results"]),
+                pd.json_normalize(self.data["results"], "contributions", "id"),
+                on="id",
+                how="inner",
+                ).drop("contributions", axis=1)

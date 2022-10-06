@@ -23,8 +23,8 @@ def test_nodes_search_url():
     mapper_url correct for supported methods
     """
     query = nodes.search(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc")
-    assert requests.get(query.get_search_url()).status_code == 200
-    assert requests.get(query.get_mapper_url()).status_code == 200
+    assert requests.get(query.api_url).status_code == 200
+    assert requests.get(query.mapper_url).status_code == 200
 
 def test_nodes_activities_data():
     """
