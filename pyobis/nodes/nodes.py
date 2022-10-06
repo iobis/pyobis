@@ -2,82 +2,74 @@
 /nodes/ API endpoints as documented on https://api.obis.org/.
 """
 
-from ..obisutils import OBISQueryResult, obis_baseurl, obis_GET
+from ..obisutils import build_api_url, obis_baseurl, obis_GET
+import pandas as pd
 
+def search(id=None, **kwargs):
+    """
+    Get OBIS nodes records
 
-class NodesQuery(OBISQueryResult):
-    def __init__(self):
-        """
-        A NodesQuery object for fetching Nodes records.
-        """
+    :param id: [String] Node UUID.
 
-    def search(self, id=None, **kwargs):
-        """
-        Get OBIS nodes records
+    :return: A NodesQuery Object
 
-        :param id: [String] Node UUID.
+    Usage::
 
-        :return: A dictionary
+        from pyobis import nodes
+        nodes.search(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc")
+    """
+    url = obis_baseurl + "node/" + id
+    mapper = True
+    args = {}
+    
+    # return NodesQuery Object
+    return NodesResponse(url, args, mapper)
 
-        Usage::
+def activities(id=None, **kwargs):
+    """
+    Get OBIS nodes activities
 
-            from pyobis.nodes import NodesQuery
-            nodes = NodesQuery()
-            nodes.search(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc")
-        """
-        OBISQueryResult.url = obis_baseurl + "node/" + id
-        self.mapper = True
-        OBISQueryResult.args = {}
-        self.nodeid = id  # necessary to get mapper url
+    :param id: [String] Node UUID.
+
+    :return: A NodesQuery object
+
+    Usage::
+
+        from pyobis import nodes
+        nodes.activities(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc")
+    """
+    url = obis_baseurl + "node/" + id + "/activities"
+    args = {}
+    mapper = False
+    
+    # return a NodesQuery object
+    return NodesResponse(url, args, mapper)
+
+class NodesResponse():
+    """
+    Taxa Response Class
+    """
+    def __init__(self, url, args, mapper):
+        # public members
+        self.data = None
+        self.api_url = build_api_url(url, args)
+        self.mapper_url = None
+        if mapper:
+            # get the node id from already built url
+            self.mapper_url = f"https://mapper.obis.org/?nodeid={url.split('/')[-1]}"
+        
+        # private members
+        self.__args = args
+        self.__url = url
+    
+    def execute(self, **kwargs):
         out = obis_GET(
-            OBISQueryResult.url,
-            OBISQueryResult.args,
+            self.__url,
+            self.__args,
             "application/json; charset=utf-8",
             **kwargs
-        )
-
-        return out
-
-    def activities(self, id=None, **kwargs):
-        """
-        Get OBIS nodes activities
-
-        :param id: [String] Node UUID.
-
-        :return: A dictionary
-
-        Usage::
-
-            from pyobis.nodes import NodesQuery
-            nodes = NodesQuery()
-            nodes.activities(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc")
-        """
-        OBISQueryResult.url = obis_baseurl + "node/" + id + "/activities"
-        OBISQueryResult.args = {}
-        self.mapper = False
-        out = obis_GET(
-            OBISQueryResult.url,
-            OBISQueryResult.args,
-            "application/json; charset=utf-8",
-            **kwargs
-        )
-        return out
-
-    def get_mapper_url(self):
-        """
-        Get the corresponding API URL for the query.
-
-        :return: OBIS Mapper URL for the corresponding query
-
-        Usage::
-
-            from pyobis.nodes import NodesQuery
-            nodes = NodesQuery()
-            data = nodes.search(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc")
-            api_url = nodes.get_mapper_url()
-            print(api_url)
-        """
-        if self.mapper:
-            return "https://mapper.obis.org/?nodeid=" + self.nodeid
-
-        return "An OBIS mapper URL doesnot exist for this query"
+            )
+        self.data = out
+    
+    def to_pandas(self):
+        return pd.json_normalize(self.data["results"], "contacts", "id")
