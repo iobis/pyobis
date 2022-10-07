@@ -37,7 +37,7 @@ NOTE: GitHub's jupyter notebook display does not show interactive plots; open th
 Installation
 ============
 
-Install from pypi
+Install from PyPI
 #################
 
 .. code-block:: console
