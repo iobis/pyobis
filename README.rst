@@ -37,13 +37,25 @@ NOTE: GitHub's jupyter notebook display does not show interactive plots; open th
 Installation
 ============
 
-Install from pypi
+Install from PyPI
+#################
 
 .. code-block:: console
 
     pip install pyobis
 
-Install latest dev version from github
+Install from conda-forge
+########################
+Installing pyobis from the conda-forge channel can be achieved by adding conda-forge to your channels with:
+
+.. code-block:: console
+
+    conda install pyobis --channel conda-forge
+
+`More information here <https://github.com/conda-forge/pyobis-feedstock>`__
+
+Install latest development version from GitHub
+######################################
 
 .. code-block:: console
 
