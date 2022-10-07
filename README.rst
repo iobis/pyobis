@@ -50,20 +50,7 @@ Installing pyobis from the conda-forge channel can be achieved by adding conda-f
 
 .. code-block:: console
 
-    conda config --add channels conda-forge
-    conda config --set channel_priority strict
-
-Once the conda-forge channel has been enabled, pyobis can be installed with conda:
-
-.. code-block:: console
-
-    conda install pyobis
-
-or with mamba:
-
-.. code-block:: console
-
-    mamba install pyobis
+    conda install pyobis --channel conda-forge
 
 `More information here <https://github.com/conda-forge/pyobis-feedstock>`__
 
