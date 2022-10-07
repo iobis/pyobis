@@ -54,7 +54,7 @@ Installing pyobis from the conda-forge channel can be achieved by adding conda-f
 
 `More information here <https://github.com/conda-forge/pyobis-feedstock>`__
 
-Install latest dev version from github
+Install latest development version from GitHub
 ######################################
 
 .. code-block:: console
