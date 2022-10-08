@@ -11,7 +11,7 @@ Python client for the `OBIS API(https://api.obis.org/).
 ## What is it?
 Pyobis is an interesting python package that helps users fetch data from OBIS API which
 harvests occurrence records from thousands of datasets and makes them available as a
-single integrated dataset via various services including the OBIS API.
+single integrated dataset.
 
 [The Ocean Biodiversity Information System (OBIS)](https://obis.org) is a global open-access data and
 information clearing-house on marine biodiversity for science, conservation, and sustainable
