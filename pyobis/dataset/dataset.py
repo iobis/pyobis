@@ -2,7 +2,13 @@
 /dataset/ API endpoints as documented on https://api.obis.org/.
 """
 
-from ..obisutils import OBISQueryResult, handle_arrstr, obis_baseurl, obis_GET
+from ..obisutils import (
+    OBISQueryResult,
+    handle_arrint,
+    handle_arrstr,
+    obis_baseurl,
+    obis_GET,
+)
 
 
 class DatasetQuery(OBISQueryResult):
@@ -98,6 +104,7 @@ class DatasetQuery(OBISQueryResult):
         """
         OBISQueryResult.url = obis_baseurl + "dataset"
         scientificname = handle_arrstr(scientificname)
+        taxonid = handle_arrint(taxonid)
         OBISQueryResult.args = {
             "taxonid": taxonid,
             "nodeid": nodeid,

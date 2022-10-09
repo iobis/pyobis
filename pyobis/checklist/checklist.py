@@ -3,7 +3,13 @@
 """
 import sys
 
-from ..obisutils import OBISQueryResult, handle_arrstr, obis_baseurl, obis_GET
+from ..obisutils import (
+    OBISQueryResult,
+    handle_arrint,
+    handle_arrstr,
+    obis_baseurl,
+    obis_GET,
+)
 
 
 class ChecklistQuery(OBISQueryResult):
@@ -61,6 +67,7 @@ class ChecklistQuery(OBISQueryResult):
         """
         OBISQueryResult.url = obis_baseurl + "checklist"
         scientificname = handle_arrstr(scientificname)
+        taxonid = handle_arrint(taxonid)
         OBISQueryResult.args = {
             "taxonid": taxonid,
             "nodeid": nodeid,
@@ -176,6 +183,7 @@ class ChecklistQuery(OBISQueryResult):
         """
         OBISQueryResult.url = obis_baseurl + "checklist/redlist"
         scientificname = handle_arrstr(scientificname)
+        taxonid = handle_arrint(taxonid)
         OBISQueryResult.args = {
             "taxonid": taxonid,
             "nodeid": nodeid,
@@ -235,6 +243,7 @@ class ChecklistQuery(OBISQueryResult):
         """
         OBISQueryResult.url = obis_baseurl + "checklist/newest"
         scientificname = handle_arrstr(scientificname)
+        taxonid = handle_arrint(taxonid)
         OBISQueryResult.args = {
             "taxonid": taxonid,
             "nodeid": nodeid,

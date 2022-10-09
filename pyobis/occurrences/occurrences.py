@@ -11,6 +11,7 @@ import requests
 
 from ..obisutils import (
     OBISQueryResult,
+    handle_arrint,
     handle_arrstr,
     obis_baseurl,
     obis_GET,
@@ -118,6 +119,7 @@ class OccQuery(OBISQueryResult):
         """
         OBISQueryResult.url = obis_baseurl + "occurrence"
         scientificname = handle_arrstr(scientificname)
+        taxonid = handle_arrint(taxonid)
         args = {
             "taxonid": taxonid,
             "nodeid": nodeid,
@@ -280,6 +282,8 @@ class OccQuery(OBISQueryResult):
             occ.grid(1000, False)   // returns in KML format
         """
         OBISQueryResult.url = obis_baseurl + "occurrence/grid/" + str(precision)
+        scientificname = handle_arrstr(scientificname)
+        taxonid = handle_arrint(taxonid)
         OBISQueryResult.args = {
             "scientificname": scientificname,
             "taxonid": taxonid,
@@ -371,6 +375,7 @@ class OccQuery(OBISQueryResult):
         """
         OBISQueryResult.url = obis_baseurl + "occurrence/points"
         scientificname = handle_arrstr(scientificname)
+        taxonid = handle_arrint(taxonid)
         OBISQueryResult.args = {
             "scientificname": scientificname,
             "taxonid": taxonid,
@@ -460,6 +465,7 @@ class OccQuery(OBISQueryResult):
         z = str(z) if z else ""
         OBISQueryResult.url = obis_baseurl + f"occurrence/point/{str(x)}/{str(y)}/{z}"
         scientificname = handle_arrstr(scientificname)
+        taxonid = handle_arrint(taxonid)
         OBISQueryResult.args = {
             "scientificname": scientificname,
             "taxonid": taxonid,
@@ -551,6 +557,7 @@ class OccQuery(OBISQueryResult):
             obis_baseurl + f"occurrence/tile/{str(x)}/{str(y)}/{str(z)}"
         )
         scientificname = handle_arrstr(scientificname)
+        taxonid = handle_arrint(taxonid)
         OBISQueryResult.args = {
             "scientificname": scientificname,
             "taxonid": taxonid,
@@ -639,6 +646,7 @@ class OccQuery(OBISQueryResult):
         """
         OBISQueryResult.url = obis_baseurl + "occurrence/centroid"
         scientificname = handle_arrstr(scientificname)
+        taxonid = handle_arrint(taxonid)
         OBISQueryResult.args = {
             "scientificname": scientificname,
             "taxonid": taxonid,
