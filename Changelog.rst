@@ -1,5 +1,17 @@
 Changelog
 =========
+iobis/pyobis dev
+-----------------------
+- MAJOR:
+    - none
+- MINOR:
+    - array handling added to taxonid occurrence search
+    - progress bar added to downloads
+    - new biodiversity notebook added
+- PATCH:
+     - added conda forge badge to README
+     - various README improvements
+     - fixes for google colab badge links
 
 1.2.6 (2022-09-05)
 -----------------------
