@@ -79,11 +79,11 @@ The official documentation is hosted on GitHub Pages [https://iobis.github.io/py
 
 `pyobis` is split up into modules for each of the groups of API methods.
 
-+ `taxa` - Taxonomic names
-+ `occurrences` - Occurrence search
-+ `dataset` - Dataset
-+ `nodes` - Nodes
-+ `checklist` - Checklist
++ `checklist` - Checklist. Generate a checklist of species under a taxa, IUCN Red List, or most recently added species.
++ `dataset` - Dataset. Get metadata of datasets (including `datasetid`, `owner`, `institution`, `number of records`, etc) for a queried spatiotemporal region or taxa.
++ `nodes` - Nodes. Get records or activities for an OBIS node.
++ `occurrences` - Occurrence. Fetch occurrence records, geopoints, lookup for a `scientificname`, extensions (e.g. DNADerivedData, MeasurementOrFacts, etc.)
++ `taxa` - Taxonomic names. Get taxon records with `taxonid` or `scientificname`, and scientific name annotations by the WoRMS team.
 
 You can import the entire library, or each module individually as needed.
 
