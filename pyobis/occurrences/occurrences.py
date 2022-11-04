@@ -10,29 +10,26 @@ import pandas as pd
 import requests
 
 from ..obisutils import (
+    build_api_url,
     handle_arrint,
     handle_arrstr,
     obis_baseurl,
     obis_GET,
-    build_api_url,
 )
+
 
 class OccResponse:
     """
     Occurrence response class
     """
+
     def __init__(self, url, args, isSearch, hasMapper, isKML):
         self.data = None
         self.api_url = build_api_url(url, args)
         self.mapper_url = None
         if hasMapper:
-            if (
-                not args["taxonid"]
-                and args["scientificname"]
-            ):
-                args["taxonid"] = lookup_taxon(
-                    args["scientificname"],
-                )[0]["id"]
+            if not args["taxonid"] and args["scientificname"]:
+                args["taxonid"] = lookup_taxon(args["scientificname"])[0]["id"]
 
             self.mapper_url = (
                 "https://mapper.obis.org/"
@@ -41,7 +38,7 @@ class OccResponse:
                     {k: v for k, v in args.items() if v is not None},
                 )
             )
-        
+
         # private members
         self.__args = args
         self.__url = url
@@ -53,15 +50,13 @@ class OccResponse:
             out = obis_GET(
                 self.__url, self.__args, "application/json; charset=utf-8", **kwargs
             )
-        
+
         elif self.__isKML:
             print("hello")
-            out = requests.get(
-                self.__url, params=self.__args, **kwargs
-            )
+            out = requests.get(self.__url, params=self.__args, **kwargs)
             out.raise_for_status()
             out = out.content
-        
+
         elif self.__isSearch:
             # setting default parameters from arguments list
             mof = self.__args["mof"]
@@ -94,7 +89,10 @@ class OccResponse:
                 res = obis_GET(
                     self.__url, self.__args, "application/json; charset=utf-8", **kwargs
                 )
-                outdf = pd.concat([outdf, pd.DataFrame(res["results"])], ignore_index=True)
+                outdf = pd.concat(
+                    [outdf, pd.DataFrame(res["results"])],
+                    ignore_index=True,
+                )
                 # make sure that we set the `after` parameter when fetching subsequent records
                 self.__args["after"] = outdf["id"].iloc[-1]
 
@@ -134,6 +132,7 @@ class OccResponse:
     def to_pandas(self):
         return pd.DataFrame(self.data["results"])
 
+
 def get(id, **kwargs):
     """
     Get an OBIS occurrence
@@ -155,7 +154,8 @@ def get(id, **kwargs):
     url = obis_baseurl + "occurrence/" + str(id)
     args = {}
 
-    return OccResponse(url, args, isSearch = False, hasMapper = False, isKML = False)
+    return OccResponse(url, args, isSearch=False, hasMapper=False, isKML=False)
+
 
 def search(
     scientificname=None,
@@ -271,6 +271,7 @@ def search(
     }
     return OccResponse(url, args, isSearch=True, hasMapper=True, isKML=False)
 
+
 def grid(
     precision,
     geojson=True,
@@ -347,9 +348,10 @@ def grid(
     }
     if not geojson:
         url += "/kml"
-        return OccResponse(url, args, isSearch=False, hasMapper=False, isKML = True)
+        return OccResponse(url, args, isSearch=False, hasMapper=False, isKML=True)
 
-    return OccResponse(url, args, isSearch=False, hasMapper=False, isKML = False)
+    return OccResponse(url, args, isSearch=False, hasMapper=False, isKML=False)
+
 
 def getpoints(
     scientificname=None,
@@ -425,8 +427,9 @@ def getpoints(
         "flags": flags,
         "exclude": exclude,
     }
-    
-    return OccResponse(url, args, isSearch= False, hasMapper=False, isKML= False)
+
+    return OccResponse(url, args, isSearch=False, hasMapper=False, isKML=False)
+
 
 def point(
     x,
@@ -508,8 +511,9 @@ def point(
         "flags": flags,
         "exclude": exclude,
     }
-    
+
     return OccResponse(url, args, isSearch=False, hasMapper=False, isKML=False)
+
 
 def tile(
     x,
@@ -571,9 +575,7 @@ def tile(
         occ.tile(x=1.77,y=52.26,z=0.5,mvt=0, scientificname = 'Mola mola')
         occ.tile(x=1.77,y=52.26,z=0.5,mvt=1, scientificname = 'Mola mola')
     """
-    url = (
-        obis_baseurl + f"occurrence/tile/{str(x)}/{str(y)}/{str(z)}"
-    )
+    url = obis_baseurl + f"occurrence/tile/{str(x)}/{str(y)}/{str(z)}"
     scientificname = handle_arrstr(scientificname)
     taxonid = handle_arrint(taxonid)
     args = {
@@ -595,9 +597,10 @@ def tile(
     }
     if mvt:
         url += ".mvt"
-        return OccResponse(url, args, isSearch=False, hasMapper=False, isKML = True)
+        return OccResponse(url, args, isSearch=False, hasMapper=False, isKML=True)
 
     return OccResponse(url, args, isSearch=False, hasMapper=False, isKML=False)
+
 
 def centroid(
     scientificname=None,
@@ -669,8 +672,9 @@ def centroid(
         "flags": flags,
         "exclude": exclude,
     }
-    
+
     return OccResponse(url, args, isSearch=False, hasMapper=False, isKML=False)
+
 
 def lookup_taxon(scientificname):
     """
@@ -682,7 +686,7 @@ def lookup_taxon(scientificname):
 
     Usage::
 
-        from pyobis import occurrences 
+        from pyobis import occurrences
         lookup_data = query.lookup_taxon(scientificname="Mola mola")
         print(lookup_data)
     """

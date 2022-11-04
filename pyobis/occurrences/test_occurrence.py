@@ -3,6 +3,7 @@ import requests
 
 from pyobis import occurrences
 
+
 def test_occurrences_search():
     """
     occurrences.search - basic test for data, check type, size and other methods
@@ -13,6 +14,7 @@ def test_occurrences_search():
     query.execute()
     assert size == len(query.data)
     assert "Mola mola" == query.data.scientificName[0]
+
 
 def test_occurrence_search_mof():
     """
@@ -57,7 +59,7 @@ def test_occurrences_get():
     assert 2 == len(query.data)
     assert list == list(query.data.keys()).__class__
     assert requests.get(query.api_url).status_code == 200
-    assert query.to_pandas().__class__.__name__ == 'DataFrame'
+    assert query.to_pandas().__class__.__name__ == "DataFrame"
 
 
 def test_occurrences_grid():
@@ -87,6 +89,7 @@ def test_occurrences_getpoints():
     assert list == list(query.data.keys()).__class__
     assert requests.get(query.api_url).status_code == 200
     assert not query.mapper_url
+
 
 def test_occurrences_point():
     """

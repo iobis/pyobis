@@ -1,37 +1,38 @@
 """
 /checklist/ API endpoints as documented on https://api.obis.org/.
 """
-import pandas as pd
 import sys
 
+import pandas as pd
+
 from ..obisutils import (
-    OBISQueryResult,
+    build_api_url,
     handle_arrint,
     handle_arrstr,
     obis_baseurl,
-    build_api_url,
     obis_GET,
 )
+
 
 class ChecklistResponse:
     def __init__(self, url, args, paginate):
         self.api_url = build_api_url(url, args)
         self.mapper_url = None
+        self.data = None
 
         # private members
         self.__url = url
         self.__args = args
         self.__paginate = paginate
-    
+
     def execute(self):
         if self.__paginate:
             out = obis_GET(
                 self.__url,
                 self.__args,
                 "application/json; charset=utf-8",
-            
             )
-            self.__.args["skip"] += 10
+            self.__args["skip"] += 10
             self.__args["size"] = 5000
             i = 10
 
@@ -78,23 +79,24 @@ class ChecklistResponse:
                     file=sys.stdout,
                     flush=True,
                 )
-                OBISQueryResult.args["skip"] = len(out["results"])
+                self.__args["skip"] = len(out["results"])
                 # continue to fetch next 5000 records
                 i += 5000
             # print actual number of fetched records
             print(f"\nFetched {len(out['results'])} records.")
         else:
             out = obis_GET(
-                self.__url, self.__args, "application/json; charset=utf-8",
+                self.__url,
+                self.__args,
+                "application/json; charset=utf-8",
             )
-            self.data = out
+        self.data = out
 
     def to_pandas(self):
-        
         return pd.DataFrame(self.data["results"])
 
+
 def list(
-    self,
     scientificname=None,
     taxonid=None,
     nodeid=None,
@@ -155,8 +157,9 @@ def list(
         "skip": 0,
         "size": 10,
     }
-    
-    return ChecklistResponse(url, args, paginate = False)
+
+    return ChecklistResponse(url, args, paginate=True)
+
 
 def redlist(
     scientificname=None,
@@ -210,7 +213,8 @@ def redlist(
         "flags": flags,
     }
 
-    return ChecklistResponse(url, args, paginate = False)
+    return ChecklistResponse(url, args, paginate=False)
+
 
 def newest(
     scientificname=None,
@@ -263,5 +267,5 @@ def newest(
         "geometry": geometry,
         "flags": flags,
     }
-    
-    return ChecklistResponse(url, args, paginate = False)
+
+    return ChecklistResponse(url, args, paginate=False)
