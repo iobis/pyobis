@@ -57,6 +57,7 @@ def test_occurrences_get():
     assert 2 == len(query.data)
     assert list == list(query.data.keys()).__class__
     assert requests.get(query.api_url).status_code == 200
+    assert query.to_pandas().__class__.__name__ == 'DataFrame'
 
 
 def test_occurrences_grid():
@@ -112,6 +113,10 @@ def test_occurrences_tile():
     assert 2 == len(query.data)
     assert list == list(query.data.keys()).__class__
     query = occurrences.tile(x=1.77, y=52.26, z=0.5, mvt=1, scientificname="Mola mola")
+    query.execute()
+    assert requests.get(query.api_url).status_code == 200
+    query = occurrences.tile(x=1.77, y=52.26, z=0.5, mvt=0, scientificname="Mola mola")
+    query.execute()
     assert requests.get(query.api_url).status_code == 200
     assert not query.mapper_url
 

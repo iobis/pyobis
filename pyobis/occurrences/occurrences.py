@@ -55,6 +55,7 @@ class OccResponse:
             )
         
         elif self.__isKML:
+            print("hello")
             out = requests.get(
                 self.__url, params=self.__args, **kwargs
             )
@@ -594,7 +595,7 @@ def tile(
     }
     if mvt:
         url += ".mvt"
-        return OccResponse(url, args, isSearch=False, hasMapper=False, isKML=True)
+        return OccResponse(url, args, isSearch=False, hasMapper=False, isKML = True)
 
     return OccResponse(url, args, isSearch=False, hasMapper=False, isKML=False)
 
