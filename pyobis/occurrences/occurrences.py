@@ -90,7 +90,10 @@ class OccResponse:
                     self.__url, self.__args, "application/json; charset=utf-8", **kwargs
                 )
                 outdf = pd.concat(
-                    [outdf.infer_objects(), pd.DataFrame(res["results"]).infer_objects()],
+                    [
+                        outdf.infer_objects(),
+                        pd.DataFrame(res["results"]).infer_objects(),
+                    ],
                     ignore_index=True,
                 )
                 # make sure that we set the `after` parameter when fetching subsequent records
@@ -108,7 +111,10 @@ class OccResponse:
             res = obis_GET(
                 self.__url, self.__args, "application/json; charset=utf-8", **kwargs
             )
-            outdf = pd.concat([outdf.infer_objects(), pd.DataFrame(res["results"]).infer_objects()], ignore_index=True)
+            outdf = pd.concat(
+                [outdf.infer_objects(), pd.DataFrame(res["results"]).infer_objects()],
+                ignore_index=True,
+            )
             print(f"\nFetched {size} records.")
 
             if mof and out["total"] > 0:
@@ -324,8 +330,8 @@ def grid(
 
     Usage::
 
-        from pyobis import occurrences 
-        
+        from pyobis import occurrences
+
         occurrences.grid(100, True) // returns in GeoJSON format
         ococcurrences.grid(1000, False)   // returns in KML format
     """
@@ -403,7 +409,7 @@ def getpoints(
 
     Usage::
 
-        from pyobis import occurrences 
+        from pyobis import occurrences
         occurrences.getpoints(scientificname = 'Mola mola')
 
         ## Many names
