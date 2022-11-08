@@ -6,6 +6,7 @@ import pandas as pd
 
 from ..obisutils import build_api_url, handle_arrstr, obis_baseurl, obis_GET
 
+
 def search(
     scientificname=None,
     taxonid=None,

@@ -18,9 +18,9 @@ def search(scientificname=None, **kwargs):
     Usage::
 
         from pyobis import taxa
-        
+
         # build a query
-        query = taxa.search(scientificname = 'Mola mola') 
+        query = taxa.search(scientificname = 'Mola mola')
         query.execute() # execute the query i.e. fetch the data
         query.data # return the fetched data
         query.api_url # get the OBIS API URL for the built query

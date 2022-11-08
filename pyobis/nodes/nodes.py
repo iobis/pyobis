@@ -39,7 +39,7 @@ def activities(id=None, **kwargs):
     Usage::
 
         from pyobis import nodes
-        
+
         # build a query
         query = nodes.activities(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc")
         query.execute() # execute the query to fetch the data
