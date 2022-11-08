@@ -90,7 +90,7 @@ class OccResponse:
                     self.__url, self.__args, "application/json; charset=utf-8", **kwargs
                 )
                 outdf = pd.concat(
-                    [outdf, pd.DataFrame(res["results"])],
+                    [outdf.infer_objects(), pd.DataFrame(res["results"]).infer_objects()],
                     ignore_index=True,
                 )
                 # make sure that we set the `after` parameter when fetching subsequent records
@@ -108,7 +108,8 @@ class OccResponse:
             res = obis_GET(
                 self.__url, self.__args, "application/json; charset=utf-8", **kwargs
             )
-            outdf = pd.concat([outdf, pd.DataFrame(res["results"])], ignore_index=True)
+            ######
+            outdf = pd.concat([outdf.infer_objects(), pd.DataFrame(res["results"]).infer_objects()], ignore_index=True)
             print(f"\nFetched {size} records.")
 
             if mof and out["total"] > 0:
@@ -124,10 +125,11 @@ class OccResponse:
                     how="inner",
                 )
                 self.data = merged
-                return
+                return self.data
             self.data = outdf
-            return
+            return self.data
         self.data = out
+        return self.data
 
     def to_pandas(self):
         return pd.DataFrame(self.data["results"])
