@@ -108,7 +108,6 @@ class OccResponse:
             res = obis_GET(
                 self.__url, self.__args, "application/json; charset=utf-8", **kwargs
             )
-            ######
             outdf = pd.concat([outdf.infer_objects(), pd.DataFrame(res["results"]).infer_objects()], ignore_index=True)
             print(f"\nFetched {size} records.")
 
@@ -215,12 +214,11 @@ def search(
 
     Usage::
 
-        from pyobis.occurrences import OccQuery
-        occ = OccQuery()
-        occ.search(scientificname = 'Mola mola')
+        from pyobis import occurrences
+        occurrences.search(scientificname = 'Mola mola').execute()
 
         # Many names
-        occ.search(scientificname = ['Mola', 'Abra', 'Lanice', 'Pectinaria'])
+        occurrences.search(scientificname = ['Mola', 'Abra', 'Lanice', 'Pectinaria']).execute()
 
         # Use paging parameters (limit and start) to page.
         # Note the different results for the two queries below.
@@ -229,26 +227,29 @@ def search(
 
         # Search on a bounding box
         ## in well known text format
-        occ.search(
+        occurrences.search(
             geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))',
             size=20
-        )
-        from pyobis.taxa import TaxaQuery
-        taxa = TaxaQuery()
-        res = taxa.search(scientificname='Mola mola')['results'][0]
-        occ.search(
+        ).execute()
+
+        from pyobis import taxa
+
+        res = taxa.search(scientificname='Mola mola').execute()['results'][0]
+        occurrences.search(
             obisid=res['id'],
             geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))',
             size=20
-        )
-        occ.search(
+        ).execute()
+        occurrences.search(
             aphiaid=res['worms_id'],
             geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))',
             size=20
-        )
+        ).execute()
 
         # Get mof response as a pandas dataframe
-        occ.search(scientificname="Abra", mof=True, hasextensions="MeasurementOrFact", size=100)
+        occurrences.search(
+            scientificname="Abra", mof=True, hasextensions="MeasurementOrFact", size=100
+            ).execute()
     """
     url = obis_baseurl + "occurrence"
     scientificname = handle_arrstr(scientificname)
@@ -323,10 +324,10 @@ def grid(
 
     Usage::
 
-        from pyobis.occurrences import OccQuery
-        occ = OccQuery()
-        occ.grid(100, True) // returns in GeoJSON format
-        occ.grid(1000, False)   // returns in KML format
+        from pyobis import occurrences 
+        
+        occurrences.grid(100, True) // returns in GeoJSON format
+        ococcurrences.grid(1000, False)   // returns in KML format
     """
     url = obis_baseurl + "occurrence/grid/" + str(precision)
     scientificname = handle_arrstr(scientificname)
@@ -402,12 +403,11 @@ def getpoints(
 
     Usage::
 
-        from pyobis.occurrences import OccQuery
-        occ = OccQuery()
-        occ.getpoints(scientificname = 'Mola mola')
+        from pyobis import occurrences 
+        occurrences.getpoints(scientificname = 'Mola mola')
 
         ## Many names
-        occ.getpoints(scientificname = ['Mola mola','Abra alba'])
+        occurrences.getpoints(scientificname = ['Mola mola','Abra alba'])
     """
     url = obis_baseurl + "occurrence/points"
     scientificname = handle_arrstr(scientificname)
@@ -487,9 +487,8 @@ def point(
 
     Usage::
 
-        from pyobis.occurrences import OccQuery
-        occ = OccQuery()
-        occ.point(x=1.77,y=54.22,scientificname = 'Mola mola')
+        from pyobis import occurrences
+        occurrences.point(x=1.77,y=54.22,scientificname = 'Mola mola')
 
     """
     z = str(z) if z else ""
@@ -572,10 +571,9 @@ def tile(
 
     Usage::
 
-        from pyobis.occurrences import OccQuery
-        occ = OccQuery()
-        occ.tile(x=1.77,y=52.26,z=0.5,mvt=0, scientificname = 'Mola mola')
-        occ.tile(x=1.77,y=52.26,z=0.5,mvt=1, scientificname = 'Mola mola')
+        from pyobis import occurrences
+        occurrences.tile(x=1.77,y=52.26,z=0.5,mvt=0, scientificname = 'Mola mola')
+        occurrences.tile(x=1.77,y=52.26,z=0.5,mvt=1, scientificname = 'Mola mola')
     """
     url = obis_baseurl + f"occurrence/tile/{str(x)}/{str(y)}/{str(z)}"
     scientificname = handle_arrstr(scientificname)
@@ -650,9 +648,8 @@ def centroid(
 
     Usage::
 
-        from pyobis.occurrences import OccQuery
-        occ = OccQuery()
-        occ.centroid(scientificname = 'Mola mola')
+        from pyobis import occurrences
+        occurrences.centroid(scientificname = 'Mola mola')
     """
     url = obis_baseurl + "occurrence/centroid"
     scientificname = handle_arrstr(scientificname)
@@ -689,7 +686,7 @@ def lookup_taxon(scientificname):
     Usage::
 
         from pyobis import occurrences
-        lookup_data = query.lookup_taxon(scientificname="Mola mola")
+        lookup_data = occurrences.lookup_taxon(scientificname="Mola mola")
         print(lookup_data)
     """
     res = requests.get(f"https://api.obis.org/v3/taxon/complete/{scientificname}")
