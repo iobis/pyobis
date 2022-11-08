@@ -17,10 +17,17 @@ def search(scientificname=None, **kwargs):
 
     Usage::
 
-        from pyobis.taxa import TaxaQuery
-        taxa = TaxaQuery()
-        taxa.search(scientificname = 'Mola mola')
-        taxa.search(scientificname=['Mola mola','Abra alba'])
+        from pyobis import taxa
+        
+        # build a query
+        query = taxa.search(scientificname = 'Mola mola') 
+        query.execute() # execute the query i.e. fetch the data
+        query.data # return the fetched data
+        query.api_url # get the OBIS API URL for the built query
+        query.mapper_url # get the OBIS Mapper URL (if it exists)
+
+        # or simply get the data in one-easy step
+        data = taxa.search(scientificname=['Mola mola','Abra alba']).execute()
     """
 
     scientificname = handle_arrstr(scientificname)
@@ -52,7 +59,7 @@ def taxon(id, **kwargs):
         query1.mapper_url
         # returns the OBIS Mapper URL for easy visualization
 
-        taxa.taxon(402913).execute().data
+        taxa.taxon(402913).execute()
         q2 = taxa.taxon(406296)
         q3 = taxa.taxon(415282)
     """
@@ -110,6 +117,7 @@ class TaxaResponse:
             self.__url, self.__args, "application/json; charset=utf-8", **kwargs
         )
         self.data = out
+        return self.data
 
     def to_pandas(self):
         return pd.DataFrame(self.data["results"])

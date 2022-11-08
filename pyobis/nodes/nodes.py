@@ -18,7 +18,7 @@ def search(id=None, **kwargs):
     Usage::
 
         from pyobis import nodes
-        nodes.search(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc")
+        data = nodes.search(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc").execute()
     """
     url = obis_baseurl + "node/" + id
     mapper = True
@@ -39,7 +39,13 @@ def activities(id=None, **kwargs):
     Usage::
 
         from pyobis import nodes
-        nodes.activities(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc")
+        
+        # build a query
+        query = nodes.activities(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc")
+        query.execute() # execute the query to fetch the data
+        query.data # get fetched data
+        query.api_url # check the corresponding OBIS API URL for the query
+        query.mapper_url # check the corresponding OBIS Mapper URL for the query (if it exists)
     """
     url = obis_baseurl + "node/" + id + "/activities"
     args = {}
@@ -78,6 +84,7 @@ class NodesResponse:
             self.__url, self.__args, "application/json; charset=utf-8", **kwargs
         )
         self.data = out
+        return self.data
 
     def to_pandas(self):
         """
