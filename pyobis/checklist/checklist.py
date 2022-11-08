@@ -134,12 +134,11 @@ def list(
 
     Usage::
 
-        from pyobis.checklist import ChecklistQuery
-        ch = ChecklistQuery()
-        ch.list(scientificname = 'Mola mola')
+        from pyobis import checklist
+        checklist.list(scientificname = 'Mola mola').execute()
 
         # taxonid of 3013
-        ch.list(taxonid = 3013)
+        checklist.list(taxonid = 3013).execute()
     """
     url = obis_baseurl + "checklist"
     scientificname = handle_arrstr(scientificname)
@@ -194,9 +193,8 @@ def redlist(
 
     Usage::
 
-        from pyobis.checklist import ChecklistQuery
-        ch = ChecklistQuery()
-        ch.redlist(scientificname='Abra Alba')
+        from pyobis import checklist
+        checklist.redlist(scientificname='Abra Alba').execute()
     """
     url = obis_baseurl + "checklist/redlist"
     scientificname = handle_arrstr(scientificname)
@@ -249,9 +247,8 @@ def newest(
 
     Usage::
 
-        from pyobis.checklist import ChecklistQuery
-        ch = ChecklistQuery()
-        ch.newest(scientificname='Abra Alba')
+        from pyobis import checklist
+        checklist.newest(scientificname='Abra Alba')
     """
     url = obis_baseurl + "checklist/newest"
     scientificname = handle_arrstr(scientificname)
