@@ -16,6 +16,10 @@ class NoResultException(Exception):
     pass
 
 
+def build_api_url(url, args):
+    return url + "?" + urlencode({k: v for k, v in args.items() if v is not None})
+
+
 class OBISQueryResult:
     """
     Return OBIS API URL
