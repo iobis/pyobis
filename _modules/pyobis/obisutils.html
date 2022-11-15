@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pyobis.obisutils &mdash; pyobis 1.2.7.dev52+g8c33cae documentation</title>
+  <title>pyobis.obisutils &mdash; pyobis 1.2.7.dev62+g9d6b949 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -29,7 +29,7 @@
             <a href="../../index.html" class="icon icon-home"> pyobis
           </a>
               <div class="version">
-                1.2.7.dev52+g8c33cae
+                1.2.7.dev62+g9d6b949
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -89,6 +89,10 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">pass</span>
+
+
+<span class="k">def</span> <span class="nf">build_api_url</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">url</span> <span class="o">+</span> <span class="s2">&quot;?&quot;</span> <span class="o">+</span> <span class="n">urlencode</span><span class="p">({</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">args</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">})</span>
 
 
 <span class="k">class</span> <span class="nc">OBISQueryResult</span><span class="p">:</span>
