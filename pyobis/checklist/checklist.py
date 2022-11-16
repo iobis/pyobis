@@ -15,7 +15,14 @@ from ..obisutils import (
 
 
 class ChecklistResponse:
+    """
+    An OBIS Checklist Response Object
+    """
+
     def __init__(self, url, args, paginate):
+        """
+        Initialise the object parameters
+        """
         self.api_url = build_api_url(url, args)
         self.mapper_url = None
         self.data = None
@@ -26,6 +33,9 @@ class ChecklistResponse:
         self.__paginate = paginate
 
     def execute(self):
+        """
+        Execute or fetch the data based on the query
+        """
         if self.__paginate:
             out = obis_GET(
                 self.__url,
@@ -93,6 +103,9 @@ class ChecklistResponse:
         self.data = out
 
     def to_pandas(self):
+        """
+        Convert the results into a pandas DataFrame
+        """
         return pd.DataFrame(self.data["results"])
 
 

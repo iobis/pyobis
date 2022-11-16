@@ -99,10 +99,13 @@ def annotations(scientificname, **kwargs):
 
 class TaxaResponse:
     """
-    Taxa Response Class
+    An OBIS Taxa Response Class
     """
 
     def __init__(self, url, args):
+        """
+        Initialise the object parameters
+        """
         # public members
         self.data = None
         self.api_url = build_api_url(url, args)
@@ -113,6 +116,9 @@ class TaxaResponse:
         self.__url = url
 
     def execute(self, **kwargs):
+        """
+        Execute or fetch the data based on the query
+        """
         out = obis_GET(
             self.__url, self.__args, "application/json; charset=utf-8", **kwargs
         )
@@ -120,4 +126,7 @@ class TaxaResponse:
         return self.data
 
     def to_pandas(self):
+        """
+        Convert the results into a pandas DataFrame
+        """
         return pd.DataFrame(self.data["results"])
