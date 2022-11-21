@@ -136,7 +136,7 @@ def get(id, **kwargs):
     return DatasetResponse(url, args, mapper)
 
 
-class DatasetResponse:
+class DatasetResponse(object):
     """
     An OBIS Dataset Response Object
     """

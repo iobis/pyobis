@@ -14,7 +14,7 @@ from ..obisutils import (
 )
 
 
-class ChecklistResponse:
+class ChecklistResponse(object):
     """
     An OBIS Checklist Response Object
     """
