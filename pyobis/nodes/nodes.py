@@ -55,7 +55,7 @@ def activities(id=None, **kwargs):
     return NodesResponse(url, args, mapper)
 
 
-class NodesResponse(object):
+class NodesResponse:
     """
     An OBIS Nodes Response Class
     """

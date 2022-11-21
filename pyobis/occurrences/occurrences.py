@@ -18,7 +18,7 @@ from ..obisutils import (
 )
 
 
-class OccResponse(object):
+class OccResponse:
     """
     An OBIS Occurrence response class
     """

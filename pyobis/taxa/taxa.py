@@ -97,7 +97,7 @@ def annotations(scientificname, **kwargs):
     return TaxaResponse(url, args)
 
 
-class TaxaResponse(object):
+class TaxaResponse:
     """
     An OBIS Taxa Response Class
     """
