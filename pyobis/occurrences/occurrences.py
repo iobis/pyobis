@@ -20,10 +20,13 @@ from ..obisutils import (
 
 class OccResponse:
     """
-    Occurrence response class
+    An OBIS Occurrence response class
     """
 
     def __init__(self, url, args, isSearch, hasMapper, isKML):
+        """ "
+        Initialise the object parameters
+        """
         self.data = None
         self.api_url = build_api_url(url, args)
         self.mapper_url = None
@@ -46,6 +49,9 @@ class OccResponse:
         self.__isKML = isKML
 
     def execute(self, **kwargs):
+        """
+        Execute or fetch the data based on the query
+        """
         if not self.__isSearch and not self.__isKML:
             out = obis_GET(
                 self.__url, self.__args, "application/json; charset=utf-8", **kwargs
@@ -137,6 +143,9 @@ class OccResponse:
         return self.data
 
     def to_pandas(self):
+        """
+        Convert the results into a pandas DataFrame
+        """
         return pd.DataFrame(self.data["results"])
 
 

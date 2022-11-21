@@ -1,3 +1,3 @@
-from .taxa import TaxaQuery
+from .taxa import annotations, search, taxon
 
-__all__ = ["TaxaQuery"]
+__all__ = ["search", "taxon", "annotations"]
