@@ -5,31 +5,34 @@ occurrences module
 
 .. py:module:: pyobis.occurrences
 
-.. autoclass:: OccQuery
-
-An OccQuery object for fetching occurrence records.
+.. autoclass:: OccResponse
 
 Usage
 #####
 
 .. code-block:: python
 
-    from pyobis.occurrences import OccQuery
+    from pyobis import occurrences
 
-    query = OccQuery()
-    data = query.search(args, **kwargs)
-    api_url = query.get_search_url()
+    query = occurrences.search(scientificname="Mola mola")
+    query.execute()
+    query.data  # Returns the data
+    query.api_url  # Returns the OBIS API URL
+    query.mapper_url  # Returns the OBIS Mapper URL
+
+    data = occurrences.search(scientificname="Mola mola", size=10).execute()
+    occurrences.search(
+        geometry="POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))", size=20
+    )
 
 Methods:
 ########
 
-.. automethod:: OccQuery.search
-.. automethod:: OccQuery.get
-.. automethod:: OccQuery.grid
-.. automethod:: OccQuery.getpoints
-.. automethod:: OccQuery.point
-.. automethod:: OccQuery.tile
-.. automethod:: OccQuery.centroid
-.. automethod:: OccQuery.get_search_url
-.. automethod:: OccQuery.get_mapper_url
-.. automethod:: OccQuery.lookup_taxon
+.. autofunction:: search
+.. autofunction:: get
+.. autofunction:: grid
+.. autofunction:: getpoints
+.. autofunction:: point
+.. autofunction:: tile
+.. autofunction:: centroid
+.. autofunction:: lookup_taxon

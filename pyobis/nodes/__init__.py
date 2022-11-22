@@ -1,3 +1,3 @@
-from .nodes import activities, search
+from .nodes import NodesResponse, activities, search
 
-__all__ = ["search", "activities"]
+__all__ = ["search", "activities", "NodesResponse"]

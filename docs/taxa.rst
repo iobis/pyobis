@@ -5,25 +5,29 @@ taxa module
 
 .. py:module:: pyobis.taxa
 
-.. autoclass:: TaxaQuery
-
-A TaxaQuery object for fetching taxa records.
+.. autoclass:: TaxaResponse
 
 Usage
 #####
 
 .. code-block:: python
 
-    from pyobis.taxa import TaxaQuery
+    from pyobis import taxa
 
-    query = TaxaQuery()
-    data = query.search(args, **kwargs)
-    api_url = query.get_search_url()
+    query = taxa.search(scientificname="Mola mola")
+    query.execute()
+    query.data  # Returns the data
+    query.api_url  # Returns the API URL
+    query.to_pandas()  # Returns a pandas DataFrame
+
+    data = taxa.search(scientificname="Mola mola").execute()
+    taxa.search(geometry="POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))")
+    taxa.taxon(10332)
+    taxa.taxon(127405)
 
 Methods:
 ########
 
-.. automethod:: TaxaQuery.search
-.. automethod:: TaxaQuery.taxon
-.. automethod:: TaxaQuery.annotations
-.. automethod:: TaxaQuery.get_search_url
+.. autofunction:: search
+.. autofunction:: taxon
+.. autofunction:: annotations

@@ -1,4 +1,5 @@
 from .occurrences import (
+    OccResponse,
     centroid,
     get,
     getpoints,
@@ -18,4 +19,5 @@ __all__ = [
     "lookup_taxon",
     "point",
     "centroid",
+    "OccResponse",
 ]

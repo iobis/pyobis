@@ -1,7 +1,8 @@
-from .checklist import list, newest, redlist
+from .checklist import ChecklistResponse, list, newest, redlist
 
 __all__ = [
     "list",
     "redlist",
     "newest",
+    "ChecklistResponse",
 ]

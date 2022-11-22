@@ -1,3 +1,3 @@
-from .dataset import get, search
+from .dataset import DatasetResponse, get, search
 
-__all__ = ["search", "get"]
+__all__ = ["search", "get", "DatasetResponse"]
