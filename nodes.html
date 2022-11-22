@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>nodes module &mdash; pyobis 1.2.7.dev82+g4eb3820 documentation</title>
+  <title>nodes module &mdash; pyobis 1.2.7.dev86+gecd631d documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -32,7 +32,7 @@
             <a href="index.html" class="icon icon-home"> pyobis
           </a>
               <div class="version">
-                1.2.7.dev82+g4eb3820
+                1.2.7.dev86+gecd631d
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -47,8 +47,13 @@
 <li class="toctree-l1"><a class="reference internal" href="taxa.html">taxa module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dataset.html">dataset module</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">nodes module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pyobis.nodes.NodesResponse"><code class="docutils literal notranslate"><span class="pre">NodesResponse</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#methods">Methods:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#methods">Methods:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pyobis.nodes.search"><code class="docutils literal notranslate"><span class="pre">search()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyobis.nodes.activities"><code class="docutils literal notranslate"><span class="pre">activities()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="checklist.html">checklist module</a></li>
@@ -81,19 +86,69 @@
              
   <section id="module-pyobis.nodes">
 <span id="nodes-module"></span><span id="nodes"></span><h1>nodes module<a class="headerlink" href="#module-pyobis.nodes" title="Permalink to this heading"></a></h1>
-<p>A NodesQuery object for fetching nodes records.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyobis.nodes.NodesResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyobis.nodes.</span></span><span class="sig-name descname"><span class="pre">NodesResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mapper</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyobis/nodes/nodes.html#NodesResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyobis.nodes.NodesResponse" title="Permalink to this definition"></a></dt>
+<dd><p>An OBIS Nodes Response Class</p>
+</dd></dl>
+
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis.nodes</span> <span class="kn">import</span> <span class="n">NodesQuery</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">nodes</span>
 
-<span class="n">query</span> <span class="o">=</span> <span class="n">NodesQuery</span><span class="p">()</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="n">api_url</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">get_search_url</span><span class="p">()</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Mola&quot;</span><span class="p">,</span> <span class="s2">&quot;Abra&quot;</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="n">query</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+<span class="n">query</span><span class="o">.</span><span class="n">data</span>  <span class="c1"># Returns the data</span>
+<span class="n">query</span><span class="o">.</span><span class="n">api_url</span>  <span class="c1"># Returns the API URL</span>
 </pre></div>
 </div>
 </section>
 <section id="methods">
 <h2>Methods:<a class="headerlink" href="#methods" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyobis.nodes.search">
+<span class="sig-prename descclassname"><span class="pre">pyobis.nodes.</span></span><span class="sig-name descname"><span class="pre">search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyobis/nodes/nodes.html#search"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyobis.nodes.search" title="Permalink to this definition"></a></dt>
+<dd><p>Get OBIS nodes records</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>id</strong> – [String] Node UUID.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A NodesQuery Object</p>
+</dd>
+</dl>
+<p>Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">nodes</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;4bf79a01-65a9-4db6-b37b-18434f26ddfc&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyobis.nodes.activities">
+<span class="sig-prename descclassname"><span class="pre">pyobis.nodes.</span></span><span class="sig-name descname"><span class="pre">activities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyobis/nodes/nodes.html#activities"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyobis.nodes.activities" title="Permalink to this definition"></a></dt>
+<dd><p>Get OBIS nodes activities</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>id</strong> – [String] Node UUID.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A NodesQuery object</p>
+</dd>
+</dl>
+<p>Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyobis</span> <span class="kn">import</span> <span class="n">nodes</span>
+
+<span class="c1"># build a query</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">activities</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;4bf79a01-65a9-4db6-b37b-18434f26ddfc&quot;</span><span class="p">)</span>
+<span class="n">query</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span> <span class="c1"># execute the query to fetch the data</span>
+<span class="n">query</span><span class="o">.</span><span class="n">data</span> <span class="c1"># get fetched data</span>
+<span class="n">query</span><span class="o">.</span><span class="n">api_url</span> <span class="c1"># check the corresponding OBIS API URL for the query</span>
+<span class="n">query</span><span class="o">.</span><span class="n">mapper_url</span> <span class="c1"># check the corresponding OBIS Mapper URL for the query (if it exists)</span>
+</pre></div>
+</div>
+</dd></dl>
+
 </section>
 </section>
 

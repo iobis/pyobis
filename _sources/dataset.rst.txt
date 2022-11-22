@@ -5,25 +5,24 @@ dataset module
 
 .. py:module:: pyobis.dataset
 
-.. autoclass:: DatasetQuery
-
-A DatasetQuery object for fetching dataset records.
+.. autoclass:: DatasetResponse
 
 Usage
 #####
 
 .. code-block:: python
 
-    from pyobis.dataset import DatasetQuery
+    from pyobis import dataset
 
-    query = DatasetQuery()
-    data = query.search(args, **kwargs)
-    api_url = query.get_search_url()
+    query = dataset.search(args, **kwargs)  # Build the Query
+    query.execute()  # Execute the Query
+    query.data  # Returns the data
+
+    # or build and execute at the same time
+    data = dataset.search(args, **kwargs).execute()
 
 Methods:
 ########
 
-.. automethod:: DatasetQuery.get
-.. automethod:: DatasetQuery.search
-.. automethod:: DatasetQuery.get_search_url
-.. automethod:: DatasetQuery.get_mapper_url
+.. autofunction:: get
+.. autofunction:: search

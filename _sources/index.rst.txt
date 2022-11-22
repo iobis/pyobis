@@ -46,67 +46,75 @@ Taxa module
 
 .. code-block:: python
 
-    from pyobis.taxa import TaxaQuery
+    from pyobis import taxa
 
-    query = TaxaQuery()
+    query = taxa.search(scientificname="Mola mola")
+    query.execute()
+    query.data  # Returns the data
+    query.api_url  # Returns the API URL
 
-    query.search(scientificname="Mola mola")
-    query.search(scientificname="Mola mola", offset=10)
-    query.search(geometry="POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))")
-    query.taxon(10332)
-    query.taxon(127405)
-    query.get_search_url()
+    data = taxa.search(scientificname="Mola mola").execute()
+    taxa.search(geometry="POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))")
+    taxa.taxon(10332)
+    taxa.taxon(127405)
+
 
 Occurrence module
 #################
 
 .. code-block:: python
 
-    from pyobis.occurrences import OccQuery
+    from pyobis import occurrences
 
-    query = OccQuery()
+    query = occurrences.search(scientificname="Mola mola")
+    query.execute()
+    query.data  # Returns the data
+    query.api_url  # Returns the OBIS API URL
+    query.mapper_url  # Returns the OBIS Mapper URL
 
-    query.search(scientificname="Mola mola")
-    query.search(scientificname="Mola mola", offset=0, size=10)
-    query.search(
+    data = occurrences.search(scientificname="Mola mola", size=10).execute()
+    occurrences.search(
         geometry="POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))", size=20
     )
-    query.get_mapper_url()
+
 
 Dataset module
 ##############
 
 .. code-block:: python
 
-    from pyobis.dataset import DatasetQuery
+    from pyobis import dataset
 
-    query = DatasetQuery()
+    query = dataset.search(scientificname=["Mola", "Abra", "Lanice", "Pectinaria"])
+    query.execute()
+    query.data  # Returns the data
+    query.api_url  # Returns the API URL
 
-    query.search(scientificname=["Mola", "Abra", "Lanice", "Pectinaria"])
-    query.get(id="ec9df3b9-3b2b-4d83-881b-27bcbcd57b95")
+    data = dataset.get(id="ec9df3b9-3b2b-4d83-881b-27bcbcd57b95").execute()
 
 Nodes module
 ############
 
 .. code-block:: python
 
-    from pyobis.nodes import NodesQuery
+    from pyobis import nodes
 
-    query = NodesQuery()
-
-    query.search(scientificname=["Mola", "Abra"])
-    query.get_search_url()
+    query = nodes.search(scientificname=["Mola", "Abra"])
+    query.execute()
+    query.data  # Returns the data
+    query.api_url  # Returns the API URL
 
 Checklist module
 ################
 
 .. code-block:: python
 
-    from pyobis.checklist import ChecklistQuery
+    from pyobis import checklist
 
-    query = ChecklistQuery()
-
-    query.list(scientificname="Cetacea")
+    query = checklist.list(scientificname="Cetacea")
+    query.execute()
+    query.data  # Returns the data
+    query.api_url  # Returns the OBIS API URL
 
 Meta
 ====
@@ -119,9 +127,6 @@ Meta
 
 .. |docs| image:: https://github.com/iobis/pyobis/actions/workflows/deploy-docs.yml/badge.svg
    :target: https://iobis.github.io/pyobis
-
-
-
 
 
 
