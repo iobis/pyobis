@@ -5,25 +5,22 @@ checklist module
 
 .. py:module:: pyobis.checklist
 
-.. autoclass:: ChecklistQuery
-
-A ChecklistQuery object for fetching checklist records.
+.. autoclass:: ChecklistResponse
 
 Usage
 #####
 
 .. code-block:: python
 
-    from pyobis.checklist import ChecklistQuery
+    from pyobis import checklist
 
-    query = ChecklistQuery()
-    data = query.search(args, **kwargs)
-    api_url = query.get_search_url()
+    query = checklist.list(taxonid = 127405, **kwargs)
+    query.api_url # Returns the API URL
+    query.to_pandas() # Returns a pandas DataFrame object
 
 Methods:
 ########
 
-.. automethod:: ChecklistQuery.list
-.. automethod:: ChecklistQuery.redlist
-.. automethod:: ChecklistQuery.newest
-.. automethod:: ChecklistQuery.get_search_url
+.. autofunction:: list
+.. autofunction:: redlist
+.. autofunction:: newest

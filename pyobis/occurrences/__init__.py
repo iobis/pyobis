@@ -7,6 +7,7 @@ from .occurrences import (
     point,
     search,
     tile,
+    OccResponse,
 )
 
 __all__ = [
@@ -18,4 +19,5 @@ __all__ = [
     "lookup_taxon",
     "point",
     "centroid",
+    "OccResponse",
 ]

@@ -1,3 +1,3 @@
-from .taxa import annotations, search, taxon
+from .taxa import annotations, search, taxon, TaxaResponse
 
-__all__ = ["search", "taxon", "annotations"]
+__all__ = ["search", "taxon", "annotations", "TaxaResponse"]
