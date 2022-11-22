@@ -1,5 +1,17 @@
 Changelog
 =========
+
+1.3.6 (2022-11-22)
+-----------------------
+- MAJOR:
+    - none
+- MINOR:
+    - making UI simpler and more intuitive by a refactored OOP approach.
+    - data is now returned as a response object with its own parameters and methods.
+    - one-click method to every response object to convert it into a pandas DataFrame.
+- PATCH:
+    - various README improvements including better description of modules and their suggested use.
+
 iobis/pyobis dev
 -----------------------
 - MAJOR:
