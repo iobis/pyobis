@@ -1,4 +1,5 @@
 from .occurrences import (
+    OccResponse,
     centroid,
     get,
     getpoints,
@@ -7,7 +8,6 @@ from .occurrences import (
     point,
     search,
     tile,
-    OccResponse,
 )
 
 __all__ = [

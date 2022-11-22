@@ -12,13 +12,13 @@ Usage
 
 .. code-block:: python
 
-    from pyobis import occurrences 
+    from pyobis import occurrences
 
     query = occurrences.search(scientificname="Mola mola")
     query.execute()
-    query.data # Returns the data
-    query.api_url # Returns the OBIS API URL
-    query.mapper_url # Returns the OBIS Mapper URL
+    query.data  # Returns the data
+    query.api_url  # Returns the OBIS API URL
+    query.mapper_url  # Returns the OBIS Mapper URL
 
     data = occurrences.search(scientificname="Mola mola", size=10).execute()
     occurrences.search(

@@ -1,3 +1,3 @@
-from .nodes import activities, search, NodesResponse
+from .nodes import NodesResponse, activities, search
 
 __all__ = ["search", "activities", "NodesResponse"]

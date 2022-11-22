@@ -14,9 +14,9 @@ Usage
 
     from pyobis import dataset
 
-    query = dataset.search(args, **kwargs) # Build the Query
-    query.execute() # Execute the Query
-    query.data # Returns the data
+    query = dataset.search(args, **kwargs)  # Build the Query
+    query.execute()  # Execute the Query
+    query.data  # Returns the data
 
     # or build and execute at the same time
     data = dataset.search(args, **kwargs).execute()

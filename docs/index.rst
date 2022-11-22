@@ -47,17 +47,17 @@ Taxa module
 .. code-block:: python
 
     from pyobis import taxa
-    
-    query  = taxa.search(scientificname="Mola mola")
+
+    query = taxa.search(scientificname="Mola mola")
     query.execute()
-    query.data # Returns the data
-    query.api_url # Returns the API URL
+    query.data  # Returns the data
+    query.api_url  # Returns the API URL
 
     data = taxa.search(scientificname="Mola mola").execute()
     taxa.search(geometry="POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))")
     taxa.taxon(10332)
     taxa.taxon(127405)
-    
+
 
 Occurrence module
 #################
@@ -68,15 +68,15 @@ Occurrence module
 
     query = occurrences.search(scientificname="Mola mola")
     query.execute()
-    query.data # Returns the data
-    query.api_url # Returns the OBIS API URL
-    query.mapper_url # Returns the OBIS Mapper URL
+    query.data  # Returns the data
+    query.api_url  # Returns the OBIS API URL
+    query.mapper_url  # Returns the OBIS Mapper URL
 
     data = occurrences.search(scientificname="Mola mola", size=10).execute()
     occurrences.search(
         geometry="POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))", size=20
     )
-    
+
 
 Dataset module
 ##############
@@ -87,8 +87,8 @@ Dataset module
 
     query = dataset.search(scientificname=["Mola", "Abra", "Lanice", "Pectinaria"])
     query.execute()
-    query.data # Returns the data
-    query.api_url # Returns the API URL
+    query.data  # Returns the data
+    query.api_url  # Returns the API URL
 
     data = dataset.get(id="ec9df3b9-3b2b-4d83-881b-27bcbcd57b95").execute()
 
@@ -101,8 +101,8 @@ Nodes module
 
     query = nodes.search(scientificname=["Mola", "Abra"])
     query.execute()
-    query.data # Returns the data
-    query.api_url # Returns the API URL
+    query.data  # Returns the data
+    query.api_url  # Returns the API URL
 
 Checklist module
 ################
@@ -113,8 +113,8 @@ Checklist module
 
     query = checklist.list(scientificname="Cetacea")
     query.execute()
-    query.data # Returns the data
-    query.api_url # Returns the OBIS API URL
+    query.data  # Returns the data
+    query.api_url  # Returns the OBIS API URL
 
 Meta
 ====

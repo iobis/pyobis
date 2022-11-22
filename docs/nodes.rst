@@ -16,12 +16,11 @@ Usage
 
     query = nodes.search(scientificname=["Mola", "Abra"], **kwargs)
     query.execute()
-    query.data # Returns the data
-    query.api_url # Returns the API URL
+    query.data  # Returns the data
+    query.api_url  # Returns the API URL
 
 Methods:
 ########
 
 .. autofunction:: search
 .. autofunction:: activities
-
