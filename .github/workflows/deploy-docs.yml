@@ -1,10 +1,13 @@
 name: Build and Deploy docs
 
 on:
+  pull_request:
   push:
     branches:
-      - master
       - main
+  release:
+    types:
+      - published
 
 jobs:
   build-docs:
@@ -17,7 +20,7 @@ jobs:
         fetch-depth: 0
 
     - name: Setup Mamba
-      uses: mamba-org/provision-with-micromamba@main
+      uses: mamba-org/provision-with-micromamba@v14
       with:
         environment-file: false
 
@@ -42,7 +45,8 @@ jobs:
         popd
 
     - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3.6.1
+      if: github.event_name == 'release' || github.event_name == 'push'
+      uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: docs/_build/html
