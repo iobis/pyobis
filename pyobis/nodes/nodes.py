@@ -25,7 +25,7 @@ def search(id=None, **kwargs):
     args = {}
 
     # return NodesQuery Object
-    return NodesResponse(url, args, mapper)
+    return NodesResponse(url, {**args, **kwargs}, mapper)
 
 
 def activities(id=None, **kwargs):
@@ -52,7 +52,7 @@ def activities(id=None, **kwargs):
     mapper = False
 
     # return a NodesQuery object
-    return NodesResponse(url, args, mapper)
+    return NodesResponse(url, {**args, **kwargs}, mapper)
 
 
 class NodesResponse:

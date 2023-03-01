@@ -52,7 +52,7 @@ def test_occurrences_get():
     """
     occurrences.get - basic test for data, check type, size and other methods
     """
-    query = occurrences.get(id="00003cf7-f2fc-4c53-98a6-7d846e70f5d1")
+    query = occurrences.get(id=occurrences.search(size=1).execute()['id'].values[0])
     assert not query.data
     query.execute()
     assert "dict" == query.data.__class__.__name__

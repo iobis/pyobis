@@ -66,7 +66,7 @@ def taxon(id, **kwargs):
     url = obis_baseurl + "taxon/" + str(id)
     args = {}
     # return a TaxaResponse Object
-    return TaxaResponse(url, args)
+    return TaxaResponse(url, {**args, **kwargs})
 
 
 def annotations(scientificname, **kwargs):
@@ -94,7 +94,7 @@ def annotations(scientificname, **kwargs):
     scientificname = handle_arrstr(scientificname)
     args = {"scientificname": scientificname}
     # return a TaxaResponse Object
-    return TaxaResponse(url, args)
+    return TaxaResponse(url, {**args, **kwargs})
 
 
 class TaxaResponse:
