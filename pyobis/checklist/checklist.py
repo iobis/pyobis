@@ -170,7 +170,7 @@ def list(
         "size": 10,
     }
 
-    return ChecklistResponse(url, args, paginate=True)
+    return ChecklistResponse(url, {**args, **kwargs}, paginate=True)
 
 
 def redlist(
@@ -224,7 +224,7 @@ def redlist(
         "flags": flags,
     }
 
-    return ChecklistResponse(url, args, paginate=False)
+    return ChecklistResponse(url, {**args, **kwargs}, paginate=False)
 
 
 def newest(
@@ -278,4 +278,4 @@ def newest(
         "flags": flags,
     }
 
-    return ChecklistResponse(url, args, paginate=False)
+    return ChecklistResponse(url, {**args, **kwargs}, paginate=False)

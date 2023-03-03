@@ -109,7 +109,7 @@ def search(
     }
 
     mapper = False
-    return DatasetResponse(url, args, mapper)
+    return DatasetResponse(url, {**args, **kwargs}, mapper)
 
 
 def get(id, **kwargs):
@@ -133,7 +133,7 @@ def get(id, **kwargs):
     mapper = True
 
     # returns a DatasetResponse object
-    return DatasetResponse(url, args, mapper)
+    return DatasetResponse(url, {**args, **kwargs}, mapper)
 
 
 class DatasetResponse:
