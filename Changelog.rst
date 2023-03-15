@@ -1,6 +1,15 @@
 Changelog
 =========
 
+1.3.1 (2023-03-03)
+-----------------------
+- MAJOR:
+    - none
+- MINOR:
+    - none
+- PATCH:
+    - fixes `kwargs` being ignored while executing arguments outside the parameter list (#121).
+
 1.3.0 (2022-11-22)
 -----------------------
 - MAJOR:
