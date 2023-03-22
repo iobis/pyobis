@@ -1,9 +1,10 @@
 """Tests for checklist module"""
+import pytest
 import requests
 
 from pyobis import checklist
 
-
+@pytest.mark.vcr()
 def test_checklist():
     """
     checklist.list - basic test for data, check type, size and other methods
@@ -18,7 +19,7 @@ def test_checklist():
     assert "Mola mola" == query.data["results"][0]["species"]
     assert requests.get(query.api_url).status_code == 200
 
-
+@pytest.mark.vcr()
 def test_checklist_redlist():
     """
     checklist.redlist - basic test for data, check type, size and other methods
@@ -33,7 +34,7 @@ def test_checklist_redlist():
     assert "Mola mola" == query.data["results"][0]["species"]
     assert requests.get(query.api_url).status_code == 200
 
-
+@pytest.mark.vcr()
 def test_checklist_newest():
     """
     checklist.newest - basic test for data, check type, size and other methods
