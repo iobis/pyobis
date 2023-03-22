@@ -30,4 +30,4 @@ jobs:
       shell: bash -l {0}
       run: |
         micromamba activate TEST
-        python -m pytest -rxs --cov=pyobis ./pyobis
+        python -m pytest -rxs --cov=pyobis ./pyobis --vcr-record=none
