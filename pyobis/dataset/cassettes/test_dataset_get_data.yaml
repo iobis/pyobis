@@ -1,0 +1,71 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      Host:
+      - api.obis.org
+      User-Agent:
+      - Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
+        Gecko)         Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.52
+    method: GET
+    uri: https://api.obis.org/v3/dataset/ec9df3b9-3b2b-4d83-881b-27bcbcd57b95
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA+VXbW/bNhD+K4Q+OYAl612WimFz7KbIkNRBmxZohyKgJMomIpEGSdlxi/z3HSXZ
+        ltKl6LpP7RAjMsW74z3Pvfj4xVBc4dJInLEhiKxLJY3kry8GzY3EIFmcF14am17qpqafTz1zOnVS
+        043SLM3yIErjwBgbtQB9Y63UJplM6EZZ25J+tlIyIbXgKZUTMMxrkZHfxW85ZlSuU8LUmmYVZ1Rx
+        QdkKrGCRremWdJbkM6Y6KSvn3zS2qdMStohG4dquZ9rwiW9tJ/HdJPAt27Y/glgmCFZaiNVlCUA2
+        ebvsdBz43NrTxPOTILQ8J2p0uNBO8iyrhSAsI/COPCjCJOVMk2dUBMtakAr84qLAmTI+jQ2psKJS
+        0QxEvhgvt7BpJDbATmVjRH/PBd9s9PlO6EM8lqcjkij2IycaG4vXswURwEC+wAo3Wten45biQh+X
+        OF44jW3vsfMM3hg3y6sPr5avR6PIipzYQ0CCH8f++LCEZxzFY8e3PDeIv14/EW+XZ2cAXlFVakYW
+        TTRQFw5UYYgFQaewICAXo0LwCi0Xs2tNJdWkcAbKf3JJCsnZGM2sF+jNXikixmgB3xdkg4XS6BAv
+        0DnlMqOaE2Si2TsQIQxOun+BRq7tBGcJ+pduWD0/7ugxFSAsSjRcGppolHGmMGUIpzWDtIPjR6yu
+        UiK0U5TldEvzGpcSbeCV3BDwUZ4hzHKUUl5hKdFoRxTaEbpaAxCBcrE/rAYqlBVcVI072jXKFClL
+        kikwLrQ0pI9xu6YS7bi4R/AsaQa5R3IEjoEhjNBcZzWkCJrzCnBLNFNK0LTWNtFoPjfPP5whqAF0
+        1arCMQXRaXcoey/HOUTfxA5UgU+iqTn1I88MUhu7cZBDcn1f2UsJdWo8ahSQ+apWpG0uDFc6Yd6X
+        GFcSXbabtUJbrokh6CPRPvGMYEYegB3VBCZ0XW/4FhIDonyM2uMnXZ0Qp6xrYoLrxGwDqvYbfWZT
+        8VyA+RUwxFpPWgkoov6SixVk0udDgr5jIC8kVXsd8RkW61o+n5y6BXEQbnRbe6TCtDx2GlH+0zl3
+        TzGffL/LqdyUeA+uzDsMj+Pvh2jMysLoYTwWnPHLIV1gqMUB1rad/NRI27T+JWLaQXkGaUUU1h36
+        RnAII/mBSr0ose6EEl23rf/y0HzQ6P3V5cez59EZuvn+0bWxQYfT48hut7NOe98E3raqJ8CvO2To
+        CO1EAXgEnX5ZzI9x7uiAXw6eUT2V3ECo9r9Cqt9oqGhZoK8z4cdo+J6kuF2Tw2RwTeGhREOEgtcv
+        2ZYKzjQLLw4yFzDkSdX8fr/GCqYrNFsBMfv/LzG9BZrDP6DkDZf3tMx/smwxliUZlMw1ZjJb/3RF
+        A8MO4znpXdf8tIhiDLeWMMAxXNfS0Ey9KDWdqe/5hRvmeZGBkx3sl7VYnl++bQzdkz2Mk3lrq1uA
+        yBVnKxPaSYUGlyvIDYlrUetRdPb2YtaE5KS17N+M+rKvzi8vkJ6mJUzCt4APvecZDNQlFvsEdYOk
+        kNYqpYUFFE22x+2JfjfJW927hhs97pt2ZDq29VCVT32AW5XYtnH8hhNv61T9Bz9kq96eDzTmfMdK
+        jjse9wQLI9E3ycGO6/i2vmtnLeF+HDhu5DquBnBUcQcqjh+EYU/H8R3b92J76g+UnKGSN/WmfaXA
+        Czw3ssPhSfbQuSiKejqBE9peFHtxX8WJByqRG/Q0Qsdz4tCxBwrTgULcdwrutV70+An+/ga5UUDZ
+        ihAAAA==
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 22 Mar 2023 11:43:19 GMT
+      ETag:
+      - W/"108a-XkkvRz4D+jlV5zvpDqOkntXUALg"
+      Server:
+      - nginx/1.14.0 (Ubuntu)
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Cache-Date:
+      - Wed, 22 Mar 2023 11:43:19 GMT
+      X-Powered-By:
+      - Express
+    status:
+      code: 200
+      message: OK
+version: 1

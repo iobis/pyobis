@@ -1,0 +1,45 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+    method: GET
+    uri: https://api.obis.org/v3/taxon/545439
+  response:
+    body:
+      string: '{"total":1,"results":[{"scientificName":"Nuuanu mokari","scientificNameAuthorship":"J.L.
+        Barnard, 1974","taxonID":545439,"taxonRank":"Species","taxonomicStatus":"accepted","acceptedNameUsage":"Nuuanu
+        mokari","acceptedNameUsageID":545439,"is_marine":true,"is_brackish":false,"is_freshwater":false,"is_terrestrial":false,"kingdom":"Animalia","phylum":"Arthropoda","subphylum":"Crustacea","superclass":"Multicrustacea","class":"Malacostraca","subclass":"Eumalacostraca","superorder":"Peracarida","order":"Amphipoda","suborder":"Senticaudata","infraorder":"Hadziida","parvorder":"Hadziidira","superfamily":"Hadzioidea","family":"Nuuanuidae","genus":"Nuuanu","species":"Nuuanu
+        mokari","kingdomid":2,"phylumid":1065,"subphylumid":1066,"superclassid":845959,"classid":1071,"subclassid":1086,"superorderid":1090,"orderid":1135,"suborderid":719424,"infraorderid":719475,"parvorderid":719495,"superfamilyid":719496,"familyid":719504,"genusid":545427,"speciesid":545439}]}'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '961'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 22 Mar 2023 11:44:26 GMT
+      ETag:
+      - W/"3c1-wfN8i0aaJ5jC060U5I0WDQ0Perk"
+      Server:
+      - nginx/1.14.0 (Ubuntu)
+      Vary:
+      - Accept-Encoding
+      X-Cache-Date:
+      - Wed, 22 Mar 2023 11:44:26 GMT
+      X-Powered-By:
+      - Express
+    status:
+      code: 200
+      message: OK
+version: 1

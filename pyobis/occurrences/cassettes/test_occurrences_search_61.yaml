@@ -1,0 +1,398 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+    method: GET
+    uri: https://api.obis.org/v3/taxon/complete/Mola%20mola
+  response:
+    body:
+      string: '[{"id":127405,"scientificName":"Mola mola","acceptedNameUsageID":"127405","scientificNameAuthorship":"(Linnaeus,
+        1758)","rank":"Species","kingdom":"Animalia","phylum":"Chordata","class":"Actinopteri","order":"Tetraodontiformes","family":"Molidae","genus":"Mola","species":"Mola
+        mola"}]'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '285'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 22 Mar 2023 11:43:54 GMT
+      ETag:
+      - W/"11d-I57FqTI+vVgMKJjpZTEpk0Z9XFU"
+      Server:
+      - nginx/1.14.0 (Ubuntu)
+      Vary:
+      - Accept-Encoding
+      X-Cache-Date:
+      - Wed, 22 Mar 2023 11:43:54 GMT
+      X-Powered-By:
+      - Express
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      Host:
+      - api.obis.org
+      User-Agent:
+      - Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
+        Gecko)         Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.52
+    method: GET
+    uri: https://api.obis.org/v3/occurrence?taxonid=127405&scientificname=Mola+mola&offset=0&mof=True&size=1
+  response:
+    body:
+      string: !!binary |
+        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
+        gtJsQFxu7NLIKtslzkVX18/fnv8EohPREssPAAA=
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 22 Mar 2023 11:43:55 GMT
+      ETag:
+      - W/"fcb-KsF5ajsvvZuES7+81D8n+fZ5fas"
+      Server:
+      - nginx/1.14.0 (Ubuntu)
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Cache-Date:
+      - Wed, 22 Mar 2023 11:43:55 GMT
+      X-Powered-By:
+      - Express
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      Host:
+      - api.obis.org
+      User-Agent:
+      - Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
+        Gecko)         Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.52
+    method: GET
+    uri: https://api.obis.org/v3/occurrence?taxonid=127405&scientificname=Mola+mola&offset=0&mof=True&size=2
+  response:
+    body:
+      string: !!binary |
+        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
+        RBS78T5PfHv6D3OGhG/zFQAA
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 22 Mar 2023 11:43:56 GMT
+      ETag:
+      - W/"15f3-Nqd3qjdB65L4ohLRfbFPgPXVJcY"
+      Server:
+      - nginx/1.14.0 (Ubuntu)
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Cache-Date:
+      - Wed, 22 Mar 2023 11:43:56 GMT
+      X-Powered-By:
+      - Express
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+    method: GET
+    uri: https://api.obis.org/v3/taxon/complete/Mola%20mola
+  response:
+    body:
+      string: '[{"id":127405,"scientificName":"Mola mola","acceptedNameUsageID":"127405","scientificNameAuthorship":"(Linnaeus,
+        1758)","rank":"Species","kingdom":"Animalia","phylum":"Chordata","class":"Actinopteri","order":"Tetraodontiformes","family":"Molidae","genus":"Mola","species":"Mola
+        mola"}]'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '285'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 22 Mar 2023 11:43:57 GMT
+      ETag:
+      - W/"11d-I57FqTI+vVgMKJjpZTEpk0Z9XFU"
+      Server:
+      - nginx/1.14.0 (Ubuntu)
+      Vary:
+      - Accept-Encoding
+      X-Cache-Date:
+      - Wed, 22 Mar 2023 11:43:57 GMT
+      X-Powered-By:
+      - Express
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      Host:
+      - api.obis.org
+      User-Agent:
+      - Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
+        Gecko)         Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.52
+    method: GET
+    uri: https://api.obis.org/v3/occurrence?taxonid=127405&scientificname=Mola+mola&offset=0&mof=False&size=1
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA+1X32/bNhD+Vwg+tYCkiJL8S31ynDTJGidB7LQPdRFQEm1zkUiNpJJ5Rf73HUnH
+        dppibxs2YEHRRNTxeHf87rtP37GRhtY4T0jazwKsmO5qo3H+9TvmYqlou97UXYNzfCaoWUttZEMN
+        xQGuqGH3G0YV7I3jQYB1yZkwfMnLK9qwixPY0ymR15pXeUMVF0y3DGx0JNUqN/R3AWY5SQZZ3MM/
+        bofNU1lT1MB/8JKLij/yqqP1RHbCwFsCq1RrWXKIo7plS6aYKBlEjr9+X+BSSa0VWy5wbp+4YZCN
+        9E9S8RUX8PcCn9O65SJAN9FVFKBx9EuEbhmtAnQaoY/dr1w+0AAdRycROmba2D/RiRSC1fUmQJfW
+        /Jz+wcDBJEKfJBh8itCd4lQ4D5f0WLHyt45Z1+iEQ+UMkwGCbZMaKrdx+86krKwz8D1R8qliKkBU
+        VOAKjj3fQFoFLdcLHCxw2xW27C50KPrILRpuana/Nk3t1q+PL2bh7HQ8Hd/kaL5m6EmqukKwj6IS
+        KswUWkqF/I3Ar6ahdYA0o6jgqvJH2yfTKfCLKq6N4kVnuBR6f94/c5Rman9t8GAR408uGRVy5eDp
+        LLnW3bYuybvkfU7iLCSkt8DP8FKKmosH93ZtTJsvFkfw7+npKTLSoRGe5KHHxRFVhpeQJrwouA4h
+        yoa2oVmz0OUY2hxDn2MIOYY+x9DnaM1Dm2IIGboHnyFE8/z8zfaOkm3LKpwvaa1ZgFd8Rcsa4Mxh
+        jcRkBJ0IgXBqu8h3CGyC5gHnlxQuoKugQ7IkSofQOF2x25uM0mzUD7DZtLaFTh8hQnzgH9bGpeFC
+        thD4ZsW5661dm7vjhwk4hfaU4pZBWg9209w+IgCzVBWrENUI7mAyu1tgVGwQlAW1SkKDMgUOX/ki
+        AV7Shtcb95z0+vEowCVUr5arq64pYAc083BE7ge9DDbLsuyUa+WZoaazh7dASj6Pgmqur5e3Lg54
+        c941VFwXgIxHalEDJpAXmAOOLKlty9vICnjF1hu6hgxDEodxH5Fh3hsA79kS2FdxHJMB1DrsM0bC
+        LBuxcMj6o7CgtEd6ZUKypeWplqrHHSleayCWcm3WG2AeCF5VLp85M4rKSlo+k6px73zxfpbyikn1
+        wl/VCfS3izMehPEwTOI5xJkkeTYAy0emCki0cff6xhIdWFp8ambuXWYDoIr+YEjDuMeqMBstWTiK
+        0zQs02pIlmlRkFGB9wCTYrVFWNjvRSlQeynrmpW2whNp1130LzOACXuzZDjo9Yex+wFMeqb3d+7h
+        u79YNxoO8q85NJK2bl13Hh2VikGWj1CwpgEqsB16tDXSR8UmFOVRFsVHLwFoA936JoQVEw49Uz9B
+        rOVF5SfMFgk/q7B8EkxdCG177CDfq+vx+MPV9OPsw9Xpx9nEQpEXNfd8wcsJNx5//w+f/4fPv3r4
+        IPTfQV2ELMwi9HfeNHg/qD16dX/Q5eynRHtIGIWi5QPX692wea1jxx2IZqXXvAUP7y65EJR1OkBk
+        0Bu+x5ZZYShwkNbsDphRGcqF2VyIKYOsLHsRQtKIjKzYhTEHJrtz/ISm4gGsZp5u8Zb1PO32kzQN
+        tnxD69lfyWtfOpwb1TEnKA5GeNbPyMiNHkHLrqZqu99hFulOLG32Vka8Ic0tVTqS9s5eU7Sr7pw3
+        fqLsSsq3NF06Tt2LkItX62gOGif/zDV8FCDNV2uQNStb0Tc6x4ocIRuoXg2KQtlvCBffF3k7naHL
+        Gcyj7ej28itNExAtUpoWqmK+fJqD7c31xdX8nZ+HyAmv9/spu62IyxddSWXWaGxqCsGWaOpROXWo
+        dFCcexiOmdUoaFx0oqJwsWjWqUe2sZgfeFFQMXAA4HNK4/RmdpZnadJHX85mQzs2HQBkw8udUHqk
+        NWQQ4AeoRCXtrrGwE53bO36CW1DHstrYSF/FiLfzGip72nKgGft9tUXGTlkOs7RvPxB30mcCuK78
+        p+B22v8Aqj20b4ASuPbzMY5iEv/wk+AD0IHNZ2gEBo3lnW/lrZNVNZNWce1Lv9MSr6TjHjMeHx9Q
+        C6ky/KJFfaS8onYJ4MRWUtnFz3f76jk5fSj3HDh6SdpLLJwq5rTVV9wbpP1eVoJiLNkgzBhNwiJZ
+        kpBlVZYsh8tRmRL8DU6u6cp+V4OWuD85vZmf20Vt80pJlEGHaSgos+REXZsTkpE0syZW20DZhlb/
+        gtJsQFxu7NLo+dvzn4MRT1zADwAA
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 22 Mar 2023 11:43:57 GMT
+      ETag:
+      - W/"fc0-IzkvvdaQ9fgyugp1/P9hJY+n2oo"
+      Server:
+      - nginx/1.14.0 (Ubuntu)
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Cache-Date:
+      - Wed, 22 Mar 2023 11:43:57 GMT
+      X-Powered-By:
+      - Express
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      Host:
+      - api.obis.org
+      User-Agent:
+      - Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
+        Gecko)         Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.52
+    method: GET
+    uri: https://api.obis.org/v3/occurrence?taxonid=127405&scientificname=Mola+mola&offset=0&mof=False&size=2
+  response:
+    body:
+      string: !!binary |
+        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
+        D1xXs9XdFQAA
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 22 Mar 2023 11:43:58 GMT
+      ETag:
+      - W/"15dd-BwB992UzXi2mGSEk+OSRckSjQZo"
+      Server:
+      - nginx/1.14.0 (Ubuntu)
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Cache-Date:
+      - Wed, 22 Mar 2023 11:43:58 GMT
+      X-Powered-By:
+      - Express
+    status:
+      code: 200
+      message: OK
+version: 1
