@@ -1,9 +1,10 @@
 """Tests for occurrences module methods"""
+import pytest
 import requests
 
 from pyobis import occurrences
 
-
+@pytest.mark.vcr()
 def test_occurrences_search():
     """
     occurrences.search - basic test for data, check type, size and other methods
@@ -15,7 +16,7 @@ def test_occurrences_search():
     assert size == len(query.data)
     assert "Mola mola" == query.data.scientificName[0]
 
-
+@pytest.mark.vcr()
 def test_occurrence_search_mof():
     """
     occurrences.search - basic test for data with MoF extension, check type, size and other methods
@@ -32,7 +33,7 @@ def test_occurrence_search_mof():
     assert requests.get(query.api_url).status_code == 200
     assert requests.get(query.mapper_url).status_code == 200
 
-
+@pytest.mark.vcr()
 def test_occurrences_search_61():
     """
     Search returns same object-type regardless of mof=True or mof=False.
@@ -47,7 +48,7 @@ def test_occurrences_search_61():
 
     assert type(q1) == type(q2)
 
-
+@pytest.mark.vcr()
 def test_occurrences_get():
     """
     occurrences.get - basic test for data, check type, size and other methods
@@ -61,7 +62,7 @@ def test_occurrences_get():
     assert requests.get(query.api_url).status_code == 200
     assert query.to_pandas().__class__.__name__ == "DataFrame"
 
-
+@pytest.mark.vcr()
 def test_occurrences_grid():
     """
     occurrences.grid - basic test for data, check type, size and other methods
@@ -76,7 +77,7 @@ def test_occurrences_grid():
     assert requests.get(query.api_url).status_code == 200
     assert not query.mapper_url
 
-
+@pytest.mark.vcr()
 def test_occurrences_getpoints():
     """
     occurrences.getpoints - basic test for data, check type, size and other methods
@@ -90,7 +91,7 @@ def test_occurrences_getpoints():
     assert requests.get(query.api_url).status_code == 200
     assert not query.mapper_url
 
-
+@pytest.mark.vcr()
 def test_occurrences_point():
     """
     occurrences.point - basic test for data, check type, size and other methods
@@ -104,7 +105,7 @@ def test_occurrences_point():
     assert requests.get(query.api_url).status_code == 200
     assert not query.mapper_url
 
-
+@pytest.mark.vcr()
 def test_occurrences_tile():
     """
     occurrences.tile - basic test for data, check type, size and other methods
@@ -123,7 +124,7 @@ def test_occurrences_tile():
     assert requests.get(query.api_url).status_code == 200
     assert not query.mapper_url
 
-
+@pytest.mark.vcr()
 def test_occurrences_centroid():
     """
     occurrences.centroid - basic test for data, check type, size and other methods
