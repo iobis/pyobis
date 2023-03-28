@@ -30,4 +30,5 @@ jobs:
       shell: bash -l {0}
       run: |
         micromamba activate TEST
+        # use --vcr-record=all when recording new cassettes. We never record on CIs though
         python -m pytest -rxs --cov=pyobis ./pyobis --vcr-record=none
