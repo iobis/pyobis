@@ -4,6 +4,7 @@ import requests
 
 from pyobis import taxa
 
+
 @pytest.mark.vcr()
 def test_taxa_search_data():
     """
@@ -16,6 +17,7 @@ def test_taxa_search_data():
     assert list == list(query.data.keys()).__class__
     assert 2 == len(query.data)
 
+
 @pytest.mark.vcr()
 def test_taxa_search_url():
     """
@@ -25,6 +27,7 @@ def test_taxa_search_url():
     query = taxa.search(scientificname="Mola mola")
     assert requests.get(query.api_url).status_code == 200
     assert not query.mapper_url
+
 
 @pytest.mark.vcr()
 def test_taxa_taxon_data():
@@ -40,6 +43,7 @@ def test_taxa_taxon_data():
     assert 545439 == query.data["results"][0]["taxonID"]
     assert query.to_pandas().__class__.__name__ == "DataFrame"
 
+
 @pytest.mark.vcr()
 def test_taxa_taxon_url():
     """
@@ -49,6 +53,7 @@ def test_taxa_taxon_url():
     query = taxa.taxon(545439)
     assert requests.get(query.api_url).status_code == 200
     assert not query.mapper_url
+
 
 @pytest.mark.vcr()
 def test_taxa_annotations_data():
@@ -62,6 +67,7 @@ def test_taxa_annotations_data():
     assert 2 == len(query.data)
     assert list == list(query.data.keys()).__class__
     assert query.to_pandas().__class__.__name__ == "DataFrame"
+
 
 @pytest.mark.vcr()
 def test_taxa_annotations_url():

@@ -4,6 +4,7 @@ import requests
 
 from pyobis import occurrences
 
+
 @pytest.mark.vcr()
 def test_occurrences_search():
     """
@@ -15,6 +16,7 @@ def test_occurrences_search():
     query.execute()
     assert size == len(query.data)
     assert "Mola mola" == query.data.scientificName[0]
+
 
 @pytest.mark.vcr()
 def test_occurrence_search_mof():
@@ -33,6 +35,7 @@ def test_occurrence_search_mof():
     assert requests.get(query.api_url).status_code == 200
     assert requests.get(query.mapper_url).status_code == 200
 
+
 @pytest.mark.vcr()
 def test_occurrences_search_61():
     """
@@ -48,12 +51,13 @@ def test_occurrences_search_61():
 
     assert type(q1) == type(q2)
 
+
 @pytest.mark.vcr()
 def test_occurrences_get():
     """
     occurrences.get - basic test for data, check type, size and other methods
     """
-    query = occurrences.get(id=occurrences.search(size=1).execute()['id'].values[0])
+    query = occurrences.get(id=occurrences.search(size=1).execute()["id"].values[0])
     assert not query.data
     query.execute()
     assert "dict" == query.data.__class__.__name__
@@ -61,6 +65,7 @@ def test_occurrences_get():
     assert list == list(query.data.keys()).__class__
     assert requests.get(query.api_url).status_code == 200
     assert query.to_pandas().__class__.__name__ == "DataFrame"
+
 
 @pytest.mark.vcr()
 def test_occurrences_grid():
@@ -77,6 +82,7 @@ def test_occurrences_grid():
     assert requests.get(query.api_url).status_code == 200
     assert not query.mapper_url
 
+
 @pytest.mark.vcr()
 def test_occurrences_getpoints():
     """
@@ -91,6 +97,7 @@ def test_occurrences_getpoints():
     assert requests.get(query.api_url).status_code == 200
     assert not query.mapper_url
 
+
 @pytest.mark.vcr()
 def test_occurrences_point():
     """
@@ -104,6 +111,7 @@ def test_occurrences_point():
     assert list == list(query.data.keys()).__class__
     assert requests.get(query.api_url).status_code == 200
     assert not query.mapper_url
+
 
 @pytest.mark.vcr()
 def test_occurrences_tile():
@@ -123,6 +131,7 @@ def test_occurrences_tile():
     query.execute()
     assert requests.get(query.api_url).status_code == 200
     assert not query.mapper_url
+
 
 @pytest.mark.vcr()
 def test_occurrences_centroid():

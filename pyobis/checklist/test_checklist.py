@@ -4,6 +4,7 @@ import requests
 
 from pyobis import checklist
 
+
 @pytest.mark.vcr()
 def test_checklist():
     """
@@ -19,6 +20,7 @@ def test_checklist():
     assert "Mola mola" == query.data["results"][0]["species"]
     assert requests.get(query.api_url).status_code == 200
 
+
 @pytest.mark.vcr()
 def test_checklist_redlist():
     """
@@ -33,6 +35,7 @@ def test_checklist_redlist():
     assert int == query.data["results"][0]["taxonID"].__class__
     assert "Mola mola" == query.data["results"][0]["species"]
     assert requests.get(query.api_url).status_code == 200
+
 
 @pytest.mark.vcr()
 def test_checklist_newest():

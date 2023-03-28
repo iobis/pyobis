@@ -4,6 +4,7 @@ import requests
 
 from pyobis import dataset
 
+
 @pytest.mark.vcr()
 def test_dataset_get_data():
     "dataset.get - test data"
@@ -15,11 +16,13 @@ def test_dataset_get_data():
     assert dict == query.data["results"][0].__class__
     assert query.to_pandas().__class__.__name__ == "DataFrame"
 
+
 @pytest.mark.vcr()
 def test_dataset_get_url():
     query = dataset.get(id="ec9df3b9-3b2b-4d83-881b-27bcbcd57b95")
     assert requests.get(query.api_url).status_code == 200
     assert requests.get(query.mapper_url).status_code == 200
+
 
 @pytest.mark.vcr()
 def test_dataset_search_data():
@@ -31,6 +34,7 @@ def test_dataset_search_data():
     assert 2 == len(query.data)
     assert dict == query.data["results"][0].__class__
     assert query.to_pandas().__class__.__name__ == "DataFrame"
+
 
 @pytest.mark.vcr()
 def test_dataset_search_url():

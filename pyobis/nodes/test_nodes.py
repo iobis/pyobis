@@ -4,6 +4,7 @@ import requests
 
 from pyobis import nodes
 
+
 @pytest.mark.vcr()
 def test_nodes_search_data():
     """
@@ -19,6 +20,7 @@ def test_nodes_search_data():
     assert str == query.data["results"][0]["id"].__class__
     assert query.to_pandas().__class__.__name__ == "DataFrame"
 
+
 @pytest.mark.vcr()
 def test_nodes_search_url():
     """
@@ -28,6 +30,7 @@ def test_nodes_search_url():
     query = nodes.search(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc")
     assert requests.get(query.api_url).status_code == 200
     assert requests.get(query.mapper_url).status_code == 200
+
 
 @pytest.mark.vcr()
 def test_nodes_activities_data():
@@ -43,6 +46,7 @@ def test_nodes_activities_data():
     assert str == str(query.data["results"][0]["description"]).__class__
     assert str == query.data["results"][0]["id"].__class__
     assert query.to_pandas().__class__.__name__ == "DataFrame"
+
 
 @pytest.mark.vcr()
 def test_nodes_activities_url():

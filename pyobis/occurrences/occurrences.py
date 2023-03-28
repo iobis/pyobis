@@ -170,7 +170,13 @@ def get(id, **kwargs):
     url = obis_baseurl + "occurrence/" + str(id)
     args = {}
 
-    return OccResponse(url, {**args,**kwargs}, isSearch=False, hasMapper=False, isKML=False)
+    return OccResponse(
+        url,
+        {**args, **kwargs},
+        isSearch=False,
+        hasMapper=False,
+        isKML=False,
+    )
 
 
 def search(
@@ -287,7 +293,13 @@ def search(
         "size": size,
         "hasextensions": hasextensions,
     }
-    return OccResponse(url, {**args,**kwargs}, isSearch=True, hasMapper=True, isKML=False)
+    return OccResponse(
+        url,
+        {**args, **kwargs},
+        isSearch=True,
+        hasMapper=True,
+        isKML=False,
+    )
 
 
 def grid(
@@ -366,9 +378,21 @@ def grid(
     }
     if not geojson:
         url += "/kml"
-        return OccResponse(url, {**args,**kwargs}, isSearch=False, hasMapper=False, isKML=True)
+        return OccResponse(
+            url,
+            {**args, **kwargs},
+            isSearch=False,
+            hasMapper=False,
+            isKML=True,
+        )
 
-    return OccResponse(url, {**args,**kwargs}, isSearch=False, hasMapper=False, isKML=False)
+    return OccResponse(
+        url,
+        {**args, **kwargs},
+        isSearch=False,
+        hasMapper=False,
+        isKML=False,
+    )
 
 
 def getpoints(
@@ -445,7 +469,13 @@ def getpoints(
         "exclude": exclude,
     }
 
-    return OccResponse(url, {**args, **kwargs}, isSearch=False, hasMapper=False, isKML=False)
+    return OccResponse(
+        url,
+        {**args, **kwargs},
+        isSearch=False,
+        hasMapper=False,
+        isKML=False,
+    )
 
 
 def point(
@@ -528,7 +558,13 @@ def point(
         "exclude": exclude,
     }
 
-    return OccResponse(url, {**args,**kwargs}, isSearch=False, hasMapper=False, isKML=False)
+    return OccResponse(
+        url,
+        {**args, **kwargs},
+        isSearch=False,
+        hasMapper=False,
+        isKML=False,
+    )
 
 
 def tile(
@@ -612,9 +648,21 @@ def tile(
     }
     if mvt:
         url += ".mvt"
-        return OccResponse(url, {**args,**kwargs}, isSearch=False, hasMapper=False, isKML=True)
+        return OccResponse(
+            url,
+            {**args, **kwargs},
+            isSearch=False,
+            hasMapper=False,
+            isKML=True,
+        )
 
-    return OccResponse(url, {**args,**kwargs}, isSearch=False, hasMapper=False, isKML=False)
+    return OccResponse(
+        url,
+        {**args, **kwargs},
+        isSearch=False,
+        hasMapper=False,
+        isKML=False,
+    )
 
 
 def centroid(
@@ -687,7 +735,13 @@ def centroid(
         "exclude": exclude,
     }
 
-    return OccResponse(url, {**args,**kwargs}, isSearch=False, hasMapper=False, isKML=False)
+    return OccResponse(
+        url,
+        {**args, **kwargs},
+        isSearch=False,
+        hasMapper=False,
+        isKML=False,
+    )
 
 
 def lookup_taxon(scientificname):
