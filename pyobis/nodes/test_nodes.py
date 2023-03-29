@@ -1,9 +1,11 @@
 """Tests for nodes module"""
+import pytest
 import requests
 
 from pyobis import nodes
 
 
+@pytest.mark.vcr()
 def test_nodes_search_data():
     """
     nodes.search - test for data, check type, size and other methods
@@ -19,6 +21,7 @@ def test_nodes_search_data():
     assert query.to_pandas().__class__.__name__ == "DataFrame"
 
 
+@pytest.mark.vcr()
 def test_nodes_search_url():
     """
     nodes.activities - basic test for url, url are accessible and
@@ -29,6 +32,7 @@ def test_nodes_search_url():
     assert requests.get(query.mapper_url).status_code == 200
 
 
+@pytest.mark.vcr()
 def test_nodes_activities_data():
     """
     nodes.activities - basic test for data, check type, size and other methods
@@ -44,6 +48,7 @@ def test_nodes_activities_data():
     assert query.to_pandas().__class__.__name__ == "DataFrame"
 
 
+@pytest.mark.vcr()
 def test_nodes_activities_url():
     """
     nodes.activities - basic test for url, url are accessible and

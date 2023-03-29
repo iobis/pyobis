@@ -1,0 +1,48 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      Host:
+      - api.obis.org
+      User-Agent:
+      - Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
+        Gecko)         Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.52
+    method: GET
+    uri: https://api.obis.org/v3/taxon/Mola%20mola?scientificname=Mola+mola
+  response:
+    body:
+      string: '{"total":1,"results":[{"scientificName":"Mola mola","scientificNameAuthorship":"(Linnaeus,
+        1758)","taxonID":127405,"bold_id":29489,"ncbi_id":94237,"taxonRank":"Species","taxonomicStatus":"accepted","acceptedNameUsage":"Mola
+        mola","acceptedNameUsageID":127405,"is_marine":true,"is_brackish":false,"is_freshwater":false,"is_terrestrial":false,"kingdom":"Animalia","phylum":"Chordata","subphylum":"Vertebrata","infraphylum":"Gnathostomata","class":"Actinopteri","subclass":"Teleostei","order":"Tetraodontiformes","family":"Molidae","genus":"Mola","species":"Mola
+        mola","kingdomid":2,"phylumid":1821,"subphylumid":146419,"infraphylumid":1828,"classid":843664,"subclassid":293496,"orderid":10332,"familyid":125609,"genusid":126233,"speciesid":127405,"category":"VU"}]}'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '763'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 22 Mar 2023 11:44:24 GMT
+      ETag:
+      - W/"2fb-Nst+/GTGH2ftvPVGLTmIgKQybpM"
+      Server:
+      - nginx/1.14.0 (Ubuntu)
+      Vary:
+      - Accept-Encoding
+      X-Cache-Date:
+      - Wed, 22 Mar 2023 11:44:24 GMT
+      X-Powered-By:
+      - Express
+    status:
+      code: 200
+      message: OK
+version: 1

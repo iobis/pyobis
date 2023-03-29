@@ -1,0 +1,84 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      Host:
+      - api.obis.org
+      User-Agent:
+      - Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
+        Gecko)         Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.52
+    method: GET
+    uri: https://api.obis.org/v3/node/4bf79a01-65a9-4db6-b37b-18434f26ddfc/activities
+  response:
+    body:
+      string: !!binary |
+        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
+        lU7RlnUVAAA=
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 22 Mar 2023 11:43:28 GMT
+      ETag:
+      - W/"1575-GOhlrn59f5OgcSwT1fUJMtfDBvQ"
+      Server:
+      - nginx/1.14.0 (Ubuntu)
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Cache-Date:
+      - Wed, 22 Mar 2023 11:43:28 GMT
+      X-Powered-By:
+      - Express
+    status:
+      code: 200
+      message: OK
+version: 1

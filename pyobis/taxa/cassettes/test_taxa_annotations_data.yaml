@@ -1,0 +1,45 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      Host:
+      - api.obis.org
+      User-Agent:
+      - Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
+        Gecko)         Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.52
+    method: GET
+    uri: https://api.obis.org/v3/taxon/annotations?scientificname=Abra
+  response:
+    body:
+      string: '{"total":0,"results":[]}'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '24'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 22 Mar 2023 11:44:27 GMT
+      ETag:
+      - W/"18-m7KNrmhEci8000BLQz8fM7z0kF0"
+      Server:
+      - nginx/1.14.0 (Ubuntu)
+      Vary:
+      - Accept-Encoding
+      X-Cache-Date:
+      - Wed, 22 Mar 2023 11:44:27 GMT
+      X-Powered-By:
+      - Express
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -1,9 +1,11 @@
 """Tests for taxa module - search methods"""
+import pytest
 import requests
 
 from pyobis import taxa
 
 
+@pytest.mark.vcr()
 def test_taxa_search_data():
     """
     taxa.search - basic test for data, check type, size and other methods
@@ -16,6 +18,7 @@ def test_taxa_search_data():
     assert 2 == len(query.data)
 
 
+@pytest.mark.vcr()
 def test_taxa_search_url():
     """
     taxa.search - basic test for url, url are accessible and
@@ -26,6 +29,7 @@ def test_taxa_search_url():
     assert not query.mapper_url
 
 
+@pytest.mark.vcr()
 def test_taxa_taxon_data():
     """
     taxa.taxon - basic test for data, check type, size and other methods
@@ -40,6 +44,7 @@ def test_taxa_taxon_data():
     assert query.to_pandas().__class__.__name__ == "DataFrame"
 
 
+@pytest.mark.vcr()
 def test_taxa_taxon_url():
     """
     taxa.taxon - basic test for url, url are accessible and
@@ -50,6 +55,7 @@ def test_taxa_taxon_url():
     assert not query.mapper_url
 
 
+@pytest.mark.vcr()
 def test_taxa_annotations_data():
     """
     taxa.annotations - basic test for data, check type, size and other methods
@@ -63,6 +69,7 @@ def test_taxa_annotations_data():
     assert query.to_pandas().__class__.__name__ == "DataFrame"
 
 
+@pytest.mark.vcr()
 def test_taxa_annotations_url():
     """
     taxa.annotations - basic test for url, url are accessible and
