@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pyobis.occurrences.occurrences &mdash; pyobis 1.3.1 documentation</title>
+  <title>pyobis.occurrences.occurrences &mdash; pyobis 1.3.2.dev13+g46256d8 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -33,7 +33,7 @@
             pyobis
           </a>
               <div class="version">
-                1.3.1
+                1.3.2.dev13+g46256d8
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -249,7 +249,13 @@
     <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s2">&quot;occurrence/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
     <span class="n">args</span> <span class="o">=</span> <span class="p">{}</span>
 
-    <span class="k">return</span> <span class="n">OccResponse</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="p">{</span><span class="o">**</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">},</span> <span class="n">isSearch</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">hasMapper</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">isKML</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">OccResponse</span><span class="p">(</span>
+        <span class="n">url</span><span class="p">,</span>
+        <span class="p">{</span><span class="o">**</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">},</span>
+        <span class="n">isSearch</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">hasMapper</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">isKML</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="search"><a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.search">[docs]</a><span class="k">def</span> <span class="nf">search</span><span class="p">(</span>
@@ -366,7 +372,13 @@
         <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="n">size</span><span class="p">,</span>
         <span class="s2">&quot;hasextensions&quot;</span><span class="p">:</span> <span class="n">hasextensions</span><span class="p">,</span>
     <span class="p">}</span>
-    <span class="k">return</span> <span class="n">OccResponse</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="p">{</span><span class="o">**</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">},</span> <span class="n">isSearch</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">hasMapper</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">isKML</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">OccResponse</span><span class="p">(</span>
+        <span class="n">url</span><span class="p">,</span>
+        <span class="p">{</span><span class="o">**</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">},</span>
+        <span class="n">isSearch</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">hasMapper</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">isKML</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="grid"><a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.grid">[docs]</a><span class="k">def</span> <span class="nf">grid</span><span class="p">(</span>
@@ -445,9 +457,21 @@
     <span class="p">}</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">geojson</span><span class="p">:</span>
         <span class="n">url</span> <span class="o">+=</span> <span class="s2">&quot;/kml&quot;</span>
-        <span class="k">return</span> <span class="n">OccResponse</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="p">{</span><span class="o">**</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">},</span> <span class="n">isSearch</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">hasMapper</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">isKML</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">OccResponse</span><span class="p">(</span>
+            <span class="n">url</span><span class="p">,</span>
+            <span class="p">{</span><span class="o">**</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">},</span>
+            <span class="n">isSearch</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">hasMapper</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">isKML</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">OccResponse</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="p">{</span><span class="o">**</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">},</span> <span class="n">isSearch</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">hasMapper</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">isKML</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">OccResponse</span><span class="p">(</span>
+        <span class="n">url</span><span class="p">,</span>
+        <span class="p">{</span><span class="o">**</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">},</span>
+        <span class="n">isSearch</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">hasMapper</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">isKML</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="getpoints"><a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.getpoints">[docs]</a><span class="k">def</span> <span class="nf">getpoints</span><span class="p">(</span>
@@ -524,7 +548,13 @@
         <span class="s2">&quot;exclude&quot;</span><span class="p">:</span> <span class="n">exclude</span><span class="p">,</span>
     <span class="p">}</span>
 
-    <span class="k">return</span> <span class="n">OccResponse</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="p">{</span><span class="o">**</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">},</span> <span class="n">isSearch</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">hasMapper</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">isKML</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">OccResponse</span><span class="p">(</span>
+        <span class="n">url</span><span class="p">,</span>
+        <span class="p">{</span><span class="o">**</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">},</span>
+        <span class="n">isSearch</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">hasMapper</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">isKML</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="point"><a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.point">[docs]</a><span class="k">def</span> <span class="nf">point</span><span class="p">(</span>
@@ -607,7 +637,13 @@
         <span class="s2">&quot;exclude&quot;</span><span class="p">:</span> <span class="n">exclude</span><span class="p">,</span>
     <span class="p">}</span>
 
-    <span class="k">return</span> <span class="n">OccResponse</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="p">{</span><span class="o">**</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">},</span> <span class="n">isSearch</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">hasMapper</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">isKML</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">OccResponse</span><span class="p">(</span>
+        <span class="n">url</span><span class="p">,</span>
+        <span class="p">{</span><span class="o">**</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">},</span>
+        <span class="n">isSearch</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">hasMapper</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">isKML</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="tile"><a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.tile">[docs]</a><span class="k">def</span> <span class="nf">tile</span><span class="p">(</span>
@@ -691,9 +727,21 @@
     <span class="p">}</span>
     <span class="k">if</span> <span class="n">mvt</span><span class="p">:</span>
         <span class="n">url</span> <span class="o">+=</span> <span class="s2">&quot;.mvt&quot;</span>
-        <span class="k">return</span> <span class="n">OccResponse</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="p">{</span><span class="o">**</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">},</span> <span class="n">isSearch</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">hasMapper</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">isKML</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">OccResponse</span><span class="p">(</span>
+            <span class="n">url</span><span class="p">,</span>
+            <span class="p">{</span><span class="o">**</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">},</span>
+            <span class="n">isSearch</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">hasMapper</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">isKML</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">OccResponse</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="p">{</span><span class="o">**</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">},</span> <span class="n">isSearch</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">hasMapper</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">isKML</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">OccResponse</span><span class="p">(</span>
+        <span class="n">url</span><span class="p">,</span>
+        <span class="p">{</span><span class="o">**</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">},</span>
+        <span class="n">isSearch</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">hasMapper</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">isKML</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="centroid"><a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.centroid">[docs]</a><span class="k">def</span> <span class="nf">centroid</span><span class="p">(</span>
@@ -766,7 +814,13 @@
         <span class="s2">&quot;exclude&quot;</span><span class="p">:</span> <span class="n">exclude</span><span class="p">,</span>
     <span class="p">}</span>
 
-    <span class="k">return</span> <span class="n">OccResponse</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="p">{</span><span class="o">**</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">},</span> <span class="n">isSearch</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">hasMapper</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">isKML</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">OccResponse</span><span class="p">(</span>
+        <span class="n">url</span><span class="p">,</span>
+        <span class="p">{</span><span class="o">**</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">},</span>
+        <span class="n">isSearch</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">hasMapper</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">isKML</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="lookup_taxon"><a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.lookup_taxon">[docs]</a><span class="k">def</span> <span class="nf">lookup_taxon</span><span class="p">(</span><span class="n">scientificname</span><span class="p">):</span>
