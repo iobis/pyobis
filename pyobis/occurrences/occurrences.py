@@ -66,12 +66,16 @@ class OccResponse:
                     else self.__args["size"]
                 )
                 # a simple calculation gives us the total expected time
-                # nearly for all requests of size 1, the server takes up 99.5% of the time to respond, and
-                # it takes only 0.5% of the time for network download. So the total time can be estimated easily
-                # although this might not be accurate for larger than 100k records, because the network download takes
+                # nearly for all requests of size 1, the server takes up 99.5% of the time
+                # to respond, and it takes only 0.5% of the time for network download. So
+                # the total time can be estimated easily although this might not be accurate
+                # for larger than 100k records, because the network download takes
                 # even smaller fraction of the total round-trip time
                 print(
-                    f"{self.__total_records} to be fetched. Estimated time = {(ending_time-starting_time)*.995 + (ending_time-starting_time)*.005*self.__total_records:.0f} seconds",
+                    f"{self.__total_records} to be fetched. Estimated time = ",
+                    (ending_time - starting_time) * 0.995,
+                    f" {(ending_time - starting_time) * 0.005 * self.__total_records:.0f} ",
+                    "seconds",
                 )
 
     def execute(self, **kwargs):
