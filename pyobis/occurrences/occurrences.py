@@ -4,6 +4,7 @@
 
 import json
 import sys
+from time import time
 from urllib.parse import urlencode
 
 import pandas as pd
@@ -47,6 +48,21 @@ class OccResponse:
         self.__url = url
         self.__isSearch = isSearch
         self.__isKML = isKML
+        
+        # fetch the total length of records
+        if not self.__isKML:
+            starting_time = time()
+            self.__out_head_record = obis_GET(self.__url, {**self.__args, **{"size":1}}, "application/json; charset=utf-8")
+            ending_time = time()
+            if "total" in self.__out_head_record:
+                self.__total_records = self.__out_head_record["total"] if "size" not in self.__args or not self.__args["size"] else self.__args["size"]
+                # a simple calculation gives us the total expected time
+                # nearly for all requests of size 1, the server takes up 99.5% of the time to respond, and
+                # it takes only 0.5% of the time for network download. So the total time can be estimated easily
+                # although this might not be accurate for larger than 100k records, because the network download takes 
+                # even smaller fraction of the total round-trip time
+                print(f"{self.__total_records} to be fetched. Estimated time = {(ending_time-starting_time)*.995 + (ending_time-starting_time)*.005*self.__total_records:.0f} seconds")
+
 
     def execute(self, **kwargs):
         """
@@ -56,30 +72,29 @@ class OccResponse:
             out = obis_GET(
                 self.__url, self.__args, "application/json; charset=utf-8", **kwargs
             )
+            self.data = out
 
         elif self.__isKML:
-            print("hello")
             out = requests.get(self.__url, params=self.__args, **kwargs)
             out.raise_for_status()
             out = out.content
+            self.data = out
 
         elif self.__isSearch:
             # setting default parameters from arguments list
             mof = self.__args["mof"]
             size = self.__args["size"]
 
-            self.__args["size"] = 1
-            out = obis_GET(
-                self.__url, self.__args, "application/json; charset=utf-8", **kwargs
-            )
             size = (
-                out["total"] if not size else size
+                self.__total_records if not size else size
             )  # if the user has set some size or else we fetch all the records
 
-            outdf = pd.DataFrame(columns=pd.DataFrame(out["results"]).columns)
+            outdf = pd.DataFrame(columns=pd.DataFrame(self.__out_head_record["results"]).columns)
 
-            for i in range(5000, size + 1, 5000):
-                self.__args["size"] = 5000
+            for i in range(10000, size + 1, 10000):
+                if("id" not in outdf.columns):
+                    break
+                self.__args["size"] = 10000
                 print(
                     "{}[{}{}] {}/{}".format(
                         "Fetching: ",
@@ -105,7 +120,7 @@ class OccResponse:
                 # make sure that we set the `after` parameter when fetching subsequent records
                 self.__args["after"] = outdf["id"].iloc[-1]
 
-            self.__args["size"] = size % 5000
+            self.__args["size"] = size % 10000
             # we have already fetched records as a set of 5000 records each time,
             # now we need to get remaining records from the total
             print(
@@ -123,7 +138,7 @@ class OccResponse:
             )
             print(f"\nFetched {size} records.")
 
-            if mof and out["total"] > 0:
+            if mof and self.__total_records > 0:
                 mofNormalized = pd.json_normalize(
                     json.loads(outdf.to_json(orient="records")),
                     "mof",
@@ -138,8 +153,7 @@ class OccResponse:
                 self.data = merged
                 return self.data
             self.data = outdf
-            return self.data
-        self.data = out
+        
         return self.data
 
     def to_pandas(self):

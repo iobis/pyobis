@@ -14,6 +14,49 @@ interactions:
       - Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
         Gecko)         Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.52
     method: GET
+    uri: https://api.obis.org/v3/occurrence/point/1.77/54.22/?scientificname=Mola+mola&size=1
+  response:
+    body:
+      string: '{"total":0,"results":[]}'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '24'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Sat, 01 Apr 2023 07:19:25 GMT
+      ETag:
+      - W/"18-m7KNrmhEci8000BLQz8fM7z0kF0"
+      Server:
+      - nginx/1.14.0 (Ubuntu)
+      Vary:
+      - Accept-Encoding
+      X-Cache-Date:
+      - Sat, 01 Apr 2023 07:19:24 GMT
+      X-Powered-By:
+      - Express
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      Host:
+      - api.obis.org
+      User-Agent:
+      - Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
+        Gecko)         Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.52
+    method: GET
     uri: https://api.obis.org/v3/occurrence/point/1.77/54.22/?scientificname=Mola+mola
   response:
     body:
@@ -28,7 +71,7 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Wed, 22 Mar 2023 11:44:19 GMT
+      - Sat, 01 Apr 2023 07:19:25 GMT
       ETag:
       - W/"18-m7KNrmhEci8000BLQz8fM7z0kF0"
       Server:
@@ -36,7 +79,7 @@ interactions:
       Vary:
       - Accept-Encoding
       X-Cache-Date:
-      - Wed, 22 Mar 2023 11:44:19 GMT
+      - Sat, 01 Apr 2023 07:19:25 GMT
       X-Powered-By:
       - Express
     status:
@@ -68,7 +111,7 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Wed, 22 Mar 2023 11:44:20 GMT
+      - Sat, 01 Apr 2023 07:19:26 GMT
       ETag:
       - W/"18-m7KNrmhEci8000BLQz8fM7z0kF0"
       Server:
@@ -76,7 +119,7 @@ interactions:
       Vary:
       - Accept-Encoding
       X-Cache-Date:
-      - Wed, 22 Mar 2023 11:44:20 GMT
+      - Sat, 01 Apr 2023 07:19:26 GMT
       X-Powered-By:
       - Express
     status:
