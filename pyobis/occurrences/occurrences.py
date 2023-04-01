@@ -26,7 +26,7 @@ class OccResponse:
     """
 
     def __init__(self, url, args, isSearch, hasMapper, isKML):
-        """ "
+        """
         Initialise the object parameters
         """
         self.data = None
@@ -108,6 +108,7 @@ class OccResponse:
             )
 
             for i in range(10000, size + 1, 10000):
+                A# if there is no 'id' then there should be no pagination
                 if "id" not in outdf.columns:
                     break
                 self.__args["size"] = 10000
@@ -254,7 +255,8 @@ def search(
     :param enddepth: [Boolean] End depth, in meters. Depth below sea level are treated
         as positive numbers.
     :param flags: Prev. qc [String] Quality control flags
-    :param fields: [String] Comma seperated list of field names
+    :param fields: [String] Comma seperated list of field names. Leave blank to include all.
+        For fetching records more than 10k, must specify 'id' explicitly too.
     :param size: [Fixnum] Number of results to return. Default: All records
     :param offset: [Fixnum] Start at record. Default: 0
     :param mof: [Boolean] Include MeasurementOrFact records, true/false.
@@ -308,7 +310,7 @@ def search(
     if fields and "id" not in fields:
         warnings.warn(
             "You have specified custom fields but 'id' is not included. \
-            Include 'id' explicitely in the fields or else only upto 10,000 records will be fetched.",
+            Include 'id' explicitly in the fields or else only upto 10,000 records will be fetched.",
         )
     args = {
         "taxonid": taxonid,
