@@ -108,7 +108,7 @@ class OccResponse:
             )
 
             for i in range(10000, size + 1, 10000):
-                A# if there is no 'id' then there should be no pagination
+                # if there is no 'id' then there should be no pagination
                 if "id" not in outdf.columns:
                     break
                 self.__args["size"] = 10000
