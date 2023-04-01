@@ -3,12 +3,13 @@
 """
 
 import json
+import pandas as pd
+import requests
 import sys
 from time import time
 from urllib.parse import urlencode
+import warnings
 
-import pandas as pd
-import requests
 
 from ..obisutils import (
     build_api_url,
@@ -289,6 +290,11 @@ def search(
     url = obis_baseurl + "occurrence"
     scientificname = handle_arrstr(scientificname)
     taxonid = handle_arrint(taxonid)
+    if fields and 'id' not in fields:
+        warnings.warn(
+            "You have specified custom fields but 'id' is not included. \
+            Include 'id' explicitely in the fields or else only upto 10,000 records will be fetched."
+            )
     args = {
         "taxonid": taxonid,
         "nodeid": nodeid,
