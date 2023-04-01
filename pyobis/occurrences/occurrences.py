@@ -3,13 +3,13 @@
 """
 
 import json
-import pandas as pd
-import requests
 import sys
+import warnings
 from time import time
 from urllib.parse import urlencode
-import warnings
 
+import pandas as pd
+import requests
 
 from ..obisutils import (
     build_api_url,
@@ -49,21 +49,30 @@ class OccResponse:
         self.__url = url
         self.__isSearch = isSearch
         self.__isKML = isKML
-        
+
         # fetch the total length of records
         if not self.__isKML:
             starting_time = time()
-            self.__out_head_record = obis_GET(self.__url, {**self.__args, **{"size":1}}, "application/json; charset=utf-8")
+            self.__out_head_record = obis_GET(
+                self.__url,
+                {**self.__args, **{"size": 1}},
+                "application/json; charset=utf-8",
+            )
             ending_time = time()
             if "total" in self.__out_head_record:
-                self.__total_records = self.__out_head_record["total"] if "size" not in self.__args or not self.__args["size"] else self.__args["size"]
+                self.__total_records = (
+                    self.__out_head_record["total"]
+                    if "size" not in self.__args or not self.__args["size"]
+                    else self.__args["size"]
+                )
                 # a simple calculation gives us the total expected time
                 # nearly for all requests of size 1, the server takes up 99.5% of the time to respond, and
                 # it takes only 0.5% of the time for network download. So the total time can be estimated easily
-                # although this might not be accurate for larger than 100k records, because the network download takes 
+                # although this might not be accurate for larger than 100k records, because the network download takes
                 # even smaller fraction of the total round-trip time
-                print(f"{self.__total_records} to be fetched. Estimated time = {(ending_time-starting_time)*.995 + (ending_time-starting_time)*.005*self.__total_records:.0f} seconds")
-
+                print(
+                    f"{self.__total_records} to be fetched. Estimated time = {(ending_time-starting_time)*.995 + (ending_time-starting_time)*.005*self.__total_records:.0f} seconds",
+                )
 
     def execute(self, **kwargs):
         """
@@ -90,10 +99,12 @@ class OccResponse:
                 self.__total_records if not size else size
             )  # if the user has set some size or else we fetch all the records
 
-            outdf = pd.DataFrame(columns=pd.DataFrame(self.__out_head_record["results"]).columns)
+            outdf = pd.DataFrame(
+                columns=pd.DataFrame(self.__out_head_record["results"]).columns,
+            )
 
             for i in range(10000, size + 1, 10000):
-                if("id" not in outdf.columns):
+                if "id" not in outdf.columns:
                     break
                 self.__args["size"] = 10000
                 print(
@@ -154,7 +165,7 @@ class OccResponse:
                 self.data = merged
                 return self.data
             self.data = outdf
-        
+
         return self.data
 
     def to_pandas(self):
@@ -290,11 +301,11 @@ def search(
     url = obis_baseurl + "occurrence"
     scientificname = handle_arrstr(scientificname)
     taxonid = handle_arrint(taxonid)
-    if fields and 'id' not in fields:
+    if fields and "id" not in fields:
         warnings.warn(
             "You have specified custom fields but 'id' is not included. \
-            Include 'id' explicitely in the fields or else only upto 10,000 records will be fetched."
-            )
+            Include 'id' explicitely in the fields or else only upto 10,000 records will be fetched.",
+        )
     args = {
         "taxonid": taxonid,
         "nodeid": nodeid,
