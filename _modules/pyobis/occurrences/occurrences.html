@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pyobis.occurrences.occurrences &mdash; pyobis 1.3.2.dev13+g46256d8 documentation</title>
+  <title>pyobis.occurrences.occurrences &mdash; pyobis 1.3.2.dev21+gaa7ea16 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -33,7 +33,7 @@
             pyobis
           </a>
               <div class="version">
-                1.3.2.dev13+g46256d8
+                1.3.2.dev21+gaa7ea16
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -83,6 +83,8 @@
 
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
 <span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlencode</span>
 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -103,7 +105,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">isSearch</span><span class="p">,</span> <span class="n">hasMapper</span><span class="p">,</span> <span class="n">isKML</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; &quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialise the object parameters</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="kc">None</span>
@@ -127,6 +129,34 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">__isSearch</span> <span class="o">=</span> <span class="n">isSearch</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__isKML</span> <span class="o">=</span> <span class="n">isKML</span>
 
+        <span class="c1"># fetch the total length of records</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__isKML</span><span class="p">:</span>
+            <span class="n">starting_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__out_head_record</span> <span class="o">=</span> <span class="n">obis_GET</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__url</span><span class="p">,</span>
+                <span class="p">{</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}},</span>
+                <span class="s2">&quot;application/json; charset=utf-8&quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">ending_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+            <span class="k">if</span> <span class="s2">&quot;total&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__out_head_record</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__total_records</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">__out_head_record</span><span class="p">[</span><span class="s2">&quot;total&quot;</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="s2">&quot;size&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__args</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">]</span>
+                    <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">]</span>
+                <span class="p">)</span>
+                <span class="c1"># a simple calculation gives us the total expected time</span>
+                <span class="c1"># nearly for all requests of size 1, the server takes up 99.5% of the time</span>
+                <span class="c1"># to respond, and it takes only 0.5% of the time for network download. So</span>
+                <span class="c1"># the total time can be estimated easily although this might not be accurate</span>
+                <span class="c1"># for larger than 100k records, because the network download takes</span>
+                <span class="c1"># even smaller fraction of the total round-trip time</span>
+                <span class="nb">print</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__total_records</span><span class="si">}</span><span class="s2"> to be fetched. Estimated time = &quot;</span><span class="p">,</span>
+                    <span class="p">(</span><span class="n">ending_time</span> <span class="o">-</span> <span class="n">starting_time</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.995</span><span class="p">,</span>
+                    <span class="sa">f</span><span class="s2">&quot; </span><span class="si">{</span><span class="p">(</span><span class="n">ending_time</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">starting_time</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.005</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="n">__total_records</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> &quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;seconds&quot;</span><span class="p">,</span>
+                <span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Execute or fetch the data based on the query</span>
@@ -135,30 +165,32 @@
             <span class="n">out</span> <span class="o">=</span> <span class="n">obis_GET</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">__url</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">,</span> <span class="s2">&quot;application/json; charset=utf-8&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
             <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">out</span>
 
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">__isKML</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span>
             <span class="n">out</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
             <span class="n">out</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
             <span class="n">out</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">content</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">out</span>
 
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">__isSearch</span><span class="p">:</span>
             <span class="c1"># setting default parameters from arguments list</span>
             <span class="n">mof</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">[</span><span class="s2">&quot;mof&quot;</span><span class="p">]</span>
             <span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">]</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-            <span class="n">out</span> <span class="o">=</span> <span class="n">obis_GET</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">__url</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">,</span> <span class="s2">&quot;application/json; charset=utf-8&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
-            <span class="p">)</span>
             <span class="n">size</span> <span class="o">=</span> <span class="p">(</span>
-                <span class="n">out</span><span class="p">[</span><span class="s2">&quot;total&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">size</span> <span class="k">else</span> <span class="n">size</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__total_records</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">size</span> <span class="k">else</span> <span class="n">size</span>
             <span class="p">)</span>  <span class="c1"># if the user has set some size or else we fetch all the records</span>
 
-            <span class="n">outdf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+            <span class="n">outdf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+                <span class="n">columns</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__out_head_record</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
+            <span class="p">)</span>
 
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5000</span><span class="p">,</span> <span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5000</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5000</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10000</span><span class="p">):</span>
+                <span class="c1"># if there is no &#39;id&#39; then there should be no pagination</span>
+                <span class="k">if</span> <span class="s2">&quot;id&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">outdf</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+                    <span class="k">break</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10000</span>
                 <span class="nb">print</span><span class="p">(</span>
                     <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">[</span><span class="si">{}{}</span><span class="s2">] </span><span class="si">{}</span><span class="s2">/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                         <span class="s2">&quot;Fetching: &quot;</span><span class="p">,</span>
@@ -184,7 +216,7 @@
                 <span class="c1"># make sure that we set the `after` parameter when fetching subsequent records</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">[</span><span class="s2">&quot;after&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">outdf</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">size</span> <span class="o">%</span> <span class="mi">5000</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">size</span> <span class="o">%</span> <span class="mi">10000</span>
             <span class="c1"># we have already fetched records as a set of 5000 records each time,</span>
             <span class="c1"># now we need to get remaining records from the total</span>
             <span class="nb">print</span><span class="p">(</span>
@@ -202,7 +234,7 @@
             <span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Fetched </span><span class="si">{</span><span class="n">size</span><span class="si">}</span><span class="s2"> records.&quot;</span><span class="p">)</span>
 
-            <span class="k">if</span> <span class="n">mof</span> <span class="ow">and</span> <span class="n">out</span><span class="p">[</span><span class="s2">&quot;total&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">mof</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">__total_records</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="n">mofNormalized</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span>
                     <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">outdf</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s2">&quot;records&quot;</span><span class="p">)),</span>
                     <span class="s2">&quot;mof&quot;</span><span class="p">,</span>
@@ -217,8 +249,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">merged</span>
                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">outdf</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">out</span>
+
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span>
 
     <span class="k">def</span> <span class="nf">to_pandas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -303,7 +334,8 @@
 <span class="sd">    :param enddepth: [Boolean] End depth, in meters. Depth below sea level are treated</span>
 <span class="sd">        as positive numbers.</span>
 <span class="sd">    :param flags: Prev. qc [String] Quality control flags</span>
-<span class="sd">    :param fields: [String] Comma seperated list of field names</span>
+<span class="sd">    :param fields: [String] Comma seperated list of field names. Leave blank to include all.</span>
+<span class="sd">        For fetching records more than 10k, must specify &#39;id&#39; explicitly too.</span>
 <span class="sd">    :param size: [Fixnum] Number of results to return. Default: All records</span>
 <span class="sd">    :param offset: [Fixnum] Start at record. Default: 0</span>
 <span class="sd">    :param mof: [Boolean] Include MeasurementOrFact records, true/false.</span>
@@ -354,6 +386,11 @@
     <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s2">&quot;occurrence&quot;</span>
     <span class="n">scientificname</span> <span class="o">=</span> <span class="n">handle_arrstr</span><span class="p">(</span><span class="n">scientificname</span><span class="p">)</span>
     <span class="n">taxonid</span> <span class="o">=</span> <span class="n">handle_arrint</span><span class="p">(</span><span class="n">taxonid</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">fields</span> <span class="ow">and</span> <span class="s2">&quot;id&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+            <span class="s2">&quot;You have specified custom fields but &#39;id&#39; is not included. </span><span class="se">\</span>
+<span class="s2">            Include &#39;id&#39; explicitly in the fields or else only upto 10,000 records will be fetched.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
     <span class="n">args</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;taxonid&quot;</span><span class="p">:</span> <span class="n">taxonid</span><span class="p">,</span>
         <span class="s2">&quot;nodeid&quot;</span><span class="p">:</span> <span class="n">nodeid</span><span class="p">,</span>

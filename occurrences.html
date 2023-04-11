@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>occurrences module &mdash; pyobis 1.3.2.dev13+g46256d8 documentation</title>
+  <title>occurrences module &mdash; pyobis 1.3.2.dev21+gaa7ea16 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -36,7 +36,7 @@
             pyobis
           </a>
               <div class="version">
-                1.3.2.dev13+g46256d8
+                1.3.2.dev21+gaa7ea16
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -151,7 +151,8 @@ as positive numbers.</p></li>
 <li><p><strong>enddepth</strong> – [Boolean] End depth, in meters. Depth below sea level are treated
 as positive numbers.</p></li>
 <li><p><strong>flags</strong> – Prev. qc [String] Quality control flags</p></li>
-<li><p><strong>fields</strong> – [String] Comma seperated list of field names</p></li>
+<li><p><strong>fields</strong> – [String] Comma seperated list of field names. Leave blank to include all.
+For fetching records more than 10k, must specify ‘id’ explicitly too.</p></li>
 <li><p><strong>size</strong> – [Fixnum] Number of results to return. Default: All records</p></li>
 <li><p><strong>offset</strong> – [Fixnum] Start at record. Default: 0</p></li>
 <li><p><strong>mof</strong> – [Boolean] Include MeasurementOrFact records, true/false.
