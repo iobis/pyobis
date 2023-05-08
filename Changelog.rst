@@ -1,6 +1,15 @@
 Changelog
 =========
 
+1.4.0 (2023-04-11)
+-----------------------
+- MAJOR:
+    - none
+- MINOR:
+    - enables request size and time estimation in `occurrences.search()` method. #127
+- PATCH:
+    - fixes "missing 'id' error" in non-paginated queries. #127
+
 1.3.1 (2023-03-03)
 -----------------------
 - MAJOR:
