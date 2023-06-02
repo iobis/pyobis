@@ -15,13 +15,16 @@ authors:
     affiliation: 2
   - name: Filipe Fernandes
     corresponding: true
-  - name: Matthew Biddle
+  - name: Mathew Biddle
     corresponding: true
+    affiliation: 3
 affiliations:
  - name: National Institute of Technology Durgapur, India
    index: 1
  - name: IMaRS University of South Florida, US
    index: 2
+ - name: National Oceanic and Atmospheric Administration, National Ocean Service, Integrated Ocean Observing System, US
+   index: 3
 date: 9 May 2023
 bibliography: paper.bib
 
