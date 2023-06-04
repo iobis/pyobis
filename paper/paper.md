@@ -1,5 +1,5 @@
 ---
-title: 'pyOBIS: Python client for the OBIS API(https://api.obis.org/).'
+title: 'pyOBIS: easy access to taxonomic occurrence records harvested from thousands of datasets'
 tags:
   - Python
   - oceanography
