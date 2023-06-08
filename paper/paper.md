@@ -37,7 +37,7 @@ and sustainable development.
 OBIS has more than 107 million occurrence records, making availibility of ocean data possible but accesibility remains a challenge.
 pyOBIS solves the challenge by providing built-in functions for accessing data on occurrences, taxons, nodes, checklists, and dataset metadatas. 
 Users can download, visualize, segment, process and export data to any format of your choice with its built-in tools or rich ecosystem of libraries in python.
-Coupled together with other libraries like pyDwcViz,
+Coupled together with other libraries like [pyDwcViz](https://github.com/marinebon/py-dwc-viz),
 it forms an ecosystem of analysing Darwin Core Data with super ease through built-in functions.
 
 # Introduction
@@ -49,12 +49,42 @@ and several included Jupyter notebooks demonstrate example analyses that can be 
 
 
 # Why pyOBIS?
+pyOBIS is intuitively split into different modules for querying IUCN red lists,
+newly added species, datasets added, information on OBIS nodes, occurrence records,
+MeasurementOrFacts, eDNA records, etc and searchable through unique IDs, taxa, scientific names,
+geolocation, timestamps, and others.
+The Taxa IDs used by OBIS is adopted from annotations by the WoRMS team thereby maintaining a uniform and universal identification convention.
 
 ## Main Features
-Here are just a few of things pyOBIS can do:
-* Easy handling of OBIS data, easy fetching without handling the raw API response directly.
-* Built-in functions for occurrence, taxon, node, checklist and dataset endpoints of OBIS API.
-* Provides easy export of data to Pandas DataFrame, and helps researchers focus more on analysis rather than data mining.
+pyOBIS python package improvess accessibility of data available through OBIS
+and helps reduce efforts in manipulating and visualizing Darwin Core Data.
+Some of the key features of pyOBIS are:
+* **Easy handling of OBIS data**
+
+  Users can easily fetch data without handling the API directly. 
+  The comprehensive documentation and built-in funtions provides support to both beginners and experienced researchers in handling Darwin Core Data.
+  Response is always returned as a custom object with pre-defined methods to export to a `pandas` DataFrame,
+  generate live API URL to plugin to any additional software, and
+  build an OBIS Mapper URL for direct one-click visualization on the OBIS Mapper portal.
+
+* **Smart download, processing and export of data**
+
+  pyOBIS provides an interactive progress bar while fetching large occurrence records.
+  It also provides an estimated size of the request and the expected time to taken for the download.
+  pyOBIS un-nests entangled occurrence data, and increases readibility for beginner users.
+  It provides easy export of data to Pandas DataFrame, 
+  so that researchers can export it to any format like `csv`, `excel`, `JSON` making data handling and compatibility 
+  with other software super-easy.
+
+* **Richer support with sister packages**
+
+  pyOBIS when coupled with sister packages e.g. `pyDwcViz` can be utilized to perform many important computations easily. 
+  With one-line function and plug-and-play use, 
+  users can generate biodiversity indices such as `ES50` and `Shannon's Index`, 
+  get environment statistics from occurrence records queried for specified geo-spatial region of interest,
+  taxa, or other paramters,
+  generate interactive distribution plots with taxanomic heirarchy easily,
+  and many other possible use cases.
 
 # Figures
 ![Absolute Depth for Lepidochelys kempii over time.\label{fig:time-series-turtle}](https://github.com/ayushanand18/pyobis/assets/36472216/b6e66f31-7bbd-49c9-8186-3ab1a58e57c0)
