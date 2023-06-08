@@ -34,13 +34,18 @@ The pyOBIS python package provides easy access to taxonomic occurrence records h
 The package uses the API from the Ocean Biodiversity Information System (OBIS),
 a global open-access data and information clearinghouse on marine data for biodiversity for science, conservation,
 and sustainable development.
-Included in the pyOBIS package are built-in functions for accessing data on occurrences, taxon, nodes, checklists and datasets.
-The package provides easy export of data to Pandas DataFrame to help researchers focus more on analysis rather than data mining,
-and several included Jupyter notebooks demonstrate example analyses that can be used as a starting point for addressing research questions related to global and local distributions of species across space and time.
+OBIS has more than 107 million occurrence records, making availibility of ocean data possible but accesibility remains a challenge.
+pyOBIS solves the challenge by providing built-in functions for accessing data on occurrences, taxons, nodes, checklists, and dataset metadatas. 
+Users can download, visualize, segment, process and export data to any format of your choice with its built-in tools or rich ecosystem of libraries in python.
 Coupled together with other libraries like pyDwcViz,
 it forms an ecosystem of analysing Darwin Core Data with super ease through built-in functions.
 
 # Introduction
+OBIS is a global open-access data and information warehouse on marine biodiversity data.
+It contains occurrence records, dataset metadatas, environmental data around species occurrences,
+and many more biogeographic pointers.
+The package provides easy export of data to Pandas DataFrame to help researchers focus more on analysis rather than data mining,
+and several included Jupyter notebooks demonstrate example analyses that can be used as a starting point for addressing research questions related to global and local distributions of species across space and time.
 
 
 # Why pyOBIS?
