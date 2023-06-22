@@ -95,7 +95,17 @@ pyOBIS can be used to do super-useful time series analysis for instance, absolut
 * However, necessary precautions to avoid sampling bias must be taken into consideration.
 
 # Conclusion
-
+The pyOBIS python package provides a convenient and efficient way to access and work with taxonomic occurrence records from the Ocean Biodiversity Information System (OBIS).
+With over 107 million occurrence records,
+OBIS is a valuable resource for marine biodiversity data,
+but its accessibility has been a challenge which pyOBIS addresses by offering built-in functions for retrieving data on occurrences, taxons, nodes, checklists, and dataset metadata.
+It enables researchers to download,
+visualize, segment, process, and export data in various formats using its tools or other Python libraries.
+By integrating with sister packages like pyDwcViz,
+pyOBIS enhances its capabilities for analyzing Darwin Core Data with ease.
+Overall, pyOBIS simplifies the handling of OBIS data,
+facilitates data exploration and analysis,
+and empowers researchers to study global and local species distributions across space and time.
 
 # Acknowledgements
 We acknowledge the help of `Pandas`, `Matplotlib`, and `requests` python package, and all the authors for their contributions building this package, performing the associated analysis and drafting this manuscripts.
