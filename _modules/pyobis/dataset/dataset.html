@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pyobis.dataset.dataset &mdash; pyobis 1.4.1.dev6+g3501caa documentation</title>
+  <title>pyobis.dataset.dataset &mdash; pyobis 1.4.1.dev10+gecb8f46 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -33,7 +33,7 @@
             pyobis
           </a>
               <div class="version">
-                1.4.1.dev6+g3501caa
+                1.4.1.dev10+gecb8f46
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -240,7 +240,10 @@
 <span class="sd">        Execute or fetch the data based on the query</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">out</span> <span class="o">=</span> <span class="n">obis_GET</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">__url</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">,</span> <span class="s2">&quot;application/json; charset=utf-8&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__url</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">,</span>
+            <span class="s2">&quot;application/json; charset=utf-8&quot;</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">out</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span>
