@@ -84,7 +84,7 @@ class OccResponse:
         """
         if not self.__isSearch and not self.__isKML:
             out = obis_GET(
-                self.__url, self.__args, "application/json; charset=utf-8", **kwargs
+                self.__url, self.__args, "application/json; charset=utf-8", **kwargs,
             )
             self.data = out
 
@@ -125,7 +125,7 @@ class OccResponse:
                     flush=True,
                 )
                 res = obis_GET(
-                    self.__url, self.__args, "application/json; charset=utf-8", **kwargs
+                    self.__url, self.__args, "application/json; charset=utf-8", **kwargs,
                 )
                 outdf = pd.concat(
                     [
@@ -147,7 +147,7 @@ class OccResponse:
                 flush=True,
             )
             res = obis_GET(
-                self.__url, self.__args, "application/json; charset=utf-8", **kwargs
+                self.__url, self.__args, "application/json; charset=utf-8", **kwargs,
             )
             outdf = pd.concat(
                 [outdf.infer_objects(), pd.DataFrame(res["results"]).infer_objects()],

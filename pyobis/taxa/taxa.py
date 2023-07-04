@@ -120,7 +120,7 @@ class TaxaResponse:
         Execute or fetch the data based on the query
         """
         out = obis_GET(
-            self.__url, self.__args, "application/json; charset=utf-8", **kwargs
+            self.__url, self.__args, "application/json; charset=utf-8", **kwargs,
         )
         self.data = out
         return self.data
