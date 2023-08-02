@@ -30,23 +30,22 @@ bibliography: paper.bib
 ---
 
 # Summary
-The pyOBIS python package provides easy access to taxonomic occurrence records harvested from thousands of datasets.
+The pyOBIS python package provides easy access to marine taxonomic occurrence records harvested from thousands of datasets.
 The package uses the API from the Ocean Biodiversity Information System (OBIS),
 a global open-access data and information clearinghouse on marine data for biodiversity for science, conservation,
 and sustainable development.
-OBIS has more than 107 million occurrence records, making availibility of ocean data possible but accesibility remains a challenge.
-pyOBIS solves the challenge by providing built-in functions for accessing data on occurrences, taxons, nodes, checklists, and dataset metadatas.
+As of 2023, OBIS had more than 107 million occurrence records availibile, but accesibility remains a major challenge for oceanographic researchers.
+pyOBIS solves the challenge by providing built-in functions for accessing data on occurrences, taxons, nodes, checklists, and dataset metadata.
 Users can download, visualize, segment, process and export data to any format of your choice with its built-in tools or rich ecosystem of libraries in python.
 Coupled together with other libraries like [pyDwcViz](https://github.com/marinebon/py-dwc-viz),
-it forms an ecosystem of analysing Darwin Core Data with super ease through built-in functions.
+it forms an ecosystem of tools for analyzing Darwin-Core-standardized data with super of ease through built-in functions.
 
 # Introduction
 OBIS is a global open-access data and information warehouse on marine biodiversity data.
 It contains occurrence records, dataset metadatas, environmental data around species occurrences,
-and many more biogeographic pointers.
-The package provides easy export of data to Pandas DataFrame to help researchers focus more on analysis rather than data mining,
-and several included Jupyter notebooks demonstrate example analyses that can be used as a starting point for addressing research questions related to global and local distributions of species across space and time.
-
+and other facts relevant for biogeographic research.
+The package provides easy export of data to Pandas DataFrame to help researchers focus more on analysis rather than data munging.
+Multiple included Jupyter notebooks demonstrate example analyses that can be used as a starting point for addressing research questions related to global and local distributions of species across space and time.
 
 # Why pyOBIS?
 pyOBIS is intuitively split into different modules for querying IUCN red lists,
@@ -59,6 +58,7 @@ The Taxa IDs used by OBIS is adopted from annotations by the WoRMS team thereby 
 pyOBIS python package improvess accessibility of data available through OBIS
 and helps reduce efforts in manipulating and visualizing Darwin Core Data.
 Some of the key features of pyOBIS are:
+
 * **Easy handling of OBIS data**
 
   Users can easily fetch data without handling the API directly.
