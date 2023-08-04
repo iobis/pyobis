@@ -49,7 +49,7 @@ def test_occurrences_search_61():
     q1 = occurrences.search(mof=True, **TEST_QUERY).execute()
     q2 = occurrences.search(mof=False, **TEST_QUERY).execute()
 
-    assert type(q1) == type(q2)
+    assert isinstance(q1, type(q2))
 
 
 @pytest.mark.vcr()
