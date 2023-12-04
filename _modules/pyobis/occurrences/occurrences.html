@@ -1,21 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pyobis.occurrences.occurrences &mdash; pyobis 1.4.1.dev19+g9404ccf documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <title>pyobis.occurrences.occurrences &mdash; pyobis 1.4.1.dev21+gce75f84 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=048f208b"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -33,7 +34,7 @@
             pyobis
           </a>
               <div class="version">
-                1.4.1.dev19+g9404ccf
+                1.4.1.dev21+gce75f84
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -99,7 +100,9 @@
 <span class="p">)</span>
 
 
-<div class="viewcode-block" id="OccResponse"><a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.OccResponse">[docs]</a><span class="k">class</span> <span class="nc">OccResponse</span><span class="p">:</span>
+<div class="viewcode-block" id="OccResponse">
+<a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.OccResponse">[docs]</a>
+<span class="k">class</span> <span class="nc">OccResponse</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    An OBIS Occurrence response class</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -268,7 +271,10 @@
         <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">])</span></div>
 
 
-<div class="viewcode-block" id="get"><a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.get">[docs]</a><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+<div class="viewcode-block" id="get">
+<a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.get">[docs]</a>
+<span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get an OBIS occurrence</span>
 
@@ -298,7 +304,10 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="search"><a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.search">[docs]</a><span class="k">def</span> <span class="nf">search</span><span class="p">(</span>
+
+<div class="viewcode-block" id="search">
+<a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.search">[docs]</a>
+<span class="k">def</span> <span class="nf">search</span><span class="p">(</span>
     <span class="n">scientificname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">taxonid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">nodeid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -427,7 +436,10 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="grid"><a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.grid">[docs]</a><span class="k">def</span> <span class="nf">grid</span><span class="p">(</span>
+
+<div class="viewcode-block" id="grid">
+<a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.grid">[docs]</a>
+<span class="k">def</span> <span class="nf">grid</span><span class="p">(</span>
     <span class="n">precision</span><span class="p">,</span>
     <span class="n">geojson</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">scientificname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -520,7 +532,10 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="getpoints"><a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.getpoints">[docs]</a><span class="k">def</span> <span class="nf">getpoints</span><span class="p">(</span>
+
+<div class="viewcode-block" id="getpoints">
+<a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.getpoints">[docs]</a>
+<span class="k">def</span> <span class="nf">getpoints</span><span class="p">(</span>
     <span class="n">scientificname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">taxonid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">datasetid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -603,7 +618,10 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="point"><a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.point">[docs]</a><span class="k">def</span> <span class="nf">point</span><span class="p">(</span>
+
+<div class="viewcode-block" id="point">
+<a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.point">[docs]</a>
+<span class="k">def</span> <span class="nf">point</span><span class="p">(</span>
     <span class="n">x</span><span class="p">,</span>
     <span class="n">y</span><span class="p">,</span>
     <span class="n">z</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -692,7 +710,10 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="tile"><a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.tile">[docs]</a><span class="k">def</span> <span class="nf">tile</span><span class="p">(</span>
+
+<div class="viewcode-block" id="tile">
+<a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.tile">[docs]</a>
+<span class="k">def</span> <span class="nf">tile</span><span class="p">(</span>
     <span class="n">x</span><span class="p">,</span>
     <span class="n">y</span><span class="p">,</span>
     <span class="n">z</span><span class="p">,</span>
@@ -790,7 +811,10 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="centroid"><a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.centroid">[docs]</a><span class="k">def</span> <span class="nf">centroid</span><span class="p">(</span>
+
+<div class="viewcode-block" id="centroid">
+<a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.centroid">[docs]</a>
+<span class="k">def</span> <span class="nf">centroid</span><span class="p">(</span>
     <span class="n">scientificname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">taxonid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">datasetid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -869,7 +893,10 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="lookup_taxon"><a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.lookup_taxon">[docs]</a><span class="k">def</span> <span class="nf">lookup_taxon</span><span class="p">(</span><span class="n">scientificname</span><span class="p">):</span>
+
+<div class="viewcode-block" id="lookup_taxon">
+<a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.lookup_taxon">[docs]</a>
+<span class="k">def</span> <span class="nf">lookup_taxon</span><span class="p">(</span><span class="n">scientificname</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Lookup for taxon metadata with scientificname</span>
 
@@ -885,6 +912,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;https://api.obis.org/v3/taxon/complete/</span><span class="si">{</span><span class="n">scientificname</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="n">json</span><span class="p">()</span></div>
+
 </pre></div>
 
            </div>
