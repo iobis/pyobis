@@ -1,4 +1,5 @@
 """Tests for taxa module - search methods"""
+
 import pytest
 import requests
 

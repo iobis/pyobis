@@ -1,6 +1,7 @@
 """
 Utility functions for internal use across various modules.
 """
+
 from urllib.parse import urlencode
 
 import requests
