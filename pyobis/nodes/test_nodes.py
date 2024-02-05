@@ -1,4 +1,5 @@
 """Tests for nodes module"""
+
 import pytest
 import requests
 

@@ -1,6 +1,7 @@
 """
 /taxon/ API endpoints as documented on https://api.obis.org/.
 """
+
 import pandas as pd
 
 from ..obisutils import build_api_url, handle_arrstr, obis_baseurl, obis_GET

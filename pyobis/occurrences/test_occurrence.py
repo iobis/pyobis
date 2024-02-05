@@ -1,4 +1,5 @@
 """Tests for occurrences module methods"""
+
 import pytest
 import requests
 

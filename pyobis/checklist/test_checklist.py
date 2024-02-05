@@ -1,4 +1,5 @@
 """Tests for checklist module"""
+
 import pytest
 import requests
 

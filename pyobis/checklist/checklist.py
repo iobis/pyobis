@@ -1,6 +1,7 @@
 """
 /checklist/ API endpoints as documented on https://api.obis.org/.
 """
+
 import sys
 
 import pandas as pd
