@@ -133,7 +133,7 @@ def list(
         either POINT, LINESTRING, LINEARRING
         or POLYGON.
         Example of a polygon: ((30.1 10.1, 20, 20 40, 40 40, 30.1 10.1)) would
-        be queried as http://bit.ly/1BzNwDq
+        be queried as https://api.gbif.org/v1/occurrence/search?geometry=POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))
     :param nodeid: [Fixnum] Node UUID.
     :param startdate: [String] Start date YYYY-MM-DD
     :param enddate: [String] End date YYYY-MM-DD
@@ -153,7 +153,7 @@ def list(
 
         # taxonid of 3013
         checklist.list(taxonid = 3013).execute()
-    """
+    """  # noqa: E501
     url = obis_baseurl + "checklist"
     scientificname = handle_arrstr(scientificname)
     taxonid = handle_arrint(taxonid)

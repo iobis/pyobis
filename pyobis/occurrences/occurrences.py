@@ -252,7 +252,7 @@ def search(
         as either POINT, LINESTRING, LINEARRING
         or POLYGON.
         Example of a polygon: ((30.1 10.1, 20, 20 40, 40 40, 30.1 10.1)) would
-        be queried as http://bit.ly/1BzNwDq
+        be queried as https://api.gbif.org/v1/occurrence/search?geometry=POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))
     :param nodeid: [String] Node UUID
     :param taxonid: Prev. aphiaid [Fixnum] An Aphia id. This is listed as
         the `worms_id` in `taxa`/`taxon` results
@@ -312,7 +312,7 @@ def search(
         occurrences.search(
             scientificname="Abra", mof=True, hasextensions="MeasurementOrFact", size=100
             ).execute()
-    """
+    """  # noqa: E501
     url = obis_baseurl + "occurrence"
     scientificname = handle_arrstr(scientificname)
     taxonid = handle_arrint(taxonid)
