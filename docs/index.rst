@@ -119,11 +119,11 @@ Checklist module
 Meta
 ====
 
-* License: MIT, see `LICENSE file <https://github.com/iobis/pyobis/blob/master/LICENSE>`__
-* Please note that this project is released with a `Contributor Code of Conduct <https://github.com/iobis/pyobis/blob/master/CONDUCT.md>`__. By participating in this project you agree to abide by its terms.
+* License: MIT, see `LICENSE file <https://github.com/iobis/pyobis/blob/main/LICENSE>`__
+* Please note that this project is released with a `Contributor Code of Conduct <https://github.com/iobis/pyobis/blob/main/CONDUCT.md>`__. By participating in this project you agree to abide by its terms.
 
 .. |pypi| image:: https://img.shields.io/pypi/v/pyobis.svg
-   :target: https://pypi.python.org/pypi/pyobis
+   :target: https://pypi.org/project/pyobis
 
 .. |docs| image:: https://github.com/iobis/pyobis/actions/workflows/deploy-docs.yml/badge.svg
    :target: https://iobis.github.io/pyobis

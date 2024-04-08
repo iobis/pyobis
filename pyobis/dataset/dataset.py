@@ -34,9 +34,9 @@ def search(
     :param geometry: [String] Well Known Text (WKT). A WKT shape written as
         either POINT, LINESTRING, LINEARRING
         or POLYGON.
-        Example of a polygon: ((30.1 10.1, 20, 20 40, 40 40, 30.1 10.1)) would
-        be queried as http://bit.ly/1BzNwDq. Geometry, formatted as WKT or
-        GeoHash.
+        Example of a polygon: ((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1)) would
+        be queried as https://api.obis.org/v3/occurrence?geometry=POLYGON%28%2830.1+10.1%2C+10+20%2C+20+40%2C+40+40%2C+30.1+10.1%29%29
+        Geometry, formatted as WKT or GeoHash.
     :param nodeid: [Fixnum] Node UUID.
     :param startdate: [Fixnum] Start date
     :param enddate: [Boolean] End date
@@ -91,7 +91,7 @@ def search(
 
         # Get resources for a particular eventDate
         data = dataset.search(taxonid=res['worms_id']).execute()
-    """
+    """  # noqa: E501
     url = obis_baseurl + "dataset"
     scientificname = handle_arrstr(scientificname)
     args = {

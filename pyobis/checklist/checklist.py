@@ -132,8 +132,8 @@ def list(
     :param geometry: [String] Well Known Text (WKT). A WKT shape written as
         either POINT, LINESTRING, LINEARRING
         or POLYGON.
-        Example of a polygon: ((30.1 10.1, 20, 20 40, 40 40, 30.1 10.1)) would
-        be queried as http://bit.ly/1BzNwDq
+        Example of a polygon: ((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1)) would
+        be queried as https://api.obis.org/v3/occurrence?geometry=POLYGON%28%2830.1+10.1%2C+10+20%2C+20+40%2C+40+40%2C+30.1+10.1%29%29
     :param nodeid: [Fixnum] Node UUID.
     :param startdate: [String] Start date YYYY-MM-DD
     :param enddate: [String] End date YYYY-MM-DD
@@ -153,7 +153,7 @@ def list(
 
         # taxonid of 3013
         checklist.list(taxonid = 3013).execute()
-    """
+    """  # noqa: E501
     url = obis_baseurl + "checklist"
     scientificname = handle_arrstr(scientificname)
     taxonid = handle_arrint(taxonid)
