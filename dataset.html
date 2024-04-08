@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>dataset module &mdash; pyobis 1.4.1.dev26+g57d7bb6 documentation</title>
+  <title>dataset module &mdash; pyobis 1.4.1.dev33+g6bd509c documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
 
@@ -15,7 +15,7 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=b1344947"></script>
+        <script src="_static/documentation_options.js?v=921f91a2"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
             pyobis
           </a>
               <div class="version">
-                1.4.1.dev26+g57d7bb6
+                1.4.1.dev33+g6bd509c
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -151,9 +151,9 @@ smaller,larger (e.g., ‘1990,1991’, whereas ‘1991,1990’ wouldn’t work)<
 <li><p><strong>geometry</strong> – [String] Well Known Text (WKT). A WKT shape written as
 either POINT, LINESTRING, LINEARRING
 or POLYGON.
-Example of a polygon: ((30.1 10.1, 20, 20 40, 40 40, 30.1 10.1)) would
-be queried as <a class="reference external" href="http://bit.ly/1BzNwDq">http://bit.ly/1BzNwDq</a>. Geometry, formatted as WKT or
-GeoHash.</p></li>
+Example of a polygon: ((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1)) would
+be queried as <a class="reference external" href="https://api.obis.org/v3/occurrence?geometry=POLYGON%28%2830.1+10.1%2C+10+20%2C+20+40%2C+40+40%2C+30.1+10.1%29%29">https://api.obis.org/v3/occurrence?geometry=POLYGON%28%2830.1+10.1%2C+10+20%2C+20+40%2C+40+40%2C+30.1+10.1%29%29</a>
+Geometry, formatted as WKT or GeoHash.</p></li>
 <li><p><strong>nodeid</strong> – [Fixnum] Node UUID.</p></li>
 <li><p><strong>startdate</strong> – [Fixnum] Start date</p></li>
 <li><p><strong>enddate</strong> – [Boolean] End date</p></li>

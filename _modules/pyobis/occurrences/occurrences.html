@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pyobis.occurrences.occurrences &mdash; pyobis 1.4.1.dev26+g57d7bb6 documentation</title>
+  <title>pyobis.occurrences.occurrences &mdash; pyobis 1.4.1.dev33+g6bd509c documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
 
@@ -14,7 +14,7 @@
   
         <script src="../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=b1344947"></script>
+        <script src="../../../_static/documentation_options.js?v=921f91a2"></script>
         <script src="../../../_static/doctools.js?v=888ff710"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -34,7 +34,7 @@
             pyobis
           </a>
               <div class="version">
-                1.4.1.dev26+g57d7bb6
+                1.4.1.dev33+g6bd509c
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -339,8 +339,8 @@
 <span class="sd">    :param geometry: [String] Well Known Text (WKT). A WKT shape written</span>
 <span class="sd">        as either POINT, LINESTRING, LINEARRING</span>
 <span class="sd">        or POLYGON.</span>
-<span class="sd">        Example of a polygon: ((30.1 10.1, 20, 20 40, 40 40, 30.1 10.1)) would</span>
-<span class="sd">        be queried as http://bit.ly/1BzNwDq</span>
+<span class="sd">        Example of a polygon: ((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1)) would</span>
+<span class="sd">        be queried as https://api.obis.org/v3/occurrence?geometry=POLYGON%28%2830.1+10.1%2C+10+20%2C+20+40%2C+40+40%2C+30.1+10.1%29%29</span>
 <span class="sd">    :param nodeid: [String] Node UUID</span>
 <span class="sd">    :param taxonid: Prev. aphiaid [Fixnum] An Aphia id. This is listed as</span>
 <span class="sd">        the `worms_id` in `taxa`/`taxon` results</span>
@@ -400,7 +400,7 @@
 <span class="sd">        occurrences.search(</span>
 <span class="sd">            scientificname=&quot;Abra&quot;, mof=True, hasextensions=&quot;MeasurementOrFact&quot;, size=100</span>
 <span class="sd">            ).execute()</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
     <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s2">&quot;occurrence&quot;</span>
     <span class="n">scientificname</span> <span class="o">=</span> <span class="n">handle_arrstr</span><span class="p">(</span><span class="n">scientificname</span><span class="p">)</span>
     <span class="n">taxonid</span> <span class="o">=</span> <span class="n">handle_arrint</span><span class="p">(</span><span class="n">taxonid</span><span class="p">)</span>
