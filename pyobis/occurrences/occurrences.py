@@ -118,7 +118,7 @@ class OccResponse:
                 self.__args["size"] = 10000
                 logger.info(
                     f"Fetching: "
-                    f"[{"█" * int((i - 1) * 100 / size)}"
+                    f"[{"\u2588" * int((i - 1) * 100 / size)}"
                     f"{"." * (100 - int((i + 1) * 100 / size))}]"
                     f" {i}/{size}"
                 )
@@ -142,7 +142,7 @@ class OccResponse:
             # we have already fetched records as a set of 5000 records each time,
             # now we need to get remaining records from the total
             logger.info(
-                "{}[{}{}] {}/{}".format("Fetching: ", "█" * 100, "." * 0, size, size),
+                "{}[{}{}] {}/{}".format("Fetching: ", "\u2588" * 100, "." * 0, size, size),
             )
             res = obis_GET(
                 self.__url,
@@ -154,7 +154,7 @@ class OccResponse:
                 [outdf.infer_objects(), pd.DataFrame(res["results"]).infer_objects()],
                 ignore_index=True,
             )
-            logger.info(f"\nFetched {size} records.")
+            logger.info(f"Fetched {size} records.")
 
             if mof and self.__total_records > 0:
                 mofNormalized = pd.json_normalize(
