@@ -14,8 +14,8 @@ from ..obisutils import (
     build_api_url,
     handle_arrint,
     handle_arrstr,
-    obis_baseurl,
     logger,
+    obis_baseurl,
     obis_GET,
 )
 
@@ -122,7 +122,7 @@ class OccResponse:
                         "." * (100 - int((i + 1) * 100 / size)),
                         i,
                         size,
-                    )
+                    ),
                 )
                 res = obis_GET(
                     self.__url,
@@ -144,7 +144,13 @@ class OccResponse:
             # we have already fetched records as a set of 5000 records each time,
             # now we need to get remaining records from the total
             logger.info(
-                "{}[{}{}] {}/{}".format("Fetching: ", "\u2588" * 100, "." * 0, size, size),
+                "{}[{}{}] {}/{}".format(
+                    "Fetching: ",
+                    "\u2588" * 100,
+                    "." * 0,
+                    size,
+                    size,
+                ),
             )
             res = obis_GET(
                 self.__url,

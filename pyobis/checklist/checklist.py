@@ -63,7 +63,7 @@ class ChecklistResponse:
                     "█" * int(len(out["results"]) * 100 / out["total"]),
                     "." * (100 - int(len(out["results"]) * 100 / out["total"])),
                     len(out["results"]),
-                )
+                ),
             )
             # now paginate until the response is null
             while True:

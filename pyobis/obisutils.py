@@ -12,10 +12,10 @@ obis_baseurl = "https://api.obis.org/v3/"
 # export logger, and setup basic configurations
 logger = logging.getLogger(__name__)
 logging.basicConfig(
-    encoding='utf-8', 
+    encoding="utf-8",
     level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S',
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
 )
 
 
