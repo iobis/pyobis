@@ -10,6 +10,7 @@ from ..obisutils import (
     build_api_url,
     handle_arrint,
     handle_arrstr,
+    logger,
     obis_baseurl,
     obis_GET,
 )
@@ -55,17 +56,14 @@ class ChecklistResponse:
                 pass
 
             # fetch first 10 records, and print number of estimated records
-            print(f"Estimated records: {out['total']}")
-            print(
+            logger.info(f"Estimated records: {out['total']}")
+            logger.info(
                 "{}[{}{}] {}".format(
                     "Fetching: ",
                     "█" * int(len(out["results"]) * 100 / out["total"]),
                     "." * (100 - int(len(out["results"]) * 100 / out["total"])),
                     len(out["results"]),
-                ),
-                end="\r",
-                file=sys.stdout,
-                flush=True,
+                )
             )
             # now paginate until the response is null
             while True:
@@ -79,7 +77,7 @@ class ChecklistResponse:
                     break
                 out["results"] += res["results"]
                 # print the progress bar
-                print(
+                logger.info(
                     "{}[{}{}] {}".format(
                         "Fetching: ",
                         "█" * int(len(out["results"]) * 100 / out["total"]),
@@ -94,7 +92,7 @@ class ChecklistResponse:
                 # continue to fetch next 5000 records
                 i += 5000
             # print actual number of fetched records
-            print(f"\nFetched {len(out['results'])} records.")
+            logger.info(f"\nFetched {len(out['results'])} records.")
         else:
             out = obis_GET(
                 self.__url,
