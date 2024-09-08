@@ -3,7 +3,6 @@
 """
 
 import json
-import sys
 import warnings
 from time import time
 from urllib.parse import urlencode
@@ -117,10 +116,13 @@ class OccResponse:
                     break
                 self.__args["size"] = 10000
                 logger.info(
-                    f"Fetching: "
-                    f"[{"\u2588" * int((i - 1) * 100 / size)}"
-                    f"{"." * (100 - int((i + 1) * 100 / size))}]"
-                    f" {i}/{size}"
+                    "{}[{}{}] {}/{}".format(
+                        "Fetching: ",
+                        "█" * int((i - 1) * 100 / size),
+                        "." * (100 - int((i + 1) * 100 / size)),
+                        i,
+                        size,
+                    )
                 )
                 res = obis_GET(
                     self.__url,

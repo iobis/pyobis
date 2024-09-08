@@ -18,6 +18,7 @@ logging.basicConfig(
     datefmt='%Y-%m-%d %H:%M:%S',
 )
 
+
 class NoResultException(Exception):
     """
     Thrown when query returns no results.
