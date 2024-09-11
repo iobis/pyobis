@@ -68,7 +68,7 @@ python -m pip install -e .
 # test your installation
 python -m pytest
 # test and generate a coverage report
-python -m pytest -rxs --cov=pyobis tests
+python -m pytest -rxs --cov=pyobis ./pyobis --vcr-record=none
 ```
 
 ## Documentation

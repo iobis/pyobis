@@ -3,7 +3,6 @@
 """
 
 import json
-import sys
 import warnings
 from time import time
 from urllib.parse import urlencode
@@ -15,6 +14,7 @@ from ..obisutils import (
     build_api_url,
     handle_arrint,
     handle_arrstr,
+    logger,
     obis_baseurl,
     obis_GET,
 )
@@ -71,10 +71,10 @@ class OccResponse:
                 # the total time can be estimated easily although this might not be accurate
                 # for larger than 100k records, because the network download takes
                 # even smaller fraction of the total round-trip time
-                print(
-                    f"{self.__total_records} to be fetched. Estimated time = ",
-                    (ending_time - starting_time) * 0.995,
-                    f" {(ending_time - starting_time) * 0.005 * self.__total_records:.0f} ",
+                logger.info(
+                    f"{self.__total_records} to be fetched. Estimated time ="
+                    f"{(ending_time - starting_time) * 0.995}"
+                    f"{(ending_time - starting_time) * 0.005 * self.__total_records:.0f} "
                     "seconds",
                 )
 
@@ -115,7 +115,7 @@ class OccResponse:
                 if "id" not in outdf.columns:
                     break
                 self.__args["size"] = 10000
-                print(
+                logger.info(
                     "{}[{}{}] {}/{}".format(
                         "Fetching: ",
                         "█" * int((i - 1) * 100 / size),
@@ -123,9 +123,6 @@ class OccResponse:
                         i,
                         size,
                     ),
-                    end="\r",
-                    file=sys.stdout,
-                    flush=True,
                 )
                 res = obis_GET(
                     self.__url,
@@ -146,11 +143,14 @@ class OccResponse:
             self.__args["size"] = size % 10000
             # we have already fetched records as a set of 5000 records each time,
             # now we need to get remaining records from the total
-            print(
-                "{}[{}{}] {}/{}".format("Fetching: ", "█" * 100, "." * 0, size, size),
-                end="\r",
-                file=sys.stdout,
-                flush=True,
+            logger.info(
+                "{}[{}{}] {}/{}".format(
+                    "Fetching: ",
+                    "\u2588" * 100,
+                    "." * 0,
+                    size,
+                    size,
+                ),
             )
             res = obis_GET(
                 self.__url,
@@ -162,7 +162,7 @@ class OccResponse:
                 [outdf.infer_objects(), pd.DataFrame(res["results"]).infer_objects()],
                 ignore_index=True,
             )
-            print(f"\nFetched {size} records.")
+            logger.info(f"Fetched {size} records.")
 
             if mof and self.__total_records > 0:
                 mofNormalized = pd.json_normalize(
