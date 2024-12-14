@@ -5,7 +5,7 @@
 [![docs](https://github.com/iobis/pyobis/actions/workflows/deploy-docs.yml/badge.svg)](https://iobis.github.ic/pyobis)
 [![tests](https://github.com/iobis/pyobis/actions/workflows/tests.yml/badge.svg)](https://github.com/iobis/pyobis/actions/workflows/tests.yml)
 
-Python client for the `OBIS API(https://api.obis.org/).
+Python client for the [OBIS API](https://api.obis.org/).
 
 [Source on GitHub at iobis/pyobis](https://github.com/iobis/pyobis)
 
