@@ -15,8 +15,10 @@ def test_occurrences_search():
     query = occurrences.search(scientificname="Mola mola", size=size)
     assert not query.data  # the data is none after query building but before executing
     query.execute()
-    assert size == len(query.data)
-    assert "Mola mola" == query.data.scientificName[0]
+    assert "dict" == query.data.__class__.__name__
+    assert 2 == len(query.data)
+    assert size == len(query.to_pandas())
+    assert "Mola mola" == query.to_pandas().scientificName[0]
 
 
 @pytest.mark.vcr()
@@ -32,7 +34,7 @@ def test_occurrence_search_mof():
     )
     assert not query.data
     query.execute()
-    assert "Abra alba" == query.data.scientificName[0]
+    assert "Abra alba" == query.to_pandas().scientificName[0]
     assert requests.get(query.api_url).status_code == 200
     assert requests.get(query.mapper_url).status_code == 200
 
@@ -83,6 +85,13 @@ def test_occurrences_grid():
     assert requests.get(query.api_url).status_code == 200
     assert not query.mapper_url
 
+    # check for KML formats that to_pandas function is not implemented
+    with pytest.raises(
+        NotImplementedError,
+        match="to_pandas method is not yet available for these query types.",
+    ):
+        query.to_pandas()
+
 
 @pytest.mark.vcr()
 def test_occurrences_getpoints():
@@ -128,6 +137,14 @@ def test_occurrences_tile():
     query = occurrences.tile(x=1.77, y=52.26, z=0.5, mvt=1, scientificname="Mola mola")
     query.execute()
     assert requests.get(query.api_url).status_code == 200
+
+    # check for MVT formats that to_pandas function is not implemented
+    with pytest.raises(
+        NotImplementedError,
+        match="to_pandas method is not yet available for these query types.",
+    ):
+        query.to_pandas()
+
     query = occurrences.tile(x=1.77, y=52.26, z=0.5, mvt=0, scientificname="Mola mola")
     query.execute()
     assert requests.get(query.api_url).status_code == 200

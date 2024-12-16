@@ -132,7 +132,7 @@ class OccResponse:
                 )
                 outdf = pd.concat(
                     [
-                        outdf.infer_objects(),
+                        outdf if len(outdf) else None,
                         pd.DataFrame(res["results"]).infer_objects(),
                     ],
                     ignore_index=True,
@@ -159,7 +159,10 @@ class OccResponse:
                 **kwargs,
             )
             outdf = pd.concat(
-                [outdf.infer_objects(), pd.DataFrame(res["results"]).infer_objects()],
+                [
+                    outdf if len(outdf) else None,
+                    pd.DataFrame(res["results"]).infer_objects(),
+                ],
                 ignore_index=True,
             )
             logger.info(f"Fetched {size} records.")
@@ -176,9 +179,16 @@ class OccResponse:
                     on="id",
                     how="inner",
                 )
-                self.data = merged
-                return self.data
-            self.data = outdf
+                self.data = {"total": len(merged), "results": merged}
+                # set the data as [total, results] K-V pair
+                # but still return the DataFrame since changing this
+                # will impact existing usage, and be a breaking change
+                return self.data["results"]
+            self.data = {"total": len(outdf), "results": outdf}
+
+            # again for not MeasurementOrFacts results, (simple search queries)
+            # should also return the DataFrame directly for backward compatibility
+            return self.data["results"]
 
         return self.data
 
@@ -186,6 +196,14 @@ class OccResponse:
         """
         Convert the results into a pandas DataFrame
         """
+        # if the data format of the query executed cannot be converted to a
+        # pandas.DataFrame which is true for other formats like .mvt or kml (not geojson)
+        # then we should be raising a not implemented rather relying around exceptions
+        # from pandas while converting
+        if self.__isKML:
+            raise NotImplementedError(
+                "to_pandas method is not yet available for these query types.",
+            )
         return pd.DataFrame(self.data["results"])
 
 
@@ -400,7 +418,7 @@ def grid(
         from pyobis import occurrences
 
         occurrences.grid(100, True) // returns in GeoJSON format
-        ococcurrences.grid(1000, False)   // returns in KML format
+        occurrences.grid(1000, False)   // returns in KML format
     """
     url = obis_baseurl + "occurrence/grid/" + str(precision)
     scientificname = handle_arrstr(scientificname)
