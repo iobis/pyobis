@@ -5,14 +5,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pyobis.occurrences.occurrences &mdash; pyobis 1.4.1.dev83+gba2f8fa documentation</title>
+  <title>pyobis.occurrences.occurrences &mdash; pyobis 1.4.1.dev87+gebaf0c2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=fc9f9f14"></script>
+      <script src="../../../_static/documentation_options.js?v=f3ee7e3c"></script>
       <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -209,7 +209,7 @@
                 <span class="p">)</span>
                 <span class="n">outdf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
                     <span class="p">[</span>
-                        <span class="n">outdf</span><span class="o">.</span><span class="n">infer_objects</span><span class="p">(),</span>
+                        <span class="n">outdf</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">outdf</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
                         <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">infer_objects</span><span class="p">(),</span>
                     <span class="p">],</span>
                     <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -236,7 +236,10 @@
                 <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
             <span class="p">)</span>
             <span class="n">outdf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
-                <span class="p">[</span><span class="n">outdf</span><span class="o">.</span><span class="n">infer_objects</span><span class="p">(),</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">infer_objects</span><span class="p">()],</span>
+                <span class="p">[</span>
+                    <span class="n">outdf</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">outdf</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">infer_objects</span><span class="p">(),</span>
+                <span class="p">],</span>
                 <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="p">)</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fetched </span><span class="si">{</span><span class="n">size</span><span class="si">}</span><span class="s2"> records.&quot;</span><span class="p">)</span>
@@ -253,9 +256,16 @@
                     <span class="n">on</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">,</span>
                     <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">,</span>
                 <span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">merged</span>
-                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">outdf</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;total&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">merged</span><span class="p">),</span> <span class="s2">&quot;results&quot;</span><span class="p">:</span> <span class="n">merged</span><span class="p">}</span>
+                <span class="c1"># set the data as [total, results] K-V pair</span>
+                <span class="c1"># but still return the DataFrame since changing this</span>
+                <span class="c1"># will impact existing usage, and be a breaking change</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;total&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">outdf</span><span class="p">),</span> <span class="s2">&quot;results&quot;</span><span class="p">:</span> <span class="n">outdf</span><span class="p">}</span>
+
+            <span class="c1"># again for not MeasurementOrFacts results, (simple search queries)</span>
+            <span class="c1"># should also return the DataFrame directly for backward compatibility</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">]</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span>
 
@@ -263,6 +273,14 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Convert the results into a pandas DataFrame</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># if the data format of the query executed cannot be converted to a</span>
+        <span class="c1"># pandas.DataFrame which is true for other formats like .mvt or kml (not geojson)</span>
+        <span class="c1"># then we should be raising a not implemented rather relying around exceptions</span>
+        <span class="c1"># from pandas while converting</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__isKML</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+                <span class="s2">&quot;to_pandas method is not yet available for these query types.&quot;</span><span class="p">,</span>
+            <span class="p">)</span>
         <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">])</span></div>
 
 
@@ -486,7 +504,7 @@
 <span class="sd">        from pyobis import occurrences</span>
 
 <span class="sd">        occurrences.grid(100, True) // returns in GeoJSON format</span>
-<span class="sd">        ococcurrences.grid(1000, False)   // returns in KML format</span>
+<span class="sd">        occurrences.grid(1000, False)   // returns in KML format</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s2">&quot;occurrence/grid/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">precision</span><span class="p">)</span>
     <span class="n">scientificname</span> <span class="o">=</span> <span class="n">handle_arrstr</span><span class="p">(</span><span class="n">scientificname</span><span class="p">)</span>
