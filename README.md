@@ -9,6 +9,11 @@ Python client for the [OBIS API](https://api.obis.org/).
 
 [Source on GitHub at iobis/pyobis](https://github.com/iobis/pyobis)
 
+Try it out:
+
+[![Open In Collab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/iobis/pyobis)
+
+
 ## What is it?
 Pyobis is an interesting python package that helps users fetch data from OBIS API which
 harvests occurrence records from thousands of datasets and makes them available as a
