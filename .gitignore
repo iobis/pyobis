@@ -25,3 +25,10 @@ Function_Changes.md
 .vscode
 _build
 pyobis/_version.py
+
+
+# Cache requests directory
+pyobis/cache/requests/
+
+# Virtual environment
+venv/
