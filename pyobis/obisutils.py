@@ -5,7 +5,7 @@ Utility functions for internal use across various modules.
 import logging
 from urllib.parse import urlencode
 
-import requests
+from .cache.cache import cache
 
 obis_baseurl = "https://api.obis.org/v3/"
 
@@ -45,14 +45,19 @@ def obis_GET(url, args, ctype, **kwargs):
         "Host": "api.obis.org",
         "Connection": "keep-alive",
     }
-    out = requests.get(url, params=args, headers=headers, **kwargs)
+
+    # Use the cached session for making requests
+    session = cache.get_session()
+    out = session.get(url, params=args, headers=headers, **kwargs)
     out.raise_for_status()
     stopifnot(out.headers["content-type"], ctype)
     return out.json()
 
 
 def obis_write_disk(url, path, ctype, **kwargs):
-    out = requests.get(url, stream=True, **kwargs)
+    """Write API response to disk."""
+    session = cache.get_session()
+    out = session.get(url, stream=True, **kwargs)
     out.raise_for_status()
     with open(path, "wb") as f:
         for chunk in out.iter_content(chunk_size=1024):
@@ -62,11 +67,13 @@ def obis_write_disk(url, path, ctype, **kwargs):
 
 
 def stopifnot(x, ctype):
+    """Check if content type matches expected type."""
     if x != ctype:
         raise NoResultException("content-type did not equal " + str(ctype))
 
 
 def stop(x):
+    """Raise ValueError with message."""
     raise ValueError(x)
 
 

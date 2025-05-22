@@ -1,6 +1,9 @@
+flake8==6.1.0
+mccabe==0.7.0
 pandas
+pre-commit
+pytest>=7.0.0
+python-dateutil
 requests>=2.31.0
 requests-cache>=1.1.1
 urllib3<2.0.0
-pytest>=7.0.0
-python-dateutil
