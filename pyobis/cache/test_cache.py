@@ -37,9 +37,9 @@ def test_cache_initialization(cache):
 def test_request_caching(cache):
     """Test HTTP request caching."""
     session = cache.get_session()
-    response1 = session.get("https://api.obis.org/v3/taxon/123")
-    response2 = session.get("https://api.obis.org/v3/taxon/123")
-    assert response2.from_cache
+    session.get("https://api.obis.org/v3/taxon/123")
+    response = session.get("https://api.obis.org/v3/taxon/123")
+    assert response.from_cache
 
 
 def test_cache_expiration(cache):
