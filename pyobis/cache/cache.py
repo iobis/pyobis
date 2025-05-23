@@ -40,11 +40,11 @@ class Cache:
             backend="filesystem",
             expire_after=timedelta(seconds=expire_after),
             allowable_methods=["GET"],
-            stale_if_error=False,  # Don't use stale responses
+            stale_if_error=False,
             cache_control=True,
             serializer="json",
-            use_cache_dir=True,  # Use the cache directory for storage
-            use_temp=True,  # Use temporary files for atomic writes
+            use_cache_dir=True,
+            use_temp=True,
         )
 
         logger.info(f"Cache initialized at {self.cache_dir}")
@@ -97,5 +97,4 @@ class Cache:
         self.session.close()
 
 
-# Create a singleton instance
 cache = Cache()
