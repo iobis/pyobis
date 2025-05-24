@@ -40,7 +40,7 @@ class Cache:
             backend="filesystem",
             expire_after=timedelta(seconds=expire_after),
             allowable_methods=["GET"],
-            stale_if_error=False,
+            stale_if_error=True,
             cache_control=True,
             serializer="json",
             use_cache_dir=True,
@@ -65,7 +65,7 @@ class Cache:
 
     def remove_expired(self):
         """Remove expired cache entries."""
-        self.session.cache.remove_expired_responses()
+        self.session.cache.delete(expired=True)
         logger.info("Expired cache entries removed")
 
     def get_cache_info(self):
@@ -75,7 +75,7 @@ class Cache:
         Returns:
             dict: Cache information including path, size, and count.
         """
-        # Calculate total size of cache directory
+
         total_size = 0
         for path in self.cache_dir.rglob("*"):
             if path.is_file():
@@ -88,13 +88,20 @@ class Cache:
             "expire_after": timedelta(seconds=self.expire_after),
         }
 
+    def close(self):
+        """Close the session and release all resources."""
+        if hasattr(self, "session"):
+            self.session.close()
+            if hasattr(self.session, "cache"):
+                self.session.cache.close()
+
     def __enter__(self):
         """Context manager entry."""
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         """Context manager exit."""
-        self.session.close()
+        self.close()
 
 
 cache = Cache()

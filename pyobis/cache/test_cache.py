@@ -18,13 +18,24 @@ def temp_cache_dir():
     """Create a temporary directory for cache testing."""
     temp_dir = tempfile.mkdtemp()
     yield temp_dir
-    shutil.rmtree(temp_dir)
+    try:
+        shutil.rmtree(temp_dir)
+    except PermissionError:
+        # for windows
+        time.sleep(0.1)
+        try:
+            shutil.rmtree(temp_dir)
+        except PermissionError:
+            print(f"Warning: Could not delete temporary directory {temp_dir}")
 
 
 @pytest.fixture
 def cache(temp_cache_dir):
     """Create a Cache instance with a temporary directory."""
-    return Cache(cache_dir=temp_cache_dir, expire_after=1)
+    cache = Cache(cache_dir=temp_cache_dir, expire_after=1)
+    yield cache
+
+    cache.close()
 
 
 def test_cache_initialization(cache):
@@ -44,7 +55,6 @@ def test_request_caching(cache):
 
 def test_cache_expiration(cache):
     """Test cache expiration."""
-
     session = cache.get_session()
     response1 = session.get("https://api.obis.org/v3/taxon/123")
     assert not response1.from_cache
@@ -60,20 +70,17 @@ def test_cache_expiration(cache):
 
 def test_cache_clear(cache):
     """Test clearing the cache."""
-
     session = cache.get_session()
     session.get("https://api.obis.org/v3/taxon/123")
 
     cache.clear()
 
     response = session.get("https://api.obis.org/v3/taxon/123")
-
     assert not response.from_cache
 
 
 def test_remove_expired(cache):
     """Test removing expired cache entries."""
-
     session = cache.get_session()
     session.get("https://api.obis.org/v3/taxon/123")
 
@@ -87,7 +94,6 @@ def test_remove_expired(cache):
 
 def test_get_cache_info(cache):
     """Test getting cache information."""
-
     session = cache.get_session()
     session.get("https://api.obis.org/v3/taxon/123")
     session.get("https://api.obis.org/v3/taxon/456")
