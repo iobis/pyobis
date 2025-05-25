@@ -22,6 +22,32 @@ While you are reading this, you must have been aware of what pyobis is - it's th
 ## We Develop with GitHub
 We use GitHub to host code, to track issues and feature requests, as well as accept pull requests.
 
+## Development Installation
+
+### Install latest development version from GitHub
+
+```bash
+pip install git+git://github.com/iobis/pyobis.git#egg=pyobis
+```
+
+### Install editable dev version from github for local development
+
+System prerequisites: python3, conda
+
+```bash
+# fetch code
+git clone git@github.com:iobis/pyobis.git
+cd pyobis
+# install
+python -m pip install -r requirements.txt
+python -m pip install -r requirements-dev.txt
+python -m pip install -e .
+# test your installation
+python -m pytest
+# test and generate a coverage report
+python -m pytest -rxs --cov=pyobis ./pyobis --vcr-record=none
+```
+
 ## We Use [GitHub Flow](https://guides.github.com/introduction/flow/index.html), So All Code Changes Happen Through Pull Requests
 Pull requests are the best way to propose changes to the codebase (we use [GitHub Flow](https://guides.github.com/introduction/flow/index.html)). We actively welcome your pull requests:
 
