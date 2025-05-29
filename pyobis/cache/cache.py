@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 # Global default cache settings
 _DEFAULT_CACHE_DIR = Path(__file__).parent / "requests"
-_DEFAULT_EXPIRE_AFTER = 3600  # 1 hour
+_DEFAULT_EXPIRE_AFTER = 86400  # 1 Day
 
 
 def get_default_cache(enabled=True):
