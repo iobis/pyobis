@@ -19,7 +19,7 @@ def test_taxa_search_data():
     assert 2 == len(query.data)
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr(cassette_name="test_taxa_search_data")
 def test_taxa_search_without_cache():
     """
     taxa.search - test with caching disabled
@@ -58,7 +58,7 @@ def test_taxa_taxon_data():
     assert query.to_pandas().__class__.__name__ == "DataFrame"
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr(cassette_name="test_taxa_taxon_data")
 def test_taxa_taxon_without_cache():
     """
     taxa.taxon - test with caching disabled
@@ -97,7 +97,7 @@ def test_taxa_annotations_data():
     assert query.to_pandas().__class__.__name__ == "DataFrame"
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr(cassette_name="test_taxa_annotations_data")
 def test_taxa_annotations_without_cache():
     """
     taxa.annotations - test with caching disabled
