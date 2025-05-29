@@ -86,17 +86,14 @@ def test_cache_parameter_functionality():
     Test that cache=False parameter works without making actual HTTP requests
     This test verifies the parameter is accepted and handled correctly
     """
-    # Test that cache=False parameter is accepted
     query_with_cache = taxa.search(scientificname="Mola mola", cache=True)
     query_without_cache = taxa.search(scientificname="Mola mola", cache=False)
 
-    # Both should create valid query objects
     assert query_with_cache is not None
     assert query_without_cache is not None
     assert not query_with_cache.data
     assert not query_without_cache.data
 
-    # Test for other methods too
     query_taxon_cache = taxa.taxon(545439, cache=True)
     query_taxon_no_cache = taxa.taxon(545439, cache=False)
     assert query_taxon_cache is not None

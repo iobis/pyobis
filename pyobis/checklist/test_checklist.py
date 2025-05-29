@@ -59,14 +59,11 @@ def test_cache_parameter_functionality():
     """
     Test that cache=False parameter works without making HTTP requests
     """
-    # Test list function
     query = checklist.list(scientificname="Mola mola", cache=False)
     assert query._ChecklistResponse__cache is False
 
-    # Test redlist function
     query = checklist.redlist(scientificname="Mola mola", cache=False)
     assert query._ChecklistResponse__cache is False
 
-    # Test newest function
     query = checklist.newest(scientificname="Mola mola", cache=False)
     assert query._ChecklistResponse__cache is False

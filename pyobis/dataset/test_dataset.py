@@ -54,10 +54,8 @@ def test_dataset_search_url():
 
 def test_cache_parameter_functionality():
     "Test that cache=False parameter works without making HTTP requests"
-    # Test search function
     res = dataset.search(scientificname="Mola mola", cache=False)
     assert res._DatasetResponse__cache is False
 
-    # Test get function
     res = dataset.get("ec9df3b9-3b2b-4d83-881b-27bcbcd57b95", cache=False)
     assert res._DatasetResponse__cache is False
