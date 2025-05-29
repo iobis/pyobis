@@ -58,3 +58,39 @@ def test_nodes_activities_url():
     query = nodes.activities(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc")
     assert requests.get(query.api_url).status_code == 200
     assert not query.mapper_url
+
+
+def test_cache_parameter_functionality():
+    """
+    Test that cache=False parameter works without making actual HTTP requests
+    This test verifies the parameter is accepted and handled correctly
+    """
+    # Test that cache=False parameter is accepted
+    query_with_cache = nodes.search(
+        id="4bf79a01-65a9-4db6-b37b-18434f26ddfc",
+        cache=True,
+    )
+    query_without_cache = nodes.search(
+        id="4bf79a01-65a9-4db6-b37b-18434f26ddfc",
+        cache=False,
+    )
+
+    # Both should create valid query objects
+    assert query_with_cache is not None
+    assert query_without_cache is not None
+    assert not query_with_cache.data
+    assert not query_without_cache.data
+
+    # Test for activities method too
+    query_activities_cache = nodes.activities(
+        id="4bf79a01-65a9-4db6-b37b-18434f26ddfc",
+        cache=True,
+    )
+    query_activities_no_cache = nodes.activities(
+        id="4bf79a01-65a9-4db6-b37b-18434f26ddfc",
+        cache=False,
+    )
+    assert query_activities_cache is not None
+    assert query_activities_no_cache is not None
+    assert not query_activities_cache.data
+    assert not query_activities_no_cache.data
