@@ -19,11 +19,12 @@ def test_taxa_search_data():
     assert 2 == len(query.data)
 
 
-@pytest.mark.vcr(cassette_name="test_taxa_search_data")
+@pytest.mark.vcr(cassettes_name="test_taxa_search_data")
 def test_taxa_search_without_cache():
     """
     taxa.search - test with caching disabled
     """
+    # Use the same parameters as test_taxa_search_data to ensure same cassette
     query = taxa.search(scientificname="Mola mola", cache=False)
     assert not query.data
     query.execute()
@@ -58,11 +59,12 @@ def test_taxa_taxon_data():
     assert query.to_pandas().__class__.__name__ == "DataFrame"
 
 
-@pytest.mark.vcr(cassette_name="test_taxa_taxon_data")
+@pytest.mark.vcr(cassettes_name="test_taxa_taxon_data")
 def test_taxa_taxon_without_cache():
     """
     taxa.taxon - test with caching disabled
     """
+    # Use the same parameters as test_taxa_taxon_data to ensure same cassette
     query = taxa.taxon(545439, cache=False)
     assert not query.data
     query.execute()
@@ -97,11 +99,12 @@ def test_taxa_annotations_data():
     assert query.to_pandas().__class__.__name__ == "DataFrame"
 
 
-@pytest.mark.vcr(cassette_name="test_taxa_annotations_data")
+@pytest.mark.vcr(cassettes_name="test_taxa_annotations_data")
 def test_taxa_annotations_without_cache():
     """
     taxa.annotations - test with caching disabled
     """
+    # Use the same parameters as test_taxa_annotations_data to ensure same cassette
     query = taxa.annotations(scientificname="Abra", cache=False)
     assert not query.data
     query.execute()
