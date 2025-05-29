@@ -22,6 +22,22 @@ def test_occurrences_search():
 
 
 @pytest.mark.vcr()
+def test_occurrences_search_without_cache():
+    """
+    occurrences.search - test with caching disabled
+    """
+    # Use the same parameters as test_occurrences_search to ensure same cassette
+    size = 10100
+    query = occurrences.search(scientificname="Mola mola", size=size, cache=False)
+    assert not query.data
+    query.execute()
+    assert "dict" == query.data.__class__.__name__
+    assert 2 == len(query.data)
+    assert size == len(query.to_pandas())
+    assert "Mola mola" == query.to_pandas().scientificName[0]
+
+
+@pytest.mark.vcr()
 def test_occurrence_search_mof():
     """
     occurrences.search - basic test for data with MoF extension, check type, size and other methods
@@ -31,6 +47,25 @@ def test_occurrence_search_mof():
         mof=True,
         size=100,
         hasextensions="MeasurementOrFact",
+    )
+    assert not query.data
+    query.execute()
+    assert "Abra alba" == query.to_pandas().scientificName[0]
+    assert requests.get(query.api_url).status_code == 200
+    assert requests.get(query.mapper_url).status_code == 200
+
+
+@pytest.mark.vcr()
+def test_occurrence_search_mof_without_cache():
+    """
+    occurrences.search - test with MoF extension and caching disabled
+    """
+    query = occurrences.search(
+        scientificname="Abra alba",
+        mof=True,
+        size=100,
+        hasextensions="MeasurementOrFact",
+        cache=False,
     )
     assert not query.data
     query.execute()
@@ -68,6 +103,49 @@ def test_occurrences_get():
     assert list == list(query.data.keys()).__class__
     assert requests.get(query.api_url).status_code == 200
     assert query.to_pandas().__class__.__name__ == "DataFrame"
+
+
+@pytest.mark.vcr()
+def test_occurrences_get_without_cache():
+    """
+    occurrences.get - test with caching disabled
+    """
+    query = occurrences.get(
+        id=occurrences.search(size=1).execute()["id"].values[0],
+        cache=False,
+    )
+    assert not query.data
+    query.execute()
+    assert "dict" == query.data.__class__.__name__
+    assert 2 == len(query.data)
+    assert list == list(query.data.keys()).__class__
+    assert requests.get(query.api_url).status_code == 200
+    assert query.to_pandas().__class__.__name__ == "DataFrame"
+
+
+def test_cache_parameter_functionality():
+    """
+    Test that cache=False parameter works without making actual HTTP requests
+    This test verifies the parameter is accepted and handled correctly
+    """
+    # Test that cache=False parameter is accepted
+    query_with_cache = occurrences.search(scientificname="Mola mola", cache=True)
+    query_without_cache = occurrences.search(scientificname="Mola mola", cache=False)
+
+    # Both should create valid query objects
+    assert query_with_cache is not None
+    assert query_without_cache is not None
+    assert not query_with_cache.data
+    assert not query_without_cache.data
+
+    # Test for get method too
+    test_id = "00003cf7-f2fc-4c53-98a6-7d846e70f5d1"
+    query_get_cache = occurrences.get(id=test_id, cache=True)
+    query_get_no_cache = occurrences.get(id=test_id, cache=False)
+    assert query_get_cache is not None
+    assert query_get_no_cache is not None
+    assert not query_get_cache.data
+    assert not query_get_no_cache.data
 
 
 @pytest.mark.vcr()

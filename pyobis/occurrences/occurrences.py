@@ -25,7 +25,7 @@ class OccResponse:
     An OBIS Occurrence response class
     """
 
-    def __init__(self, url, args, isSearch, hasMapper, isKML):
+    def __init__(self, url, args, isSearch, hasMapper, isKML, cache=True):
         """
         Initialise the object parameters
         """
@@ -49,6 +49,7 @@ class OccResponse:
         self.__url = url
         self.__isSearch = isSearch
         self.__isKML = isKML
+        self.__cache = cache
 
         # fetch the total length of records
         if not self.__isKML:
@@ -57,6 +58,7 @@ class OccResponse:
                 self.__url,
                 {**self.__args, **{"size": 1}},
                 "application/json; charset=utf-8",
+                cache=self.__cache,
             )
             ending_time = time()
             if "total" in self.__out_head_record:
@@ -87,6 +89,7 @@ class OccResponse:
                 self.__url,
                 self.__args,
                 "application/json; charset=utf-8",
+                cache=self.__cache,
                 **kwargs,
             )
             self.data = out
@@ -128,6 +131,7 @@ class OccResponse:
                     self.__url,
                     self.__args,
                     "application/json; charset=utf-8",
+                    cache=self.__cache,
                     **kwargs,
                 )
                 outdf = pd.concat(
@@ -156,6 +160,7 @@ class OccResponse:
                 self.__url,
                 self.__args,
                 "application/json; charset=utf-8",
+                cache=self.__cache,
                 **kwargs,
             )
             outdf = pd.concat(
@@ -207,13 +212,13 @@ class OccResponse:
         return pd.DataFrame(self.data["results"])
 
 
-def get(id, **kwargs):
+def get(id, cache=True, **kwargs):
     """
     Get an OBIS occurrence
 
     :param id: [Fixnum] An obis occurrence identifier.
         It is returned in the 'id' field with occurrences.search().
-
+    :param cache: [bool, optional] Whether to use caching. Defaults to True.
     :return: A dictionary
 
     Usage::
@@ -234,6 +239,7 @@ def get(id, **kwargs):
         isSearch=False,
         hasMapper=False,
         isKML=False,
+        cache=cache,
     )
 
 
@@ -254,6 +260,7 @@ def search(
     offset=0,
     mof=False,
     hasextensions=None,
+    cache=True,
     **kwargs,
 ):
     """
@@ -290,6 +297,7 @@ def search(
         Default: 0
     :param hasextensions: [String] Extensions that need to be present
         (e.g. MeasurementOrFact, DNADerivedData).
+    :param cache: [bool, optional] Whether to use caching. Defaults to True.
     :return: A dictionary
 
     Usage::
@@ -363,6 +371,7 @@ def search(
         isSearch=True,
         hasMapper=True,
         isKML=False,
+        cache=cache,
     )
 
 
