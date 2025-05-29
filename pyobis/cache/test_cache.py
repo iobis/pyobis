@@ -9,8 +9,10 @@ import time
 from datetime import timedelta
 
 import pytest
+import requests
+import requests_cache
 
-from .cache import Cache
+from .cache import Cache, get_default_cache
 
 
 @pytest.fixture
@@ -34,7 +36,6 @@ def cache(temp_cache_dir):
     """Create a Cache instance with a temporary directory."""
     cache = Cache(cache_dir=temp_cache_dir, expire_after=1)
     yield cache
-
     cache.close()
 
 
@@ -45,12 +46,47 @@ def test_cache_initialization(cache):
     assert cache.expire_after == 1
 
 
+def test_cache_disabled():
+    """Test cache initialization with caching disabled."""
+    cache = Cache(enabled=False)
+    assert not cache.enabled
+    assert isinstance(cache.session, requests.Session)
+    assert not isinstance(cache.session, requests_cache.CachedSession)
+    cache.close()
+
+
+def test_get_default_cache():
+    """Test get_default_cache function."""
+    # Test with caching enabled
+    cache = get_default_cache(enabled=True)
+    assert cache.enabled
+    assert isinstance(cache.session, requests_cache.CachedSession)
+    cache.close()
+
+    # Test with caching disabled
+    cache = get_default_cache(enabled=False)
+    assert not cache.enabled
+    assert isinstance(cache.session, requests.Session)
+    cache.close()
+
+
 def test_request_caching(cache):
     """Test HTTP request caching."""
     session = cache.get_session()
     session.get("https://api.obis.org/v3/taxon/123")
     response = session.get("https://api.obis.org/v3/taxon/123")
     assert response.from_cache
+
+
+def test_request_no_caching():
+    """Test HTTP requests without caching."""
+    cache = Cache(enabled=False)
+    session = cache.get_session()
+    response1 = session.get("https://api.obis.org/v3/taxon/123")
+    response2 = session.get("https://api.obis.org/v3/taxon/123")
+    assert not hasattr(response1, "from_cache")
+    assert not hasattr(response2, "from_cache")
+    cache.close()
 
 
 def test_cache_expiration(cache):
@@ -100,6 +136,8 @@ def test_get_cache_info(cache):
 
     info = cache.get_cache_info()
 
+    assert "cache_enabled" in info
+    assert info["cache_enabled"] is True
     assert "cache_path" in info
     assert "cache_size" in info
     assert "cache_count" in info
@@ -107,6 +145,20 @@ def test_get_cache_info(cache):
     assert isinstance(info["expire_after"], timedelta)
     assert info["expire_after"].total_seconds() == 1
     assert info["cache_count"] == 2
+
+
+def test_get_cache_info_disabled():
+    """Test getting cache information when caching is disabled."""
+    cache = Cache(enabled=False)
+    info = cache.get_cache_info()
+
+    assert "cache_enabled" in info
+    assert info["cache_enabled"] is False
+    assert info["cache_path"] is None
+    assert info["cache_size"] == 0
+    assert info["cache_count"] == 0
+    assert info["expire_after"] is None
+    cache.close()
 
 
 def test_context_manager(cache):
