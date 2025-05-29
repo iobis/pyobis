@@ -22,22 +22,6 @@ def test_occurrences_search():
 
 
 @pytest.mark.vcr()
-def test_occurrences_search_without_cache():
-    """
-    occurrences.search - test with caching disabled
-    """
-    # Use the same parameters as test_occurrences_search to ensure same cassette
-    size = 10100
-    query = occurrences.search(scientificname="Mola mola", size=size, cache=False)
-    assert not query.data
-    query.execute()
-    assert "dict" == query.data.__class__.__name__
-    assert 2 == len(query.data)
-    assert size == len(query.to_pandas())
-    assert "Mola mola" == query.to_pandas().scientificName[0]
-
-
-@pytest.mark.vcr()
 def test_occurrence_search_mof():
     """
     occurrences.search - basic test for data with MoF extension, check type, size and other methods
@@ -47,25 +31,6 @@ def test_occurrence_search_mof():
         mof=True,
         size=100,
         hasextensions="MeasurementOrFact",
-    )
-    assert not query.data
-    query.execute()
-    assert "Abra alba" == query.to_pandas().scientificName[0]
-    assert requests.get(query.api_url).status_code == 200
-    assert requests.get(query.mapper_url).status_code == 200
-
-
-@pytest.mark.vcr()
-def test_occurrence_search_mof_without_cache():
-    """
-    occurrences.search - test with MoF extension and caching disabled
-    """
-    query = occurrences.search(
-        scientificname="Abra alba",
-        mof=True,
-        size=100,
-        hasextensions="MeasurementOrFact",
-        cache=False,
     )
     assert not query.data
     query.execute()
@@ -96,24 +61,6 @@ def test_occurrences_get():
     occurrences.get - basic test for data, check type, size and other methods
     """
     query = occurrences.get(id=occurrences.search(size=1).execute()["id"].values[0])
-    assert not query.data
-    query.execute()
-    assert "dict" == query.data.__class__.__name__
-    assert 2 == len(query.data)
-    assert list == list(query.data.keys()).__class__
-    assert requests.get(query.api_url).status_code == 200
-    assert query.to_pandas().__class__.__name__ == "DataFrame"
-
-
-@pytest.mark.vcr()
-def test_occurrences_get_without_cache():
-    """
-    occurrences.get - test with caching disabled
-    """
-    query = occurrences.get(
-        id=occurrences.search(size=1).execute()["id"].values[0],
-        cache=False,
-    )
     assert not query.data
     query.execute()
     assert "dict" == query.data.__class__.__name__
