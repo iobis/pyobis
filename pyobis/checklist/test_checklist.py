@@ -53,3 +53,20 @@ def test_checklist_newest():
     assert "Mola mola" == query.data["results"][0]["species"]
     assert requests.get(query.api_url).status_code == 200
     assert query.to_pandas().__class__.__name__ == "DataFrame"
+
+
+def test_cache_parameter_functionality():
+    """
+    Test that cache=False parameter works without making HTTP requests
+    """
+    # Test list function
+    query = checklist.list(scientificname="Mola mola", cache=False)
+    assert query._ChecklistResponse__cache is False
+
+    # Test redlist function
+    query = checklist.redlist(scientificname="Mola mola", cache=False)
+    assert query._ChecklistResponse__cache is False
+
+    # Test newest function
+    query = checklist.newest(scientificname="Mola mola", cache=False)
+    assert query._ChecklistResponse__cache is False

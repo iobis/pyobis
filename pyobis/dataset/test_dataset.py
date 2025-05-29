@@ -37,8 +37,27 @@ def test_dataset_search_data():
     assert query.to_pandas().__class__.__name__ == "DataFrame"
 
 
+def test_dataset_get_without_cache():
+    "dataset.get - test without cache"
+    res = dataset.get("ec9df3b9-3b2b-4d83-881b-27bcbcd57b95", cache=False).execute()
+    assert dict == res.__class__
+    assert 2 == len(res)
+    assert list == res["results"].__class__
+
+
 @pytest.mark.vcr()
 def test_dataset_search_url():
     query = dataset.search(scientificname="Mola mola")
     assert requests.get(query.api_url).status_code == 200
     assert not query.mapper_url
+
+
+def test_cache_parameter_functionality():
+    "Test that cache=False parameter works without making HTTP requests"
+    # Test search function
+    res = dataset.search(scientificname="Mola mola", cache=False)
+    assert res._DatasetResponse__cache is False
+
+    # Test get function
+    res = dataset.get("ec9df3b9-3b2b-4d83-881b-27bcbcd57b95", cache=False)
+    assert res._DatasetResponse__cache is False
