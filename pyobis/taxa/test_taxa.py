@@ -20,6 +20,19 @@ def test_taxa_search_data():
 
 
 @pytest.mark.vcr()
+def test_taxa_search_without_cache():
+    """
+    taxa.search - test with caching disabled
+    """
+    query = taxa.search(scientificname="Mola mola", cache=False)
+    assert not query.data
+    query.execute()
+    assert "dict" == query.data.__class__.__name__
+    assert list == list(query.data.keys()).__class__
+    assert 2 == len(query.data)
+
+
+@pytest.mark.vcr()
 def test_taxa_search_url():
     """
     taxa.search - basic test for url, url are accessible and
@@ -46,6 +59,20 @@ def test_taxa_taxon_data():
 
 
 @pytest.mark.vcr()
+def test_taxa_taxon_without_cache():
+    """
+    taxa.taxon - test with caching disabled
+    """
+    query = taxa.taxon(545439, cache=False)
+    assert not query.data
+    query.execute()
+    assert dict == query.data.__class__
+    assert 2 == len(query.data)
+    assert list == list(query.data.keys()).__class__
+    assert 545439 == query.data["results"][0]["taxonID"]
+
+
+@pytest.mark.vcr()
 def test_taxa_taxon_url():
     """
     taxa.taxon - basic test for url, url are accessible and
@@ -68,6 +95,19 @@ def test_taxa_annotations_data():
     assert 2 == len(query.data)
     assert list == list(query.data.keys()).__class__
     assert query.to_pandas().__class__.__name__ == "DataFrame"
+
+
+@pytest.mark.vcr()
+def test_taxa_annotations_without_cache():
+    """
+    taxa.annotations - test with caching disabled
+    """
+    query = taxa.annotations(scientificname="Abra", cache=False)
+    assert not query.data
+    query.execute()
+    assert dict == query.data.__class__
+    assert 2 == len(query.data)
+    assert list == list(query.data.keys()).__class__
 
 
 @pytest.mark.vcr()
