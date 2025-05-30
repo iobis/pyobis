@@ -166,6 +166,7 @@ def test_occurrences_centroid():
     assert not query.mapper_url
 
 
+@pytest.mark.vcr()
 def test_cache_parameter_functionality():
     """
     occurrences.search, occurrences.get - test cache parameter functionality
