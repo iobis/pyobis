@@ -32,7 +32,7 @@ pip install git+git://github.com/iobis/pyobis.git#egg=pyobis
 
 ### Install editable dev version from github for local development
 
-System prerequisites: python3, conda
+System prerequisites: python3
 
 ```bash
 # fetch code
