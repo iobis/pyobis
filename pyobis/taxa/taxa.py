@@ -7,95 +7,91 @@ import pandas as pd
 from ..obisutils import build_api_url, handle_arrstr, obis_baseurl, obis_GET
 
 
-def search(scientificname=None, **kwargs):
+def search(scientificname=None, cache=True, **kwargs):
     """
     Get taxon records.
 
     :param scientificname: [String,Array] One or more scientific names from the
         OBIS backbone. All included and synonym taxa are included in the search
-
+    :param cache: [bool, optional] Whether to use caching. Defaults to True.
     :return: A dictionary
 
     Usage::
 
         from pyobis import taxa
 
-        # build a query
-        query = taxa.search(scientificname = 'Mola mola')
-        query.execute() # execute the query i.e. fetch the data
+        # With caching enabled (default)
+        query = taxa.search(scientificname='Mola mola')
+        query.execute()
+
+        # With caching disabled
+        query = taxa.search(scientificname='Mola mola', cache=False)
+        query.execute()
+
+        # Get the data
         query.data # return the fetched data
         query.api_url # get the OBIS API URL for the built query
         query.mapper_url # get the OBIS Mapper URL (if it exists)
-
-        # or simply get the data in one-easy step
-        data = taxa.search(scientificname=['Mola mola','Abra alba']).execute()
     """
 
     scientificname = handle_arrstr(scientificname)
     url = obis_baseurl + "taxon/" + scientificname
     args = {"scientificname": scientificname}
     # return a taxa response class
+    return TaxaResponse(url, args, cache=cache)
 
-    return TaxaResponse(url, args)
 
-
-def taxon(id, **kwargs):
+def taxon(id, cache=True, **kwargs):
     """
     Get taxon by ID
 
     :param id: [Fixnum] An OBIS taxon identifier
-
+    :param cache: [bool, optional] Whether to use caching. Defaults to True.
     :return: A TaxaResponse object
 
     Usage::
 
         from pyobis import taxa
+
+        # With caching enabled (default)
         query1 = taxa.taxon(545439)
         query1.execute()
-        # executes the query previously built from OBIS
-        query1.data
-        # returns the data
-        query1.api_url
-        # returns the OBIS API URL
-        query1.mapper_url
-        # returns the OBIS Mapper URL for easy visualization
 
-        taxa.taxon(402913).execute()
-        q2 = taxa.taxon(406296)
-        q3 = taxa.taxon(415282)
+        # With caching disabled
+        query1 = taxa.taxon(545439, cache=False)
+        query1.execute()
     """
     url = obis_baseurl + "taxon/" + str(id)
     args = {}
     # return a TaxaResponse Object
-    return TaxaResponse(url, {**args, **kwargs})
+    return TaxaResponse(url, {**args, **kwargs}, cache=cache)
 
 
-def annotations(scientificname, **kwargs):
+def annotations(scientificname, cache=True, **kwargs):
     """
     Get scientific name annotations by the WoRMS team.
 
     :param scientificname: [String] Scientific name. Leave empty to include all taxa.
+    :param cache: [bool, optional] Whether to use caching. Defaults to True.
     :return: A TaxaResponse Object
 
     Usage::
 
         from pyobis import taxa
+
+        # With caching enabled (default)
         query1 = taxa.annotations(scientificname="Abra")
         query1.execute()
-        # executes the query previously built from OBIS
-        query1.data
-        # returns the data
-        query1.api_url
-        # returns the OBIS API URL
-        query1.mapper_url
-        # returns the OBIS Mapper URL for easy visualization
 
+        # With caching disabled
+        query1 = taxa.annotations(scientificname="Abra", cache=False)
+        query1.execute()
     """
     url = obis_baseurl + "taxon/annotations"
     scientificname = handle_arrstr(scientificname)
     args = {"scientificname": scientificname}
     # return a TaxaResponse Object
-    return TaxaResponse(url, {**args, **kwargs})
+    return TaxaResponse(url, {**args, **kwargs}, cache=cache)
 
 
 class TaxaResponse:
@@ -103,7 +99,7 @@ class TaxaResponse:
     An OBIS Taxa Response Class
     """
 
-    def __init__(self, url, args):
+    def __init__(self, url, args, cache=True):
         """
         Initialise the object parameters
         """
@@ -115,6 +111,7 @@ class TaxaResponse:
         # private members
         self.__args = args
         self.__url = url
+        self.__cache = cache
 
     def execute(self, **kwargs):
         """
@@ -124,6 +121,7 @@ class TaxaResponse:
             self.__url,
             self.__args,
             "application/json; charset=utf-8",
+            cache=self.__cache,
             **kwargs,
         )
         self.data = out

@@ -14,7 +14,7 @@ Usage
 
     from pyobis import occurrences
 
-    query = occurrences.search(scientificname="Mola mola")
+    query = occurrences.search(scientificname="Mola mola", cache=True)
     query.execute()
     query.data  # Returns the data
     query.api_url  # Returns the OBIS API URL

@@ -7,12 +7,12 @@ import pandas as pd
 from ..obisutils import build_api_url, obis_baseurl, obis_GET
 
 
-def search(id=None, **kwargs):
+def search(id=None, cache=True, **kwargs):
     """
     Get OBIS nodes records
 
     :param id: [String] Node UUID.
-
+    :param cache: [bool, optional] Whether to use caching. Defaults to True.
     :return: A NodesQuery Object
 
     Usage::
@@ -25,15 +25,15 @@ def search(id=None, **kwargs):
     args = {}
 
     # return NodesQuery Object
-    return NodesResponse(url, {**args, **kwargs}, mapper)
+    return NodesResponse(url, {**args, **kwargs}, mapper, cache=cache)
 
 
-def activities(id=None, **kwargs):
+def activities(id=None, cache=True, **kwargs):
     """
     Get OBIS nodes activities
 
     :param id: [String] Node UUID.
-
+    :param cache: [bool, optional] Whether to use caching. Defaults to True.
     :return: A NodesQuery object
 
     Usage::
@@ -52,7 +52,7 @@ def activities(id=None, **kwargs):
     mapper = False
 
     # return a NodesQuery object
-    return NodesResponse(url, {**args, **kwargs}, mapper)
+    return NodesResponse(url, {**args, **kwargs}, mapper, cache=cache)
 
 
 class NodesResponse:
@@ -60,7 +60,7 @@ class NodesResponse:
     An OBIS Nodes Response Class
     """
 
-    def __init__(self, url, args, mapper):
+    def __init__(self, url, args, mapper, cache=True):
         """
         Initialize NodesResponse Object
         """
@@ -75,6 +75,7 @@ class NodesResponse:
         # private members
         self.__args = args
         self.__url = url
+        self.__cache = cache
 
     def execute(self, **kwargs):
         """
@@ -84,6 +85,7 @@ class NodesResponse:
             self.__url,
             self.__args,
             "application/json; charset=utf-8",
+            cache=self.__cache,
             **kwargs,
         )
         self.data = out
