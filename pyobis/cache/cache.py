@@ -30,7 +30,6 @@ def get_default_cache(enabled=True):
     return Cache(
         enabled=enabled,
         cache_dir=_DEFAULT_CACHE_DIR,
-        expire_after=_DEFAULT_EXPIRE_AFTER,
     )
 
 
@@ -70,7 +69,7 @@ class Cache:
                 allowable_methods=["GET"],
                 stale_if_error=True,
                 cache_control=True,
-                serializer="json",
+                serializer=None,
                 use_cache_dir=True,
                 use_temp=True,
             )
