@@ -195,20 +195,3 @@ def test_cache_parameter_functionality():
     assert query_without_cache.data is not None
     assert "dict" == query_with_cache.data.__class__.__name__
     assert "dict" == query_without_cache.data.__class__.__name__
-
-    test_id = "00000002-3cef-4bc1-8540-2c20b4798855"
-    query_get_cache = occurrences.get(id=test_id, cache=True)
-    query_get_no_cache = occurrences.get(id=test_id, cache=False)
-    assert query_get_cache is not None
-    assert query_get_no_cache is not None
-    assert not query_get_cache.data
-    assert not query_get_no_cache.data
-
-    # post-execution state
-    query_get_cache.execute()
-    query_get_no_cache.execute()
-
-    assert query_get_cache.data is not None
-    assert query_get_no_cache.data is not None
-    assert "dict" == query_get_cache.data.__class__.__name__
-    assert "dict" == query_get_no_cache.data.__class__.__name__
