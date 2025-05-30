@@ -58,7 +58,7 @@ def test_checklist_newest():
 @pytest.mark.vcr()
 def test_cache_parameter_functionality():
     """
-    Test that cache parameter is properly stored in ChecklistResponse objects
+    checklist.list - test cache parameter functionality
     """
     query_with_cache = checklist.list(scientificname="Mola mola", cache=True)
     query_without_cache = checklist.list(scientificname="Mola mola", cache=False)
