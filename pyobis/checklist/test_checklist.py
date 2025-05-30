@@ -55,6 +55,7 @@ def test_checklist_newest():
     assert query.to_pandas().__class__.__name__ == "DataFrame"
 
 
+@pytest.mark.vcr()
 def test_cache_parameter_functionality():
     """
     Test that cache parameter is properly stored in ChecklistResponse objects

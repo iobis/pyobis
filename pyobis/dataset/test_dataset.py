@@ -46,6 +46,7 @@ def test_dataset_search_url():
     assert not query.mapper_url
 
 
+@pytest.mark.vcr()
 def test_cache_parameter_functionality():
     """
     Test that the cache parameter in dataset.search and dataset.get works as expected

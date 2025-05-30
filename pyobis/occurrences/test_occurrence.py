@@ -70,28 +70,6 @@ def test_occurrences_get():
     assert query.to_pandas().__class__.__name__ == "DataFrame"
 
 
-def test_cache_parameter_functionality():
-    """
-    Test that cache=False parameter works without making actual HTTP requests
-    This test verifies the parameter is accepted and handled correctly
-    """
-    query_with_cache = occurrences.search(scientificname="Mola mola", cache=True)
-    query_without_cache = occurrences.search(scientificname="Mola mola", cache=False)
-
-    assert query_with_cache is not None
-    assert query_without_cache is not None
-    assert not query_with_cache.data
-    assert not query_without_cache.data
-
-    test_id = "00003cf7-f2fc-4c53-98a6-7d846e70f5d1"
-    query_get_cache = occurrences.get(id=test_id, cache=True)
-    query_get_no_cache = occurrences.get(id=test_id, cache=False)
-    assert query_get_cache is not None
-    assert query_get_no_cache is not None
-    assert not query_get_cache.data
-    assert not query_get_no_cache.data
-
-
 @pytest.mark.vcr()
 def test_occurrences_grid():
     """
@@ -186,3 +164,26 @@ def test_occurrences_centroid():
     assert list == list(query.data.keys()).__class__
     assert requests.get(query.api_url).status_code == 200
     assert not query.mapper_url
+
+
+@pytest.mark.vcr()
+def test_cache_parameter_functionality():
+    """
+    Test that cache=False parameter works without making actual HTTP requests
+    This test verifies the parameter is accepted and handled correctly
+    """
+    query_with_cache = occurrences.search(scientificname="Mola mola", cache=True)
+    query_without_cache = occurrences.search(scientificname="Mola mola", cache=False)
+
+    assert query_with_cache is not None
+    assert query_without_cache is not None
+    assert not query_with_cache.data
+    assert not query_without_cache.data
+
+    test_id = "00003cf7-f2fc-4c53-98a6-7d846e70f5d1"
+    query_get_cache = occurrences.get(id=test_id, cache=True)
+    query_get_no_cache = occurrences.get(id=test_id, cache=False)
+    assert query_get_cache is not None
+    assert query_get_no_cache is not None
+    assert not query_get_cache.data
+    assert not query_get_no_cache.data
