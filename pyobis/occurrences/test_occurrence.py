@@ -166,7 +166,6 @@ def test_occurrences_centroid():
     assert not query.mapper_url
 
 
-@pytest.mark.vcr()
 def test_cache_parameter_functionality():
     """
     Test that cache=False parameter works without making actual HTTP requests
