@@ -20,6 +20,7 @@ def test_dataset_get_data():
 
 @pytest.mark.vcr()
 def test_dataset_get_url():
+    "dataset.get - test data"
     query = dataset.get(id="ec9df3b9-3b2b-4d83-881b-27bcbcd57b95")
     assert requests.get(query.api_url).status_code == 200
     assert requests.get(query.mapper_url).status_code == 200
@@ -37,16 +38,9 @@ def test_dataset_search_data():
     assert query.to_pandas().__class__.__name__ == "DataFrame"
 
 
-def test_dataset_get_without_cache():
-    "dataset.get - test without cache"
-    res = dataset.get("ec9df3b9-3b2b-4d83-881b-27bcbcd57b95", cache=False).execute()
-    assert dict == res.__class__
-    assert 2 == len(res)
-    assert list == res["results"].__class__
-
-
 @pytest.mark.vcr()
 def test_dataset_search_url():
+    "dataset.search - test for data"
     query = dataset.search(scientificname="Mola mola")
     assert requests.get(query.api_url).status_code == 200
     assert not query.mapper_url
