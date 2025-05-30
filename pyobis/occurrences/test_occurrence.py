@@ -166,6 +166,7 @@ def test_occurrences_centroid():
     assert not query.mapper_url
 
 
+@pytest.mark.vcr()
 def test_cache_parameter_functionality():
     """
     Test that cache=False parameter works without making actual HTTP requests
@@ -179,7 +180,7 @@ def test_cache_parameter_functionality():
     assert not query_with_cache.data
     assert not query_without_cache.data
 
-    test_id = "00003cf7-f2fc-4c53-98a6-7d846e70f5d1"
+    test_id = "0000001f-29c5-400b-8aee-f045e081e61b"
     query_get_cache = occurrences.get(id=test_id, cache=True)
     query_get_no_cache = occurrences.get(id=test_id, cache=False)
     assert query_get_cache is not None
