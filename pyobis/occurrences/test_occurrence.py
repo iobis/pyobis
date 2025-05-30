@@ -171,8 +171,16 @@ def test_cache_parameter_functionality():
     """
     occurrences.search, occurrences.get - test cache parameter functionality
     """
-    query_with_cache = occurrences.search(scientificname="Mola mola", cache=True)
-    query_without_cache = occurrences.search(scientificname="Mola mola", cache=False)
+    query_with_cache = occurrences.search(
+        scientificname="Mola mola",
+        size=1,
+        cache=True,
+    )
+    query_without_cache = occurrences.search(
+        scientificname="Mola mola",
+        size=1,
+        cache=False,
+    )
 
     assert query_with_cache is not None
     assert query_without_cache is not None
@@ -188,7 +196,7 @@ def test_cache_parameter_functionality():
     assert "dict" == query_with_cache.data.__class__.__name__
     assert "dict" == query_without_cache.data.__class__.__name__
 
-    test_id = "0000001f-29c5-400b-8aee-f045e081e61b"
+    test_id = "00000002-3cef-4bc1-8540-2c20b4798855"
     query_get_cache = occurrences.get(id=test_id, cache=True)
     query_get_no_cache = occurrences.get(id=test_id, cache=False)
     assert query_get_cache is not None
