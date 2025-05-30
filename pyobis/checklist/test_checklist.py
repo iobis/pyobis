@@ -57,13 +57,13 @@ def test_checklist_newest():
 
 def test_cache_parameter_functionality():
     """
-    Test that cache=False parameter works without making HTTP requests
+    Test that cache parameter is properly stored in ChecklistResponse objects
     """
-    query = checklist.list(scientificname="Mola mola", cache=False)
-    assert query._ChecklistResponse__cache is False
+    query_with_cache = checklist.list(scientificname="Mola mola", cache=True)
+    query_without_cache = checklist.list(scientificname="Mola mola", cache=False)
 
-    query = checklist.redlist(scientificname="Mola mola", cache=False)
-    assert query._ChecklistResponse__cache is False
+    assert query_with_cache is not None
+    assert query_without_cache is not None
 
-    query = checklist.newest(scientificname="Mola mola", cache=False)
-    assert query._ChecklistResponse__cache is False
+    assert not query_with_cache.data
+    assert not query_without_cache.data

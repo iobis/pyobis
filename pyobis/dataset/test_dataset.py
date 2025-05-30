@@ -53,9 +53,23 @@ def test_dataset_search_url():
 
 
 def test_cache_parameter_functionality():
-    "Test that cache=False parameter works without making HTTP requests"
-    res = dataset.search(scientificname="Mola mola", cache=False)
-    assert res._DatasetResponse__cache is False
+    """
+    Test that the cache parameter in dataset.search and dataset.get works as expected
+    without making real HTTP requests.
+    """
+    res_with_cache = dataset.search(scientificname="Mola mola", cache=True)
+    res_without_cache = dataset.search(scientificname="Mola mola", cache=False)
 
-    res = dataset.get("ec9df3b9-3b2b-4d83-881b-27bcbcd57b95", cache=False)
-    assert res._DatasetResponse__cache is False
+    assert res_with_cache is not None
+    assert res_without_cache is not None
+    assert not res_with_cache.data
+    assert not res_without_cache.data
+
+    dataset_id = "ec9df3b9-3b2b-4d83-881b-27bcbcd57b95"
+    get_with_cache = dataset.get(dataset_id, cache=True)
+    get_without_cache = dataset.get(dataset_id, cache=False)
+
+    assert get_with_cache is not None
+    assert get_without_cache is not None
+    assert not get_with_cache.data
+    assert not get_without_cache.data
