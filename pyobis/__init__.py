@@ -43,16 +43,11 @@ __title__ = "pyobis"
 __author__ = "pyOBIS Community"
 __license__ = "MIT"
 
+from .cache import cache
 from .checklist import checklist
 from .dataset import dataset
 from .nodes import nodes
 from .occurrences import occurrences
 from .taxa import taxa
 
-__all__ = [
-    "checklist",
-    "dataset",
-    "nodes",
-    "occurrences",
-    "taxa",
-]
+__all__ = ["checklist", "dataset", "nodes", "occurrences", "taxa", "cache"]

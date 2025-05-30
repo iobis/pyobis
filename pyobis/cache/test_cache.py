@@ -11,8 +11,7 @@ from datetime import timedelta
 import pytest
 import requests
 import requests_cache
-
-from .cache import Cache, get_default_cache
+from cache import Cache, get_default_cache
 
 
 @pytest.fixture
