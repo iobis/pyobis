@@ -5,7 +5,7 @@ Utility functions for internal use across various modules.
 import logging
 from urllib.parse import urlencode
 
-from cache import get_default_cache
+from .cache import get_default_cache
 
 obis_baseurl = "https://api.obis.org/v3/"
 
