@@ -63,8 +63,7 @@ def test_nodes_activities_url():
 @pytest.mark.vcr()
 def test_cache_parameter_functionality():
     """
-    Test that cache=False parameter works without making actual HTTP requests
-    This test verifies the parameter is accepted and handled correctly
+    nodes.search, nodes.activities - test cache parameter functionality
     """
     query_with_cache = nodes.search(
         id="4bf79a01-65a9-4db6-b37b-18434f26ddfc",
@@ -80,6 +79,15 @@ def test_cache_parameter_functionality():
     assert not query_with_cache.data
     assert not query_without_cache.data
 
+    # post-execution state
+    query_with_cache.execute()
+    query_without_cache.execute()
+
+    assert query_with_cache.data is not None
+    assert query_without_cache.data is not None
+    assert "dict" == query_with_cache.data.__class__.__name__
+    assert "dict" == query_without_cache.data.__class__.__name__
+
     query_activities_cache = nodes.activities(
         id="4bf79a01-65a9-4db6-b37b-18434f26ddfc",
         cache=True,
@@ -92,3 +100,12 @@ def test_cache_parameter_functionality():
     assert query_activities_no_cache is not None
     assert not query_activities_cache.data
     assert not query_activities_no_cache.data
+
+    # post-execution state
+    query_activities_cache.execute()
+    query_activities_no_cache.execute()
+
+    assert query_activities_cache.data is not None
+    assert query_activities_no_cache.data is not None
+    assert "dict" == query_activities_cache.data.__class__.__name__
+    assert "dict" == query_activities_no_cache.data.__class__.__name__

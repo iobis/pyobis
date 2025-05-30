@@ -49,8 +49,7 @@ def test_dataset_search_url():
 @pytest.mark.vcr()
 def test_cache_parameter_functionality():
     """
-    Test that the cache parameter in dataset.search and dataset.get works as expected
-    without making real HTTP requests.
+    dataset.search, dataset.get - test cache parameter functionality
     """
     res_with_cache = dataset.search(scientificname="Mola mola", cache=True)
     res_without_cache = dataset.search(scientificname="Mola mola", cache=False)
@@ -60,6 +59,14 @@ def test_cache_parameter_functionality():
     assert not res_with_cache.data
     assert not res_without_cache.data
 
+    # post-execution state
+    res_with_cache.execute()
+    res_without_cache.execute()
+    assert res_with_cache.data is not None
+    assert res_without_cache.data is not None
+    assert "dict" == res_with_cache.data.__class__.__name__
+    assert "dict" == res_without_cache.data.__class__.__name__
+
     dataset_id = "ec9df3b9-3b2b-4d83-881b-27bcbcd57b95"
     get_with_cache = dataset.get(dataset_id, cache=True)
     get_without_cache = dataset.get(dataset_id, cache=False)
@@ -68,3 +75,11 @@ def test_cache_parameter_functionality():
     assert get_without_cache is not None
     assert not get_with_cache.data
     assert not get_without_cache.data
+
+    # test post-execution state
+    get_with_cache.execute()
+    get_without_cache.execute()
+    assert get_with_cache.data is not None
+    assert get_without_cache.data is not None
+    assert "dict" == get_with_cache.data.__class__.__name__
+    assert "dict" == get_without_cache.data.__class__.__name__

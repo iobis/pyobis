@@ -168,8 +168,7 @@ def test_occurrences_centroid():
 
 def test_cache_parameter_functionality():
     """
-    Test that cache=False parameter works without making actual HTTP requests
-    This test verifies the parameter is accepted and handled correctly
+    occurrences.search, occurrences.get - test cache parameter functionality
     """
     query_with_cache = occurrences.search(scientificname="Mola mola", cache=True)
     query_without_cache = occurrences.search(scientificname="Mola mola", cache=False)
@@ -179,6 +178,15 @@ def test_cache_parameter_functionality():
     assert not query_with_cache.data
     assert not query_without_cache.data
 
+    # post-execution state
+    query_with_cache.execute()
+    query_without_cache.execute()
+
+    assert query_with_cache.data is not None
+    assert query_without_cache.data is not None
+    assert "dict" == query_with_cache.data.__class__.__name__
+    assert "dict" == query_without_cache.data.__class__.__name__
+
     test_id = "0000001f-29c5-400b-8aee-f045e081e61b"
     query_get_cache = occurrences.get(id=test_id, cache=True)
     query_get_no_cache = occurrences.get(id=test_id, cache=False)
@@ -186,3 +194,12 @@ def test_cache_parameter_functionality():
     assert query_get_no_cache is not None
     assert not query_get_cache.data
     assert not query_get_no_cache.data
+
+    # post-execution state
+    query_get_cache.execute()
+    query_get_no_cache.execute()
+
+    assert query_get_cache.data is not None
+    assert query_get_no_cache.data is not None
+    assert "dict" == query_get_cache.data.__class__.__name__
+    assert "dict" == query_get_no_cache.data.__class__.__name__

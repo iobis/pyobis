@@ -65,6 +65,14 @@ def test_cache_parameter_functionality():
 
     assert query_with_cache is not None
     assert query_without_cache is not None
-
     assert not query_with_cache.data
     assert not query_without_cache.data
+
+    #  post-execution state
+    query_with_cache.execute()
+    query_without_cache.execute()
+
+    assert query_with_cache.data is not None
+    assert query_without_cache.data is not None
+    assert "dict" == query_with_cache.data.__class__.__name__
+    assert "dict" == query_without_cache.data.__class__.__name__
