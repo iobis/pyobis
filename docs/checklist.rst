@@ -14,7 +14,7 @@ Usage
 
     from pyobis import checklist
 
-    query = checklist.list(taxonid=127405, cache=True**kwargs)  # or cache=False
+    query = checklist.list(taxonid=127405, cache=True, **kwargs)  # or cache=False
     query.api_url  # Returns the API URL
     query.to_pandas()  # Returns a pandas DataFrame object
 
