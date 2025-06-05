@@ -14,7 +14,7 @@ Usage
 
     from pyobis import taxa
 
-    query = taxa.search(scientificname="Mola mola")
+    query = taxa.search(scientificname="Mola mola", cache=True)
     query.execute()
     query.data  # Returns the data
     query.api_url  # Returns the API URL

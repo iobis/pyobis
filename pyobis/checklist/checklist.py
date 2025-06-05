@@ -21,7 +21,7 @@ class ChecklistResponse:
     An OBIS Checklist Response Object
     """
 
-    def __init__(self, url, args, paginate):
+    def __init__(self, url, args, paginate, cache=True):
         """
         Initialise the object parameters
         """
@@ -33,6 +33,7 @@ class ChecklistResponse:
         self.__url = url
         self.__args = args
         self.__paginate = paginate
+        self.__cache = cache
 
     def execute(self):
         """
@@ -43,6 +44,7 @@ class ChecklistResponse:
                 self.__url,
                 self.__args,
                 "application/json; charset=utf-8",
+                cache=self.__cache,
             )
             self.__args["skip"] += 10
             self.__args["size"] = 5000
@@ -71,6 +73,7 @@ class ChecklistResponse:
                     self.__url,
                     self.__args,
                     "application/json; charset=utf-8",
+                    cache=self.__cache,
                 )
                 # when we find that no records are there, we break out of loop
                 if len(res["results"]) == 0:
@@ -98,6 +101,7 @@ class ChecklistResponse:
                 self.__url,
                 self.__args,
                 "application/json; charset=utf-8",
+                cache=self.__cache,
             )
         self.data = out
 
@@ -118,6 +122,7 @@ def list(
     enddepth=None,
     geometry=None,
     flags=None,
+    cache=True,
     **kwargs,
 ):
     """
@@ -141,6 +146,7 @@ def list(
         positive numbers.
     :param flags: [String] Comma separated list of quality flags which need
         to be set
+    :param cache: [bool, optional] Whether to use caching. Defaults to True.
 
     :return: A dictionary
 
@@ -169,7 +175,7 @@ def list(
         "size": 10,
     }
 
-    return ChecklistResponse(url, {**args, **kwargs}, paginate=True)
+    return ChecklistResponse(url, {**args, **kwargs}, paginate=True, cache=cache)
 
 
 def redlist(
@@ -182,6 +188,7 @@ def redlist(
     enddepth=None,
     geometry=None,
     flags=None,
+    cache=True,
     **kwargs,
 ):
     """
@@ -200,6 +207,7 @@ def redlist(
     :param geometry: [String] Geometry, formatted as WKT or GeoHash.
     :param flags: [String] Comma separated list of quality flags which need
         to be set.
+    :param cache: [bool, optional] Whether to use caching. Defaults to True.
 
     :return: A dictionary
 
@@ -223,7 +231,7 @@ def redlist(
         "flags": flags,
     }
 
-    return ChecklistResponse(url, {**args, **kwargs}, paginate=False)
+    return ChecklistResponse(url, {**args, **kwargs}, paginate=False, cache=cache)
 
 
 def newest(
@@ -236,6 +244,7 @@ def newest(
     enddepth=None,
     geometry=None,
     flags=None,
+    cache=True,
     **kwargs,
 ):
     """
@@ -254,6 +263,7 @@ def newest(
     :param geometry: [String] Geometry, formatted as WKT or GeoHash.
     :param flags: [String] Comma separated list of quality flags which need to
         be set.
+    :param cache: [bool, optional] Whether to use caching. Defaults to True.
 
     :return: A dictionary
 
@@ -277,4 +287,4 @@ def newest(
         "flags": flags,
     }
 
-    return ChecklistResponse(url, {**args, **kwargs}, paginate=False)
+    return ChecklistResponse(url, {**args, **kwargs}, paginate=False, cache=cache)

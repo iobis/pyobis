@@ -48,7 +48,7 @@ Taxa module
 
     from pyobis import taxa
 
-    query = taxa.search(scientificname="Mola mola")
+    query = taxa.search(scientificname="Mola mola", cache=True)
     query.execute()
     query.data  # Returns the data
     query.api_url  # Returns the API URL
@@ -66,7 +66,7 @@ Occurrence module
 
     from pyobis import occurrences
 
-    query = occurrences.search(scientificname="Mola mola")
+    query = occurrences.search(scientificname="Mola mola", cache=True)
     query.execute()
     query.data  # Returns the data
     query.api_url  # Returns the OBIS API URL
@@ -85,7 +85,9 @@ Dataset module
 
     from pyobis import dataset
 
-    query = dataset.search(scientificname=["Mola", "Abra", "Lanice", "Pectinaria"])
+    query = dataset.search(
+        scientificname=["Mola", "Abra", "Lanice", "Pectinaria"], cache=True
+    )
     query.execute()
     query.data  # Returns the data
     query.api_url  # Returns the API URL
@@ -99,7 +101,7 @@ Nodes module
 
     from pyobis import nodes
 
-    query = nodes.search(scientificname=["Mola", "Abra"])
+    query = nodes.search(scientificname=["Mola", "Abra"], cache=True)
     query.execute()
     query.data  # Returns the data
     query.api_url  # Returns the API URL
@@ -111,7 +113,7 @@ Checklist module
 
     from pyobis import checklist
 
-    query = checklist.list(scientificname="Cetacea")
+    query = checklist.list(scientificname="Cetacea", cache=True)
     query.execute()
     query.data  # Returns the data
     query.api_url  # Returns the OBIS API URL

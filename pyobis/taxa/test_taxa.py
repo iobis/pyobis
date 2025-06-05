@@ -79,3 +79,58 @@ def test_taxa_annotations_url():
     query = taxa.annotations(scientificname="Abra")
     assert requests.get(query.api_url).status_code == 200
     assert not query.mapper_url
+
+
+@pytest.mark.vcr()
+def test_cache_parameter_functionality():
+    """
+    taxa.search, taxa.taxon, taxa.annotations - test cache parameter functionality
+    """
+    query_with_cache = taxa.search(scientificname="Mola mola", cache=True)
+    query_without_cache = taxa.search(scientificname="Mola mola", cache=False)
+
+    assert query_with_cache is not None
+    assert query_without_cache is not None
+    assert not query_with_cache.data
+    assert not query_without_cache.data
+
+    # post-execution state
+    query_with_cache.execute()
+    query_without_cache.execute()
+
+    assert query_with_cache.data is not None
+    assert query_without_cache.data is not None
+    assert "dict" == query_with_cache.data.__class__.__name__
+    assert "dict" == query_without_cache.data.__class__.__name__
+
+    query_taxon_cache = taxa.taxon(545439, cache=True)
+    query_taxon_no_cache = taxa.taxon(545439, cache=False)
+    assert query_taxon_cache is not None
+    assert query_taxon_no_cache is not None
+    assert not query_taxon_cache.data
+    assert not query_taxon_no_cache.data
+
+    # post-execution state
+    query_taxon_cache.execute()
+    query_taxon_no_cache.execute()
+
+    assert query_taxon_cache.data is not None
+    assert query_taxon_no_cache.data is not None
+    assert "dict" == query_taxon_cache.data.__class__.__name__
+    assert "dict" == query_taxon_no_cache.data.__class__.__name__
+
+    query_annotations_cache = taxa.annotations(scientificname="Abra", cache=True)
+    query_annotations_no_cache = taxa.annotations(scientificname="Abra", cache=False)
+    assert query_annotations_cache is not None
+    assert query_annotations_no_cache is not None
+    assert not query_annotations_cache.data
+    assert not query_annotations_no_cache.data
+
+    # post-execution state
+    query_annotations_cache.execute()
+    query_annotations_no_cache.execute()
+
+    assert query_annotations_cache.data is not None
+    assert query_annotations_no_cache.data is not None
+    assert "dict" == query_annotations_cache.data.__class__.__name__
+    assert "dict" == query_annotations_no_cache.data.__class__.__name__

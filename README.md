@@ -53,32 +53,31 @@ conda install pyobis --channel conda-forge
 ```
 [More information here](https://github.com/conda-forge/pyobis-feedstock)
 
-### Install latest development version from GitHub
+## Usage
 
+```python
+from pyobis import occurrences
 
-```bash
-pip install git+git://github.com/iobis/pyobis.git#egg=pyobis
-```
+# Search for occurrences
+query = occurrences.search(scientificname='Mola mola')
+data = query.execute()
 
-Install editable dev version from github for local development. System prerequisites: python3, conda
-
-```bash
-# fetch code
-git clone git@github.com:iobis/pyobis.git
-cd pyobis
-# install
-python -m pip install -r requirements.txt
-python -m pip install -r requirements-dev.txt
-python -m pip install -e .
-# test your installation
-python -m pytest
-# test and generate a coverage report
-python -m pytest -rxs --cov=pyobis ./pyobis --vcr-record=none
+# Get occurrence by ID
+query = occurrences.get(id='00003cf7-f2fc-4c53-98a6-7d846e70f5d1')
+data = query.execute()
 ```
 
 ## Documentation
 
-The official documentation is hosted on GitHub Pages [https://iobis.github.io/pyobis](https://iobis.github.io/pyobis).
+For more information, see the [documentation](https://pyobis.readthedocs.io/).
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contributing
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
 ## Library API
 

@@ -19,6 +19,7 @@ def search(
     flags=None,
     limit=None,
     offset=0,
+    cache=True,
     **kwargs,
 ):
     """
@@ -47,6 +48,7 @@ def search(
     :param flags: [String, Array] Comma separated list of quality flags that
         need to be set
     :param offset: [Fixnum] Start at record. Default: 0
+    :param cache: [bool, optional] Whether to use caching. Defaults to True.
 
     :return: A DatasetResponse object
 
@@ -109,15 +111,15 @@ def search(
     }
 
     mapper = False
-    return DatasetResponse(url, {**args, **kwargs}, mapper)
+    return DatasetResponse(url, {**args, **kwargs}, mapper, cache=cache)
 
 
-def get(id, **kwargs):
+def get(id, cache=True, **kwargs):
     """
     Get dataset by ID
 
     :param id: [Fixnum] An OBIS dataset identifier.
-
+    :param cache: [bool, optional] Whether to use caching. Defaults to True.
     :return: A DatasetResponse object
 
     Usage::
@@ -133,7 +135,7 @@ def get(id, **kwargs):
     mapper = True
 
     # returns a DatasetResponse object
-    return DatasetResponse(url, {**args, **kwargs}, mapper)
+    return DatasetResponse(url, {**args, **kwargs}, mapper, cache=cache)
 
 
 class DatasetResponse:
@@ -141,7 +143,7 @@ class DatasetResponse:
     An OBIS Dataset Response Object
     """
 
-    def __init__(self, url, args, mapper):
+    def __init__(self, url, args, mapper, cache=True):
         """
         Initialise the object parameters
         """
@@ -155,6 +157,7 @@ class DatasetResponse:
         # private members
         self.__args = args
         self.__url = url
+        self.__cache = cache
 
     def execute(self, **kwargs):
         """
@@ -164,6 +167,7 @@ class DatasetResponse:
             self.__url,
             self.__args,
             "application/json; charset=utf-8",
+            cache=self.__cache,
             **kwargs,
         )
         self.data = out

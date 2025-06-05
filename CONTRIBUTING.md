@@ -22,14 +22,49 @@ While you are reading this, you must have been aware of what pyobis is - it's th
 ## We Develop with GitHub
 We use GitHub to host code, to track issues and feature requests, as well as accept pull requests.
 
+## Development Installation
+
+### Install latest development version from GitHub
+
+```bash
+pip install git+git://github.com/iobis/pyobis.git#egg=pyobis
+```
+
+### Install editable dev version from github for local development
+
+System prerequisites: python3
+
+```bash
+# fetch code
+git clone git@github.com:iobis/pyobis.git
+cd pyobis
+# install
+python -m pip install -r requirements.txt
+python -m pip install -r requirements-dev.txt
+python -m pip install -e .
+# test your installation
+python -m pytest
+# test and generate a coverage report
+python -m pytest -rxs --cov=pyobis ./pyobis --vcr-record=none
+```
+
 ## We Use [GitHub Flow](https://guides.github.com/introduction/flow/index.html), So All Code Changes Happen Through Pull Requests
 Pull requests are the best way to propose changes to the codebase (we use [GitHub Flow](https://guides.github.com/introduction/flow/index.html)). We actively welcome your pull requests:
 
 1. Fork the repo and create your branch from `master`.
 2. Follow Installation instructions in the [README](https://github.com/iobis/pyobis/blob/master/README.rst)
-3. If you've added code that should be tested, add tests.
-4. If you've changed APIs, update the documentation.
-5. Issue that pull request!
+3. Set up pre-commit hooks:
+   ```bash
+   pip install pre-commit
+   pre-commit install
+   ```
+4. Run tests to ensure everything works:
+   ```bash
+   pytest
+   ```
+5. If you've added code that should be tested, add tests.
+6. If you've changed APIs, update the documentation.
+7. Issue that pull request!
     + Make sure your pull requests are in-detail and includes:
         - a good title and a summary describing the changes you made with your set of edits
         - notes for reviewers, if in case you wish to add some additional points for the reviewers to make a note of
@@ -55,8 +90,11 @@ We use GitHub issues to track public bugs. Report a bug by [opening a new issue]
 ## Additional Suggestions
 + **Code Style**
   + We strongly encourage you to follow the code style of the existing codebase. You can follow the [PEP8](https://pep8.org/) style for writing new patches of code.
+  + Use pre-commit hooks to automatically format your code before committing.
 + **Writing a good commit message**
   + Writing a good commit message always helps in making code reviews faster and a lot easier for the reviewers to get hold of the changes.
++ **Testing**
+  + Always run the test suite before submitting changes to ensure everything works as expected.
 + **More Questions?**
   + If you have still got any questions that this document couldn't answer then you are free to create a new issue.
 
