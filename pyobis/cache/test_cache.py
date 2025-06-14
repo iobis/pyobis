@@ -4,9 +4,11 @@ Unit tests for the cache module.
 
 import os
 import shutil
+import sys
 import tempfile
 import time
 from datetime import timedelta
+from pathlib import Path
 
 import pytest
 import requests
@@ -167,3 +169,25 @@ def test_context_manager(cache):
         session = ctx_cache.get_session()
         response = session.get("https://api.obis.org/v3/taxon/123")
         assert response.status_code == 200
+
+
+def test_cache_directory_location():
+    """Test that cache directory is created in the correct platform-specific location."""
+    cache = Cache()
+    try:
+        if sys.platform.startswith("win"):
+            expected_base = os.environ.get(
+                "LOCALAPPDATA",
+                str(Path.home() / "AppData" / "Local"),
+            )
+        else:
+            expected_base = os.environ.get(
+                "XDG_CACHE_HOME",
+                str(Path.home() / ".cache"),
+            )
+
+        expected_path = Path(expected_base) / "pyobis"
+        assert cache.cache_dir == expected_path
+        assert cache.cache_dir.exists()
+    finally:
+        cache.close()

@@ -4,6 +4,8 @@ Handles HTTP request caching using requests-cache with filesystem backend.
 """
 
 import logging
+import os
+import sys
 from datetime import timedelta
 from pathlib import Path
 
@@ -12,8 +14,29 @@ import requests_cache
 
 logger = logging.getLogger(__name__)
 
+
+def _get_cache_dir():
+    """
+    Get the appropriate cache directory for pyobis.
+    Uses XDG_CACHE_HOME on Unix-like systems, %LOCALAPPDATA% on Windows.
+
+    Returns:
+        Path: The cache directory path.
+    """
+    if sys.platform.startswith("win"):
+        cache_home = os.environ.get(
+            "LOCALAPPDATA",
+            str(Path.home() / "AppData" / "Local"),
+        )
+    else:
+        cache_home = os.environ.get("XDG_CACHE_HOME", str(Path.home() / ".cache"))
+
+    cache_dir = Path(cache_home) / "pyobis"
+    return cache_dir
+
+
 # Global default cache settings
-_DEFAULT_CACHE_DIR = Path(__file__).parent / "requests"
+_DEFAULT_CACHE_DIR = _get_cache_dir()
 _DEFAULT_EXPIRE_AFTER = 86400  # 1 Day
 
 
@@ -37,6 +60,10 @@ class Cache:
     """
     Cache manager for pyobis using requests-cache.
     Provides HTTP request caching with filesystem backend.
+
+    The cache is stored in platform-specific locations:
+    - Windows: %LOCALAPPDATA%\\pyobis (typically C:\\Users\\<username>\\AppData\\Local\\pyobis)
+    - Unix-like (Linux/macOS): $XDG_CACHE_HOME/pyobis or ~/.cache/pyobis
     """
 
     def __init__(
@@ -51,9 +78,9 @@ class Cache:
         Args:
             enabled (bool, optional): Whether caching is enabled. Defaults to True.
             cache_dir (str, optional): Directory to store cache files.
-                                     Defaults to pyobis/cache/requests.
+                                     Defaults to platform-specific cache directory.
             expire_after (int, optional): Cache expiration time in seconds.
-                                        Defaults to 1 hour (3600 seconds).
+                                        Defaults to 1 day (86400 seconds).
         """
         self.enabled = enabled
         self.cache_dir = Path(cache_dir) if cache_dir else _DEFAULT_CACHE_DIR
