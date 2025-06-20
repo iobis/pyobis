@@ -110,4 +110,12 @@ There are really great resources out there to help you become a successful contr
 This document was adapted from the open-source contribution guidelines for [Facebook's Draft](https://github.com/facebook/draft-js/blob/a9316a723f9e918afde44dea68b5f9f39b7d9b00/CONTRIBUTING.md) with some changes inspired from [MetPy's guide](https://github.com/Unidata/MetPy/blob/main/CONTRIBUTING.md).
 
 ### Publishing a release
-If you are a project administrator, see [here](https://github.com/iobis/pyobis/discussions/84) for details on release publishing 
+If you are a project administrator, the methods for pushing a release are below:
+
+1. ensure Changelog.rst is fully up-to-date
+2. use GitHub "releases" web GUI
+   * set tag to new version number's tag
+   * use GitHub "Generate Release Notes"; edit as needed
+   * manually add notes to the top of the release description
+   * click "publish release"
+
