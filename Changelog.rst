@@ -3,7 +3,7 @@ Changelog
 
 1.5.0 (2025-06-20)
 ----------------------
-- MAJOR: 
+- MAJOR:
     - none
 - MINOR:
     - added caching feature
