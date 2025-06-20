@@ -1,6 +1,16 @@
 Changelog
 =========
 
+1.5.0 (2025-06-20)
+----------------------
+- MAJOR: 
+    - none
+- MINOR:
+    - added caching feature
+- PATCH:
+    - updates to README, CONTRIBUTING, requirements.txt
+    - fix for (some) jupyter notebooks
+
 1.4.0 (2023-04-11)
 -----------------------
 - MAJOR:
