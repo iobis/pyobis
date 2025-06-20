@@ -118,4 +118,3 @@ If you are a project administrator, the methods for pushing a release are below:
    * use GitHub "Generate Release Notes"; edit as needed
    * manually add notes to the top of the release description
    * click "publish release"
-
