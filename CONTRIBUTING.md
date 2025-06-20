@@ -108,3 +108,6 @@ There are really great resources out there to help you become a successful contr
 
 ## References
 This document was adapted from the open-source contribution guidelines for [Facebook's Draft](https://github.com/facebook/draft-js/blob/a9316a723f9e918afde44dea68b5f9f39b7d9b00/CONTRIBUTING.md) with some changes inspired from [MetPy's guide](https://github.com/Unidata/MetPy/blob/main/CONTRIBUTING.md).
+
+### Publishing a release
+If you are a project administrator, see [here](https://github.com/iobis/pyobis/discussions/84) for details on release publishing 
