@@ -1,6 +1,15 @@
 Changelog
 =========
 
+1.5.1 (2025-06-23)
+----------------------
+- MAJOR:
+    - none
+- MINOR:
+    - none
+- PATCH:
+    - added missing requests-cache dependency
+
 1.5.0 (2025-06-20)
 ----------------------
 - MAJOR:
