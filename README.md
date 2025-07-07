@@ -59,11 +59,11 @@ conda install pyobis --channel conda-forge
 from pyobis import occurrences
 
 # Search for occurrences
-query = occurrences.search(scientificname='Mola mola')
+query = occurrences.search(scientificname="Mola mola")
 data = query.execute()
 
 # Get occurrence by ID
-query = occurrences.get(id='00003cf7-f2fc-4c53-98a6-7d846e70f5d1')
+query = occurrences.get(id="00003cf7-f2fc-4c53-98a6-7d846e70f5d1")
 data = query.execute()
 ```
 
