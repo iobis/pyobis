@@ -20,6 +20,7 @@ def search(
     limit=None,
     offset=0,
     cache=True,
+    keyword=None,
     **kwargs,
 ):
     """
@@ -47,6 +48,16 @@ def search(
         positive numbers.
     :param flags: [String, Array] Comma separated list of quality flags that
         need to be set
+    :param keyword: [String] Keyword(s) to search for in dataset metadata.
+        When `keyword` is used, no other filter parameters may be specified.
+        Uses Elasticsearch `simple_query_string` syntax with support for:
+          - `+` (AND), e.g., `coral+reef`
+          - quotes `"..."` for exact phrases, e.g., `"coral reef"`
+          - `|` (OR), e.g., `coral|kelp`
+          - `-` (NOT), e.g., `coral -fish`
+          - trailing wildcards `*`, e.g., `star*`
+          - grouping with parentheses, e.g., `(coral | kelp) -fish`
+        Leading or mid-word wildcards (e.g., `*star` or `*star*`) are not supported.
     :param offset: [Fixnum] Start at record. Default: 0
     :param cache: [bool, optional] Whether to use caching. Defaults to True.
 
@@ -95,6 +106,35 @@ def search(
         data = dataset.search(taxonid=res['worms_id']).execute()
     """  # noqa: E501
     url = obis_baseurl + "dataset"
+
+    # Keyword-only metadata search path (Elasticsearch simple_query_string via `q`)
+    if keyword is not None:
+        # Disallow combining keyword with other filters (limit/offset still allowed)
+        if any(
+            v is not None
+            for v in [
+                scientificname,
+                taxonid,
+                nodeid,
+                startdate,
+                enddate,
+                startdepth,
+                enddepth,
+                geometry,
+                flags,
+            ]
+        ):
+            raise ValueError(
+                "When 'keyword' is used, no other filter parameters may be specified.",
+            )
+        args = {
+            "q": keyword,
+            "offset": offset,
+            "size": limit,
+        }
+        mapper = False
+        return DatasetResponse(url, {**args, **kwargs}, mapper, cache=cache)
+
     scientificname = handle_arrstr(scientificname)
     args = {
         "taxonid": taxonid,
