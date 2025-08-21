@@ -46,6 +46,7 @@ def test_dataset_search_url():
     assert not query.mapper_url
 
 
+@pytest.mark.vcr()
 def test_dataset_search_keywords():
     "dataset search with keywords"
     query = dataset.search(keyword="coral")
