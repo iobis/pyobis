@@ -107,26 +107,13 @@ def search(
     """  # noqa: E501
     url = obis_baseurl + "dataset"
 
-    # Keyword-only metadata search path (Elasticsearch simple_query_string via `q`)
+    # =================================================================================
+    # === Keyword-only metadata search path (Elasticsearch simple_query_string via `q`)
+    # =================================================================================
     if keyword is not None:
-        # Disallow combining keyword with other filters (limit/offset still allowed)
-        if any(
-            v is not None
-            for v in [
-                scientificname,
-                taxonid,
-                nodeid,
-                startdate,
-                enddate,
-                startdepth,
-                enddepth,
-                geometry,
-                flags,
-            ]
-        ):
-            raise ValueError(
-                "When 'keyword' is used, no other filter parameters may be specified.",
-            )
+        # === check for other kwargs not compatible with keyword
+        allowed_with_keyword = {"limit", "offset", "cache"}
+        __validate_keyword_constraints(keyword, allowed_with_keyword, locals(), kwargs)
         args = {
             "q": keyword,
             "offset": offset,
@@ -134,7 +121,9 @@ def search(
         }
         mapper = False
         return DatasetResponse(url, {**args, **kwargs}, mapper, cache=cache)
-
+    # =================================================================================
+    # === non-keyword-based search 
+    # =================================================================================
     scientificname = handle_arrstr(scientificname)
     args = {
         "taxonid": taxonid,
@@ -152,7 +141,7 @@ def search(
 
     mapper = False
     return DatasetResponse(url, {**args, **kwargs}, mapper, cache=cache)
-
+    # =================================================================================
 
 def get(id, cache=True, **kwargs):
     """
@@ -218,3 +207,51 @@ class DatasetResponse:
         Convert the results into a pandas DataFrame
         """
         return pd.DataFrame(self.data["results"])
+
+
+def __validate_keyword_constraints(keyword, allowed_with_keyword, all_args, extra_kwargs):
+    """
+    Ensure that if `keyword` is provided, no other disallowed parameters are set.
+
+    Parameters
+    ----------
+    keyword : any
+        The value of the `keyword` argument from the caller.
+    allowed_with_keyword : set
+        Names of parameters that are allowed to be non-None when keyword is given.
+    all_args : dict
+        Dict of *all* arguments (e.g., locals() from the caller).
+    extra_kwargs : dict
+        Dict of **kwargs passed to the caller.
+
+    Raises
+    ------
+    ValueError
+        If any disallowed parameters are set when `keyword` is not None.
+    """
+    if keyword is None:
+        return  # nothing to check
+
+    # 1) Named arguments (explicit parameters from the function signature).
+    candidates = {
+        k: v
+        for k, v in all_args.items()
+        if k not in allowed_with_keyword | {"keyword", "kwargs"}
+    }
+
+    # 2) Extra keyword arguments (**kwargs).
+    extra = {
+        k: v
+        for k, v in extra_kwargs.items()
+        if k not in allowed_with_keyword
+    }
+
+    # 3) Collect any that are non-None (i.e. actually set by the caller).
+    disallowed = {k for k, v in candidates.items() if v is not None}
+    disallowed |= {k for k, v in extra.items() if v is not None}
+
+    if disallowed:
+        raise ValueError(
+            "When 'keyword' is used, no other filter parameters may be specified. "
+            f"Got: {sorted(disallowed)}"
+        )
