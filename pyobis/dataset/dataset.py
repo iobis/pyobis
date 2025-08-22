@@ -105,6 +105,7 @@ def search(
         # Get resources for a particular eventDate
         data = dataset.search(taxonid=res['worms_id']).execute()
     """  # noqa: E501
+    LOCALS = locals()
     url = obis_baseurl + "dataset"
 
     # =================================================================================
@@ -113,7 +114,7 @@ def search(
     if keyword is not None:
         # === check for other kwargs not compatible with keyword
         allowed_with_keyword = {"limit", "offset", "cache"}
-        __validate_keyword_constraints(keyword, allowed_with_keyword, locals(), kwargs)
+        __validate_keyword_constraints(keyword, allowed_with_keyword, LOCALS, kwargs)
         args = {
             "q": keyword,
             "offset": offset,
@@ -122,7 +123,7 @@ def search(
         mapper = False
         return DatasetResponse(url, {**args, **kwargs}, mapper, cache=cache)
     # =================================================================================
-    # === non-keyword-based search 
+    # === non-keyword-based search
     # =================================================================================
     scientificname = handle_arrstr(scientificname)
     args = {
@@ -142,6 +143,7 @@ def search(
     mapper = False
     return DatasetResponse(url, {**args, **kwargs}, mapper, cache=cache)
     # =================================================================================
+
 
 def get(id, cache=True, **kwargs):
     """
@@ -209,7 +211,12 @@ class DatasetResponse:
         return pd.DataFrame(self.data["results"])
 
 
-def __validate_keyword_constraints(keyword, allowed_with_keyword, all_args, extra_kwargs):
+def __validate_keyword_constraints(
+    keyword,
+    allowed_with_keyword,
+    all_args,
+    extra_kwargs,
+):
     """
     Ensure that if `keyword` is provided, no other disallowed parameters are set.
 
@@ -240,11 +247,7 @@ def __validate_keyword_constraints(keyword, allowed_with_keyword, all_args, extr
     }
 
     # 2) Extra keyword arguments (**kwargs).
-    extra = {
-        k: v
-        for k, v in extra_kwargs.items()
-        if k not in allowed_with_keyword
-    }
+    extra = {k: v for k, v in extra_kwargs.items() if k not in allowed_with_keyword}
 
     # 3) Collect any that are non-None (i.e. actually set by the caller).
     disallowed = {k for k, v in candidates.items() if v is not None}
@@ -253,5 +256,5 @@ def __validate_keyword_constraints(keyword, allowed_with_keyword, all_args, extr
     if disallowed:
         raise ValueError(
             "When 'keyword' is used, no other filter parameters may be specified. "
-            f"Got: {sorted(disallowed)}"
+            f"Got: {sorted(disallowed)}",
         )
