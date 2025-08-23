@@ -47,6 +47,15 @@ def test_dataset_search_url():
 
 
 @pytest.mark.vcr()
+def test_dataset_search_keywords():
+    "dataset search with keywords"
+    query = dataset.search(keyword="coral")
+    query.execute()
+    assert "dict" == query.data.__class__.__name__
+    assert query.to_pandas().__class__.__name__ == "DataFrame"
+
+
+@pytest.mark.vcr()
 def test_cache_parameter_functionality():
     """
     dataset.search, dataset.get - test cache parameter functionality

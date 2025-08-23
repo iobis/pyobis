@@ -20,6 +20,7 @@ def search(
     limit=None,
     offset=0,
     cache=True,
+    keyword=None,
     **kwargs,
 ):
     """
@@ -47,6 +48,16 @@ def search(
         positive numbers.
     :param flags: [String, Array] Comma separated list of quality flags that
         need to be set
+    :param keyword: [String] Keyword(s) to search for in dataset metadata.
+        When `keyword` is used, no other filter parameters may be specified.
+        Uses Elasticsearch `simple_query_string` syntax with support for:
+          - `+` (AND), e.g., `coral+reef`
+          - quotes `"..."` for exact phrases, e.g., `"coral reef"`
+          - `|` (OR), e.g., `coral|kelp`
+          - `-` (NOT), e.g., `coral -fish`
+          - trailing wildcards `*`, e.g., `star*`
+          - grouping with parentheses, e.g., `(coral | kelp) -fish`
+        Leading or mid-word wildcards (e.g., `*star` or `*star*`) are not supported.
     :param offset: [Fixnum] Start at record. Default: 0
     :param cache: [bool, optional] Whether to use caching. Defaults to True.
 
@@ -94,7 +105,26 @@ def search(
         # Get resources for a particular eventDate
         data = dataset.search(taxonid=res['worms_id']).execute()
     """  # noqa: E501
+    LOCALS = locals()
     url = obis_baseurl + "dataset"
+
+    # =================================================================================
+    # === Keyword-only metadata search path (Elasticsearch simple_query_string via `q`)
+    # =================================================================================
+    if keyword is not None:
+        # === check for other kwargs not compatible with keyword
+        allowed_with_keyword = {"limit", "offset", "cache"}
+        __validate_keyword_constraints(keyword, allowed_with_keyword, LOCALS, kwargs)
+        args = {
+            "q": keyword,
+            "offset": offset,
+            "size": limit,
+        }
+        mapper = False
+        return DatasetResponse(url, {**args, **kwargs}, mapper, cache=cache)
+    # =================================================================================
+    # === non-keyword-based search
+    # =================================================================================
     scientificname = handle_arrstr(scientificname)
     args = {
         "taxonid": taxonid,
@@ -112,6 +142,7 @@ def search(
 
     mapper = False
     return DatasetResponse(url, {**args, **kwargs}, mapper, cache=cache)
+    # =================================================================================
 
 
 def get(id, cache=True, **kwargs):
@@ -178,3 +209,52 @@ class DatasetResponse:
         Convert the results into a pandas DataFrame
         """
         return pd.DataFrame(self.data["results"])
+
+
+def __validate_keyword_constraints(
+    keyword,
+    allowed_with_keyword,
+    all_args,
+    extra_kwargs,
+):
+    """
+    Ensure that if `keyword` is provided, no other disallowed parameters are set.
+
+    Parameters
+    ----------
+    keyword : any
+        The value of the `keyword` argument from the caller.
+    allowed_with_keyword : set
+        Names of parameters that are allowed to be non-None when keyword is given.
+    all_args : dict
+        Dict of *all* arguments (e.g., locals() from the caller).
+    extra_kwargs : dict
+        Dict of **kwargs passed to the caller.
+
+    Raises
+    ------
+    ValueError
+        If any disallowed parameters are set when `keyword` is not None.
+    """
+    if keyword is None:
+        return  # nothing to check
+
+    # 1) Named arguments (explicit parameters from the function signature).
+    candidates = {
+        k: v
+        for k, v in all_args.items()
+        if k not in allowed_with_keyword | {"keyword", "kwargs"}
+    }
+
+    # 2) Extra keyword arguments (**kwargs).
+    extra = {k: v for k, v in extra_kwargs.items() if k not in allowed_with_keyword}
+
+    # 3) Collect any that are non-None (i.e. actually set by the caller).
+    disallowed = {k for k, v in candidates.items() if v is not None}
+    disallowed |= {k for k, v in extra.items() if v is not None}
+
+    if disallowed:
+        raise ValueError(
+            "When 'keyword' is used, no other filter parameters may be specified. "
+            f"Got: {sorted(disallowed)}",
+        )

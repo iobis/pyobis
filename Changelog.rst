@@ -1,6 +1,15 @@
 Changelog
 =========
 
+1.6.0 (2025-08-12)
+----------------------
+- MAJOR:
+  - none
+- MINOR:
+  - added support for keyword search
+- PATCH:
+  - none
+
 1.5.0 (2025-06-20)
 ----------------------
 - MAJOR:
