@@ -5,14 +5,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pyobis.dataset.dataset &mdash; pyobis 1.5.1.dev17+g1e0f2f8a1 documentation</title>
+  <title>pyobis.dataset.dataset &mdash; pyobis 1.5.1.dev22+ga035acc31 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=f9d4f15f"></script>
+      <script src="../../../_static/documentation_options.js?v=f3702837"></script>
       <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -97,6 +97,7 @@
     <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
     <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">keyword</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -124,6 +125,16 @@
 <span class="sd">        positive numbers.</span>
 <span class="sd">    :param flags: [String, Array] Comma separated list of quality flags that</span>
 <span class="sd">        need to be set</span>
+<span class="sd">    :param keyword: [String] Keyword(s) to search for in dataset metadata.</span>
+<span class="sd">        When `keyword` is used, no other filter parameters may be specified.</span>
+<span class="sd">        Uses Elasticsearch `simple_query_string` syntax with support for:</span>
+<span class="sd">          - `+` (AND), e.g., `coral+reef`</span>
+<span class="sd">          - quotes `&quot;...&quot;` for exact phrases, e.g., `&quot;coral reef&quot;`</span>
+<span class="sd">          - `|` (OR), e.g., `coral|kelp`</span>
+<span class="sd">          - `-` (NOT), e.g., `coral -fish`</span>
+<span class="sd">          - trailing wildcards `*`, e.g., `star*`</span>
+<span class="sd">          - grouping with parentheses, e.g., `(coral | kelp) -fish`</span>
+<span class="sd">        Leading or mid-word wildcards (e.g., `*star` or `*star*`) are not supported.</span>
 <span class="sd">    :param offset: [Fixnum] Start at record. Default: 0</span>
 <span class="sd">    :param cache: [bool, optional] Whether to use caching. Defaults to True.</span>
 
@@ -171,7 +182,26 @@
 <span class="sd">        # Get resources for a particular eventDate</span>
 <span class="sd">        data = dataset.search(taxonid=res[&#39;worms_id&#39;]).execute()</span>
 <span class="sd">    &quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
+    <span class="n">LOCALS</span> <span class="o">=</span> <span class="nb">locals</span><span class="p">()</span>
     <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s2">&quot;dataset&quot;</span>
+
+    <span class="c1"># =================================================================================</span>
+    <span class="c1"># === Keyword-only metadata search path (Elasticsearch simple_query_string via `q`)</span>
+    <span class="c1"># =================================================================================</span>
+    <span class="k">if</span> <span class="n">keyword</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># === check for other kwargs not compatible with keyword</span>
+        <span class="n">allowed_with_keyword</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;limit&quot;</span><span class="p">,</span> <span class="s2">&quot;offset&quot;</span><span class="p">,</span> <span class="s2">&quot;cache&quot;</span><span class="p">}</span>
+        <span class="n">__validate_keyword_constraints</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="n">allowed_with_keyword</span><span class="p">,</span> <span class="n">LOCALS</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;q&quot;</span><span class="p">:</span> <span class="n">keyword</span><span class="p">,</span>
+            <span class="s2">&quot;offset&quot;</span><span class="p">:</span> <span class="n">offset</span><span class="p">,</span>
+            <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="n">limit</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">mapper</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="n">DatasetResponse</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="p">{</span><span class="o">**</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">},</span> <span class="n">mapper</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="n">cache</span><span class="p">)</span>
+    <span class="c1"># =================================================================================</span>
+    <span class="c1"># === non-keyword-based search</span>
+    <span class="c1"># =================================================================================</span>
     <span class="n">scientificname</span> <span class="o">=</span> <span class="n">handle_arrstr</span><span class="p">(</span><span class="n">scientificname</span><span class="p">)</span>
     <span class="n">args</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;taxonid&quot;</span><span class="p">:</span> <span class="n">taxonid</span><span class="p">,</span>
@@ -190,6 +220,7 @@
     <span class="n">mapper</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="k">return</span> <span class="n">DatasetResponse</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="p">{</span><span class="o">**</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">},</span> <span class="n">mapper</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="n">cache</span><span class="p">)</span></div>
 
+    <span class="c1"># =================================================================================</span>
 
 
 <div class="viewcode-block" id="get">
@@ -262,6 +293,55 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">])</span></div>
 
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">__validate_keyword_constraints</span><span class="p">(</span>
+    <span class="n">keyword</span><span class="p">,</span>
+    <span class="n">allowed_with_keyword</span><span class="p">,</span>
+    <span class="n">all_args</span><span class="p">,</span>
+    <span class="n">extra_kwargs</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Ensure that if `keyword` is provided, no other disallowed parameters are set.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    keyword : any</span>
+<span class="sd">        The value of the `keyword` argument from the caller.</span>
+<span class="sd">    allowed_with_keyword : set</span>
+<span class="sd">        Names of parameters that are allowed to be non-None when keyword is given.</span>
+<span class="sd">    all_args : dict</span>
+<span class="sd">        Dict of *all* arguments (e.g., locals() from the caller).</span>
+<span class="sd">    extra_kwargs : dict</span>
+<span class="sd">        Dict of **kwargs passed to the caller.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If any disallowed parameters are set when `keyword` is not None.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">keyword</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span>  <span class="c1"># nothing to check</span>
+
+    <span class="c1"># 1) Named arguments (explicit parameters from the function signature).</span>
+    <span class="n">candidates</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">k</span><span class="p">:</span> <span class="n">v</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">all_args</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">allowed_with_keyword</span> <span class="o">|</span> <span class="p">{</span><span class="s2">&quot;keyword&quot;</span><span class="p">,</span> <span class="s2">&quot;kwargs&quot;</span><span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1"># 2) Extra keyword arguments (**kwargs).</span>
+    <span class="n">extra</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">extra_kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">allowed_with_keyword</span><span class="p">}</span>
+
+    <span class="c1"># 3) Collect any that are non-None (i.e. actually set by the caller).</span>
+    <span class="n">disallowed</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">candidates</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">}</span>
+    <span class="n">disallowed</span> <span class="o">|=</span> <span class="p">{</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">extra</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">}</span>
+
+    <span class="k">if</span> <span class="n">disallowed</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;When &#39;keyword&#39; is used, no other filter parameters may be specified. &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;Got: </span><span class="si">{</span><span class="nb">sorted</span><span class="p">(</span><span class="n">disallowed</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
 </pre></div>
 
            </div>
