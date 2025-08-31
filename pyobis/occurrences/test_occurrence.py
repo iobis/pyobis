@@ -196,6 +196,7 @@ def test_cache_parameter_functionality():
     assert "dict" == query_with_cache.data.__class__.__name__
     assert "dict" == query_without_cache.data.__class__.__name__
 
+
 @pytest.mark.vcr()
 def test_occurrences_search_multiple_scientific_names():
     """
@@ -205,7 +206,7 @@ def test_occurrences_search_multiple_scientific_names():
     size = 100
 
     query = occurrences.search(scientificname=expected_names, size=size)
-    assert not query.data # before execution, data must be empty
+    assert not query.data  # before execution, data must be empty
 
     query.execute()
     assert query.data is not None
@@ -221,6 +222,7 @@ def test_occurrences_search_multiple_scientific_names():
     # null check on scientific names
     assert df["scientificName"].notna().all()
 
+
 @pytest.mark.vcr()
 def test_occurrences_search_no_scientific_names():
     """
@@ -229,7 +231,7 @@ def test_occurrences_search_no_scientific_names():
     size = 100
 
     query = occurrences.search(size=size)
-    assert not query.data # before execution, data must be empty
+    assert not query.data  # before execution, data must be empty
 
     query.execute()
     assert query.data is not None
@@ -245,6 +247,7 @@ def test_occurrences_search_no_scientific_names():
     # null check on scientific names
     assert df["scientificName"].notna().all()
 
+
 @pytest.mark.vcr()
 def test_occurrences_search_scientific_names_and_taxonids():
     """
@@ -252,8 +255,10 @@ def test_occurrences_search_scientific_names_and_taxonids():
     """
     size = 100
 
-    query = occurrences.search(scientificname=['Mola mola', 'Fish'], taxonid=['1234', '2345'], size=size)
-    assert not query.data # before execution, data must be empty
+    query = occurrences.search(
+        scientificname=["Mola mola", "Fish"], taxonid=["1234", "2345"], size=size,
+    )
+    assert not query.data  # before execution, data must be empty
 
     query.execute()
     assert query.data is not None
