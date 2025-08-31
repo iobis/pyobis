@@ -195,3 +195,27 @@ def test_cache_parameter_functionality():
     assert query_without_cache.data is not None
     assert "dict" == query_with_cache.data.__class__.__name__
     assert "dict" == query_without_cache.data.__class__.__name__
+
+@pytest.mark.vcr()
+def test_occurrences_search_multiple_scientific_names():
+    """
+    occurrences.search - test with multiple scientific names for search.
+    """
+    expected_names = ["Mola mola", "Gadus morhua"]
+    size = 100
+
+    query = occurrences.search(scientificname=expected_names, size=size)
+    assert not query.data # before execution, data must be empty
+
+    query.execute()
+    assert query.data is not None
+    assert not query.data.empty
+    assert "scientificName" in query.data.columns
+
+    assert len(query.data) == 100
+
+    unique_names = query.data["scientificName"].dropna().unique().tolist()
+    assert set(unique_names).issubset(expected_names)
+
+    # null check on scientific names
+    assert query.data["scientificName"].notna().all()
