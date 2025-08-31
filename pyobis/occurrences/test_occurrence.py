@@ -256,7 +256,9 @@ def test_occurrences_search_scientific_names_and_taxonids():
     size = 100
 
     query = occurrences.search(
-        scientificname=["Mola mola", "Fish"], taxonid=["1234", "2345"], size=size,
+        scientificname=["Mola mola", "Fish"],
+        taxonid=["1234", "2345"],
+        size=size,
     )
     assert not query.data  # before execution, data must be empty
 
