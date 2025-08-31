@@ -209,16 +209,17 @@ def test_occurrences_search_multiple_scientific_names():
 
     query.execute()
     assert query.data is not None
-    assert not query.data.empty
-    assert "scientificName" in query.data.columns
+    df = query.to_pandas()
+    assert not df.empty
+    assert "scientificName" in df.columns
 
-    assert len(query.data) == 100
+    assert len(df) == 100
 
-    unique_names = query.data["scientificName"].dropna().unique().tolist()
+    unique_names = df["scientificName"].dropna().unique().tolist()
     assert set(unique_names).issubset(expected_names)
 
     # null check on scientific names
-    assert query.data["scientificName"].notna().all()
+    assert df["scientificName"].notna().all()
 
 @pytest.mark.vcr()
 def test_occurrences_search_no_scientific_names():
@@ -232,16 +233,17 @@ def test_occurrences_search_no_scientific_names():
 
     query.execute()
     assert query.data is not None
-    assert not query.data.empty
-    assert "scientificName" in query.data.columns
+    df = query.to_pandas()
+    assert not df.empty
+    assert "scientificName" in df.columns
 
-    assert len(query.data) == 100
+    assert len(df) == 100
 
-    unique_names = query.data["scientificName"].dropna().unique().tolist()
+    unique_names = df["scientificName"].dropna().unique().tolist()
     assert len(unique_names) > 0
 
     # null check on scientific names
-    assert query.data["scientificName"].notna().all()
+    assert df["scientificName"].notna().all()
 
 @pytest.mark.vcr()
 def test_occurrences_search_scientific_names_and_taxonids():
@@ -255,13 +257,14 @@ def test_occurrences_search_scientific_names_and_taxonids():
 
     query.execute()
     assert query.data is not None
-    assert not query.data.empty
-    assert "scientificName" in query.data.columns
+    df = query.to_pandas()
+    assert not df.empty
+    assert "scientificName" in df.columns
 
-    assert len(query.data) == 100
+    assert len(df) == 100
 
-    unique_names = query.data["scientificName"].dropna().unique().tolist()
+    unique_names = df["scientificName"].dropna().unique().tolist()
     assert len(unique_names) > 0
 
     # null check on scientific names
-    assert query.data["scientificName"].notna().all()
+    assert df["scientificName"].notna().all()
