@@ -219,3 +219,26 @@ def test_occurrences_search_multiple_scientific_names():
 
     # null check on scientific names
     assert query.data["scientificName"].notna().all()
+
+@pytest.mark.vcr()
+def test_occurrences_search_no_scientific_names():
+    """
+    occurrences.search - test with no scientific names for search.
+    """
+    size = 100
+
+    query = occurrences.search(size=size)
+    assert not query.data # before execution, data must be empty
+
+    query.execute()
+    assert query.data is not None
+    assert not query.data.empty
+    assert "scientificName" in query.data.columns
+
+    assert len(query.data) == 100
+
+    unique_names = query.data["scientificName"].dropna().unique().tolist()
+    assert len(unique_names) > 0
+
+    # null check on scientific names
+    assert query.data["scientificName"].notna().all()
