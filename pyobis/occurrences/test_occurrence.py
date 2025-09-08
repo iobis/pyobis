@@ -195,3 +195,83 @@ def test_cache_parameter_functionality():
     assert query_without_cache.data is not None
     assert "dict" == query_with_cache.data.__class__.__name__
     assert "dict" == query_without_cache.data.__class__.__name__
+
+
+@pytest.mark.vcr()
+def test_occurrences_search_multiple_scientific_names():
+    """
+    occurrences.search - test with multiple scientific names for search.
+    """
+    expected_names = ["Mola mola", "Gadus morhua"]
+    size = 100
+
+    query = occurrences.search(scientificname=expected_names, size=size)
+    assert not query.data  # before execution, data must be empty
+
+    query.execute()
+    assert query.data is not None
+    df = query.to_pandas()
+    assert not df.empty
+    assert "scientificName" in df.columns
+
+    assert len(df) == 100
+
+    unique_names = df["scientificName"].dropna().unique().tolist()
+    assert set(unique_names).issubset(expected_names)
+
+    # null check on scientific names
+    assert df["scientificName"].notna().all()
+
+
+@pytest.mark.vcr()
+def test_occurrences_search_no_scientific_names():
+    """
+    occurrences.search - test with no scientific names for search.
+    """
+    size = 100
+
+    query = occurrences.search(size=size)
+    assert not query.data  # before execution, data must be empty
+
+    query.execute()
+    assert query.data is not None
+    df = query.to_pandas()
+    assert not df.empty
+    assert "scientificName" in df.columns
+
+    assert len(df) == 100
+
+    unique_names = df["scientificName"].dropna().unique().tolist()
+    assert len(unique_names) > 0
+
+    # null check on scientific names
+    assert df["scientificName"].notna().all()
+
+
+@pytest.mark.vcr()
+def test_occurrences_search_scientific_names_and_taxonids():
+    """
+    occurrences.search - test with scientific names and taxonids for search.
+    """
+    size = 100
+
+    query = occurrences.search(
+        scientificname=["Mola mola", "Fish"],
+        taxonid=["1234", "2345"],
+        size=size,
+    )
+    assert not query.data  # before execution, data must be empty
+
+    query.execute()
+    assert query.data is not None
+    df = query.to_pandas()
+    assert not df.empty
+    assert "scientificName" in df.columns
+
+    assert len(df) == 100
+
+    unique_names = df["scientificName"].dropna().unique().tolist()
+    assert len(unique_names) > 0
+
+    # null check on scientific names
+    assert df["scientificName"].notna().all()

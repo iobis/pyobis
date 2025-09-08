@@ -34,7 +34,9 @@ class OccResponse:
         self.mapper_url = None
         if hasMapper:
             if not args["taxonid"] and args["scientificname"]:
-                args["taxonid"] = lookup_taxon(args["scientificname"])[0]["id"]
+                args["taxonid"] = get_taxonids_for_scientific_names(
+                    args["scientificname"],
+                )
 
             self.mapper_url = (
                 "https://mapper.obis.org/"
@@ -833,3 +835,13 @@ def lookup_taxon(scientificname):
     """
     res = requests.get(f"https://api.obis.org/v3/taxon/complete/{scientificname}")
     return res.json()
+
+
+def get_taxonids_for_scientific_names(scientific_names: str) -> str:
+    taxons = []
+    for scientificName in scientific_names.split(","):
+        taxon_lookup_result = lookup_taxon(scientificName)
+        if len(taxon_lookup_result) > 0:
+            taxons.append(taxon_lookup_result[0]["id"])
+
+    return handle_arrint(taxons)
