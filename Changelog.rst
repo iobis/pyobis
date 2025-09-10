@@ -1,5 +1,13 @@
 Changelog
 =========
+1.6.1 (2025-09-10)
+----------------------
+- MAJOR:
+  - none
+- MINOR:
+  - none
+- PATCH:
+  - fix for [KeyError on empty occurrence search](https://github.com/iobis/pyobis/issues/194)
 
 1.6.0 (2025-08-12)
 ----------------------
