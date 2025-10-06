@@ -22,20 +22,20 @@ repos:
       args: [--max-line-length=105]
 
 - repo: https://github.com/pycqa/isort
-  rev: 6.0.1
+  rev: 6.1.0
   hooks:
     - id: isort
       additional_dependencies: [toml]
       args: ["--profile", "black", "--filter-files"]
 
-- repo: https://github.com/psf/black
-  rev: 25.1.0
+- repo: https://github.com/psf/black-pre-commit-mirror
+  rev: 25.9.0
   hooks:
   - id: black
     language_version: python3
 
 - repo: https://github.com/pre-commit/mirrors-mypy
-  rev: v1.17.1
+  rev: v1.18.2
   hooks:
   - id: mypy
     exclude: docs/source/conf.py
@@ -43,7 +43,7 @@ repos:
     args: ["--ignore-missing-imports", "--python-executable=CONDA_PREFIX"]
 
 - repo: https://github.com/keewis/blackdoc
-  rev: v0.4.1
+  rev: v0.4.3
   hooks:
     - id: blackdoc
 
