@@ -21,7 +21,6 @@ jobs:
         init-shell: bash
         create-args: >-
           python=${{ matrix.python-version }} pip
-          --file requirements.txt
           --file requirements-dev.txt
           --channel conda-forge
 
