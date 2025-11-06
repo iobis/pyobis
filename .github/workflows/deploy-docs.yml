@@ -32,7 +32,7 @@ jobs:
     - name: Install on pyobis
       shell: bash -l {0}
       run: |
-        python -m pip install -e . --no-deps --force-reinstall
+        python -m pip install -e . --force-reinstall
 
     - name: Get the version
       id: get_version

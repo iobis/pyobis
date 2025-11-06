@@ -27,7 +27,7 @@ jobs:
     - name: Install on pyobis
       shell: bash -l {0}
       run: |
-        python -m pip install -e . --no-deps --force-reinstall
+        python -m pip install -e . --force-reinstall
 
     - name: Run Unit Tests
       shell: bash -l {0}
