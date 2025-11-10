@@ -7,7 +7,7 @@ name = "pyobis"
 dynamic = ["version"]
 description = "Python client for OBIS"
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.10"
 license = {text = "MIT"}
 authors = [
     {name = "pyOBIS Community", email = "pyobis-mailing-list@googlegroups.com"}
