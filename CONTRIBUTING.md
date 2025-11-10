@@ -39,9 +39,8 @@ System prerequisites: python3
 git clone git@github.com:iobis/pyobis.git
 cd pyobis
 # install
-python -m pip install -r requirements.txt
-python -m pip install -r requirements-dev.txt
 python -m pip install -e .
+python -m pip install -r requirements-dev.txt
 # test your installation
 python -m pytest
 # test and generate a coverage report

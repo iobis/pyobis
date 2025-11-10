@@ -26,18 +26,17 @@ jobs:
         init-shell: bash
         create-args: >-
           python=3 pip
-          --file requirements.txt
           --file requirements-dev.txt
           --channel conda-forge
 
     - name: Install on pyobis
       shell: bash -l {0}
       run: |
-        python -m pip install -e . --no-deps --force-reinstall
+        python -m pip install -e . --force-reinstall
 
     - name: Get the version
       id: get_version
-      run: echo ::set-output name=VERSION::$(python setup.py --version)
+      run: echo "VERSION=$(python -c "from importlib.metadata import version; print(version('pyobis'))")" >> $GITHUB_OUTPUT
 
     - name: Build documentation
       shell: bash -l {0}

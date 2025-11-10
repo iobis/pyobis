@@ -1,3 +1,42 @@
 [build-system]
 requires = ["setuptools>=41.2", "setuptools_scm", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyobis"
+dynamic = ["version"]
+description = "Python client for OBIS"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "pyOBIS Community", email = "pyobis-mailing-list@googlegroups.com"}
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+dependencies = [
+    "pandas",
+    "requests>=2.7",
+    "requests-cache>=1.2.0,<2.0.0",
+    "urllib3<2.0.0",
+]
+
+[project.urls]
+Documentation = "https://iobis.github.io/pyobis"
+"Bug Tracker" = "https://github.com/iobis/pyobis"
+"Source Code" = "https://github.com/iobis/pyobis"
+
+[tool.setuptools]
+packages = ["pyobis"]
+
+[tool.setuptools_scm]
+write_to = "pyobis/_version.py"
+write_to_template = '__version__ = "{version}"'
+tag_regex = "^(?P<prefix>v)?(?P<version>[^\\+]+)(?P<suffix>.*)?$"

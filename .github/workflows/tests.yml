@@ -7,31 +7,30 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+        python-version: ["3.10", "3.11", "3.12","3.13","3.14"]
         os: [windows-latest, ubuntu-latest, macos-latest]
       fail-fast: false
 
     steps:
-    - uses: actions/checkout@v5
+      - uses: actions/checkout@v5
 
-    - name: Setup Micromamba ${{ matrix.python-version }}
-      uses: mamba-org/setup-micromamba@v2
-      with:
-        environment-name: TEST
-        init-shell: bash
-        create-args: >-
-          python=${{ matrix.python-version }} pip
-          --file requirements.txt
-          --file requirements-dev.txt
-          --channel conda-forge
+      - name: Setup Micromamba ${{ matrix.python-version }}
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: TEST
+          init-shell: bash
+          create-args: >-
+            python=${{ matrix.python-version }} pip
+            --file requirements-dev.txt
+            --channel conda-forge
 
-    - name: Install on pyobis
-      shell: bash -l {0}
-      run: |
-        python -m pip install -e . --no-deps --force-reinstall
+      - name: Install on pyobis
+        shell: bash -l {0}
+        run: |
+          python -m pip install -e . --force-reinstall
 
-    - name: Run Unit Tests
-      shell: bash -l {0}
-      run: |
-        # use --vcr-record=all when recording new cassettes. We never record on CIs though
-        python -m pytest -rxs --cov=pyobis ./pyobis --vcr-record=none
+      - name: Run Unit Tests
+        shell: bash -l {0}
+        run: |
+          # use --vcr-record=all when recording new cassettes. We never record on CIs though
+          python -m pytest -rxs --cov=pyobis ./pyobis --vcr-record=none
