@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: If you use this work, please cite it as below.
+title: Python OBIS client
+type: software
+abstract: OBIS Python client
+url: https://github.com/iobis/pyobis
+license: MIT
+authors:
+  - given-names: Ayush
+    family-names: Anand
+  - family-names: Tylar
+  - family-names: Filipe
+  - given-names: Mehraz Hossain
+    family-names: Rumman
+  - given-names: Scott
+    family-names: Chamberlain
+  - given-names: BALJAPALLI
+    family-names: ANSHUL
+  - given-names: Pieter
+    family-names: Provoost
+    orcid: "https://orcid.org/0000-0002-4236-0384"
+  - given-names: Dolapo Salim
+    family-names: Olatoye
+  - given-names: Pushkar
+    family-names: Verma
+  - family-names: MehrazRumman
+  - family-names: ayushanand18
+  - family-names: 7yl4r
+  - name: Intergovernmental Oceanographic Commission of UNESCO
+    alias: IOC-UNESCO
+    website: "https://obis.org"
+keywords:
+  - marine-data
+  - oceanography
+  - python
+date-released: 2025-10-06
