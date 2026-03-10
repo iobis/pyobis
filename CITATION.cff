@@ -8,14 +8,18 @@ license: MIT
 authors:
   - given-names: Ayush
     family-names: Anand
-  - family-names: Tylar
-  - family-names: Filipe
+  - given-names: Tylar
+    family-names: Murray
+    orcid: "https://orcid.org/0000-0001-8241-1919"
+    website: "https://tylar.info"
+  - given-names: Filipe
+  - family-names: Fernandes
   - given-names: Mehraz Hossain
     family-names: Rumman
   - given-names: Scott
     family-names: Chamberlain
-  - given-names: BALJAPALLI
-    family-names: ANSHUL
+  - given-names: Baljapalli
+    family-names: Anshul
   - given-names: Pieter
     family-names: Provoost
     orcid: "https://orcid.org/0000-0002-4236-0384"
@@ -23,9 +27,6 @@ authors:
     family-names: Olatoye
   - given-names: Pushkar
     family-names: Verma
-  - family-names: MehrazRumman
-  - family-names: ayushanand18
-  - family-names: 7yl4r
   - name: Intergovernmental Oceanographic Commission of UNESCO
     alias: IOC-UNESCO
     website: "https://obis.org"
