@@ -29,7 +29,7 @@ repos:
       args: ["--profile", "black", "--filter-files"]
 
 - repo: https://github.com/psf/black-pre-commit-mirror
-  rev: 26.1.0
+  rev: 26.3.1
   hooks:
   - id: black
     language_version: python3
@@ -54,34 +54,39 @@ repos:
       exclude: ^(docs|setup.py|tests|.*__init__.py)
       args: [-vv, --config=pyproject.toml]
 
-# - repo: https://github.com/codespell-project/codespell
-#   rev: v2.1.0
-#   hooks:
-#     - id: codespell
-#       exclude: >
-#           (?x)^(
-#               .*\.yaml
-#           )$
-#       args:
-#         - --quiet-level=2
+- repo: https://github.com/codespell-project/codespell
+  rev: v2.4.2
+  hooks:
+    - id: codespell
+      exclude: >
+          (?x)^(
+              .*\.yaml
+          )$
+      args:
+        - --ignore-words-list=nd,fo
+        # These ignore are needed b/c of the widget PNG as base64 in notebooks/biodiversity_mapping.ipynb
 
 - repo: https://github.com/asottile/pyupgrade
   rev: v3.21.2
   hooks:
     - id: pyupgrade
       args:
-        - --py36-plus
+        - --py310-plus
 
 - repo: https://github.com/asottile/add-trailing-comma
   rev: v4.0.0
   hooks:
     - id: add-trailing-comma
 
-# - repo: https://github.com/pycqa/pydocstyle
-#   rev: 6.1.1
-#   hooks:
-#     - id: pydocstyle
-#   exclude: ^(docs|setup.py)
+- repo: https://github.com/woodruffw/zizmor-pre-commit
+  rev: v1.23.1
+  hooks:
+    - id: zizmor
+
+- repo: https://github.com/bdice/nb-strip-paths
+  rev: v0.1.0
+  hooks:
+    - id: nb-strip-paths
 
 ci:
     autofix_commit_msg: |
@@ -89,7 +94,5 @@ ci:
 
         for more information, see https://pre-commit.ci
     autofix_prs: false
-    autoupdate_commit_msg: '[pre-commit.ci] pre-commit autoupdate'
-    autoupdate_schedule: monthly
     skip: []
     submodules: false
