@@ -27,3 +27,4 @@ _build
 pyobis/_version.py
 pyobis/cache/requests/
 venv/
+.ipynb_checkpoints/
