@@ -291,7 +291,7 @@ def search(
     :param enddepth: [Boolean] End depth, in meters. Depth below sea level are treated
         as positive numbers.
     :param flags: Prev. qc [String] Quality control flags
-    :param fields: [String] Comma seperated list of field names. Leave blank to include all.
+    :param fields: [String] Comma separated list of field names. Leave blank to include all.
         For fetching records more than 10k, must specify 'id' explicitly too.
     :param size: [Fixnum] Number of results to return. Default: All records
     :param offset: [Fixnum] Start at record. Default: 0
