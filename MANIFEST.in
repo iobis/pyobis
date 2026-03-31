@@ -1,0 +1,18 @@
+include *.txt
+include *.md
+include Changelog.rst
+include pyproject.toml
+
+graft pyobis
+global-exclude *.yaml
+
+prune .github
+prune *.egg-info
+prune docs
+prune notebooks
+
+exclude Makefile
+exclude .coveragerc
+exclude ruff.toml
+exclude .gitignore
+exclude pyobis/_version.py
