@@ -300,7 +300,7 @@ def search(
     :param hasextensions: [String] Extensions that need to be present
         (e.g. MeasurementOrFact, DNADerivedData).
     :param cache: [bool, optional] Whether to use caching. Defaults to True.
-    :return: A pandas dataframe of taxon occurrences.
+    :return: OccResponse which can be turned into a pandas dataframe of taxon occurrences using .execute().
 
     Usage::
 
