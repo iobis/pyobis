@@ -14,7 +14,14 @@ def search(scientificname=None, cache=True, **kwargs):
     :param scientificname: [String,Array] One or more scientific names from the
         OBIS backbone. All included and synonym taxa are included in the search
     :param cache: [bool, optional] Whether to use caching. Defaults to True.
-    :return: A dictionary
+    :return: Dictionary with keys: [
+        'scientificName', 'scientificNameAuthorship', 'taxonID', 'ncbi_id', 
+        'taxonRank', 'taxonomicStatus', 'acceptedNameUsage', 
+        'acceptedNameUsageID', 'is_marine', 'kingdom', 'phylum', 'subphylum', 
+        'superclass', 'class', 'subclass', 'superorder', 'order', 'kingdomid', 
+        'phylumid', 'subphylumid', 'superclassid', 'classid', 'subclassid', 
+        'superorderid', 'orderid', 'vernacularNames'
+    ]
 
     Usage::
 
@@ -22,11 +29,13 @@ def search(scientificname=None, cache=True, **kwargs):
 
         # With caching enabled (default)
         query = taxa.search(scientificname='Mola mola')
-        query.execute()
-
+        result = query.execute()
+        aphia_id = result['results'][0]['taxonID']
+        
         # With caching disabled
         query = taxa.search(scientificname='Mola mola', cache=False)
-        query.execute()
+        result = query.execute()
+        aphia_id = result['results'][0]['taxonID']
 
         # Get the data
         query.data # return the fetched data
