@@ -2,7 +2,7 @@
 
 [![pypi](https://img.shields.io/pypi/v/pyobis.svg)](https://pypi.python.org/pypi/pyobis)
 [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pyobis.svg)](https://anaconda.org/conda-forge/pyobis)
-[![docs](https://github.com/iobis/pyobis/actions/workflows/deploy-docs.yml/badge.svg)](https://iobis.github.ic/pyobis)
+[![docs](https://github.com/iobis/pyobis/actions/workflows/deploy-docs.yml/badge.svg)](https://iobis.github.io/pyobis)
 [![tests](https://github.com/iobis/pyobis/actions/workflows/tests.yml/badge.svg)](https://github.com/iobis/pyobis/actions/workflows/tests.yml)
 
 Python client for the [OBIS API](https://api.obis.org/).
@@ -69,7 +69,7 @@ data = query.execute()
 
 ## Documentation
 
-For more information, see the [documentation](https://pyobis.readthedocs.io/).
+For more information, see the [documentation](https://iobis.github.io/pyobis).
 
 ## License
 

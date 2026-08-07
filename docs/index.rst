@@ -101,7 +101,7 @@ Nodes module
 
     from pyobis import nodes
 
-    query = nodes.search(scientificname=["Mola", "Abra"], cache=True)
+    query = nodes.search(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc", cache=True)
     query.execute()
     query.data  # Returns the data
     query.api_url  # Returns the API URL
