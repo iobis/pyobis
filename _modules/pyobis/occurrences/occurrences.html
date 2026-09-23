@@ -5,16 +5,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pyobis.occurrences.occurrences &mdash; pyobis 1.6.2.dev26+g0cde7e983 documentation</title>
+  <title>pyobis.occurrences.occurrences &mdash; pyobis 1.6.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=3eb094ce"></script>
-      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/documentation_options.js?v=e15882dc"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -73,9 +73,9 @@
            <div itemprop="articleBody">
              
   <h1>Source code for pyobis.occurrences.occurrences</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span></span><span class="sd">"""</span>
 <span class="sd">/occurrences/ API endpoints as documented on https://api.obis.org/.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
@@ -98,26 +98,26 @@
 <div class="viewcode-block" id="OccResponse">
 <a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.OccResponse">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">OccResponse</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    An OBIS Occurrence response class</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">isSearch</span><span class="p">,</span> <span class="n">hasMapper</span><span class="p">,</span> <span class="n">isKML</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Initialise the object parameters</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">api_url</span> <span class="o">=</span> <span class="n">build_api_url</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mapper_url</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="n">hasMapper</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;taxonid&quot;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;scientificname&quot;</span><span class="p">]:</span>
-                <span class="n">args</span><span class="p">[</span><span class="s2">&quot;taxonid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_taxonids_for_scientific_names</span><span class="p">(</span>
-                    <span class="n">args</span><span class="p">[</span><span class="s2">&quot;scientificname&quot;</span><span class="p">],</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="p">[</span><span class="s2">"taxonid"</span><span class="p">]</span> <span class="ow">and</span> <span class="n">args</span><span class="p">[</span><span class="s2">"scientificname"</span><span class="p">]:</span>
+                <span class="n">args</span><span class="p">[</span><span class="s2">"taxonid"</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_taxonids_for_scientific_names</span><span class="p">(</span>
+                    <span class="n">args</span><span class="p">[</span><span class="s2">"scientificname"</span><span class="p">],</span>
                 <span class="p">)</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">mapper_url</span> <span class="o">=</span> <span class="p">(</span>
-                <span class="s2">&quot;https://mapper.obis.org/&quot;</span>
-                <span class="o">+</span> <span class="s2">&quot;?&quot;</span>
+                <span class="s2">"https://mapper.obis.org/"</span>
+                <span class="o">+</span> <span class="s2">"?"</span>
                 <span class="o">+</span> <span class="n">urlencode</span><span class="p">(</span>
                     <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">args</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">},</span>
                 <span class="p">)</span>
@@ -135,16 +135,16 @@
             <span class="n">starting_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__out_head_record</span> <span class="o">=</span> <span class="n">obis_GET</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">__url</span><span class="p">,</span>
-                <span class="p">{</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}},</span>
-                <span class="s2">&quot;application/json; charset=utf-8&quot;</span><span class="p">,</span>
+                <span class="p">{</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="s2">"size"</span><span class="p">:</span> <span class="mi">1</span><span class="p">}},</span>
+                <span class="s2">"application/json; charset=utf-8"</span><span class="p">,</span>
                 <span class="n">cache</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__cache</span><span class="p">,</span>
             <span class="p">)</span>
             <span class="n">ending_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
-            <span class="k">if</span> <span class="s2">&quot;total&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__out_head_record</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">"total"</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__out_head_record</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">__total_records</span> <span class="o">=</span> <span class="p">(</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">__out_head_record</span><span class="p">[</span><span class="s2">&quot;total&quot;</span><span class="p">]</span>
-                    <span class="k">if</span> <span class="s2">&quot;size&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__args</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">]</span>
-                    <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">]</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">__out_head_record</span><span class="p">[</span><span class="s2">"total"</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="s2">"size"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__args</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">[</span><span class="s2">"size"</span><span class="p">]</span>
+                    <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">[</span><span class="s2">"size"</span><span class="p">]</span>
                 <span class="p">)</span>
                 <span class="c1"># a simple calculation gives us the total expected time</span>
                 <span class="c1"># nearly for all requests of size 1, the server takes up 99.5% of the time</span>
@@ -153,21 +153,21 @@
                 <span class="c1"># for larger than 100k records, because the network download takes</span>
                 <span class="c1"># even smaller fraction of the total round-trip time</span>
                 <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__total_records</span><span class="si">}</span><span class="s2"> to be fetched. Estimated time =&quot;</span>
-                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="p">(</span><span class="n">ending_time</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">starting_time</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.995</span><span class="si">}</span><span class="s2">&quot;</span>
-                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="p">(</span><span class="n">ending_time</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">starting_time</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.005</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="n">__total_records</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> &quot;</span>
-                    <span class="s2">&quot;seconds&quot;</span><span class="p">,</span>
+                    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__total_records</span><span class="si">}</span><span class="s2"> to be fetched. Estimated time ="</span>
+                    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="p">(</span><span class="n">ending_time</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">starting_time</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.995</span><span class="si">}</span><span class="s2">"</span>
+                    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="p">(</span><span class="n">ending_time</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">starting_time</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.005</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="n">__total_records</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> "</span>
+                    <span class="s2">"seconds"</span><span class="p">,</span>
                 <span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Execute or fetch the data based on the query</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__isSearch</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__isKML</span><span class="p">:</span>
             <span class="n">out</span> <span class="o">=</span> <span class="n">obis_GET</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">__url</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">,</span>
-                <span class="s2">&quot;application/json; charset=utf-8&quot;</span><span class="p">,</span>
+                <span class="s2">"application/json; charset=utf-8"</span><span class="p">,</span>
                 <span class="n">cache</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__cache</span><span class="p">,</span>
                 <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
             <span class="p">)</span>
@@ -181,27 +181,27 @@
 
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">__isSearch</span><span class="p">:</span>
             <span class="c1"># setting default parameters from arguments list</span>
-            <span class="n">mof</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">[</span><span class="s2">&quot;mof&quot;</span><span class="p">]</span>
-            <span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">]</span>
+            <span class="n">mof</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">[</span><span class="s2">"mof"</span><span class="p">]</span>
+            <span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">[</span><span class="s2">"size"</span><span class="p">]</span>
 
             <span class="n">size</span> <span class="o">=</span> <span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">__total_records</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">size</span> <span class="k">else</span> <span class="n">size</span>
             <span class="p">)</span>  <span class="c1"># if the user has set some size or else we fetch all the records</span>
 
             <span class="n">outdf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-                <span class="n">columns</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__out_head_record</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
+                <span class="n">columns</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__out_head_record</span><span class="p">[</span><span class="s2">"results"</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
             <span class="p">)</span>
 
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10000</span><span class="p">):</span>
-                <span class="c1"># if there is no &#39;id&#39; then there should be no pagination</span>
-                <span class="k">if</span> <span class="s2">&quot;id&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">outdf</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+                <span class="c1"># if there is no 'id' then there should be no pagination</span>
+                <span class="k">if</span> <span class="s2">"id"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">outdf</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
                     <span class="k">break</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10000</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">[</span><span class="s2">"size"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10000</span>
                 <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-                    <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">[</span><span class="si">{}{}</span><span class="s2">] </span><span class="si">{}</span><span class="s2">/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                        <span class="s2">&quot;Fetching: &quot;</span><span class="p">,</span>
-                        <span class="s2">&quot;█&quot;</span> <span class="o">*</span> <span class="nb">int</span><span class="p">((</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">/</span> <span class="n">size</span><span class="p">),</span>
-                        <span class="s2">&quot;.&quot;</span> <span class="o">*</span> <span class="p">(</span><span class="mi">100</span> <span class="o">-</span> <span class="nb">int</span><span class="p">((</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">/</span> <span class="n">size</span><span class="p">)),</span>
+                    <span class="s2">"</span><span class="si">{}</span><span class="s2">[</span><span class="si">{}{}</span><span class="s2">] </span><span class="si">{}</span><span class="s2">/</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="s2">"Fetching: "</span><span class="p">,</span>
+                        <span class="s2">"█"</span> <span class="o">*</span> <span class="nb">int</span><span class="p">((</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">/</span> <span class="n">size</span><span class="p">),</span>
+                        <span class="s2">"."</span> <span class="o">*</span> <span class="p">(</span><span class="mi">100</span> <span class="o">-</span> <span class="nb">int</span><span class="p">((</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">/</span> <span class="n">size</span><span class="p">)),</span>
                         <span class="n">i</span><span class="p">,</span>
                         <span class="n">size</span><span class="p">,</span>
                     <span class="p">),</span>
@@ -209,28 +209,28 @@
                 <span class="n">res</span> <span class="o">=</span> <span class="n">obis_GET</span><span class="p">(</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">__url</span><span class="p">,</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">,</span>
-                    <span class="s2">&quot;application/json; charset=utf-8&quot;</span><span class="p">,</span>
+                    <span class="s2">"application/json; charset=utf-8"</span><span class="p">,</span>
                     <span class="n">cache</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__cache</span><span class="p">,</span>
                     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
                 <span class="p">)</span>
                 <span class="n">outdf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
                     <span class="p">[</span>
                         <span class="n">outdf</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">outdf</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-                        <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">infer_objects</span><span class="p">(),</span>
+                        <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s2">"results"</span><span class="p">])</span><span class="o">.</span><span class="n">infer_objects</span><span class="p">(),</span>
                     <span class="p">],</span>
                     <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                 <span class="p">)</span>
                 <span class="c1"># make sure that we set the `after` parameter when fetching subsequent records</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">[</span><span class="s2">&quot;after&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">outdf</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">[</span><span class="s2">"after"</span><span class="p">]</span> <span class="o">=</span> <span class="n">outdf</span><span class="p">[</span><span class="s2">"id"</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">size</span> <span class="o">%</span> <span class="mi">10000</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">[</span><span class="s2">"size"</span><span class="p">]</span> <span class="o">=</span> <span class="n">size</span> <span class="o">%</span> <span class="mi">10000</span>
             <span class="c1"># we have already fetched records as a set of 5000 records each time,</span>
             <span class="c1"># now we need to get remaining records from the total</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-                <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">[</span><span class="si">{}{}</span><span class="s2">] </span><span class="si">{}</span><span class="s2">/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                    <span class="s2">&quot;Fetching: &quot;</span><span class="p">,</span>
-                    <span class="s2">&quot;</span><span class="se">\u2588</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span>
-                    <span class="s2">&quot;.&quot;</span> <span class="o">*</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="s2">"</span><span class="si">{}</span><span class="s2">[</span><span class="si">{}{}</span><span class="s2">] </span><span class="si">{}</span><span class="s2">/</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="s2">"Fetching: "</span><span class="p">,</span>
+                    <span class="s2">"</span><span class="se">\u2588</span><span class="s2">"</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span>
+                    <span class="s2">"."</span> <span class="o">*</span> <span class="mi">0</span><span class="p">,</span>
                     <span class="n">size</span><span class="p">,</span>
                     <span class="n">size</span><span class="p">,</span>
                 <span class="p">),</span>
@@ -238,81 +238,81 @@
             <span class="n">res</span> <span class="o">=</span> <span class="n">obis_GET</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">__url</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">,</span>
-                <span class="s2">&quot;application/json; charset=utf-8&quot;</span><span class="p">,</span>
+                <span class="s2">"application/json; charset=utf-8"</span><span class="p">,</span>
                 <span class="n">cache</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__cache</span><span class="p">,</span>
                 <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
             <span class="p">)</span>
             <span class="n">outdf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
                 <span class="p">[</span>
                     <span class="n">outdf</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">outdf</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-                    <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">infer_objects</span><span class="p">(),</span>
+                    <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s2">"results"</span><span class="p">])</span><span class="o">.</span><span class="n">infer_objects</span><span class="p">(),</span>
                 <span class="p">],</span>
                 <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="p">)</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fetched </span><span class="si">{</span><span class="n">size</span><span class="si">}</span><span class="s2"> records.&quot;</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Fetched </span><span class="si">{</span><span class="n">size</span><span class="si">}</span><span class="s2"> records."</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="n">mof</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">__total_records</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="n">mofNormalized</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span>
-                    <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">outdf</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s2">&quot;records&quot;</span><span class="p">)),</span>
-                    <span class="s2">&quot;mof&quot;</span><span class="p">,</span>
-                    <span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">],</span>
+                    <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">outdf</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s2">"records"</span><span class="p">)),</span>
+                    <span class="s2">"mof"</span><span class="p">,</span>
+                    <span class="p">[</span><span class="s2">"id"</span><span class="p">],</span>
                 <span class="p">)</span>
                 <span class="n">merged</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
                     <span class="n">outdf</span><span class="p">,</span>
                     <span class="n">mofNormalized</span><span class="p">,</span>
-                    <span class="n">on</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">,</span>
-                    <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">,</span>
+                    <span class="n">on</span><span class="o">=</span><span class="s2">"id"</span><span class="p">,</span>
+                    <span class="n">how</span><span class="o">=</span><span class="s2">"inner"</span><span class="p">,</span>
                 <span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;total&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">merged</span><span class="p">),</span> <span class="s2">&quot;results&quot;</span><span class="p">:</span> <span class="n">merged</span><span class="p">}</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"total"</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">merged</span><span class="p">),</span> <span class="s2">"results"</span><span class="p">:</span> <span class="n">merged</span><span class="p">}</span>
                 <span class="c1"># set the data as [total, results] K-V pair</span>
                 <span class="c1"># but still return the DataFrame since changing this</span>
                 <span class="c1"># will impact existing usage, and be a breaking change</span>
-                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">]</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;total&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">outdf</span><span class="p">),</span> <span class="s2">&quot;results&quot;</span><span class="p">:</span> <span class="n">outdf</span><span class="p">}</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">"results"</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"total"</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">outdf</span><span class="p">),</span> <span class="s2">"results"</span><span class="p">:</span> <span class="n">outdf</span><span class="p">}</span>
 
             <span class="c1"># again for not MeasurementOrFacts results, (simple search queries)</span>
             <span class="c1"># should also return the DataFrame directly for backward compatibility</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">]</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">"results"</span><span class="p">]</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">to_pandas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Convert the results into a pandas DataFrame</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="c1"># if the data format of the query executed cannot be converted to a</span>
         <span class="c1"># pandas.DataFrame which is true for other formats like .mvt or kml (not geojson)</span>
         <span class="c1"># then we should be raising a not implemented rather relying around exceptions</span>
         <span class="c1"># from pandas while converting</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__isKML</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
-                <span class="s2">&quot;to_pandas method is not yet available for these query types.&quot;</span><span class="p">,</span>
+                <span class="s2">"to_pandas method is not yet available for these query types."</span><span class="p">,</span>
             <span class="p">)</span>
-        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">])</span></div>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">"results"</span><span class="p">])</span></div>
 
 
 
 <div class="viewcode-block" id="get">
 <a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.get">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Get an OBIS occurrence</span>
 
 <span class="sd">    :param id: [Fixnum] An obis occurrence identifier.</span>
-<span class="sd">        It is returned in the &#39;id&#39; field with occurrences.search().</span>
+<span class="sd">        It is returned in the 'id' field with occurrences.search().</span>
 <span class="sd">    :param cache: [bool, optional] Whether to use caching. Defaults to True.</span>
 <span class="sd">    :return: A dictionary</span>
 
 <span class="sd">    Usage::</span>
 
 <span class="sd">        from pyobis import occurrences</span>
-<span class="sd">        q1 = occurrences.get(id = &#39;00003cf7-f2fc-4c53-98a6-7d846e70f5d1&#39;)</span>
+<span class="sd">        q1 = occurrences.get(id = '00003cf7-f2fc-4c53-98a6-7d846e70f5d1')</span>
 <span class="sd">        q1.execute()</span>
 <span class="sd">        q1.data # get the data</span>
 <span class="sd">        q1.api_url # get the API url</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s2">&quot;occurrence/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+<span class="sd">    """</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s2">"occurrence/"</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
     <span class="n">args</span> <span class="o">=</span> <span class="p">{}</span>
 
     <span class="k">return</span> <span class="n">OccResponse</span><span class="p">(</span>
@@ -348,7 +348,7 @@
     <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
 <span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Search OBIS occurrences</span>
 
 <span class="sd">    :param taxonid: [Fixnum] An OBIS occurrence identifier</span>
@@ -357,7 +357,7 @@
 <span class="sd">        synonym taxa are included in the search.</span>
 <span class="sd">    :param year: Removed in v3 API. [Fixnum] The 4 digit year. A year of 98</span>
 <span class="sd">        will be interpreted as AD 98. Supports range queries,</span>
-<span class="sd">        smaller,larger (e.g., &#39;1990,1991&#39;, whereas &#39;1991,1990&#39; wouldn&#39;t work)</span>
+<span class="sd">        smaller,larger (e.g., '1990,1991', whereas '1991,1990' wouldn't work)</span>
 <span class="sd">    :param geometry: [String] Well Known Text (WKT). A WKT shape written</span>
 <span class="sd">        as either POINT, LINESTRING, LINEARRING</span>
 <span class="sd">        or POLYGON.</span>
@@ -374,8 +374,8 @@
 <span class="sd">    :param enddepth: [Boolean] End depth, in meters. Depth below sea level are treated</span>
 <span class="sd">        as positive numbers.</span>
 <span class="sd">    :param flags: Prev. qc [String] Quality control flags</span>
-<span class="sd">    :param fields: [String] Comma seperated list of field names. Leave blank to include all.</span>
-<span class="sd">        For fetching records more than 10k, must specify &#39;id&#39; explicitly too.</span>
+<span class="sd">    :param fields: [String] Comma separated list of field names. Leave blank to include all.</span>
+<span class="sd">        For fetching records more than 10k, must specify 'id' explicitly too.</span>
 <span class="sd">    :param size: [Fixnum] Number of results to return. Default: All records</span>
 <span class="sd">    :param offset: [Fixnum] Start at record. Default: 0</span>
 <span class="sd">    :param mof: [Boolean] Include MeasurementOrFact records, true/false.</span>
@@ -388,67 +388,67 @@
 <span class="sd">    Usage::</span>
 
 <span class="sd">        from pyobis import occurrences</span>
-<span class="sd">        occurrences.search(scientificname = &#39;Mola mola&#39;).execute()</span>
+<span class="sd">        occurrences.search(scientificname = 'Mola mola').execute()</span>
 
 <span class="sd">        # Many names</span>
-<span class="sd">        occurrences.search(scientificname = [&#39;Mola&#39;, &#39;Abra&#39;, &#39;Lanice&#39;, &#39;Pectinaria&#39;]).execute()</span>
+<span class="sd">        occurrences.search(scientificname = ['Mola', 'Abra', 'Lanice', 'Pectinaria']).execute()</span>
 
 <span class="sd">        # Use paging parameters (limit and start) to page.</span>
 <span class="sd">        # Note the different results for the two queries below.</span>
-<span class="sd">        occ.search(scientificname = &#39;Mola mola&#39;, offset=0, size=10)</span>
-<span class="sd">        occ.search(scientificname = &#39;Mola mola&#39;, offset=10, size=10)</span>
+<span class="sd">        occ.search(scientificname = 'Mola mola', offset=0, size=10)</span>
+<span class="sd">        occ.search(scientificname = 'Mola mola', offset=10, size=10)</span>
 
 <span class="sd">        # Search on a bounding box</span>
 <span class="sd">        ## in well known text format</span>
 <span class="sd">        occurrences.search(</span>
-<span class="sd">            geometry=&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;,</span>
+<span class="sd">            geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))',</span>
 <span class="sd">            size=20</span>
 <span class="sd">        ).execute()</span>
 
 <span class="sd">        from pyobis import taxa</span>
 
-<span class="sd">        res = taxa.search(scientificname=&#39;Mola mola&#39;).execute()[&#39;results&#39;][0]</span>
+<span class="sd">        res = taxa.search(scientificname='Mola mola').execute()['results'][0]</span>
 <span class="sd">        occurrences.search(</span>
-<span class="sd">            obisid=res[&#39;id&#39;],</span>
-<span class="sd">            geometry=&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;,</span>
+<span class="sd">            obisid=res['id'],</span>
+<span class="sd">            geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))',</span>
 <span class="sd">            size=20</span>
 <span class="sd">        ).execute()</span>
 <span class="sd">        occurrences.search(</span>
-<span class="sd">            aphiaid=res[&#39;worms_id&#39;],</span>
-<span class="sd">            geometry=&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;,</span>
+<span class="sd">            aphiaid=res['worms_id'],</span>
+<span class="sd">            geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))',</span>
 <span class="sd">            size=20</span>
 <span class="sd">        ).execute()</span>
 
 <span class="sd">        # Get mof response as a pandas dataframe</span>
 <span class="sd">        occurrences.search(</span>
-<span class="sd">            scientificname=&quot;Abra&quot;, mof=True, hasextensions=&quot;MeasurementOrFact&quot;, size=100</span>
+<span class="sd">            scientificname="Abra", mof=True, hasextensions="MeasurementOrFact", size=100</span>
 <span class="sd">            ).execute()</span>
-<span class="sd">    &quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s2">&quot;occurrence&quot;</span>
+<span class="sd">    """</span>  <span class="c1"># noqa: E501</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s2">"occurrence"</span>
     <span class="n">scientificname</span> <span class="o">=</span> <span class="n">handle_arrstr</span><span class="p">(</span><span class="n">scientificname</span><span class="p">)</span>
     <span class="n">taxonid</span> <span class="o">=</span> <span class="n">handle_arrint</span><span class="p">(</span><span class="n">taxonid</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">fields</span> <span class="ow">and</span> <span class="s2">&quot;id&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">fields</span> <span class="ow">and</span> <span class="s2">"id"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">:</span>
         <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-            <span class="s2">&quot;You have specified custom fields but &#39;id&#39; is not included. </span><span class="se">\</span>
-<span class="s2">            Include &#39;id&#39; explicitly in the fields or else only upto 10,000 records will be fetched.&quot;</span><span class="p">,</span>
+            <span class="s2">"You have specified custom fields but 'id' is not included. </span><span class="se">\</span>
+<span class="s2">            Include 'id' explicitly in the fields or else only upto 10,000 records will be fetched."</span><span class="p">,</span>
         <span class="p">)</span>
     <span class="n">args</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;taxonid&quot;</span><span class="p">:</span> <span class="n">taxonid</span><span class="p">,</span>
-        <span class="s2">&quot;nodeid&quot;</span><span class="p">:</span> <span class="n">nodeid</span><span class="p">,</span>
-        <span class="s2">&quot;datasetid&quot;</span><span class="p">:</span> <span class="n">datasetid</span><span class="p">,</span>
-        <span class="s2">&quot;scientificname&quot;</span><span class="p">:</span> <span class="n">scientificname</span><span class="p">,</span>
-        <span class="s2">&quot;startdate&quot;</span><span class="p">:</span> <span class="n">startdate</span><span class="p">,</span>
-        <span class="s2">&quot;enddate&quot;</span><span class="p">:</span> <span class="n">enddate</span><span class="p">,</span>
-        <span class="s2">&quot;startdepth&quot;</span><span class="p">:</span> <span class="n">startdepth</span><span class="p">,</span>
-        <span class="s2">&quot;enddepth&quot;</span><span class="p">:</span> <span class="n">enddepth</span><span class="p">,</span>
-        <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="n">geometry</span><span class="p">,</span>
-        <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="n">year</span><span class="p">,</span>
-        <span class="s2">&quot;fields&quot;</span><span class="p">:</span> <span class="n">fields</span><span class="p">,</span>
-        <span class="s2">&quot;flags&quot;</span><span class="p">:</span> <span class="n">flags</span><span class="p">,</span>
-        <span class="s2">&quot;offset&quot;</span><span class="p">:</span> <span class="n">offset</span><span class="p">,</span>
-        <span class="s2">&quot;mof&quot;</span><span class="p">:</span> <span class="n">mof</span><span class="p">,</span>
-        <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="n">size</span><span class="p">,</span>
-        <span class="s2">&quot;hasextensions&quot;</span><span class="p">:</span> <span class="n">hasextensions</span><span class="p">,</span>
+        <span class="s2">"taxonid"</span><span class="p">:</span> <span class="n">taxonid</span><span class="p">,</span>
+        <span class="s2">"nodeid"</span><span class="p">:</span> <span class="n">nodeid</span><span class="p">,</span>
+        <span class="s2">"datasetid"</span><span class="p">:</span> <span class="n">datasetid</span><span class="p">,</span>
+        <span class="s2">"scientificname"</span><span class="p">:</span> <span class="n">scientificname</span><span class="p">,</span>
+        <span class="s2">"startdate"</span><span class="p">:</span> <span class="n">startdate</span><span class="p">,</span>
+        <span class="s2">"enddate"</span><span class="p">:</span> <span class="n">enddate</span><span class="p">,</span>
+        <span class="s2">"startdepth"</span><span class="p">:</span> <span class="n">startdepth</span><span class="p">,</span>
+        <span class="s2">"enddepth"</span><span class="p">:</span> <span class="n">enddepth</span><span class="p">,</span>
+        <span class="s2">"geometry"</span><span class="p">:</span> <span class="n">geometry</span><span class="p">,</span>
+        <span class="s2">"year"</span><span class="p">:</span> <span class="n">year</span><span class="p">,</span>
+        <span class="s2">"fields"</span><span class="p">:</span> <span class="n">fields</span><span class="p">,</span>
+        <span class="s2">"flags"</span><span class="p">:</span> <span class="n">flags</span><span class="p">,</span>
+        <span class="s2">"offset"</span><span class="p">:</span> <span class="n">offset</span><span class="p">,</span>
+        <span class="s2">"mof"</span><span class="p">:</span> <span class="n">mof</span><span class="p">,</span>
+        <span class="s2">"size"</span><span class="p">:</span> <span class="n">size</span><span class="p">,</span>
+        <span class="s2">"hasextensions"</span><span class="p">:</span> <span class="n">hasextensions</span><span class="p">,</span>
     <span class="p">}</span>
     <span class="k">return</span> <span class="n">OccResponse</span><span class="p">(</span>
         <span class="n">url</span><span class="p">,</span>
@@ -483,7 +483,7 @@
     <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
 <span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Fetch gridded occurrences as GeoJSON or KML.</span>
 
 <span class="sd">    :param precision: [integer] Geohash precision.</span>
@@ -516,29 +516,29 @@
 
 <span class="sd">        occurrences.grid(100, True) // returns in GeoJSON format</span>
 <span class="sd">        occurrences.grid(1000, False)   // returns in KML format</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s2">&quot;occurrence/grid/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">precision</span><span class="p">)</span>
+<span class="sd">    """</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s2">"occurrence/grid/"</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">precision</span><span class="p">)</span>
     <span class="n">scientificname</span> <span class="o">=</span> <span class="n">handle_arrstr</span><span class="p">(</span><span class="n">scientificname</span><span class="p">)</span>
     <span class="n">taxonid</span> <span class="o">=</span> <span class="n">handle_arrint</span><span class="p">(</span><span class="n">taxonid</span><span class="p">)</span>
     <span class="n">args</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;scientificname&quot;</span><span class="p">:</span> <span class="n">scientificname</span><span class="p">,</span>
-        <span class="s2">&quot;taxonid&quot;</span><span class="p">:</span> <span class="n">taxonid</span><span class="p">,</span>
-        <span class="s2">&quot;datasetid&quot;</span><span class="p">:</span> <span class="n">datasetid</span><span class="p">,</span>
-        <span class="s2">&quot;nodeid&quot;</span><span class="p">:</span> <span class="n">nodeid</span><span class="p">,</span>
-        <span class="s2">&quot;startdate&quot;</span><span class="p">:</span> <span class="n">startdate</span><span class="p">,</span>
-        <span class="s2">&quot;enddate&quot;</span><span class="p">:</span> <span class="n">enddate</span><span class="p">,</span>
-        <span class="s2">&quot;startdepth&quot;</span><span class="p">:</span> <span class="n">startdepth</span><span class="p">,</span>
-        <span class="s2">&quot;enddepth&quot;</span><span class="p">:</span> <span class="n">enddepth</span><span class="p">,</span>
-        <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="n">geometry</span><span class="p">,</span>
-        <span class="s2">&quot;redlist&quot;</span><span class="p">:</span> <span class="n">redlist</span><span class="p">,</span>
-        <span class="s2">&quot;hab&quot;</span><span class="p">:</span> <span class="n">hab</span><span class="p">,</span>
-        <span class="s2">&quot;wrims&quot;</span><span class="p">:</span> <span class="n">wrims</span><span class="p">,</span>
-        <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="n">event</span><span class="p">,</span>
-        <span class="s2">&quot;flags&quot;</span><span class="p">:</span> <span class="n">flags</span><span class="p">,</span>
-        <span class="s2">&quot;exclude&quot;</span><span class="p">:</span> <span class="n">exclude</span><span class="p">,</span>
+        <span class="s2">"scientificname"</span><span class="p">:</span> <span class="n">scientificname</span><span class="p">,</span>
+        <span class="s2">"taxonid"</span><span class="p">:</span> <span class="n">taxonid</span><span class="p">,</span>
+        <span class="s2">"datasetid"</span><span class="p">:</span> <span class="n">datasetid</span><span class="p">,</span>
+        <span class="s2">"nodeid"</span><span class="p">:</span> <span class="n">nodeid</span><span class="p">,</span>
+        <span class="s2">"startdate"</span><span class="p">:</span> <span class="n">startdate</span><span class="p">,</span>
+        <span class="s2">"enddate"</span><span class="p">:</span> <span class="n">enddate</span><span class="p">,</span>
+        <span class="s2">"startdepth"</span><span class="p">:</span> <span class="n">startdepth</span><span class="p">,</span>
+        <span class="s2">"enddepth"</span><span class="p">:</span> <span class="n">enddepth</span><span class="p">,</span>
+        <span class="s2">"geometry"</span><span class="p">:</span> <span class="n">geometry</span><span class="p">,</span>
+        <span class="s2">"redlist"</span><span class="p">:</span> <span class="n">redlist</span><span class="p">,</span>
+        <span class="s2">"hab"</span><span class="p">:</span> <span class="n">hab</span><span class="p">,</span>
+        <span class="s2">"wrims"</span><span class="p">:</span> <span class="n">wrims</span><span class="p">,</span>
+        <span class="s2">"event"</span><span class="p">:</span> <span class="n">event</span><span class="p">,</span>
+        <span class="s2">"flags"</span><span class="p">:</span> <span class="n">flags</span><span class="p">,</span>
+        <span class="s2">"exclude"</span><span class="p">:</span> <span class="n">exclude</span><span class="p">,</span>
     <span class="p">}</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">geojson</span><span class="p">:</span>
-        <span class="n">url</span> <span class="o">+=</span> <span class="s2">&quot;/kml&quot;</span>
+        <span class="n">url</span> <span class="o">+=</span> <span class="s2">"/kml"</span>
         <span class="k">return</span> <span class="n">OccResponse</span><span class="p">(</span>
             <span class="n">url</span><span class="p">,</span>
             <span class="p">{</span><span class="o">**</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">},</span>
@@ -577,7 +577,7 @@
     <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
 <span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Fetch point occurrences as GeoJSON (aggregated to Geohash precision 8).</span>
 
 <span class="sd">    :param scientificname: [string] Scientific name. Leave empty to include all</span>
@@ -607,30 +607,30 @@
 <span class="sd">    Usage::</span>
 
 <span class="sd">        from pyobis import occurrences</span>
-<span class="sd">        occurrences.getpoints(scientificname = &#39;Mola mola&#39;)</span>
+<span class="sd">        occurrences.getpoints(scientificname = 'Mola mola')</span>
 
 <span class="sd">        ## Many names</span>
-<span class="sd">        occurrences.getpoints(scientificname = [&#39;Mola mola&#39;,&#39;Abra alba&#39;])</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s2">&quot;occurrence/points&quot;</span>
+<span class="sd">        occurrences.getpoints(scientificname = ['Mola mola','Abra alba'])</span>
+<span class="sd">    """</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s2">"occurrence/points"</span>
     <span class="n">scientificname</span> <span class="o">=</span> <span class="n">handle_arrstr</span><span class="p">(</span><span class="n">scientificname</span><span class="p">)</span>
     <span class="n">taxonid</span> <span class="o">=</span> <span class="n">handle_arrint</span><span class="p">(</span><span class="n">taxonid</span><span class="p">)</span>
     <span class="n">args</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;scientificname&quot;</span><span class="p">:</span> <span class="n">scientificname</span><span class="p">,</span>
-        <span class="s2">&quot;taxonid&quot;</span><span class="p">:</span> <span class="n">taxonid</span><span class="p">,</span>
-        <span class="s2">&quot;datasetid&quot;</span><span class="p">:</span> <span class="n">datasetid</span><span class="p">,</span>
-        <span class="s2">&quot;nodeid&quot;</span><span class="p">:</span> <span class="n">nodeid</span><span class="p">,</span>
-        <span class="s2">&quot;startdate&quot;</span><span class="p">:</span> <span class="n">startdate</span><span class="p">,</span>
-        <span class="s2">&quot;enddate&quot;</span><span class="p">:</span> <span class="n">enddate</span><span class="p">,</span>
-        <span class="s2">&quot;startdepth&quot;</span><span class="p">:</span> <span class="n">startdepth</span><span class="p">,</span>
-        <span class="s2">&quot;enddepth&quot;</span><span class="p">:</span> <span class="n">enddepth</span><span class="p">,</span>
-        <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="n">geometry</span><span class="p">,</span>
-        <span class="s2">&quot;redlist&quot;</span><span class="p">:</span> <span class="n">redlist</span><span class="p">,</span>
-        <span class="s2">&quot;hab&quot;</span><span class="p">:</span> <span class="n">hab</span><span class="p">,</span>
-        <span class="s2">&quot;wrims&quot;</span><span class="p">:</span> <span class="n">wrims</span><span class="p">,</span>
-        <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="n">event</span><span class="p">,</span>
-        <span class="s2">&quot;flags&quot;</span><span class="p">:</span> <span class="n">flags</span><span class="p">,</span>
-        <span class="s2">&quot;exclude&quot;</span><span class="p">:</span> <span class="n">exclude</span><span class="p">,</span>
+        <span class="s2">"scientificname"</span><span class="p">:</span> <span class="n">scientificname</span><span class="p">,</span>
+        <span class="s2">"taxonid"</span><span class="p">:</span> <span class="n">taxonid</span><span class="p">,</span>
+        <span class="s2">"datasetid"</span><span class="p">:</span> <span class="n">datasetid</span><span class="p">,</span>
+        <span class="s2">"nodeid"</span><span class="p">:</span> <span class="n">nodeid</span><span class="p">,</span>
+        <span class="s2">"startdate"</span><span class="p">:</span> <span class="n">startdate</span><span class="p">,</span>
+        <span class="s2">"enddate"</span><span class="p">:</span> <span class="n">enddate</span><span class="p">,</span>
+        <span class="s2">"startdepth"</span><span class="p">:</span> <span class="n">startdepth</span><span class="p">,</span>
+        <span class="s2">"enddepth"</span><span class="p">:</span> <span class="n">enddepth</span><span class="p">,</span>
+        <span class="s2">"geometry"</span><span class="p">:</span> <span class="n">geometry</span><span class="p">,</span>
+        <span class="s2">"redlist"</span><span class="p">:</span> <span class="n">redlist</span><span class="p">,</span>
+        <span class="s2">"hab"</span><span class="p">:</span> <span class="n">hab</span><span class="p">,</span>
+        <span class="s2">"wrims"</span><span class="p">:</span> <span class="n">wrims</span><span class="p">,</span>
+        <span class="s2">"event"</span><span class="p">:</span> <span class="n">event</span><span class="p">,</span>
+        <span class="s2">"flags"</span><span class="p">:</span> <span class="n">flags</span><span class="p">,</span>
+        <span class="s2">"exclude"</span><span class="p">:</span> <span class="n">exclude</span><span class="p">,</span>
     <span class="p">}</span>
 
     <span class="k">return</span> <span class="n">OccResponse</span><span class="p">(</span>
@@ -666,7 +666,7 @@
     <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
 <span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Fetch point occurrences for a location (with Geohash precision 8 or</span>
 <span class="sd">    variable Geohash precision) as GeoJSON.</span>
 
@@ -700,29 +700,29 @@
 <span class="sd">    Usage::</span>
 
 <span class="sd">        from pyobis import occurrences</span>
-<span class="sd">        occurrences.point(x=1.77,y=54.22,scientificname = &#39;Mola mola&#39;)</span>
+<span class="sd">        occurrences.point(x=1.77,y=54.22,scientificname = 'Mola mola')</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">z</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="k">if</span> <span class="n">z</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;occurrence/point/</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">z</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="sd">    """</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="k">if</span> <span class="n">z</span> <span class="k">else</span> <span class="s2">""</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">"occurrence/point/</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">z</span><span class="si">}</span><span class="s2">"</span>
     <span class="n">scientificname</span> <span class="o">=</span> <span class="n">handle_arrstr</span><span class="p">(</span><span class="n">scientificname</span><span class="p">)</span>
     <span class="n">taxonid</span> <span class="o">=</span> <span class="n">handle_arrint</span><span class="p">(</span><span class="n">taxonid</span><span class="p">)</span>
     <span class="n">args</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;scientificname&quot;</span><span class="p">:</span> <span class="n">scientificname</span><span class="p">,</span>
-        <span class="s2">&quot;taxonid&quot;</span><span class="p">:</span> <span class="n">taxonid</span><span class="p">,</span>
-        <span class="s2">&quot;datasetid&quot;</span><span class="p">:</span> <span class="n">datasetid</span><span class="p">,</span>
-        <span class="s2">&quot;nodeid&quot;</span><span class="p">:</span> <span class="n">nodeid</span><span class="p">,</span>
-        <span class="s2">&quot;startdate&quot;</span><span class="p">:</span> <span class="n">startdate</span><span class="p">,</span>
-        <span class="s2">&quot;enddate&quot;</span><span class="p">:</span> <span class="n">enddate</span><span class="p">,</span>
-        <span class="s2">&quot;startdepth&quot;</span><span class="p">:</span> <span class="n">startdepth</span><span class="p">,</span>
-        <span class="s2">&quot;enddepth&quot;</span><span class="p">:</span> <span class="n">enddepth</span><span class="p">,</span>
-        <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="n">geometry</span><span class="p">,</span>
-        <span class="s2">&quot;redlist&quot;</span><span class="p">:</span> <span class="n">redlist</span><span class="p">,</span>
-        <span class="s2">&quot;hab&quot;</span><span class="p">:</span> <span class="n">hab</span><span class="p">,</span>
-        <span class="s2">&quot;wrims&quot;</span><span class="p">:</span> <span class="n">wrims</span><span class="p">,</span>
-        <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="n">event</span><span class="p">,</span>
-        <span class="s2">&quot;flags&quot;</span><span class="p">:</span> <span class="n">flags</span><span class="p">,</span>
-        <span class="s2">&quot;exclude&quot;</span><span class="p">:</span> <span class="n">exclude</span><span class="p">,</span>
+        <span class="s2">"scientificname"</span><span class="p">:</span> <span class="n">scientificname</span><span class="p">,</span>
+        <span class="s2">"taxonid"</span><span class="p">:</span> <span class="n">taxonid</span><span class="p">,</span>
+        <span class="s2">"datasetid"</span><span class="p">:</span> <span class="n">datasetid</span><span class="p">,</span>
+        <span class="s2">"nodeid"</span><span class="p">:</span> <span class="n">nodeid</span><span class="p">,</span>
+        <span class="s2">"startdate"</span><span class="p">:</span> <span class="n">startdate</span><span class="p">,</span>
+        <span class="s2">"enddate"</span><span class="p">:</span> <span class="n">enddate</span><span class="p">,</span>
+        <span class="s2">"startdepth"</span><span class="p">:</span> <span class="n">startdepth</span><span class="p">,</span>
+        <span class="s2">"enddepth"</span><span class="p">:</span> <span class="n">enddepth</span><span class="p">,</span>
+        <span class="s2">"geometry"</span><span class="p">:</span> <span class="n">geometry</span><span class="p">,</span>
+        <span class="s2">"redlist"</span><span class="p">:</span> <span class="n">redlist</span><span class="p">,</span>
+        <span class="s2">"hab"</span><span class="p">:</span> <span class="n">hab</span><span class="p">,</span>
+        <span class="s2">"wrims"</span><span class="p">:</span> <span class="n">wrims</span><span class="p">,</span>
+        <span class="s2">"event"</span><span class="p">:</span> <span class="n">event</span><span class="p">,</span>
+        <span class="s2">"flags"</span><span class="p">:</span> <span class="n">flags</span><span class="p">,</span>
+        <span class="s2">"exclude"</span><span class="p">:</span> <span class="n">exclude</span><span class="p">,</span>
     <span class="p">}</span>
 
     <span class="k">return</span> <span class="n">OccResponse</span><span class="p">(</span>
@@ -759,7 +759,7 @@
     <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
 <span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Fetch point occurrences for a tile (aggregated using variable Geohash</span>
 <span class="sd">    precision based on zoom level) as GeoJSON or MVT.</span>
 
@@ -793,31 +793,31 @@
 <span class="sd">    Usage::</span>
 
 <span class="sd">        from pyobis import occurrences</span>
-<span class="sd">        occurrences.tile(x=1.77,y=52.26,z=0.5,mvt=0, scientificname = &#39;Mola mola&#39;)</span>
-<span class="sd">        occurrences.tile(x=1.77,y=52.26,z=0.5,mvt=1, scientificname = &#39;Mola mola&#39;)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;occurrence/tile/</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="sd">        occurrences.tile(x=1.77,y=52.26,z=0.5,mvt=0, scientificname = 'Mola mola')</span>
+<span class="sd">        occurrences.tile(x=1.77,y=52.26,z=0.5,mvt=1, scientificname = 'Mola mola')</span>
+<span class="sd">    """</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">"occurrence/tile/</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
     <span class="n">scientificname</span> <span class="o">=</span> <span class="n">handle_arrstr</span><span class="p">(</span><span class="n">scientificname</span><span class="p">)</span>
     <span class="n">taxonid</span> <span class="o">=</span> <span class="n">handle_arrint</span><span class="p">(</span><span class="n">taxonid</span><span class="p">)</span>
     <span class="n">args</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;scientificname&quot;</span><span class="p">:</span> <span class="n">scientificname</span><span class="p">,</span>
-        <span class="s2">&quot;taxonid&quot;</span><span class="p">:</span> <span class="n">taxonid</span><span class="p">,</span>
-        <span class="s2">&quot;datasetid&quot;</span><span class="p">:</span> <span class="n">datasetid</span><span class="p">,</span>
-        <span class="s2">&quot;nodeid&quot;</span><span class="p">:</span> <span class="n">nodeid</span><span class="p">,</span>
-        <span class="s2">&quot;startdate&quot;</span><span class="p">:</span> <span class="n">startdate</span><span class="p">,</span>
-        <span class="s2">&quot;enddate&quot;</span><span class="p">:</span> <span class="n">enddate</span><span class="p">,</span>
-        <span class="s2">&quot;startdepth&quot;</span><span class="p">:</span> <span class="n">startdepth</span><span class="p">,</span>
-        <span class="s2">&quot;enddepth&quot;</span><span class="p">:</span> <span class="n">enddepth</span><span class="p">,</span>
-        <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="n">geometry</span><span class="p">,</span>
-        <span class="s2">&quot;redlist&quot;</span><span class="p">:</span> <span class="n">redlist</span><span class="p">,</span>
-        <span class="s2">&quot;hab&quot;</span><span class="p">:</span> <span class="n">hab</span><span class="p">,</span>
-        <span class="s2">&quot;wrims&quot;</span><span class="p">:</span> <span class="n">wrims</span><span class="p">,</span>
-        <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="n">event</span><span class="p">,</span>
-        <span class="s2">&quot;flags&quot;</span><span class="p">:</span> <span class="n">flags</span><span class="p">,</span>
-        <span class="s2">&quot;exclude&quot;</span><span class="p">:</span> <span class="n">exclude</span><span class="p">,</span>
+        <span class="s2">"scientificname"</span><span class="p">:</span> <span class="n">scientificname</span><span class="p">,</span>
+        <span class="s2">"taxonid"</span><span class="p">:</span> <span class="n">taxonid</span><span class="p">,</span>
+        <span class="s2">"datasetid"</span><span class="p">:</span> <span class="n">datasetid</span><span class="p">,</span>
+        <span class="s2">"nodeid"</span><span class="p">:</span> <span class="n">nodeid</span><span class="p">,</span>
+        <span class="s2">"startdate"</span><span class="p">:</span> <span class="n">startdate</span><span class="p">,</span>
+        <span class="s2">"enddate"</span><span class="p">:</span> <span class="n">enddate</span><span class="p">,</span>
+        <span class="s2">"startdepth"</span><span class="p">:</span> <span class="n">startdepth</span><span class="p">,</span>
+        <span class="s2">"enddepth"</span><span class="p">:</span> <span class="n">enddepth</span><span class="p">,</span>
+        <span class="s2">"geometry"</span><span class="p">:</span> <span class="n">geometry</span><span class="p">,</span>
+        <span class="s2">"redlist"</span><span class="p">:</span> <span class="n">redlist</span><span class="p">,</span>
+        <span class="s2">"hab"</span><span class="p">:</span> <span class="n">hab</span><span class="p">,</span>
+        <span class="s2">"wrims"</span><span class="p">:</span> <span class="n">wrims</span><span class="p">,</span>
+        <span class="s2">"event"</span><span class="p">:</span> <span class="n">event</span><span class="p">,</span>
+        <span class="s2">"flags"</span><span class="p">:</span> <span class="n">flags</span><span class="p">,</span>
+        <span class="s2">"exclude"</span><span class="p">:</span> <span class="n">exclude</span><span class="p">,</span>
     <span class="p">}</span>
     <span class="k">if</span> <span class="n">mvt</span><span class="p">:</span>
-        <span class="n">url</span> <span class="o">+=</span> <span class="s2">&quot;.mvt&quot;</span>
+        <span class="n">url</span> <span class="o">+=</span> <span class="s2">".mvt"</span>
         <span class="k">return</span> <span class="n">OccResponse</span><span class="p">(</span>
             <span class="n">url</span><span class="p">,</span>
             <span class="p">{</span><span class="o">**</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">},</span>
@@ -856,7 +856,7 @@
     <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
 <span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Determine the centroid for a selection of occurrence records.</span>
 
 <span class="sd">    :param scientificname: [string] Scientific name. Leave empty to include all</span>
@@ -885,27 +885,27 @@
 <span class="sd">    Usage::</span>
 
 <span class="sd">        from pyobis import occurrences</span>
-<span class="sd">        occurrences.centroid(scientificname = &#39;Mola mola&#39;)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s2">&quot;occurrence/centroid&quot;</span>
+<span class="sd">        occurrences.centroid(scientificname = 'Mola mola')</span>
+<span class="sd">    """</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s2">"occurrence/centroid"</span>
     <span class="n">scientificname</span> <span class="o">=</span> <span class="n">handle_arrstr</span><span class="p">(</span><span class="n">scientificname</span><span class="p">)</span>
     <span class="n">taxonid</span> <span class="o">=</span> <span class="n">handle_arrint</span><span class="p">(</span><span class="n">taxonid</span><span class="p">)</span>
     <span class="n">args</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;scientificname&quot;</span><span class="p">:</span> <span class="n">scientificname</span><span class="p">,</span>
-        <span class="s2">&quot;taxonid&quot;</span><span class="p">:</span> <span class="n">taxonid</span><span class="p">,</span>
-        <span class="s2">&quot;datasetid&quot;</span><span class="p">:</span> <span class="n">datasetid</span><span class="p">,</span>
-        <span class="s2">&quot;nodeid&quot;</span><span class="p">:</span> <span class="n">nodeid</span><span class="p">,</span>
-        <span class="s2">&quot;startdate&quot;</span><span class="p">:</span> <span class="n">startdate</span><span class="p">,</span>
-        <span class="s2">&quot;enddate&quot;</span><span class="p">:</span> <span class="n">enddate</span><span class="p">,</span>
-        <span class="s2">&quot;startdepth&quot;</span><span class="p">:</span> <span class="n">startdepth</span><span class="p">,</span>
-        <span class="s2">&quot;enddepth&quot;</span><span class="p">:</span> <span class="n">enddepth</span><span class="p">,</span>
-        <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="n">geometry</span><span class="p">,</span>
-        <span class="s2">&quot;redlist&quot;</span><span class="p">:</span> <span class="n">redlist</span><span class="p">,</span>
-        <span class="s2">&quot;hab&quot;</span><span class="p">:</span> <span class="n">hab</span><span class="p">,</span>
-        <span class="s2">&quot;wrims&quot;</span><span class="p">:</span> <span class="n">wrims</span><span class="p">,</span>
-        <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="n">event</span><span class="p">,</span>
-        <span class="s2">&quot;flags&quot;</span><span class="p">:</span> <span class="n">flags</span><span class="p">,</span>
-        <span class="s2">&quot;exclude&quot;</span><span class="p">:</span> <span class="n">exclude</span><span class="p">,</span>
+        <span class="s2">"scientificname"</span><span class="p">:</span> <span class="n">scientificname</span><span class="p">,</span>
+        <span class="s2">"taxonid"</span><span class="p">:</span> <span class="n">taxonid</span><span class="p">,</span>
+        <span class="s2">"datasetid"</span><span class="p">:</span> <span class="n">datasetid</span><span class="p">,</span>
+        <span class="s2">"nodeid"</span><span class="p">:</span> <span class="n">nodeid</span><span class="p">,</span>
+        <span class="s2">"startdate"</span><span class="p">:</span> <span class="n">startdate</span><span class="p">,</span>
+        <span class="s2">"enddate"</span><span class="p">:</span> <span class="n">enddate</span><span class="p">,</span>
+        <span class="s2">"startdepth"</span><span class="p">:</span> <span class="n">startdepth</span><span class="p">,</span>
+        <span class="s2">"enddepth"</span><span class="p">:</span> <span class="n">enddepth</span><span class="p">,</span>
+        <span class="s2">"geometry"</span><span class="p">:</span> <span class="n">geometry</span><span class="p">,</span>
+        <span class="s2">"redlist"</span><span class="p">:</span> <span class="n">redlist</span><span class="p">,</span>
+        <span class="s2">"hab"</span><span class="p">:</span> <span class="n">hab</span><span class="p">,</span>
+        <span class="s2">"wrims"</span><span class="p">:</span> <span class="n">wrims</span><span class="p">,</span>
+        <span class="s2">"event"</span><span class="p">:</span> <span class="n">event</span><span class="p">,</span>
+        <span class="s2">"flags"</span><span class="p">:</span> <span class="n">flags</span><span class="p">,</span>
+        <span class="s2">"exclude"</span><span class="p">:</span> <span class="n">exclude</span><span class="p">,</span>
     <span class="p">}</span>
 
     <span class="k">return</span> <span class="n">OccResponse</span><span class="p">(</span>
@@ -921,7 +921,7 @@
 <div class="viewcode-block" id="lookup_taxon">
 <a class="viewcode-back" href="../../../occurrences.html#pyobis.occurrences.lookup_taxon">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">lookup_taxon</span><span class="p">(</span><span class="n">scientificname</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Lookup for taxon metadata with scientificname</span>
 
 <span class="sd">    :param scientificname: [String] Scientific Name</span>
@@ -931,20 +931,20 @@
 <span class="sd">    Usage::</span>
 
 <span class="sd">        from pyobis import occurrences</span>
-<span class="sd">        lookup_data = occurrences.lookup_taxon(scientificname=&quot;Mola mola&quot;)</span>
+<span class="sd">        lookup_data = occurrences.lookup_taxon(scientificname="Mola mola")</span>
 <span class="sd">        print(lookup_data)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;https://api.obis.org/v3/taxon/complete/</span><span class="si">{</span><span class="n">scientificname</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="sd">    """</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">"https://api.obis.org/v3/taxon/complete/</span><span class="si">{</span><span class="n">scientificname</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="n">json</span><span class="p">()</span></div>
 
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">get_taxonids_for_scientific_names</span><span class="p">(</span><span class="n">scientific_names</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="n">taxons</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">scientificName</span> <span class="ow">in</span> <span class="n">scientific_names</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">scientificName</span> <span class="ow">in</span> <span class="n">scientific_names</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">","</span><span class="p">):</span>
         <span class="n">taxon_lookup_result</span> <span class="o">=</span> <span class="n">lookup_taxon</span><span class="p">(</span><span class="n">scientificName</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">taxon_lookup_result</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">taxons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">taxon_lookup_result</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">])</span>
+            <span class="n">taxons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">taxon_lookup_result</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"id"</span><span class="p">])</span>
 
     <span class="k">return</span> <span class="n">handle_arrint</span><span class="p">(</span><span class="n">taxons</span><span class="p">)</span>
 </pre></div>

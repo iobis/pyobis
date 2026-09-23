@@ -5,16 +5,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pyobis.nodes.nodes &mdash; pyobis 1.6.2.dev26+g0cde7e983 documentation</title>
+  <title>pyobis.nodes.nodes &mdash; pyobis 1.6.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=3eb094ce"></script>
-      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/documentation_options.js?v=e15882dc"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -73,9 +73,9 @@
            <div itemprop="articleBody">
              
   <h1>Source code for pyobis.nodes.nodes</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span></span><span class="sd">"""</span>
 <span class="sd">/nodes/ API endpoints as documented on https://api.obis.org/.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
@@ -85,7 +85,7 @@
 <div class="viewcode-block" id="search">
 <a class="viewcode-back" href="../../../nodes.html#pyobis.nodes.search">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Get OBIS nodes records</span>
 
 <span class="sd">    :param id: [String] Node UUID.</span>
@@ -95,9 +95,9 @@
 <span class="sd">    Usage::</span>
 
 <span class="sd">        from pyobis import nodes</span>
-<span class="sd">        data = nodes.search(id=&quot;4bf79a01-65a9-4db6-b37b-18434f26ddfc&quot;).execute()</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s2">&quot;node/&quot;</span> <span class="o">+</span> <span class="nb">id</span>
+<span class="sd">        data = nodes.search(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc").execute()</span>
+<span class="sd">    """</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s2">"node/"</span> <span class="o">+</span> <span class="nb">id</span>
     <span class="n">mapper</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="n">args</span> <span class="o">=</span> <span class="p">{}</span>
 
@@ -109,7 +109,7 @@
 <div class="viewcode-block" id="activities">
 <a class="viewcode-back" href="../../../nodes.html#pyobis.nodes.activities">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">activities</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Get OBIS nodes activities</span>
 
 <span class="sd">    :param id: [String] Node UUID.</span>
@@ -121,13 +121,13 @@
 <span class="sd">        from pyobis import nodes</span>
 
 <span class="sd">        # build a query</span>
-<span class="sd">        query = nodes.activities(id=&quot;4bf79a01-65a9-4db6-b37b-18434f26ddfc&quot;)</span>
+<span class="sd">        query = nodes.activities(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc")</span>
 <span class="sd">        query.execute() # execute the query to fetch the data</span>
 <span class="sd">        query.data # get fetched data</span>
 <span class="sd">        query.api_url # check the corresponding OBIS API URL for the query</span>
 <span class="sd">        query.mapper_url # check the corresponding OBIS Mapper URL for the query (if it exists)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s2">&quot;node/&quot;</span> <span class="o">+</span> <span class="nb">id</span> <span class="o">+</span> <span class="s2">&quot;/activities&quot;</span>
+<span class="sd">    """</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s2">"node/"</span> <span class="o">+</span> <span class="nb">id</span> <span class="o">+</span> <span class="s2">"/activities"</span>
     <span class="n">args</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">mapper</span> <span class="o">=</span> <span class="kc">False</span>
 
@@ -139,21 +139,21 @@
 <div class="viewcode-block" id="NodesResponse">
 <a class="viewcode-back" href="../../../nodes.html#pyobis.nodes.NodesResponse">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">NodesResponse</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    An OBIS Nodes Response Class</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">mapper</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Initialize NodesResponse Object</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="c1"># public members</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">api_url</span> <span class="o">=</span> <span class="n">build_api_url</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mapper_url</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="n">mapper</span><span class="p">:</span>
             <span class="c1"># get the node id from already built url</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">mapper_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://mapper.obis.org/?nodeid=</span><span class="si">{</span><span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mapper_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"https://mapper.obis.org/?nodeid=</span><span class="si">{</span><span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
 
         <span class="c1"># private members</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__args</span> <span class="o">=</span> <span class="n">args</span>
@@ -161,13 +161,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">__cache</span> <span class="o">=</span> <span class="n">cache</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Fetch data for Nodes Query</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">out</span> <span class="o">=</span> <span class="n">obis_GET</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__url</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">,</span>
-            <span class="s2">&quot;application/json; charset=utf-8&quot;</span><span class="p">,</span>
+            <span class="s2">"application/json; charset=utf-8"</span><span class="p">,</span>
             <span class="n">cache</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__cache</span><span class="p">,</span>
             <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
         <span class="p">)</span>
@@ -175,23 +175,23 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">to_pandas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Convert fetched data to a pandas DataFrame</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="s2">&quot;contacts&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="s2">"contacts"</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">"results"</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
-                <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">]),</span>
-                <span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">],</span> <span class="s2">&quot;contacts&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">),</span>
-                <span class="n">on</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">,</span>
-                <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">,</span>
-            <span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;contacts&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">"results"</span><span class="p">]),</span>
+                <span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">"results"</span><span class="p">],</span> <span class="s2">"contacts"</span><span class="p">,</span> <span class="s2">"id"</span><span class="p">),</span>
+                <span class="n">on</span><span class="o">=</span><span class="s2">"id"</span><span class="p">,</span>
+                <span class="n">how</span><span class="o">=</span><span class="s2">"inner"</span><span class="p">,</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">"contacts"</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
-            <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">]),</span>
-            <span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">],</span> <span class="s2">&quot;contributions&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">),</span>
-            <span class="n">on</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">,</span>
-            <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">,</span>
-        <span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;contributions&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
+            <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">"results"</span><span class="p">]),</span>
+            <span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">"results"</span><span class="p">],</span> <span class="s2">"contributions"</span><span class="p">,</span> <span class="s2">"id"</span><span class="p">),</span>
+            <span class="n">on</span><span class="o">=</span><span class="s2">"id"</span><span class="p">,</span>
+            <span class="n">how</span><span class="o">=</span><span class="s2">"inner"</span><span class="p">,</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">"contributions"</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
 
 </pre></div>
 

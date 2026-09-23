@@ -5,16 +5,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pyobis.taxa.taxa &mdash; pyobis 1.6.2.dev26+g0cde7e983 documentation</title>
+  <title>pyobis.taxa.taxa &mdash; pyobis 1.6.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=3eb094ce"></script>
-      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/documentation_options.js?v=e15882dc"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -73,9 +73,9 @@
            <div itemprop="articleBody">
              
   <h1>Source code for pyobis.taxa.taxa</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span></span><span class="sd">"""</span>
 <span class="sd">/taxon/ API endpoints as documented on https://api.obis.org/.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
@@ -85,7 +85,7 @@
 <div class="viewcode-block" id="search">
 <a class="viewcode-back" href="../../../taxa.html#pyobis.taxa.search">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Get taxon records.</span>
 
 <span class="sd">    :param scientificname: [String,Array] One or more scientific names from the</span>
@@ -98,22 +98,22 @@
 <span class="sd">        from pyobis import taxa</span>
 
 <span class="sd">        # With caching enabled (default)</span>
-<span class="sd">        query = taxa.search(scientificname=&#39;Mola mola&#39;)</span>
+<span class="sd">        query = taxa.search(scientificname='Mola mola')</span>
 <span class="sd">        query.execute()</span>
 
 <span class="sd">        # With caching disabled</span>
-<span class="sd">        query = taxa.search(scientificname=&#39;Mola mola&#39;, cache=False)</span>
+<span class="sd">        query = taxa.search(scientificname='Mola mola', cache=False)</span>
 <span class="sd">        query.execute()</span>
 
 <span class="sd">        # Get the data</span>
 <span class="sd">        query.data # return the fetched data</span>
 <span class="sd">        query.api_url # get the OBIS API URL for the built query</span>
 <span class="sd">        query.mapper_url # get the OBIS Mapper URL (if it exists)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="n">scientificname</span> <span class="o">=</span> <span class="n">handle_arrstr</span><span class="p">(</span><span class="n">scientificname</span><span class="p">)</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s2">&quot;taxon/&quot;</span> <span class="o">+</span> <span class="n">scientificname</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;scientificname&quot;</span><span class="p">:</span> <span class="n">scientificname</span><span class="p">}</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s2">"taxon/"</span> <span class="o">+</span> <span class="n">scientificname</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"scientificname"</span><span class="p">:</span> <span class="n">scientificname</span><span class="p">}</span>
     <span class="c1"># return a taxa response class</span>
     <span class="k">return</span> <span class="n">TaxaResponse</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="n">cache</span><span class="p">)</span></div>
 
@@ -122,7 +122,7 @@
 <div class="viewcode-block" id="taxon">
 <a class="viewcode-back" href="../../../taxa.html#pyobis.taxa.taxon">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">taxon</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Get taxon by ID</span>
 
 <span class="sd">    :param id: [Fixnum] An OBIS taxon identifier</span>
@@ -140,8 +140,8 @@
 <span class="sd">        # With caching disabled</span>
 <span class="sd">        query1 = taxa.taxon(545439, cache=False)</span>
 <span class="sd">        query1.execute()</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s2">&quot;taxon/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+<span class="sd">    """</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s2">"taxon/"</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
     <span class="n">args</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="c1"># return a TaxaResponse Object</span>
     <span class="k">return</span> <span class="n">TaxaResponse</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="p">{</span><span class="o">**</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">},</span> <span class="n">cache</span><span class="o">=</span><span class="n">cache</span><span class="p">)</span></div>
@@ -151,7 +151,7 @@
 <div class="viewcode-block" id="annotations">
 <a class="viewcode-back" href="../../../taxa.html#pyobis.taxa.annotations">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">annotations</span><span class="p">(</span><span class="n">scientificname</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Get scientific name annotations by the WoRMS team.</span>
 
 <span class="sd">    :param scientificname: [String] Scientific name. Leave empty to include all taxa.</span>
@@ -163,16 +163,16 @@
 <span class="sd">        from pyobis import taxa</span>
 
 <span class="sd">        # With caching enabled (default)</span>
-<span class="sd">        query1 = taxa.annotations(scientificname=&quot;Abra&quot;)</span>
+<span class="sd">        query1 = taxa.annotations(scientificname="Abra")</span>
 <span class="sd">        query1.execute()</span>
 
 <span class="sd">        # With caching disabled</span>
-<span class="sd">        query1 = taxa.annotations(scientificname=&quot;Abra&quot;, cache=False)</span>
+<span class="sd">        query1 = taxa.annotations(scientificname="Abra", cache=False)</span>
 <span class="sd">        query1.execute()</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s2">&quot;taxon/annotations&quot;</span>
+<span class="sd">    """</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">obis_baseurl</span> <span class="o">+</span> <span class="s2">"taxon/annotations"</span>
     <span class="n">scientificname</span> <span class="o">=</span> <span class="n">handle_arrstr</span><span class="p">(</span><span class="n">scientificname</span><span class="p">)</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;scientificname&quot;</span><span class="p">:</span> <span class="n">scientificname</span><span class="p">}</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"scientificname"</span><span class="p">:</span> <span class="n">scientificname</span><span class="p">}</span>
     <span class="c1"># return a TaxaResponse Object</span>
     <span class="k">return</span> <span class="n">TaxaResponse</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="p">{</span><span class="o">**</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">},</span> <span class="n">cache</span><span class="o">=</span><span class="n">cache</span><span class="p">)</span></div>
 
@@ -181,14 +181,14 @@
 <div class="viewcode-block" id="TaxaResponse">
 <a class="viewcode-back" href="../../../taxa.html#pyobis.taxa.TaxaResponse">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">TaxaResponse</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    An OBIS Taxa Response Class</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Initialise the object parameters</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="c1"># public members</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">api_url</span> <span class="o">=</span> <span class="n">build_api_url</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
@@ -200,13 +200,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">__cache</span> <span class="o">=</span> <span class="n">cache</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Execute or fetch the data based on the query</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">out</span> <span class="o">=</span> <span class="n">obis_GET</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__url</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__args</span><span class="p">,</span>
-            <span class="s2">&quot;application/json; charset=utf-8&quot;</span><span class="p">,</span>
+            <span class="s2">"application/json; charset=utf-8"</span><span class="p">,</span>
             <span class="n">cache</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__cache</span><span class="p">,</span>
             <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
         <span class="p">)</span>
@@ -214,10 +214,10 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">to_pandas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Convert the results into a pandas DataFrame</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">])</span></div>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">"results"</span><span class="p">])</span></div>
 
 </pre></div>
 

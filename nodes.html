@@ -6,16 +6,16 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>nodes module &mdash; pyobis 1.6.2.dev26+g0cde7e983 documentation</title>
+  <title>nodes module &mdash; pyobis 1.6.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=3eb094ce"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/documentation_options.js?v=e15882dc"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -88,7 +88,7 @@
 <span id="nodes-module"></span><span id="nodes"></span><h1>nodes module<a class="headerlink" href="#module-pyobis.nodes" title="Link to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyobis.nodes.NodesResponse">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyobis.nodes.</span></span><span class="sig-name descname"><span class="pre">NodesResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mapper</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyobis/nodes/nodes.html#NodesResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyobis.nodes.NodesResponse" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pyobis.nodes.</span></span><span class="sig-name descname"><span class="pre">NodesResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mapper</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyobis/nodes/nodes.html#NodesResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyobis.nodes.NodesResponse" title="Link to this definition"></a></dt>
 <dd><p>An OBIS Nodes Response Class</p>
 </dd></dl>
 
@@ -96,7 +96,7 @@
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyobis</span><span class="w"> </span><span class="kn">import</span> <span class="n">nodes</span>
 
-<span class="n">query</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Mola&quot;</span><span class="p">,</span> <span class="s2">&quot;Abra&quot;</span><span class="p">],</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="p">[</span><span class="s2">"Mola"</span><span class="p">,</span> <span class="s2">"Abra"</span><span class="p">],</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 <span class="n">query</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
 <span class="n">query</span><span class="o">.</span><span class="n">data</span>  <span class="c1"># Returns the data</span>
 <span class="n">query</span><span class="o">.</span><span class="n">api_url</span>  <span class="c1"># Returns the API URL</span>
@@ -122,7 +122,7 @@
 </dl>
 <p>Usage:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyobis</span><span class="w"> </span><span class="kn">import</span> <span class="n">nodes</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;4bf79a01-65a9-4db6-b37b-18434f26ddfc&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">"4bf79a01-65a9-4db6-b37b-18434f26ddfc"</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -146,7 +146,7 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyobis</span><span class="w"> </span><span class="kn">import</span> <span class="n">nodes</span>
 
 <span class="c1"># build a query</span>
-<span class="n">query</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">activities</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;4bf79a01-65a9-4db6-b37b-18434f26ddfc&quot;</span><span class="p">)</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">activities</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">"4bf79a01-65a9-4db6-b37b-18434f26ddfc"</span><span class="p">)</span>
 <span class="n">query</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span> <span class="c1"># execute the query to fetch the data</span>
 <span class="n">query</span><span class="o">.</span><span class="n">data</span> <span class="c1"># get fetched data</span>
 <span class="n">query</span><span class="o">.</span><span class="n">api_url</span> <span class="c1"># check the corresponding OBIS API URL for the query</span>

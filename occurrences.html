@@ -6,16 +6,16 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>occurrences module &mdash; pyobis 1.6.2.dev26+g0cde7e983 documentation</title>
+  <title>occurrences module &mdash; pyobis 1.6.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=3eb094ce"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/documentation_options.js?v=e15882dc"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -94,7 +94,7 @@
 <span id="occurrences-module"></span><span id="occurrences"></span><h1>occurrences module<a class="headerlink" href="#module-pyobis.occurrences" title="Link to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyobis.occurrences.OccResponse">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyobis.occurrences.</span></span><span class="sig-name descname"><span class="pre">OccResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">isSearch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hasMapper</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">isKML</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyobis/occurrences/occurrences.html#OccResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyobis.occurrences.OccResponse" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pyobis.occurrences.</span></span><span class="sig-name descname"><span class="pre">OccResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">isSearch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hasMapper</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">isKML</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyobis/occurrences/occurrences.html#OccResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyobis.occurrences.OccResponse" title="Link to this definition"></a></dt>
 <dd><p>An OBIS Occurrence response class</p>
 </dd></dl>
 
@@ -102,15 +102,15 @@
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyobis</span><span class="w"> </span><span class="kn">import</span> <span class="n">occurrences</span>
 
-<span class="n">query</span> <span class="o">=</span> <span class="n">occurrences</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="s2">&quot;Mola mola&quot;</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">occurrences</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="s2">"Mola mola"</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">query</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
 <span class="n">query</span><span class="o">.</span><span class="n">data</span>  <span class="c1"># Returns the data</span>
 <span class="n">query</span><span class="o">.</span><span class="n">api_url</span>  <span class="c1"># Returns the OBIS API URL</span>
 <span class="n">query</span><span class="o">.</span><span class="n">mapper_url</span>  <span class="c1"># Returns the OBIS Mapper URL</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="n">occurrences</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="s2">&quot;Mola mola&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">occurrences</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="s2">"Mola mola"</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
 <span class="n">occurrences</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
-    <span class="n">geometry</span><span class="o">=</span><span class="s2">&quot;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span>
+    <span class="n">geometry</span><span class="o">=</span><span class="s2">"POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))"</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -147,7 +147,7 @@ as positive numbers.</p></li>
 <li><p><strong>enddepth</strong> – [Boolean] End depth, in meters. Depth below sea level are treated
 as positive numbers.</p></li>
 <li><p><strong>flags</strong> – Prev. qc [String] Quality control flags</p></li>
-<li><p><strong>fields</strong> – [String] Comma seperated list of field names. Leave blank to include all.
+<li><p><strong>fields</strong> – [String] Comma separated list of field names. Leave blank to include all.
 For fetching records more than 10k, must specify ‘id’ explicitly too.</p></li>
 <li><p><strong>size</strong> – [Fixnum] Number of results to return. Default: All records</p></li>
 <li><p><strong>offset</strong> – [Fixnum] Start at record. Default: 0</p></li>
@@ -164,40 +164,40 @@ Default: 0</p></li>
 </dl>
 <p>Usage:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyobis</span><span class="w"> </span><span class="kn">import</span> <span class="n">occurrences</span>
-<span class="n">occurrences</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+<span class="n">occurrences</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">'Mola mola'</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
 
 <span class="c1"># Many names</span>
-<span class="n">occurrences</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Mola&#39;</span><span class="p">,</span> <span class="s1">&#39;Abra&#39;</span><span class="p">,</span> <span class="s1">&#39;Lanice&#39;</span><span class="p">,</span> <span class="s1">&#39;Pectinaria&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+<span class="n">occurrences</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Mola'</span><span class="p">,</span> <span class="s1">'Abra'</span><span class="p">,</span> <span class="s1">'Lanice'</span><span class="p">,</span> <span class="s1">'Pectinaria'</span><span class="p">])</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
 
 <span class="c1"># Use paging parameters (limit and start) to page.</span>
 <span class="c1"># Note the different results for the two queries below.</span>
-<span class="n">occ</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">occ</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">occ</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">'Mola mola'</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">occ</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">'Mola mola'</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 
 <span class="c1"># Search on a bounding box</span>
 <span class="c1">## in well known text format</span>
 <span class="n">occurrences</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
-    <span class="n">geometry</span><span class="o">=</span><span class="s1">&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;</span><span class="p">,</span>
+    <span class="n">geometry</span><span class="o">=</span><span class="s1">'POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))'</span><span class="p">,</span>
     <span class="n">size</span><span class="o">=</span><span class="mi">20</span>
 <span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pyobis</span><span class="w"> </span><span class="kn">import</span> <span class="n">taxa</span>
 
-<span class="n">res</span> <span class="o">=</span> <span class="n">taxa</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="s1">&#39;Mola mola&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">taxa</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="s1">'Mola mola'</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()[</span><span class="s1">'results'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">occurrences</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
-    <span class="n">obisid</span><span class="o">=</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span>
-    <span class="n">geometry</span><span class="o">=</span><span class="s1">&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;</span><span class="p">,</span>
+    <span class="n">obisid</span><span class="o">=</span><span class="n">res</span><span class="p">[</span><span class="s1">'id'</span><span class="p">],</span>
+    <span class="n">geometry</span><span class="o">=</span><span class="s1">'POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))'</span><span class="p">,</span>
     <span class="n">size</span><span class="o">=</span><span class="mi">20</span>
 <span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
 <span class="n">occurrences</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
-    <span class="n">aphiaid</span><span class="o">=</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;worms_id&#39;</span><span class="p">],</span>
-    <span class="n">geometry</span><span class="o">=</span><span class="s1">&#39;POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))&#39;</span><span class="p">,</span>
+    <span class="n">aphiaid</span><span class="o">=</span><span class="n">res</span><span class="p">[</span><span class="s1">'worms_id'</span><span class="p">],</span>
+    <span class="n">geometry</span><span class="o">=</span><span class="s1">'POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))'</span><span class="p">,</span>
     <span class="n">size</span><span class="o">=</span><span class="mi">20</span>
 <span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
 
 <span class="c1"># Get mof response as a pandas dataframe</span>
 <span class="n">occurrences</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
-    <span class="n">scientificname</span><span class="o">=</span><span class="s2">&quot;Abra&quot;</span><span class="p">,</span> <span class="n">mof</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">hasextensions</span><span class="o">=</span><span class="s2">&quot;MeasurementOrFact&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span>
+    <span class="n">scientificname</span><span class="o">=</span><span class="s2">"Abra"</span><span class="p">,</span> <span class="n">mof</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">hasextensions</span><span class="o">=</span><span class="s2">"MeasurementOrFact"</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span>
     <span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -221,7 +221,7 @@ It is returned in the ‘id’ field with occurrences.search().</p></li>
 </dl>
 <p>Usage:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyobis</span><span class="w"> </span><span class="kn">import</span> <span class="n">occurrences</span>
-<span class="n">q1</span> <span class="o">=</span> <span class="n">occurrences</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;00003cf7-f2fc-4c53-98a6-7d846e70f5d1&#39;</span><span class="p">)</span>
+<span class="n">q1</span> <span class="o">=</span> <span class="n">occurrences</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">'00003cf7-f2fc-4c53-98a6-7d846e70f5d1'</span><span class="p">)</span>
 <span class="n">q1</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
 <span class="n">q1</span><span class="o">.</span><span class="n">data</span> <span class="c1"># get the data</span>
 <span class="n">q1</span><span class="o">.</span><span class="n">api_url</span> <span class="c1"># get the API url</span>
@@ -308,10 +308,10 @@ excluded.</p></li>
 </dl>
 <p>Usage:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyobis</span><span class="w"> </span><span class="kn">import</span> <span class="n">occurrences</span>
-<span class="n">occurrences</span><span class="o">.</span><span class="n">getpoints</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">)</span>
+<span class="n">occurrences</span><span class="o">.</span><span class="n">getpoints</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">'Mola mola'</span><span class="p">)</span>
 
 <span class="c1">## Many names</span>
-<span class="n">occurrences</span><span class="o">.</span><span class="n">getpoints</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Mola mola&#39;</span><span class="p">,</span><span class="s1">&#39;Abra alba&#39;</span><span class="p">])</span>
+<span class="n">occurrences</span><span class="o">.</span><span class="n">getpoints</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Mola mola'</span><span class="p">,</span><span class="s1">'Abra alba'</span><span class="p">])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -356,7 +356,7 @@ excluded.</p></li>
 </dl>
 <p>Usage:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyobis</span><span class="w"> </span><span class="kn">import</span> <span class="n">occurrences</span>
-<span class="n">occurrences</span><span class="o">.</span><span class="n">point</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.77</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mf">54.22</span><span class="p">,</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">)</span>
+<span class="n">occurrences</span><span class="o">.</span><span class="n">point</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.77</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mf">54.22</span><span class="p">,</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">'Mola mola'</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -401,8 +401,8 @@ excluded.</p></li>
 </dl>
 <p>Usage:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyobis</span><span class="w"> </span><span class="kn">import</span> <span class="n">occurrences</span>
-<span class="n">occurrences</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.77</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mf">52.26</span><span class="p">,</span><span class="n">z</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">mvt</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">)</span>
-<span class="n">occurrences</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.77</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mf">52.26</span><span class="p">,</span><span class="n">z</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">mvt</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">)</span>
+<span class="n">occurrences</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.77</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mf">52.26</span><span class="p">,</span><span class="n">z</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">mvt</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scientificname</span> <span class="o">=</span> <span class="s1">'Mola mola'</span><span class="p">)</span>
+<span class="n">occurrences</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.77</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mf">52.26</span><span class="p">,</span><span class="n">z</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">mvt</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">scientificname</span> <span class="o">=</span> <span class="s1">'Mola mola'</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -442,7 +442,7 @@ excluded.</p></li>
 </dl>
 <p>Usage:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyobis</span><span class="w"> </span><span class="kn">import</span> <span class="n">occurrences</span>
-<span class="n">occurrences</span><span class="o">.</span><span class="n">centroid</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">&#39;Mola mola&#39;</span><span class="p">)</span>
+<span class="n">occurrences</span><span class="o">.</span><span class="n">centroid</span><span class="p">(</span><span class="n">scientificname</span> <span class="o">=</span> <span class="s1">'Mola mola'</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -461,7 +461,7 @@ excluded.</p></li>
 </dl>
 <p>Usage:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyobis</span><span class="w"> </span><span class="kn">import</span> <span class="n">occurrences</span>
-<span class="n">lookup_data</span> <span class="o">=</span> <span class="n">occurrences</span><span class="o">.</span><span class="n">lookup_taxon</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="s2">&quot;Mola mola&quot;</span><span class="p">)</span>
+<span class="n">lookup_data</span> <span class="o">=</span> <span class="n">occurrences</span><span class="o">.</span><span class="n">lookup_taxon</span><span class="p">(</span><span class="n">scientificname</span><span class="o">=</span><span class="s2">"Mola mola"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">lookup_data</span><span class="p">)</span>
 </pre></div>
 </div>
