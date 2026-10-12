@@ -29,7 +29,7 @@ repos:
       args: ["--profile", "black", "--filter-files"]
 
 - repo: https://github.com/psf/black-pre-commit-mirror
-  rev: 26.10.0
+  rev: 26.10.1
   hooks:
   - id: black
     language_version: python3
@@ -67,7 +67,7 @@ repos:
         # These ignore are needed b/c of the widget PNG as base64 in notebooks/biodiversity_mapping.ipynb
 
 - repo: https://github.com/asottile/pyupgrade
-  rev: v3.21.2
+  rev: v3.22.0
   hooks:
     - id: pyupgrade
       args:
