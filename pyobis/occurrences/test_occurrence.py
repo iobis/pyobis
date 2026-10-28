@@ -6,13 +6,13 @@ import requests
 from pyobis import occurrences
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_occurrences_search():
     """
     occurrences.search - basic test for data, check type, size and other methods
     """
     size = 10100
-    query = occurrences.search(scientificname="Mola mola", size=size)
+    query = occurrences.search(scientificname="Mola mola", size=size, cache=False)
     assert not query.data  # the data is none after query building but before executing
     query.execute()
     assert "dict" == query.data.__class__.__name__
@@ -21,7 +21,7 @@ def test_occurrences_search():
     assert "Mola mola" == query.to_pandas().scientificName[0]
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_occurrence_search_mof():
     """
     occurrences.search - basic test for data with MoF extension, check type, size and other methods
@@ -31,6 +31,7 @@ def test_occurrence_search_mof():
         mof=True,
         size=100,
         hasextensions="MeasurementOrFact",
+        cache=False,
     )
     assert not query.data
     query.execute()
@@ -39,7 +40,7 @@ def test_occurrence_search_mof():
     assert requests.get(query.mapper_url).status_code == 200
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_occurrences_search_61():
     """
     Search returns same object-type regardless of mof=True or mof=False.
@@ -48,6 +49,7 @@ def test_occurrences_search_61():
     TEST_QUERY = dict(
         scientificname="Mola mola",
         size=2,
+        cache=False,
     )
     q1 = occurrences.search(mof=True, **TEST_QUERY).execute()
     q2 = occurrences.search(mof=False, **TEST_QUERY).execute()
@@ -55,12 +57,15 @@ def test_occurrences_search_61():
     assert isinstance(q1, type(q2))
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_occurrences_get():
     """
     occurrences.get - basic test for data, check type, size and other methods
     """
-    query = occurrences.get(id=occurrences.search(size=1).execute()["id"].values[0])
+    query = occurrences.get(
+        id=occurrences.search(size=1, cache=False).execute()["id"].values[0],
+        cache=False,
+    )
     assert not query.data
     query.execute()
     assert "dict" == query.data.__class__.__name__
@@ -70,18 +75,19 @@ def test_occurrences_get():
     assert query.to_pandas().__class__.__name__ == "DataFrame"
 
 
-@pytest.mark.vcr()
+# NB: cache=False seems to still activate the error for grid, investigate the cache implementation!
+# @pytest.mark.vcr
 def test_occurrences_grid():
     """
     occurrences.grid - basic test for data, check type, size and other methods
     """
-    query = occurrences.grid(5, geojson=True, scientificname="Abra alba")
+    query = occurrences.grid(5, geojson=True, scientificname="Abra alba", cache=False)
     assert not query.data
     query.execute()
     assert "dict" == query.data.__class__.__name__
     assert 2 == len(query.data)
     assert list == list(query.data.keys()).__class__
-    query = occurrences.grid(5, geojson=False, scientificname="Mola mola")
+    query = occurrences.grid(5, geojson=False, scientificname="Mola mola", cache=False)
     assert requests.get(query.api_url).status_code == 200
     assert not query.mapper_url
 
@@ -93,12 +99,15 @@ def test_occurrences_grid():
         query.to_pandas()
 
 
-@pytest.mark.vcr()
+# NB: cache=False seems to still activate the error for getpoints, investigate the cache implementation!
+# @pytest.mark.vcr
 def test_occurrences_getpoints():
     """
     occurrences.getpoints - basic test for data, check type, size and other methods
     """
-    query = occurrences.getpoints(scientificname=["Mola mola", "Abra alba"])
+    query = occurrences.getpoints(
+        scientificname=["Mola mola", "Abra alba"], cache=False,
+    )
     assert not query.data
     query.execute()
     assert "dict" == query.data.__class__.__name__
@@ -108,12 +117,13 @@ def test_occurrences_getpoints():
     assert not query.mapper_url
 
 
-@pytest.mark.vcr()
+# NB: cache=False seems to still activate the error for point, investigate the cache implementation!
+# @pytest.mark.vcr
 def test_occurrences_point():
     """
     occurrences.point - basic test for data, check type, size and other methods
     """
-    query = occurrences.point(x=1.77, y=54.22, scientificname="Mola mola")
+    query = occurrences.point(x=1.77, y=54.22, scientificname="Mola mola", cache=False)
     assert not query.data
     query.execute()
     assert "dict" == query.data.__class__.__name__
@@ -123,18 +133,23 @@ def test_occurrences_point():
     assert not query.mapper_url
 
 
-@pytest.mark.vcr()
+# NB: cache=False seems to still activate the error for tile, investigate the cache implementation!
+# @pytest.mark.vcr
 def test_occurrences_tile():
     """
     occurrences.tile - basic test for data, check type, size and other methods
     """
-    query = occurrences.tile(x=1.77, y=52.26, z=0.5, mvt=0, scientificname="Mola mola")
+    query = occurrences.tile(
+        x=1.77, y=52.26, z=0.5, mvt=0, scientificname="Mola mola", cache=False,
+    )
     assert not query.data
     query.execute()
     assert "dict" == query.data.__class__.__name__
     assert 2 == len(query.data)
     assert list == list(query.data.keys()).__class__
-    query = occurrences.tile(x=1.77, y=52.26, z=0.5, mvt=1, scientificname="Mola mola")
+    query = occurrences.tile(
+        x=1.77, y=52.26, z=0.5, mvt=1, scientificname="Mola mola", cache=False,
+    )
     query.execute()
     assert requests.get(query.api_url).status_code == 200
 
@@ -145,18 +160,21 @@ def test_occurrences_tile():
     ):
         query.to_pandas()
 
-    query = occurrences.tile(x=1.77, y=52.26, z=0.5, mvt=0, scientificname="Mola mola")
+    query = occurrences.tile(
+        x=1.77, y=52.26, z=0.5, mvt=0, scientificname="Mola mola", cache=False,
+    )
     query.execute()
     assert requests.get(query.api_url).status_code == 200
     assert not query.mapper_url
 
 
-@pytest.mark.vcr()
+# NB: cache=False seems to still activate the error for centroid, investigate the cache implementation!
+# @pytest.mark.vcr
 def test_occurrences_centroid():
     """
     occurrences.centroid - basic test for data, check type, size and other methods
     """
-    query = occurrences.centroid(scientificname="Mola mola")
+    query = occurrences.centroid(scientificname="Mola mola", cache=False)
     assert not query.data
     query.execute()
     assert "dict" == query.data.__class__.__name__
@@ -166,7 +184,6 @@ def test_occurrences_centroid():
     assert not query.mapper_url
 
 
-@pytest.mark.vcr()
 def test_cache_parameter_functionality():
     """
     occurrences.search, occurrences.get - test cache parameter functionality
@@ -197,7 +214,7 @@ def test_cache_parameter_functionality():
     assert "dict" == query_without_cache.data.__class__.__name__
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_occurrences_search_multiple_scientific_names():
     """
     occurrences.search - test with multiple scientific names for search.
@@ -205,7 +222,7 @@ def test_occurrences_search_multiple_scientific_names():
     expected_names = ["Mola mola", "Gadus morhua"]
     size = 100
 
-    query = occurrences.search(scientificname=expected_names, size=size)
+    query = occurrences.search(scientificname=expected_names, size=size, cache=False)
     assert not query.data  # before execution, data must be empty
 
     query.execute()
@@ -223,14 +240,14 @@ def test_occurrences_search_multiple_scientific_names():
     assert df["scientificName"].notna().all()
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_occurrences_search_no_scientific_names():
     """
     occurrences.search - test with no scientific names for search.
     """
     size = 100
 
-    query = occurrences.search(size=size)
+    query = occurrences.search(size=size, cache=False)
     assert not query.data  # before execution, data must be empty
 
     query.execute()
@@ -248,7 +265,7 @@ def test_occurrences_search_no_scientific_names():
     assert df["scientificName"].notna().all()
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_occurrences_search_scientific_names_and_taxonids():
     """
     occurrences.search - test with scientific names and taxonids for search.
@@ -259,6 +276,7 @@ def test_occurrences_search_scientific_names_and_taxonids():
         scientificname=["Mola mola", "Fish"],
         taxonid=["1234", "2345"],
         size=size,
+        cache=False,
     )
     assert not query.data  # before execution, data must be empty
 
