@@ -25,30 +25,19 @@ jobs:
         fetch-depth: 0
         persist-credentials: false
 
-    - name: Setup Micromamba
-      uses: mamba-org/setup-micromamba@f457c30a868e4760d3a6fcea5f25dc655b8edf39  # v3.2.1
+    - name: Set up Python
+      uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7.0.0
       with:
-        environment-name: TEST
-        init-shell: bash
-        create-args: >-
-          python=3 pip
-          --file requirements-dev.txt
-          --channel conda-forge
+        python-version: "3.x"
 
-    - name: Install on pyobis
-      shell: bash -l {0}
+    - name: Install library
       run: |
-        python -m pip install -e . --force-reinstall
-
-    - name: Get the version
-      id: get_version
-      run: echo "VERSION=$(python -c "from importlib.metadata import version; print(version('pyobis'))")" >> $GITHUB_OUTPUT
+        pip install --group dev
+        pip install -e .
 
     - name: Build documentation
-      shell: bash -l {0}
       run: |
         set -e
-        micromamba activate TEST
         pushd docs
         make clean html linkcheck
         popd
