@@ -75,8 +75,7 @@ def test_occurrences_get():
     assert query.to_pandas().__class__.__name__ == "DataFrame"
 
 
-# NB: cache=False seems to still activate the error for grid, investigate the cache implementation!
-# @pytest.mark.vcr
+@pytest.mark.vcr
 def test_occurrences_grid():
     """
     occurrences.grid - basic test for data, check type, size and other methods
@@ -99,14 +98,14 @@ def test_occurrences_grid():
         query.to_pandas()
 
 
-# NB: cache=False seems to still activate the error for getpoints, investigate the cache implementation!
-# @pytest.mark.vcr
+@pytest.mark.vcr
 def test_occurrences_getpoints():
     """
     occurrences.getpoints - basic test for data, check type, size and other methods
     """
     query = occurrences.getpoints(
-        scientificname=["Mola mola", "Abra alba"], cache=False,
+        scientificname=["Mola mola", "Abra alba"],
+        cache=False,
     )
     assert not query.data
     query.execute()
@@ -117,8 +116,7 @@ def test_occurrences_getpoints():
     assert not query.mapper_url
 
 
-# NB: cache=False seems to still activate the error for point, investigate the cache implementation!
-# @pytest.mark.vcr
+@pytest.mark.vcr
 def test_occurrences_point():
     """
     occurrences.point - basic test for data, check type, size and other methods
@@ -133,14 +131,18 @@ def test_occurrences_point():
     assert not query.mapper_url
 
 
-# NB: cache=False seems to still activate the error for tile, investigate the cache implementation!
-# @pytest.mark.vcr
+@pytest.mark.vcr
 def test_occurrences_tile():
     """
     occurrences.tile - basic test for data, check type, size and other methods
     """
     query = occurrences.tile(
-        x=1.77, y=52.26, z=0.5, mvt=0, scientificname="Mola mola", cache=False,
+        x=1.77,
+        y=52.26,
+        z=0.5,
+        mvt=0,
+        scientificname="Mola mola",
+        cache=False,
     )
     assert not query.data
     query.execute()
@@ -148,7 +150,12 @@ def test_occurrences_tile():
     assert 2 == len(query.data)
     assert list == list(query.data.keys()).__class__
     query = occurrences.tile(
-        x=1.77, y=52.26, z=0.5, mvt=1, scientificname="Mola mola", cache=False,
+        x=1.77,
+        y=52.26,
+        z=0.5,
+        mvt=1,
+        scientificname="Mola mola",
+        cache=False,
     )
     query.execute()
     assert requests.get(query.api_url).status_code == 200
@@ -161,15 +168,19 @@ def test_occurrences_tile():
         query.to_pandas()
 
     query = occurrences.tile(
-        x=1.77, y=52.26, z=0.5, mvt=0, scientificname="Mola mola", cache=False,
+        x=1.77,
+        y=52.26,
+        z=0.5,
+        mvt=0,
+        scientificname="Mola mola",
+        cache=False,
     )
     query.execute()
     assert requests.get(query.api_url).status_code == 200
     assert not query.mapper_url
 
 
-# NB: cache=False seems to still activate the error for centroid, investigate the cache implementation!
-# @pytest.mark.vcr
+@pytest.mark.vcr
 def test_occurrences_centroid():
     """
     occurrences.centroid - basic test for data, check type, size and other methods
