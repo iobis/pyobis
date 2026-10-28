@@ -1,0 +1,96 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, zstd
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+    method: GET
+    uri: https://api.obis.org/v3/taxon/complete/Mola%20mola
+  response:
+    body:
+      string: '[{"id":127405,"scientificName":"Mola mola","acceptedNameUsageID":"127405","scientificNameAuthorship":"(Linnaeus,
+        1758)","rank":"Species","kingdom":"Animalia","phylum":"Chordata","class":"Teleostei","order":"Tetraodontiformes","family":"Molidae","genus":"Mola","species":"Mola
+        mola"}]'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '283'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 28 Oct 2026 10:47:11 GMT
+      ETag:
+      - W/"11b-wu7WOAse6rotTsBPmR7VAwGLrLI"
+      Server:
+      - nginx/1.14.0 (Ubuntu)
+      Vary:
+      - Accept-Encoding
+      X-Cache-Date:
+      - Wed, 28 Oct 2026 10:47:11 GMT
+      X-Powered-By:
+      - Express
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      Host:
+      - api.obis.org
+      User-Agent:
+      - Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
+        Gecko)         Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.52
+    method: GET
+    uri: https://api.obis.org/v3/occurrence?taxonid=127405&scientificname=Mola+mola&offset=0&mof=False&size=1
+  response:
+    body:
+      string: '{"total":101325,"results":[{"basisOfRecord":"HumanObservation","brackish":false,"class":"Teleostei","classid":293496,"coordinateUncertaintyInMeters":250,"countryCode":"US","datasetName":"PISCO
+        fish transects","date_end":1533600000000,"date_mid":1533600000000,"date_start":1533600000000,"date_year":2018,"decimalLatitude":34.007833,"decimalLongitude":-119.394467,"depth":10.1,"eventDate":"2018-08-07","eventID":"ANACAPA_MIDDLE_ISLE_W_20180807_INNER_CAN_2_fish","family":"Molidae","familyid":125609,"genus":"Mola","genusid":126233,"gigaclass":"Actinopterygii","gigaclassid":10194,"infraphylum":"Gnathostomata","infraphylumid":1828,"institutionID":"UCSB","kingdom":"Animalia","kingdomid":2,"locality":"ANACAPA_MIDDLE_ISLE_W","locationRemarks":"marine
+        protected area","marine":true,"maximumDepthInMeters":10.1,"minimumDepthInMeters":10.1,"nameAccordingTo":"WoRMS","occurrenceID":"ANACAPA_MIDDLE_ISLE_W_20180807_INNER_CAN_2_fish_occ57","occurrenceStatus":"present","order":"Tetraodontiformes","orderid":10332,"organismQuantityType":"wet
+        weight of all fish in row","parvphylum":"Osteichthyes","parvphylumid":152352,"phylum":"Chordata","phylumid":1821,"samplingProtocol":"SBTL_FISH_PISCO","scientificName":"Mola
+        mola","scientificNameID":"urn:lsid:marinespecies.org:taxname:127405","species":"Mola
+        mola","speciesid":127405,"subphylum":"Vertebrata","subphylumid":146419,"superclass":"Actinopteri","superclassid":843664,"superdomain":"Biota","superdomainid":1,"taxonID":"127405","vernacularName":"Ocean
+        Sunfish","id":"00009924-06b2-4197-9be3-df61fd9fd298","dataset_id":"730e0918-43bb-496a-8126-f3a5849316fe","node_id":["b7c47783-a020-4173-b390-7b57c4fa1426"],"dropped":false,"absence":false,"originalScientificName":"Mola
+        mola","aphiaID":127405,"category":"VU","flags":[],"bathymetry":-16,"shoredistance":96,"sst":15.94,"sss":33.45}]}'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 28 Oct 2026 10:47:12 GMT
+      ETag:
+      - W/"720-Ou3r+nK6kUHeOpTcKnFWp8Oc9sw"
+      Server:
+      - nginx/1.14.0 (Ubuntu)
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Cache-Date:
+      - Wed, 28 Oct 2026 10:47:12 GMT
+      X-Powered-By:
+      - Express
+    status:
+      code: 200
+      message: OK
+version: 1

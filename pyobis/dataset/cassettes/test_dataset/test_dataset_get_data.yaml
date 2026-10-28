@@ -1,0 +1,115 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      Host:
+      - api.obis.org
+      User-Agent:
+      - Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
+        Gecko)         Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.52
+    method: GET
+    uri: https://api.obis.org/v3/dataset/ec9df3b9-3b2b-4d83-881b-27bcbcd57b95
+  response:
+    body:
+      string: "{\"total\":1,\"results\":[{\"id\":\"ec9df3b9-3b2b-4d83-881b-27bcbcd57b95\"\
+        ,\"url\":\"http://ipt.vliz.be/eurobis/resource?r=danishbenthicmonitoring\"\
+        ,\"archive\":\"https://ipt.vliz.be/eurobis/archive.do?r=danishbenthicmonitoring\"\
+        ,\"published\":\"2025-09-17T08:33:45.000Z\",\"created\":null,\"updated\":\"\
+        2025-09-29T17:55:52.425Z\",\"core\":\"event\",\"extensions\":[\"measurementorfact\"\
+        ,\"occurrence\"],\"statistics\":{\"Event\":117903,\"absence\":0,\"dropped\"\
+        :12,\"Occurrence\":971338,\"DNADerivedData\":0,\"MeasurementOrFact\":824066},\"\
+        extent\":\"POLYGON((3.33983 54.4994,15.4258 54.4994,15.4258 57.7979,3.33983\
+        \ 57.7979,3.33983 54.4994))\",\"title\":\"Danish benthic marine monitoring\
+        \ data from ODAM\",\"citation\":\"Josefson, A.; Rytter, D.; Department of\
+        \ Bioscience - AU, Denmark; (2015): Danish benthic marine monitoring data\
+        \ from ODAM.\",\"citation_id\":null,\"abstract\":\"Data contain abundance\
+        \ (number of individuals per species) and biomass (wet weight or dry weight\
+        \ per species) information.\",\"intellectualrights\":\"This work is licensed\
+        \ under a  Creative Commons Attribution (CC-BY) 4.0 License\",\"feed\":{\"\
+        id\":\"e3dad797-a123-4e78-8473-5b0a295d3685\",\"url\":\"http://ipt.vliz.be/eurobis/rss.do\"\
+        ,\"website\":\"http://ipt.vliz.be/eurobis\",\"active\":true},\"institutes\"\
+        :null,\"contacts\":[{\"role\":null,\"type\":\"creator\",\"givenname\":null,\"\
+        surname\":null,\"organization\":\"University of Aarhus; Department of Bioscience\"\
+        ,\"position\":null,\"email\":null,\"url\":null,\"organization_oceanexpert_id\"\
+        :null,\"type_display\":\"Creator\"},{\"role\":null,\"type\":\"creator\",\"\
+        givenname\":\"Alf\",\"surname\":\"Josefson\",\"organization\":\"University\
+        \ of Aarhus; Department of Bioscience\",\"position\":null,\"email\":null,\"\
+        url\":null,\"organization_oceanexpert_id\":null,\"type_display\":\"Creator\"\
+        },{\"role\":null,\"type\":\"creator\",\"givenname\":\"David\",\"surname\"\
+        :\"Rytter\",\"organization\":\"University of Aarhus; Department of Bioscience\"\
+        ,\"position\":null,\"email\":null,\"url\":null,\"organization_oceanexpert_id\"\
+        :null,\"type_display\":\"Creator\"},{\"role\":null,\"type\":\"contact\",\"\
+        givenname\":\"David\",\"surname\":\"Rytter\",\"organization\":\"University\
+        \ of Aarhus; Department of Bioscience\",\"position\":null,\"email\":null,\"\
+        url\":null,\"organization_oceanexpert_id\":null,\"type_display\":\"Contact\"\
+        },{\"role\":null,\"type\":\"metadataProvider\",\"givenname\":\"Jonas\",\"\
+        surname\":\"Koefoed R\xF8mer\",\"organization\":\"University of Aarhus; Faculty\
+        \ of Technical Sciences; Department of Ecoscience\",\"position\":null,\"email\"\
+        :null,\"url\":null,\"organization_oceanexpert_id\":null,\"type_display\":\"\
+        Metadata Provider\"},{\"role\":\"pointOfContact\",\"type\":\"associatedParty\"\
+        ,\"givenname\":\"Jonas\",\"surname\":\"Koefoed R\xF8mer\",\"organization\"\
+        :\"University of Aarhus; Faculty of Technical Sciences; Department of Ecoscience\"\
+        ,\"position\":null,\"email\":null,\"url\":null,\"organization_oceanexpert_id\"\
+        :null,\"type_display\":\"Point Of Contact\"},{\"role\":\"pointOfContact\"\
+        ,\"type\":\"associatedParty\",\"givenname\":\"Hans\",\"surname\":\"Jakobsen\"\
+        ,\"organization\":\"University of Aarhus; Faculty of Technical Sciences; Department\
+        \ of Ecoscience\",\"position\":null,\"email\":null,\"url\":null,\"organization_oceanexpert_id\"\
+        :null,\"type_display\":\"Point Of Contact\"}],\"nodes\":[{\"id\":\"4bf79a01-65a9-4db6-b37b-18434f26ddfc\"\
+        ,\"name\":\"EurOBIS\"}],\"keywords\":[{\"keyword\":\"ANE, Baltic\",\"thesaurus\"\
+        :\"ASFA Geoterms\"},{\"keyword\":\"ANE, Kattegat\",\"thesaurus\":\"ASFA Geoterms\"\
+        },{\"keyword\":\"ANE, Skagerrak\",\"thesaurus\":\"ASFA Geoterms\"},{\"keyword\"\
+        :\"Bio-geographical regions\",\"thesaurus\":\"INSPIRE themes\"},{\"keyword\"\
+        :\"Habitats and biotopes\",\"thesaurus\":\"INSPIRE themes\"},{\"keyword\"\
+        :\"Sea regions\",\"thesaurus\":\"INSPIRE themes\"},{\"keyword\":\"Biota\"\
+        ,\"thesaurus\":\"INSPIRE Topics\"},{\"keyword\":\"Environment\",\"thesaurus\"\
+        :\"INSPIRE Topics\"},{\"keyword\":\"Geoscientific Information\",\"thesaurus\"\
+        :\"INSPIRE Topics\"},{\"keyword\":\"Oceans\",\"thesaurus\":\"INSPIRE Topics\"\
+        },{\"keyword\":\"EurOBIS calculated BBOX\",\"thesaurus\":\"Geoterms no link\
+        \ Marine Regions\"},{\"keyword\":\"Metadata non conformant\",\"thesaurus\"\
+        :\"INSPIRE Conformity\"},{\"keyword\":\"Metadata not evaluated\",\"thesaurus\"\
+        :\"INSPIRE Conformity\"},{\"keyword\":\"No limitations to public access\"\
+        ,\"thesaurus\":\"INSPIRE Limitations on public access\"},{\"keyword\":\"WGS84\
+        \ (EPSG:4326)\",\"thesaurus\":\"Coordinate Reference System\"},{\"keyword\"\
+        :\"XYZ ASCII\",\"thesaurus\":\"Spatial data formats\"},{\"keyword\":\"Samplingevent\"\
+        ,\"thesaurus\":\"GBIF Dataset Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type_2015-07-10.xml\"\
+        }],\"downloads\":[{\"year\":2026,\"downloads\":16640,\"records\":229540289},{\"\
+        year\":2025,\"downloads\":10062,\"records\":2086330790},{\"year\":2024,\"\
+        downloads\":12531,\"records\":2527190121},{\"year\":2023,\"downloads\":6144,\"\
+        records\":1948344984},{\"year\":2022,\"downloads\":14566,\"records\":1410439084},{\"\
+        year\":2021,\"downloads\":13838,\"records\":1535327062},{\"year\":2020,\"\
+        downloads\":2777,\"records\":516037939},{\"year\":2019,\"downloads\":725,\"\
+        records\":61319610},{\"year\":2018,\"downloads\":9,\"records\":179437}],\"\
+        tags\":null,\"disable_extensions\":null}]}"
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 28 Oct 2026 10:52:11 GMT
+      ETag:
+      - W/"12c9-DLVIgaQ4W7p8mNNhMrXfLQfsCLU"
+      Server:
+      - nginx/1.14.0 (Ubuntu)
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Cache-Date:
+      - Wed, 28 Oct 2026 10:52:11 GMT
+      X-Powered-By:
+      - Express
+    status:
+      code: 200
+      message: OK
+version: 1

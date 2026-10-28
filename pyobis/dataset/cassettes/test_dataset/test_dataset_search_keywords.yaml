@@ -1,0 +1,1608 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      Host:
+      - api.obis.org
+      User-Agent:
+      - Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
+        Gecko)         Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.52
+    method: GET
+    uri: https://api.obis.org/v3/dataset?q=coral&offset=0
+  response:
+    body:
+      string: "{\"total\":24,\"results\":[{\"id\":\"a54a77db-7b42-4101-8d71-1adec3dd4ed5\"\
+        ,\"url\":\"https://ipt-obis.gbif.us/resource?r=ncrmp_blt_fish_pacific\",\"\
+        archive\":\"https://ipt-obis.gbif.us/archive.do?r=ncrmp_blt_fish_pacific\"\
+        ,\"published\":\"2023-01-27T21:04:45.000Z\",\"created\":\"2020-04-01T23:40:06.228Z\"\
+        ,\"updated\":\"2025-11-12T15:12:51.273Z\",\"core\":\"event\",\"extensions\"\
+        :[\"measurementorfact\",\"occurrence\"],\"statistics\":{\"Event\":26447,\"\
+        absence\":18,\"dropped\":18,\"Occurrence\":245157,\"DNADerivedData\":0,\"\
+        MeasurementOrFact\":1750385},\"extent\":\"POLYGON((-178.3785833 -14.560017,166.65736\
+        \ -14.560017,166.65736 28.456708,-178.3785833 28.456708,-178.3785833 -14.560017))\"\
+        ,\"title\":\"NOAA Pacific Islands Fisheries Science Center, Ecosystem Science\
+        \ Division Coral Reef Ecosystem Program, Rapid Ecological Assessments of Fish\
+        \ Belt Transect Surveys (BLT) at Coral Reef Sites across the Pacific Ocean\
+        \ from 2000 to 2009\",\"citation\":\"Coral Reef Ecosystem Program; Pacific\
+        \ Islands Fisheries Science Center (2017). Pacific Reef Assessment and Monitoring\
+        \ Program: Rapid Ecological Assessments of Fish Belt Transect Surveys (BLT)\
+        \ in the Pacific Ocean from 2000-09-09 to 2009-05-05 (NCEI Accession 0162462).\
+        \ NOAA National Centers for Environmental Information. Dataset. https://accession.nodc.noaa.gov/0162462\"\
+        ,\"citation_id\":null,\"abstract\":\"Belt transects (BLT) are a non-invasive\
+        \ underwater-survey method that enumerates the diverse components of diurnally\
+        \ active shallow-water reef fish assemblages. At each Rapid Ecological Assessment\
+        \ survey site, BLT fish surveys are conducted along 3 consecutively-placed,\
+        \ 25m transect lines to quantify relatively small-bodied and abundant fishes.\
+        \ A pair of scuba diver-observers conducts parallel swims along the transect\
+        \ lines, recording size-class specific counts of all fishes encountered, to\
+        \ species-level where possible, within visually estimated but defined belt\
+        \ widths: 4 m wide for fishes &gt; 20 cm TL (100 m2 area) on the initial swim-out,\
+        \ and 2 m wide for fishes &lt; 20 cm TL (50 m2 area) on the subsequent swim\
+        \ back. Transect lines are typically set at depths of 10-15 m. Reef ledges\
+        \ and holes are visually searched. Stations are completed on all sides of\
+        \ the island/atoll, weather and sea conditions permitting. Raw survey data\
+        \ includes species level abundance estimates.\",\"intellectualrights\":\"\
+        To the extent possible under law, the publisher has waived all rights to these\
+        \ data and has dedicated them to the  Public Domain (CC0 1.0)\",\"feed\":{\"\
+        id\":\"8112d75b-7e78-4641-9e09-9a2cc7db7375\",\"url\":\"https://ipt-obis.gbif.us/rss.do\"\
+        ,\"website\":\"https://ipt-obis.gbif.us\",\"active\":true},\"institutes\"\
+        :[{\"name\":\"National Oceanic and Atmospheric Administration, Washington\"\
+        ,\"oceanexpert_id\":11379,\"oceanexpert_parent_id\":null},{\"name\":\"U.S.\
+        \ Geological Survey HQ\",\"oceanexpert_id\":12976,\"oceanexpert_parent_id\"\
+        :null},{\"name\":\"Pacific Islands Ocean Observing System\",\"oceanexpert_id\"\
+        :20188,\"oceanexpert_parent_id\":null}],\"contacts\":[{\"role\":null,\"type\"\
+        :\"creator\",\"givenname\":\"Ivor\",\"surname\":\"Williams\",\"organization\"\
+        :\"National Oceanic and Atmospheric Administration\",\"position\":\"Research\
+        \ Fish Biologist\",\"email\":\"ivor.williams@noaa.gov\",\"url\":null,\"organization_oceanexpert_id\"\
+        :11379,\"type_display\":\"Creator\"},{\"role\":null,\"type\":\"contact\",\"\
+        givenname\":\"Tye\",\"surname\":\"Kindinger\",\"organization\":\"National\
+        \ Oceanic and Atmospheric Administration\",\"position\":\"Supervisory Coral\
+        \ Reef Ecosystems Researcher\",\"email\":\"tye.kindinger@noaa.gov\",\"url\"\
+        :null,\"organization_oceanexpert_id\":11379,\"type_display\":\"Contact\"},{\"\
+        role\":null,\"type\":\"contact\",\"givenname\":\"Jake\",\"surname\":\"Asher\"\
+        ,\"organization\":\"National Oceanic and Atmospheric Administration\",\"position\"\
+        :\"Marine Ecosystems Research Specialist\",\"email\":\"jacob.asher@noaa.gov\"\
+        ,\"url\":null,\"organization_oceanexpert_id\":11379,\"type_display\":\"Contact\"\
+        },{\"role\":null,\"type\":\"metadataProvider\",\"givenname\":\"Annette\",\"\
+        surname\":\"DesRochers\",\"organization\":\"National Oceanic and Atmospheric\
+        \ Administration\",\"position\":\"Data Steward\",\"email\":\"annette.desrochers@noaa.gov\"\
+        ,\"url\":null,\"organization_oceanexpert_id\":11379,\"type_display\":\"Metadata\
+        \ Provider\"},{\"role\":\"publisher\",\"type\":\"associatedParty\",\"givenname\"\
+        :\"Abby\",\"surname\":\"Benson\",\"organization\":\"U.S. Geological Survey\"\
+        ,\"position\":\"Biologist\",\"email\":\"albenson@usgs.gov\",\"url\":null,\"\
+        organization_oceanexpert_id\":12976,\"type_display\":\"Publisher\"},{\"role\"\
+        :\"processor\",\"type\":\"associatedParty\",\"givenname\":\"Sarah\",\"surname\"\
+        :\"Bingo\",\"organization\":\"Pacific Islands Ocean Observing System\",\"\
+        position\":\"Data Manager\",\"email\":\"sarahr6@hawaii.edu\",\"url\":null,\"\
+        organization_oceanexpert_id\":20188}],\"nodes\":[{\"id\":\"b7c47783-a020-4173-b390-7b57c4fa1426\"\
+        ,\"name\":\"OBIS USA\"}],\"keywords\":[{\"keyword\":\"Samplingevent\",\"thesaurus\"\
+        :\"GBIF Dataset Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type.xml\"\
+        },{\"keyword\":\"Samplingevent\",\"thesaurus\":\"GBIF Dataset Type Vocabulary:\
+        \ http://rs.gbif.org/vocabulary/gbif/dataset_type_2015-07-10.xml\"}],\"downloads\"\
+        :[{\"year\":2026,\"downloads\":29438,\"records\":59948751},{\"year\":2025,\"\
+        downloads\":35709,\"records\":607460128},{\"year\":2024,\"downloads\":37009,\"\
+        records\":796949475},{\"year\":2023,\"downloads\":11729,\"records\":604544435},{\"\
+        year\":2022,\"downloads\":12338,\"records\":431218279},{\"year\":2021,\"downloads\"\
+        :37826,\"records\":487123852},{\"year\":2020,\"downloads\":3510,\"records\"\
+        :155097455}],\"tags\":null,\"disable_extensions\":null,\"records\":245139},{\"\
+        id\":\"52f99f08-fc90-4684-aea8-a015150968ea\",\"url\":\"https://ipt-obis.gbif.us/resource?r=prcrmp_database\"\
+        ,\"archive\":\"https://ipt-obis.gbif.us/archive.do?r=prcrmp_database\",\"\
+        published\":\"2022-02-13T16:17:39.000Z\",\"created\":\"2020-04-02T18:34:28.473Z\"\
+        ,\"updated\":\"2026-10-05T18:22:10.792Z\",\"core\":\"event\",\"extensions\"\
+        :[\"measurementorfact\",\"occurrence\"],\"statistics\":{\"Event\":4180,\"\
+        absence\":973832,\"dropped\":6049,\"Occurrence\":1053192,\"DNADerivedData\"\
+        :0,\"MeasurementOrFact\":1293179},\"extent\":\"POLYGON((-67.950766 17.88428,-65.19714\
+        \ 17.88428,-65.19714 18.48955,-67.950766 18.48955,-67.950766 17.88428))\"\
+        ,\"title\":\"Puerto Rico Long-Term Coral Reef Monitoring Program Database\
+        \ Compilation\",\"citation\":\"Department of Natural and Environmental Resources\
+        \ of Puerto Rico (2019) Puerto Rico Long-Term Coral Reef Monitoring Program\
+        \ Database Compilation (1999-2019). [indicate subset used]. Ocean Biogeographic\
+        \ Information System. Dataset. https://obis.org/dataset/52f99f08-fc90-4684-aea8-a015150968ea\"\
+        ,\"citation_id\":null,\"abstract\":\"\\n    <p>The Puerto Rico Long-Term Coral\
+        \ Reef Monitoring Program (PRCRMP) database compilation includes raw biological\
+        \ data (by transect) from reef locations around the Puerto Rican archipelago.\
+        \ Substrate cover by sessile-benthic categories and fish, and motile megabenthic\
+        \ invertebrate taxonomic composition and densities have been characterized\
+        \ in these stations, with variable sampling event frequencies between 1999\
+        \ to 2021. At present, 42 permanent stations are surveyed biannually (21 per\
+        \ year). For the benthic characterization, a set of five 10-meter-long permanent\
+        \ transects are surveyed at each station. Sessile-benthic reef communities\
+        \ are characterized by the continuous intercept chain-link method, following\
+        \ the Caribbean Coastal Marine Productivity (CARICOMP) (1994) protocol. Demersal\
+        \ diurnal non-cryptic reef fish populations and motile megabenthic invertebrates\
+        \ are surveyed by sets of five 10 x 3 meters wide (30 m2) belt-transects centered\
+        \ along the reference line of transects used for sessile-benthic characterizations\
+        \ at each reef station. From 2004-2013, a diver completed an Active Search\
+        \ Census (ASEC) survey for 30 minutes annotating sizes and abundances of fish\
+        \ and macroinvertebrate species of interest. From 2015, the ASEC survey methodology\
+        \ was replaced by 20 x 3 meters (60 m2) band transects to identify commercially\
+        \ and ecologically important fish and megabenthic invertebrate species. Upon\
+        \ completion of the 10 meters belt-transect survey, the diver swims along\
+        \ the same depth and physiographic reef zone for an extra 10 meters to complete\
+        \ the 60 m2 transect. For each fish individual within the ASEC survey (2004-2013)\
+        \ and 60m2 band transects (2015-2021), a visual fork length (FL) estimate\
+        \ in centimeters is recorded. Fish length estimations are provided by the\
+        \ median of 5cm interval size classes. The cephalothorax length (measurement\
+        \ from the tip of the rostrum to end of the thorax), also known as carapace\
+        \ length (CL) in centimeters is used to report the size of lobsters (Panulirus\
+        \ spp., Scyllarides spp.) within belt-transects. Queen conch (Lobatus gigas)\
+        \ length is reported as the total (diagonal) shell length in centimeters.\
+        \ With the length-weight relationship information available in FishBase.org,\
+        \ biomass estimates are calculated for a subset of commercially and ecologically\
+        \ important fish species. The PRCRMP database was made possible with support\
+        \ from the National Oceanic and Atmospheric Administrations Coral Reef Conservation\
+        \ Program.</p>\\n  \",\"intellectualrights\":\"To the extent possible under\
+        \ law, the publisher has waived all rights to these data and has dedicated\
+        \ them to the  Public Domain (CC0 1.0)\",\"feed\":{\"id\":\"8112d75b-7e78-4641-9e09-9a2cc7db7375\"\
+        ,\"url\":\"https://ipt-obis.gbif.us/rss.do\",\"website\":\"https://ipt-obis.gbif.us\"\
+        ,\"active\":true},\"institutes\":[{\"name\":\"U.S. Geological Survey HQ\"\
+        ,\"oceanexpert_id\":12976,\"oceanexpert_parent_id\":null},{\"name\":\"Caribbean\
+        \ Coastal Ocean Observing System\",\"oceanexpert_id\":16063,\"oceanexpert_parent_id\"\
+        :null},{\"name\":\"Puerto Rico Department of Natural and Environmental Resources\"\
+        ,\"oceanexpert_id\":23206,\"oceanexpert_parent_id\":null}],\"contacts\":[{\"\
+        role\":null,\"type\":\"creator\",\"givenname\":\"Miguel G.\",\"surname\":\"\
+        Figuerola Hern\xE1ndez\",\"organization\":\"Caribbean Coastal Ocean Observing\
+        \ System (CARICOOS) / Puerto Rico Coral Reef Monitoring Program and Outreach\
+        \ Coordinator, PR DNER\",\"position\":\"Technical Support Staff\",\"email\"\
+        :\"mfiguerolahernandez@gmail.com\",\"url\":null,\"organization_oceanexpert_id\"\
+        :16063,\"type_display\":\"Creator\"},{\"role\":null,\"type\":\"creator\",\"\
+        givenname\":\"Jos\xE9\",\"surname\":\"Santiago\",\"organization\":\"Caribbean\
+        \ Coastal Ocean Observing System (CARICOOS)\",\"position\":\"Technical Support\
+        \ Staff\",\"email\":\"jose.santiago90@upr.edu\",\"url\":null,\"organization_oceanexpert_id\"\
+        :16063,\"type_display\":\"Creator\"},{\"role\":null,\"type\":\"contact\",\"\
+        givenname\":\"Ernesto\",\"surname\":\"D\xEDaz\",\"organization\":\"Puerto\
+        \ Rico Department of Natural and Environmental Resources (PR DNER)\",\"position\"\
+        :\"Director of the Office for Coastal Management and Climate Change\",\"email\"\
+        :null,\"url\":null,\"organization_oceanexpert_id\":23206,\"type_display\"\
+        :\"Contact\"},{\"role\":null,\"type\":\"contact\",\"givenname\":\"Jorge\"\
+        ,\"surname\":\"Capella\",\"organization\":\"Caribbean Coastal Ocean Observing\
+        \ System (CARICOOS)\",\"position\":\"Data Management and Communications Coordinator\"\
+        ,\"email\":\"jorge.capella@upr.edu\",\"url\":null,\"organization_oceanexpert_id\"\
+        :16063,\"type_display\":\"Contact\"},{\"role\":null,\"type\":\"contact\",\"\
+        givenname\":\"Julio\",\"surname\":\"Morell\",\"organization\":\"Caribbean\
+        \ Coastal Ocean Observing System (CARICOOS)\",\"position\":\"Executive Director\"\
+        ,\"email\":\"julio.morell@upr.edu\",\"url\":null,\"organization_oceanexpert_id\"\
+        :16063,\"type_display\":\"Contact\"},{\"role\":null,\"type\":\"metadataProvider\"\
+        ,\"givenname\":\"Miguel G.\",\"surname\":\"Figuerola Hern\xE1ndez\",\"organization\"\
+        :\"Caribbean Coastal Ocean Observing System (CARICOOS) / Puerto Rico Department\
+        \ of Natural and Environmental Resources (PR DNER)\",\"position\":\"Technical\
+        \ Support Staff / Puerto Rico Coral Reef Monitoring Program and Outreach Coordinator,\"\
+        ,\"email\":\"mfiguerolahernandez@gmail.com\",\"url\":null,\"organization_oceanexpert_id\"\
+        :16063,\"type_display\":\"Metadata Provider\"},{\"role\":\"publisher\",\"\
+        type\":\"associatedParty\",\"givenname\":\"Abby\",\"surname\":\"Benson\",\"\
+        organization\":\"U.S. Geological Survey\",\"position\":\"Biologist\",\"email\"\
+        :\"albenson@usgs.gov\",\"url\":null,\"organization_oceanexpert_id\":12976,\"\
+        type_display\":\"Publisher\"}],\"nodes\":[{\"id\":\"b7c47783-a020-4173-b390-7b57c4fa1426\"\
+        ,\"name\":\"OBIS USA\"}],\"keywords\":[{\"keyword\":\"Samplingevent\",\"thesaurus\"\
+        :\"GBIF Dataset Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type.xml\"\
+        },{\"keyword\":\"Samplingevent\",\"thesaurus\":\"GBIF Dataset Type Vocabulary:\
+        \ http://rs.gbif.org/vocabulary/gbif/dataset_type_2015-07-10.xml\"}],\"downloads\"\
+        :[{\"year\":2026,\"downloads\":17927,\"records\":30380996},{\"year\":2025,\"\
+        downloads\":14782,\"records\":175030813},{\"year\":2024,\"downloads\":16875,\"\
+        records\":239921340},{\"year\":2023,\"downloads\":8330,\"records\":185577559},{\"\
+        year\":2022,\"downloads\":9619,\"records\":131327539},{\"year\":2021,\"downloads\"\
+        :19996,\"records\":125931173},{\"year\":2020,\"downloads\":4666,\"records\"\
+        :41364244}],\"tags\":null,\"disable_extensions\":null,\"records\":74892},{\"\
+        id\":\"230e0287-79c3-47f0-9aed-718b63c0a074\",\"url\":\"https://ipt-obis.gbif.us/resource?r=noaa_micronesia_reef_monitoring_fish\"\
+        ,\"archive\":\"https://ipt-obis.gbif.us/archive.do?r=noaa_micronesia_reef_monitoring_fish\"\
+        ,\"published\":\"2020-06-01T20:44:37.000Z\",\"created\":\"2020-05-27T19:51:43.867Z\"\
+        ,\"updated\":\"2025-11-11T03:48:47.436Z\",\"core\":\"event\",\"extensions\"\
+        :[\"measurementorfact\",\"occurrence\"],\"statistics\":{\"Event\":1670,\"\
+        absence\":0,\"dropped\":0,\"Occurrence\":47236,\"DNADerivedData\":0,\"MeasurementOrFact\"\
+        :330652},\"extent\":\"POLYGON((138.0336103 5.258907257,171.372923 5.258907257,171.372923\
+        \ 9.64183353,138.0336103 9.64183353,138.0336103 5.258907257))\",\"title\"\
+        :\"NOAA coral reef monitoring fish data from sites across Micronesia from\
+        \ 2009-09-29 to 2015-09-25\",\"citation\":\"Houk P (2020). NOAA coral reef\
+        \ monitoring fish data from sites across Micronesia from 2009-09-29 to 2015-09-25.\
+        \ Version 1.2. United States Geological Survey. Sampling event dataset https://doi.org/10.15468/swzpf4\"\
+        ,\"citation_id\":null,\"abstract\":\"Fish census data were collected from\
+        \ sites around Micronesia as part of the ongoing Micronesia Challenge. Information\
+        \ on the program can be found at (www.micronesiareefmonitoring.com). Survey\
+        \ sites were selected around each island to be representative of natural environmental\
+        \ gradients, management, and major reef types. Thus, full site designs can\
+        \ be used to evaluate both island trends and site-specific trends. The size\
+        \ and abundance of fishes, which are generally consumed by people (hereinafter\
+        \ food-fish), were collected by four calibrated observers, with individual\
+        \ observers being consistent across jurisdictions. Fish assemblages were estimated\
+        \ from 12 stationary-point counts (SPCs) conducted at equal intervals along\
+        \ the transect lines. At each SPC, the observer recorded the species name\
+        \ and the size of all food-fish within a 5 m circular radius for a period\
+        \ of 3 minutes. Food-fish were defined as acanthurids, scarids, serranids,\
+        \ carangids, labrids, lethrinids, lutjanids, balistids, kyphosids, mullids,\
+        \ holocentrids, and sharks. The data in this submission include fish identification,\
+        \ counts, and sizes obtained during SPC surveys.\",\"intellectualrights\"\
+        :\"To the extent possible under law, the publisher has waived all rights to\
+        \ these data and has dedicated them to the  Public Domain (CC0 1.0)\",\"feed\"\
+        :{\"id\":\"8112d75b-7e78-4641-9e09-9a2cc7db7375\",\"url\":\"https://ipt-obis.gbif.us/rss.do\"\
+        ,\"website\":\"https://ipt-obis.gbif.us\",\"active\":true},\"institutes\"\
+        :[{\"name\":\"U.S. Geological Survey HQ\",\"oceanexpert_id\":12976,\"oceanexpert_parent_id\"\
+        :null},{\"name\":\"Pacific Islands Ocean Observing System\",\"oceanexpert_id\"\
+        :20188,\"oceanexpert_parent_id\":null}],\"contacts\":[{\"role\":null,\"type\"\
+        :\"creator\",\"givenname\":\"Peter\",\"surname\":\"Houk\",\"organization\"\
+        :\"University of Guam\",\"position\":\"Professor\",\"email\":\"houkp@triton.uog.edu\"\
+        ,\"url\":null,\"organization_oceanexpert_id\":null,\"type_display\":\"Creator\"\
+        },{\"role\":null,\"type\":\"contact\",\"givenname\":\"Peter\",\"surname\"\
+        :\"Houk\",\"organization\":\"University of Guam\",\"position\":\"Professor\"\
+        ,\"email\":\"houkp@triton.uog.edu\",\"url\":null,\"organization_oceanexpert_id\"\
+        :null,\"type_display\":\"Contact\"},{\"role\":null,\"type\":\"metadataProvider\"\
+        ,\"givenname\":\"Peter\",\"surname\":\"Houk\",\"organization\":\"University\
+        \ of Guam\",\"position\":\"Professor\",\"email\":\"houkp@triton.uog.edu\"\
+        ,\"url\":null,\"organization_oceanexpert_id\":null,\"type_display\":\"Metadata\
+        \ Provider\"},{\"role\":\"publisher\",\"type\":\"associatedParty\",\"givenname\"\
+        :\"Abby\",\"surname\":\"Benson\",\"organization\":\"U.S. Geological Survey\"\
+        ,\"position\":\"Biologist\",\"email\":\"albenson@usgs.gov\",\"url\":null,\"\
+        organization_oceanexpert_id\":12976,\"type_display\":\"Publisher\"},{\"role\"\
+        :\"processor\",\"type\":\"associatedParty\",\"givenname\":\"Sarah\",\"surname\"\
+        :\"Bingo\",\"organization\":\"Pacific Islands Ocean Observing System\",\"\
+        position\":\"Data Manager\",\"email\":\"sarahr6@hawaii.edu\",\"url\":null,\"\
+        organization_oceanexpert_id\":20188}],\"nodes\":[{\"id\":\"b7c47783-a020-4173-b390-7b57c4fa1426\"\
+        ,\"name\":\"OBIS USA\"}],\"keywords\":[{\"keyword\":\"Samplingevent\",\"thesaurus\"\
+        :\"GBIF Dataset Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type.xml\"\
+        }],\"downloads\":[{\"year\":2026,\"downloads\":12140,\"records\":10789360},{\"\
+        year\":2025,\"downloads\":16631,\"records\":111963444},{\"year\":2024,\"downloads\"\
+        :17721,\"records\":154194678},{\"year\":2023,\"downloads\":6132,\"records\"\
+        :116410998},{\"year\":2022,\"downloads\":5712,\"records\":82979755},{\"year\"\
+        :2021,\"downloads\":18337,\"records\":95753986},{\"year\":2020,\"downloads\"\
+        :1566,\"records\":29342291}],\"tags\":null,\"disable_extensions\":null,\"\
+        records\":47236},{\"id\":\"36693923-2abf-4237-8154-8016f32844a0\",\"url\"\
+        :\"https://ipt-obis.gbif.us/resource?r=pifsc_spc_fish_pacific\",\"archive\"\
+        :\"https://ipt-obis.gbif.us/archive.do?r=pifsc_spc_fish_pacific\",\"published\"\
+        :\"2021-08-25T16:50:22.000Z\",\"created\":\"2020-03-03T19:01:12.692Z\",\"\
+        updated\":\"2025-11-08T01:14:01.937Z\",\"core\":\"event\",\"extensions\":[\"\
+        measurementorfact\",\"occurrence\"],\"statistics\":{\"Event\":3642,\"absence\"\
+        :189,\"dropped\":189,\"Occurrence\":28934,\"DNADerivedData\":0,\"MeasurementOrFact\"\
+        :205779},\"extent\":\"POLYGON((-178.3785833 -14.559317,166.65736 -14.559317,166.65736\
+        \ 28.45365,-178.3785833 28.45365,-178.3785833 -14.559317))\",\"title\":\"\
+        Pacific Reef Assessment and Monitoring Program: Rapid Ecological Assessments\
+        \ of Fish Large-Area Stationary Point Count Surveys (SPC) at Coral Reef Sites\
+        \ across the Pacific Ocean from 2000 to 2007\",\"citation\":\"Coral Reef Ecosystem\
+        \ Program; Pacific Islands Fisheries Science Center (2017). Pacific Reef Assessment\
+        \ and Monitoring Program: Rapid Ecological Assessments of Fish Large-Area\
+        \ Stationary Point Count Surveys (SPC) in the Pacific Ocean from 2000-09-09\
+        \ to 2007-06-08 (NCEI Accession 0162466). NOAA National Centers for Environmental\
+        \ Information. Dataset.\",\"citation_id\":\"https://accession.nodc.noaa.gov/0162466\"\
+        ,\"abstract\":\"The large-area stationary point count (SPC) method was used\
+        \ to conduct reef fish surveys in the Hawaiian and Mariana Archipelagos, American\
+        \ Samoa, and the Pacific Remote Island Areas as part of NOAA's Pacific Reef\
+        \ Assessment and Monitoring Program (Pacific RAMP). The SPC method catalogs\
+        \ the diversity (species richness), abundance (numeric density) and biomass\
+        \ (fish mass per unit area) of diurnally active reef fish assemblages in shallow-water\
+        \ (typically 10-15m, always &lt; 30m) hard-bottom habitats.\\n\\nStationary\
+        \ Point Counts (SPC) is one of several non-invasive underwater-survey methods\
+        \ to enumerate the diverse components of diurnally active shallow-water reef\
+        \ fish assemblages. At each REA survey sites, SPC fish surveys were conducted\
+        \ at 4 stations in conjunction with, but at least 10 m away from 3 consecutively-placed,\
+        \ 25m transect lines to quantify relatively larger (&gt;25 cm Total Length\
+        \ [TL]) and more vagile fish species(BLT). All fishes &gt;25 cm TL are recorded\
+        \ to species-level that enter a 20 m diameter cylinder (area ~314 m2) during\
+        \ a timed 5 minute count. Individuals or groups are estimated to the nearest\
+        \ 5 cm TL size-class bin. Four replicate, 5 minute cylinder counts are conducted\
+        \ at each station. Care is taken to avoid over-counting large transient or\
+        \ schooling species. Transects lines and stations are typically set at depths\
+        \ of 10-15 m. Reef ledges and holes are visually searched. Stations are completed\
+        \ on all sides of the island/atoll, weather and sea conditions permitting.\
+        \ Raw survey data included species level abundance estimates.\",\"intellectualrights\"\
+        :\"This work is licensed under a  Creative Commons Attribution (CC-BY) 4.0\
+        \ License\",\"feed\":{\"id\":\"8112d75b-7e78-4641-9e09-9a2cc7db7375\",\"url\"\
+        :\"https://ipt-obis.gbif.us/rss.do\",\"website\":\"https://ipt-obis.gbif.us\"\
+        ,\"active\":true},\"institutes\":[{\"name\":\"National Oceanic and Atmospheric\
+        \ Administration, Washington\",\"oceanexpert_id\":11379,\"oceanexpert_parent_id\"\
+        :null},{\"name\":\"U.S. Geological Survey HQ\",\"oceanexpert_id\":12976,\"\
+        oceanexpert_parent_id\":null},{\"name\":\"Pacific Islands Ocean Observing\
+        \ System\",\"oceanexpert_id\":20188,\"oceanexpert_parent_id\":null}],\"contacts\"\
+        :[{\"role\":null,\"type\":\"creator\",\"givenname\":\"Ivor\",\"surname\":\"\
+        Williams\",\"organization\":\"National Oceanic and Atmospheric Administration\"\
+        ,\"position\":\"Research Fish Biologist\",\"email\":\"ivor.williams@noaa.gov\"\
+        ,\"url\":null,\"organization_oceanexpert_id\":11379,\"type_display\":\"Creator\"\
+        },{\"role\":null,\"type\":\"contact\",\"givenname\":\"Tye\",\"surname\":\"\
+        Kindinger\",\"organization\":\"National Oceanic and Atmospheric Administration\"\
+        ,\"position\":\"Supervisory Coral Reef Ecosystems Researcher\",\"email\":\"\
+        tye.kindinger@noaa.gov\",\"url\":null,\"organization_oceanexpert_id\":11379,\"\
+        type_display\":\"Contact\"},{\"role\":null,\"type\":\"contact\",\"givenname\"\
+        :\"Jake\",\"surname\":\"Asher\",\"organization\":\"National Oceanic and Atmospheric\
+        \ Administration\",\"position\":\"Marine Ecosystems Research Specialist\"\
+        ,\"email\":\"jacob.asher@noaa.gov\",\"url\":null,\"organization_oceanexpert_id\"\
+        :11379,\"type_display\":\"Contact\"},{\"role\":null,\"type\":\"metadataProvider\"\
+        ,\"givenname\":\"Annette\",\"surname\":\"DesRochers\",\"organization\":\"\
+        National Oceanic and Atmospheric Administration\",\"position\":\"Data Steward\"\
+        ,\"email\":\"annette.desrochers@noaa.gov\",\"url\":null,\"organization_oceanexpert_id\"\
+        :11379,\"type_display\":\"Metadata Provider\"},{\"role\":\"publisher\",\"\
+        type\":\"associatedParty\",\"givenname\":\"Abby\",\"surname\":\"Benson\",\"\
+        organization\":\"U.S. Geological Survey\",\"position\":\"Biologist\",\"email\"\
+        :\"albenson@usgs.gov\",\"url\":null,\"organization_oceanexpert_id\":12976,\"\
+        type_display\":\"Publisher\"},{\"role\":\"processor\",\"type\":\"associatedParty\"\
+        ,\"givenname\":\"Sarah\",\"surname\":\"Bingo\",\"organization\":\"Pacific\
+        \ Islands Ocean Observing System\",\"position\":\"Data Manager\",\"email\"\
+        :\"sarahr6@hawaii.edu\",\"url\":null,\"organization_oceanexpert_id\":20188}],\"\
+        nodes\":[{\"id\":\"b7c47783-a020-4173-b390-7b57c4fa1426\",\"name\":\"OBIS\
+        \ USA\"}],\"keywords\":[{\"keyword\":\"Samplingevent\",\"thesaurus\":\"GBIF\
+        \ Dataset Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type.xml\"\
+        },{\"keyword\":\"Samplingevent\",\"thesaurus\":\"GBIF Dataset Type Vocabulary:\
+        \ http://rs.gbif.org/vocabulary/gbif/dataset_type_2015-07-10.xml\"}],\"downloads\"\
+        :[{\"year\":2026,\"downloads\":15490,\"records\":7701003},{\"year\":2025,\"\
+        downloads\":20347,\"records\":72637416},{\"year\":2024,\"downloads\":20722,\"\
+        records\":94077383},{\"year\":2023,\"downloads\":7402,\"records\":71069289},{\"\
+        year\":2022,\"downloads\":7385,\"records\":50660440},{\"year\":2021,\"downloads\"\
+        :20082,\"records\":58145445},{\"year\":2020,\"downloads\":1997,\"records\"\
+        :18398257}],\"tags\":null,\"disable_extensions\":null,\"records\":28745},{\"\
+        id\":\"49bbc435-2bff-432c-8dd4-b2e7b514ada3\",\"url\":\"http://ipt.vliz.be/eurobis/resource?r=obis_corals\"\
+        ,\"archive\":\"https://ipt.vliz.be/eurobis/archive.do?r=obis_corals\",\"published\"\
+        :\"2025-09-17T08:30:59.000Z\",\"created\":null,\"updated\":\"2026-05-23T20:30:29.115Z\"\
+        ,\"core\":\"occurrence\",\"extensions\":[],\"statistics\":{\"Event\":0,\"\
+        absence\":0,\"dropped\":31,\"Occurrence\":6553,\"DNADerivedData\":0,\"MeasurementOrFact\"\
+        :0},\"extent\":\"POLYGON((-179.979995727539 -73.6800003051758,180 -73.6800003051758,180\
+        \ 71.3499984741211,-179.979995727539 71.3499984741211,-179.979995727539 -73.6800003051758))\"\
+        ,\"title\":\"Cold water corals\",\"citation\":\"Rogers, A. and J. Hall-Spencer.\
+        \ Cold-water Corals. UNEP World Conservation Monitoring Centre (UNEP-WCMC),\
+        \ 2005, Version 2.0.\",\"citation_id\":null,\"abstract\":\"\\n           \
+        \ <p>Dataset of cold water corals from seamounts.</p>\\n        \",\"intellectualrights\"\
+        :\"This work is licensed under a  Creative Commons Attribution (CC-BY) 4.0\
+        \ License\",\"feed\":{\"id\":\"e3dad797-a123-4e78-8473-5b0a295d3685\",\"url\"\
+        :\"http://ipt.vliz.be/eurobis/rss.do\",\"website\":\"http://ipt.vliz.be/eurobis\"\
+        ,\"active\":true},\"institutes\":[{\"name\":\"University of Plymouth\",\"\
+        oceanexpert_id\":5804,\"oceanexpert_parent_id\":null},{\"name\":\"Vlaams Instituut\
+        \ voor de Zee\",\"oceanexpert_id\":6223,\"oceanexpert_parent_id\":null},{\"\
+        name\":\"The Marine Biological Association of the United Kingdom\",\"oceanexpert_id\"\
+        :7168,\"oceanexpert_parent_id\":null},{\"name\":\"National Oceanography Centre,\
+        \ Southampton\",\"oceanexpert_id\":13321,\"oceanexpert_parent_id\":null}],\"\
+        contacts\":[{\"role\":null,\"type\":\"creator\",\"givenname\":\"Alex\",\"\
+        surname\":\"Rogers\",\"organization\":\"University of Southampton; National\
+        \ Oceanography Centre\",\"position\":null,\"email\":\"alex.d.rogers@noc.soton.ac.uk\"\
+        ,\"url\":null,\"organization_oceanexpert_id\":13321,\"type_display\":\"Creator\"\
+        },{\"role\":null,\"type\":\"creator\",\"givenname\":\"Jason\",\"surname\"\
+        :\"Hall-Spencer\",\"organization\":\"University of Plymouth\",\"position\"\
+        :null,\"email\":null,\"url\":null,\"organization_oceanexpert_id\":5804,\"\
+        type_display\":\"Creator\"},{\"role\":null,\"type\":\"contact\",\"givenname\"\
+        :null,\"surname\":null,\"organization\":\"Flanders Marine Institute (VLIZ)\"\
+        ,\"position\":null,\"email\":\"info@vliz.be\",\"url\":\"https://www.vliz.be\"\
+        ,\"organization_oceanexpert_id\":6223,\"type_display\":\"Contact\"},{\"role\"\
+        :null,\"type\":\"metadataProvider\",\"givenname\":null,\"surname\":null,\"\
+        organization\":\"Marine Biological Association of the UK\",\"position\":null,\"\
+        email\":null,\"url\":null,\"organization_oceanexpert_id\":7168,\"type_display\"\
+        :\"Metadata Provider\"},{\"role\":\"contentProvider\",\"type\":\"associatedParty\"\
+        ,\"givenname\":null,\"surname\":null,\"organization\":\"Marine Biological\
+        \ Association of the UK\",\"position\":null,\"email\":null,\"url\":null,\"\
+        organization_oceanexpert_id\":7168,\"type_display\":\"Content Provider\"}],\"\
+        nodes\":[{\"id\":\"4bf79a01-65a9-4db6-b37b-18434f26ddfc\",\"name\":\"EurOBIS\"\
+        },{\"id\":\"f92d5d7f-47a6-4605-9fd0-a8538dfde3fd\",\"name\":\"OBIS UK\"}],\"\
+        keywords\":[{\"keyword\":\"Bio-geographical regions\",\"thesaurus\":\"INSPIRE\
+        \ themes\"},{\"keyword\":\"Habitats and biotopes\",\"thesaurus\":\"INSPIRE\
+        \ themes\"},{\"keyword\":\"Sea regions\",\"thesaurus\":\"INSPIRE themes\"\
+        },{\"keyword\":\"Biota\",\"thesaurus\":\"INSPIRE Topics\"},{\"keyword\":\"\
+        Environment\",\"thesaurus\":\"INSPIRE Topics\"},{\"keyword\":\"Geoscientific\
+        \ Information\",\"thesaurus\":\"INSPIRE Topics\"},{\"keyword\":\"Oceans\"\
+        ,\"thesaurus\":\"INSPIRE Topics\"},{\"keyword\":\"EurOBIS calculated BBOX\"\
+        ,\"thesaurus\":\"Geoterms no link Marine Regions\"},{\"keyword\":\"Metadata\
+        \ non conformant\",\"thesaurus\":\"INSPIRE Conformity\"},{\"keyword\":\"Metadata\
+        \ not evaluated\",\"thesaurus\":\"INSPIRE Conformity\"},{\"keyword\":\"No\
+        \ limitations to public access\",\"thesaurus\":\"INSPIRE Limitations on public\
+        \ access\"},{\"keyword\":\"WGS84 (EPSG:4326)\",\"thesaurus\":\"Coordinate\
+        \ Reference System\"},{\"keyword\":\"XYZ ASCII\",\"thesaurus\":\"Spatial data\
+        \ formats\"},{\"keyword\":\"Zoobenthos\",\"thesaurus\":\"ASFA Thesaurus List\"\
+        },{\"keyword\":\"Occurrence\",\"thesaurus\":\"GBIF Dataset Type Vocabulary:\
+        \ http://rs.gbif.org/vocabulary/gbif/dataset_type_2015-07-10.xml\"},{\"keyword\"\
+        :\"Observation\",\"thesaurus\":\"GBIF Dataset Subtype Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_subtype.xml\"\
+        }],\"downloads\":[{\"year\":2026,\"downloads\":12310,\"records\":1724383},{\"\
+        year\":2025,\"downloads\":8349,\"records\":15221629},{\"year\":2024,\"downloads\"\
+        :10838,\"records\":21137014},{\"year\":2023,\"downloads\":6086,\"records\"\
+        :16427081},{\"year\":2022,\"downloads\":17511,\"records\":12501482},{\"year\"\
+        :2021,\"downloads\":6860,\"records\":13484266},{\"year\":2020,\"downloads\"\
+        :2428,\"records\":4394314},{\"year\":2019,\"downloads\":1208,\"records\":750783},{\"\
+        year\":2018,\"downloads\":10,\"records\":2827}],\"tags\":null,\"disable_extensions\"\
+        :null,\"records\":6522},{\"id\":\"fca3b113-b145-446c-a23c-3188090e43af\",\"\
+        url\":\"https://ipt-obis.gbif.us/resource?r=noaa_micronesia_reef_monitoring_benthic\"\
+        ,\"archive\":\"https://ipt-obis.gbif.us/archive.do?r=noaa_micronesia_reef_monitoring_benthic\"\
+        ,\"published\":\"2020-06-02T20:12:09.000Z\",\"created\":\"2020-06-02T22:23:55.375Z\"\
+        ,\"updated\":\"2025-11-09T20:59:13.821Z\",\"core\":\"event\",\"extensions\"\
+        :[\"measurementorfact\",\"occurrence\"],\"statistics\":{\"Event\":616,\"absence\"\
+        :68498,\"dropped\":16632,\"Occurrence\":75152,\"DNADerivedData\":0,\"MeasurementOrFact\"\
+        :6160},\"extent\":\"POLYGON((138.033610339 4.99999107605,171.382242 4.99999107605,171.382242\
+        \ 9.64183352977,138.033610339 9.64183352977,138.033610339 4.99999107605))\"\
+        ,\"title\":\"NOAA coral reef monitoring benthic data from sites across Micronesia\
+        \ from 2009-09-29 to 2015-09-25\",\"citation\":null,\"citation_id\":null,\"\
+        abstract\":\"Benthic census data were collected from sites around Micronesia\
+        \ as part of the ongoing Micronesia Challenge. Information on the program\
+        \ can be found at (www.micronesiareefmonitoring.com). Survey sites were selected\
+        \ around each island to be representative of natural environmental gradients,\
+        \ management, and major reef types. Thus, full site designs can be used to\
+        \ evaluate both island trends and site-specific trends. Benthic substrates\
+        \ were evaluated using a photo-quadrat technique. At each site, five 50-m\
+        \ transects were used to measure fishes, corals, and other benthic assemblages\
+        \ between 8\u201310 m on outer reefs, and at 3\u20135 m for inner lagoon reefs.Fifty\
+        \ photos were taken at 1-m intervals along each 50-m transect line. Within\
+        \ each photo the benthic substrates were evaluated under five randomly allocated\
+        \ crosses. Benthic-assemblage metrics were derived from data aggregated across\
+        \ the 50 photographs, to the transect level (n = 5). Metrics included coral\
+        \ and macroalgal cover, coral-genus richness, and a benthic substrate ratio\
+        \ defined by the percentage cover of heavily calcifying (corals and CCA) versus\
+        \ non-or-low calcifying (turf, encrusting, and macroalgae) substrates.\",\"\
+        intellectualrights\":\"To the extent possible under law, the publisher has\
+        \ waived all rights to these data and has dedicated them to the  Public Domain\
+        \ (CC0 1.0)\",\"feed\":{\"id\":\"8112d75b-7e78-4641-9e09-9a2cc7db7375\",\"\
+        url\":\"https://ipt-obis.gbif.us/rss.do\",\"website\":\"https://ipt-obis.gbif.us\"\
+        ,\"active\":true},\"institutes\":[{\"name\":\"Pacific Islands Ocean Observing\
+        \ System\",\"oceanexpert_id\":20188,\"oceanexpert_parent_id\":null}],\"contacts\"\
+        :[{\"role\":null,\"type\":\"creator\",\"givenname\":\"Peter\",\"surname\"\
+        :\"Houk\",\"organization\":\"University of Guam\",\"position\":\"Professor\"\
+        ,\"email\":\"houkp@triton.uog.edu\",\"url\":null,\"organization_oceanexpert_id\"\
+        :null,\"type_display\":\"Creator\"},{\"role\":null,\"type\":\"contact\",\"\
+        givenname\":\"Peter\",\"surname\":\"Houk\",\"organization\":\"University of\
+        \ Guam\",\"position\":\"Professor\",\"email\":\"houkp@triton.uog.edu\",\"\
+        url\":null,\"organization_oceanexpert_id\":null,\"type_display\":\"Contact\"\
+        },{\"role\":null,\"type\":\"metadataProvider\",\"givenname\":\"Peter\",\"\
+        surname\":\"Houk\",\"organization\":\"University of Guam\",\"position\":\"\
+        Professor\",\"email\":\"houkp@triton.uog.edu\",\"url\":null,\"organization_oceanexpert_id\"\
+        :null,\"type_display\":\"Metadata Provider\"},{\"role\":\"publisher\",\"type\"\
+        :\"associatedParty\",\"givenname\":\"Abigail\",\"surname\":\"Benson\",\"organization\"\
+        :\"United States Fish and Wildlife Service\",\"position\":null,\"email\":\"\
+        albenson@usgs.gov\",\"url\":null,\"organization_oceanexpert_id\":null,\"type_display\"\
+        :\"Publisher\"},{\"role\":\"processor\",\"type\":\"associatedParty\",\"givenname\"\
+        :\"Sarah\",\"surname\":\"Bingo\",\"organization\":\"Pacific Islands Ocean\
+        \ Observing System\",\"position\":\"Data Manager\",\"email\":\"sarahr6@hawaii.edu\"\
+        ,\"url\":null,\"organization_oceanexpert_id\":20188}],\"nodes\":[{\"id\":\"\
+        b7c47783-a020-4173-b390-7b57c4fa1426\",\"name\":\"OBIS USA\"}],\"keywords\"\
+        :[{\"keyword\":\"Samplingevent\",\"thesaurus\":\"GBIF Dataset Type Vocabulary:\
+        \ http://rs.gbif.org/vocabulary/gbif/dataset_type.xml\"}],\"downloads\":[{\"\
+        year\":2026,\"downloads\":629,\"records\":1303752},{\"year\":2025,\"downloads\"\
+        :2674,\"records\":14408013},{\"year\":2024,\"downloads\":3762,\"records\"\
+        :20037297},{\"year\":2023,\"downloads\":2590,\"records\":15495532},{\"year\"\
+        :2022,\"downloads\":2039,\"records\":11183186},{\"year\":2021,\"downloads\"\
+        :2330,\"records\":12558787},{\"year\":2020,\"downloads\":741,\"records\":3889024}],\"\
+        tags\":null,\"disable_extensions\":null,\"records\":6288},{\"id\":\"178270b9-6fca-41f0-8322-e195fca69f13\"\
+        ,\"url\":\"https://ipt.iobis.org/indobis/resource?r=marine_sponges_gom\",\"\
+        archive\":\"https://ipt.iobis.org/indobis/archive.do?r=marine_sponges_gom\"\
+        ,\"published\":\"2022-12-23T06:51:36.000Z\",\"created\":\"2022-12-19T08:33:03.920Z\"\
+        ,\"updated\":\"2025-11-09T20:51:57.242Z\",\"core\":\"occurrence\",\"extensions\"\
+        :[],\"statistics\":{\"Event\":0,\"absence\":0,\"dropped\":0,\"Occurrence\"\
+        :981,\"DNADerivedData\":0,\"MeasurementOrFact\":0},\"extent\":\"POLYGON((78.1236\
+        \ 8.8395,79.2305 8.8395,79.2305 9.2442,78.1236 9.2442,78.1236 8.8395))\",\"\
+        title\":\" Distribution of sponges in coral reef ecosystem of gulf of mannar\
+        \ collected during 2017-2020\",\"citation\":\"Arathy Mol A (2022): Distribution\
+        \ of sponges in the coral reef ecosystem of the gulf of mannar collected during\
+        \ 2017-2020. Suganthi Devadason Marine Research Institute, affiliated with\
+        \ Manonmaniam Sundaranar University, Tirunelvelli.\",\"citation_id\":null,\"\
+        abstract\":\"The assessment of the distribution of marine sponges was conducted\
+        \ in the reef areas of the 21 islands of the Gulf of Mannar Marine National\
+        \ Park (southeastern India). The underwater study, carried out during October-December\
+        \ from 2017 to 2020, included visual observations through random SCUBA diving.\
+        \ Field data for the present study were collected in association with the\
+        \ reef research team of SDMRI during their regular reef monitoring. Small\
+        \ fragments of sponges weighing not more than 5 g were hand-picked or collected\
+        \ using a hammer and chisel in case of encrusting sponges. The collected fragments\
+        \ were immediately transferred to suitable containers and stored in 80% ethanol\
+        \ for further identification and spicule analysis.\\n\",\"intellectualrights\"\
+        :\"To the extent possible under law, the publisher has waived all rights to\
+        \ these data and has dedicated them to the  Public Domain (CC0 1.0)\",\"feed\"\
+        :{\"id\":\"ac353c47-b78d-444f-84bc-0752bd384fef\",\"url\":\"http://ipt.iobis.org/indobis/rss.do\"\
+        ,\"website\":\"http://ipt.iobis.org/indobis\",\"active\":true},\"institutes\"\
+        :[{\"name\":\"Suganthi Devadason Marine Research Institute\",\"oceanexpert_id\"\
+        :8475,\"oceanexpert_parent_id\":null},{\"name\":\"Centre for Marine Living\
+        \ Resources & Ecology, Ministry of Earth Sciences, Government of India\",\"\
+        oceanexpert_id\":11420,\"oceanexpert_parent_id\":null}],\"contacts\":[{\"\
+        role\":null,\"type\":\"creator\",\"givenname\":\"Johnny\",\"surname\":\"Konjarla\"\
+        ,\"organization\":\"Centre for Marine Living Resources &amp; Ecology\",\"\
+        position\":\"Project Scientist\",\"email\":\"johnny.konjarla@gmail.com\",\"\
+        url\":null,\"organization_oceanexpert_id\":11420,\"type_display\":\"Creator\"\
+        },{\"role\":null,\"type\":\"contact\",\"givenname\":\"Arathy\",\"surname\"\
+        :\"Mol A\",\"organization\":\"Centre for Marine Living Resources &amp; Ecology\"\
+        ,\"position\":\"Project Scientist\",\"email\":\"arathyashok63@gmail.com\"\
+        ,\"url\":null,\"organization_oceanexpert_id\":11420,\"type_display\":\"Contact\"\
+        },{\"role\":null,\"type\":\"metadataProvider\",\"givenname\":\"Arathy\",\"\
+        surname\":\"Mol A\",\"organization\":\"Centre for Marine Living Resources\
+        \ &amp; Ecology\",\"position\":\"Project Scientist\",\"email\":\"arathyashok63@gmail.com\"\
+        ,\"url\":null,\"organization_oceanexpert_id\":11420,\"type_display\":\"Metadata\
+        \ Provider\"},{\"role\":\"processor\",\"type\":\"associatedParty\",\"givenname\"\
+        :\"Johnny\",\"surname\":\"Konjarla\",\"organization\":\"Centre for Marine\
+        \ Living Resources &amp; Ecology\",\"position\":\"Project Scientist\",\"email\"\
+        :\"johnny.konjarla@gmail.com\",\"url\":null,\"organization_oceanexpert_id\"\
+        :11420},{\"role\":\"metadataProvider\",\"type\":\"associatedParty\",\"givenname\"\
+        :\"Dr. J.K. Patterson\",\"surname\":\"Edward\",\"organization\":\"Suganthi\
+        \ Devadason Marine Research Institute\",\"position\":\"Director\",\"email\"\
+        :\"edwardjkpatterson@sdmri.in\",\"url\":null,\"organization_oceanexpert_id\"\
+        :8475},{\"role\":\"author\",\"type\":\"personnel\",\"givenname\":\"Arathy\"\
+        ,\"surname\":\"Mol\",\"organization\":null,\"position\":null,\"email\":null,\"\
+        url\":null,\"organization_oceanexpert_id\":null,\"type_display\":\"Author\"\
+        },{\"role\":\"author\",\"type\":\"personnel\",\"givenname\":\"Dr. J. K. Patterson\"\
+        ,\"surname\":\"Edward\",\"organization\":null,\"position\":null,\"email\"\
+        :null,\"url\":null,\"organization_oceanexpert_id\":null,\"type_display\":\"\
+        Author\"}],\"nodes\":[{\"id\":\"1a3b0f1a-4474-4d73-9ee1-d28f92a83996\",\"\
+        name\":\"IndOBIS\"}],\"keywords\":[{\"keyword\":\"Occurrence; Porifera; Coral\
+        \ reef sponges; Bay of Bengal; Gulf of Mannar\",\"thesaurus\":\"GBIF Dataset\
+        \ Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type_2015-07-10.xml\"\
+        }],\"downloads\":[{\"year\":2026,\"downloads\":642,\"records\":171912},{\"\
+        year\":2025,\"downloads\":2515,\"records\":2280311},{\"year\":2024,\"downloads\"\
+        :3423,\"records\":3094338},{\"year\":2023,\"downloads\":2879,\"records\":2408393},{\"\
+        year\":2022,\"downloads\":52,\"records\":51012}],\"tags\":null,\"disable_extensions\"\
+        :null,\"records\":981},{\"id\":\"731e318c-d692-4d6b-b4cc-edff0d385098\",\"\
+        url\":\"https://ipt-obis.gbif.us/resource?r=noaa_micronesia_reef_monitoring_invert\"\
+        ,\"archive\":\"https://ipt-obis.gbif.us/archive.do?r=noaa_micronesia_reef_monitoring_invert\"\
+        ,\"published\":\"2020-06-01T20:42:58.000Z\",\"created\":\"2020-05-28T18:47:48.233Z\"\
+        ,\"updated\":\"2025-11-10T12:55:27.466Z\",\"core\":\"event\",\"extensions\"\
+        :[\"measurementorfact\",\"occurrence\"],\"statistics\":{\"Event\":330,\"absence\"\
+        :88,\"dropped\":84,\"Occurrence\":1028,\"DNADerivedData\":0,\"MeasurementOrFact\"\
+        :76},\"extent\":\"POLYGON((138.033610339 6.8625,171.351014 6.8625,171.351014\
+        \ 9.64183352977,138.033610339 9.64183352977,138.033610339 6.8625))\",\"title\"\
+        :\"NOAA coral reef monitoring invertebrate data from sites across Micronesia\
+        \ from 2009-09-29 to 2015-09-25\",\"citation\":\"Houk P (2020). NOAA coral\
+        \ reef monitoring invertebrate data from sites across Micronesia from 2009-09-29\
+        \ to 2015-09-25. United States Geological Survey. Sampling event dataset https://doi.org/10.15468/949wfb\
+        \ \",\"citation_id\":null,\"abstract\":\"Invertebrate census data were collected\
+        \ from sites around Micronesia as part of the ongoing Micronesia Challenge.\
+        \ Information on the program can be found at (www.micronesiareefmonitoring.com).\
+        \ Survey sites were selected around each island to be representative of natural\
+        \ environmental gradients, management, and major reef types. Thus, full site\
+        \ designs can be used to evaluate both island trends and site-specific trends.\
+        \ Benthic substrates were evaluated using a photo-quadrat technique. At each\
+        \ site, five 50-m transects were used to measure fishes, corals, and other\
+        \ benthic assemblages between 8\u201310 m on outer reefs, and at 3\u20135\
+        \ m for inner lagoon reefs. Each 50-m transect was surveyed at a 5-m width\
+        \ by either one or two observers. Invertebrates were identified to the lowest\
+        \ possible taxon and enumerated. When possible, a size esitmate to the nearest\
+        \ 5 cm was provided.\",\"intellectualrights\":\"To the extent possible under\
+        \ law, the publisher has waived all rights to these data and has dedicated\
+        \ them to the  Public Domain (CC0 1.0)\",\"feed\":{\"id\":\"8112d75b-7e78-4641-9e09-9a2cc7db7375\"\
+        ,\"url\":\"https://ipt-obis.gbif.us/rss.do\",\"website\":\"https://ipt-obis.gbif.us\"\
+        ,\"active\":true},\"institutes\":[{\"name\":\"U.S. Geological Survey HQ\"\
+        ,\"oceanexpert_id\":12976,\"oceanexpert_parent_id\":null},{\"name\":\"Pacific\
+        \ Islands Ocean Observing System\",\"oceanexpert_id\":20188,\"oceanexpert_parent_id\"\
+        :null}],\"contacts\":[{\"role\":null,\"type\":\"creator\",\"givenname\":\"\
+        Peter\",\"surname\":\"Houk\",\"organization\":\"University of Guam\",\"position\"\
+        :\"Professor\",\"email\":\"houkp@triton.uog.edu\",\"url\":null,\"organization_oceanexpert_id\"\
+        :null,\"type_display\":\"Creator\"},{\"role\":null,\"type\":\"contact\",\"\
+        givenname\":\"Peter\",\"surname\":\"Houk\",\"organization\":\"University of\
+        \ Guam\",\"position\":\"Professor\",\"email\":\"houkp@triton.uog.edu\",\"\
+        url\":null,\"organization_oceanexpert_id\":null,\"type_display\":\"Contact\"\
+        },{\"role\":null,\"type\":\"metadataProvider\",\"givenname\":\"Peter\",\"\
+        surname\":\"Houk\",\"organization\":\"University of Guam\",\"position\":\"\
+        Professor\",\"email\":\"houkp@triton.uog.edu\",\"url\":null,\"organization_oceanexpert_id\"\
+        :null,\"type_display\":\"Metadata Provider\"},{\"role\":\"publisher\",\"type\"\
+        :\"associatedParty\",\"givenname\":\"Abby\",\"surname\":\"Benson\",\"organization\"\
+        :\"U.S. Geological Survey\",\"position\":\"Biologist\",\"email\":\"albenson@usgs.gov\"\
+        ,\"url\":null,\"organization_oceanexpert_id\":12976,\"type_display\":\"Publisher\"\
+        },{\"role\":\"processor\",\"type\":\"associatedParty\",\"givenname\":\"Sarah\"\
+        ,\"surname\":\"Bingo\",\"organization\":\"Pacific Islands Ocean Observing\
+        \ System\",\"position\":\"Data Manager\",\"email\":\"sarahr6@hawaii.edu\"\
+        ,\"url\":null,\"organization_oceanexpert_id\":20188}],\"nodes\":[{\"id\":\"\
+        b7c47783-a020-4173-b390-7b57c4fa1426\",\"name\":\"OBIS USA\"}],\"keywords\"\
+        :[{\"keyword\":\"Occurrence\",\"thesaurus\":\"GBIF Dataset Type Vocabulary:\
+        \ http://rs.gbif.org/vocabulary/gbif/dataset_type.xml\"}],\"downloads\":[{\"\
+        year\":2026,\"downloads\":1134,\"records\":146085},{\"year\":2025,\"downloads\"\
+        :2816,\"records\":2130351},{\"year\":2024,\"downloads\":3894,\"records\":2991096},{\"\
+        year\":2023,\"downloads\":2859,\"records\":2308910},{\"year\":2022,\"downloads\"\
+        :2415,\"records\":1652336},{\"year\":2021,\"downloads\":3896,\"records\":1839012},{\"\
+        year\":2020,\"downloads\":766,\"records\":578844}],\"tags\":null,\"disable_extensions\"\
+        :null,\"records\":940},{\"id\":\"63108715-3d0c-4a26-847f-16ca305c9cb1\",\"\
+        url\":\"http://ipt.obis.org/nonode/resource?r=vinpcoraltransplantstudy\",\"\
+        archive\":\"http://ipt.obis.org/nonode/archive.do?r=vinpcoraltransplantstudy\"\
+        ,\"published\":null,\"created\":null,\"updated\":\"2025-11-12T16:14:09.846Z\"\
+        ,\"core\":\"occurrence\",\"extensions\":[],\"statistics\":{\"Event\":0,\"\
+        absence\":0,\"dropped\":0,\"Occurrence\":908,\"DNADerivedData\":0,\"MeasurementOrFact\"\
+        :0},\"extent\":\"POLYGON((-64.7807846069 18.3471641541,-64.7277145386 18.3471641541,-64.7277145386\
+        \ 18.36926651,-64.7807846069 18.36926651,-64.7807846069 18.3471641541))\"\
+        ,\"title\":\"Virgin Islands National Park Coral Transplant Study\",\"citation\"\
+        :\"Garrison, V.H. 2010. Virgin Islands National Park Coral Transplant Study.\
+        \ U.S. Geological Survey Southeast Ecological Science Center, 600 Fourth Street\
+        \ South, St. Petersburg, Florida 33701. Retrieved from http://www.usgs.gov/obis-usa/.\"\
+        ,\"citation_id\":null,\"abstract\":\"In a pilot project in the Caribbean (Virgin\
+        \ Islands National Park, St. John, U.S. Virgin Islands), storm-produced fragments\
+        \ of <i>Acropora palmata</i>, <i>A. cervicornis</i>, and <i>Porites porites</i>\
+        \ were collected from donor reefs and transplanted to nearby degraded reefs.\"\
+        ,\"intellectualrights\":\"Restricted\",\"feed\":{\"id\":\"f6ecda39-1165-4b36-86d3-61ada8abd7bb\"\
+        ,\"url\":\"http://ipt.obis.org/nonode/rss.do\",\"website\":\"http://ipt.obis.org/nonode\"\
+        ,\"active\":false},\"institutes\":[{\"name\":\"Intergovernmental Oceanographic\
+        \ Commission of UNESCO\",\"oceanexpert_id\":6860,\"oceanexpert_parent_id\"\
+        :null},{\"name\":\"U.S. Geological Survey,  Southeast Ecological Science Center\"\
+        ,\"oceanexpert_id\":8724,\"oceanexpert_parent_id\":12976},{\"name\":\"U.S.\
+        \ Geological Survey HQ\",\"oceanexpert_id\":12976,\"oceanexpert_parent_id\"\
+        :null}],\"contacts\":[{\"role\":null,\"type\":\"creator\",\"givenname\":null,\"\
+        surname\":null,\"organization\":\"U.S. Geological Survey Southeast Ecological\
+        \ Science Center (USGS-SESC)\",\"position\":null,\"email\":null,\"url\":null,\"\
+        organization_oceanexpert_id\":8724,\"type_display\":\"Creator\"},{\"role\"\
+        :null,\"type\":\"contact\",\"givenname\":\"Virginia\",\"surname\":\"Garrison\"\
+        ,\"organization\":\"U.S. Geological Survey (USGS)\",\"position\":null,\"email\"\
+        :\"ginger_garrison@usgs.gov\",\"url\":null,\"organization_oceanexpert_id\"\
+        :12976,\"type_display\":\"Contact\"},{\"role\":null,\"type\":\"metadataProvider\"\
+        ,\"givenname\":null,\"surname\":\"OBIS Secretariat\",\"organization\":\"Intergovernmental\
+        \ Oceanographic Commission of UNESCO\",\"position\":null,\"email\":\"info@iobis.org\"\
+        ,\"url\":\"http://www.iobis.org\",\"organization_oceanexpert_id\":6860,\"\
+        type_display\":\"Metadata Provider\"}],\"nodes\":[{\"id\":\"310922b4-9d0c-4de1-92d7-9b442d34765b\"\
+        ,\"name\":\"OBIS Secretariat\"}],\"keywords\":[{\"keyword\":\"Occurrence\"\
+        ,\"thesaurus\":\"GBIF Dataset Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type.xml\"\
+        },{\"keyword\":\"Observation\",\"thesaurus\":\"GBIF Dataset Subtype Vocabulary:\
+        \ http://rs.gbif.org/vocabulary/gbif/dataset_subtype.xml\"}],\"downloads\"\
+        :[{\"year\":2026,\"downloads\":443,\"records\":275044},{\"year\":2025,\"downloads\"\
+        :2389,\"records\":2119000},{\"year\":2024,\"downloads\":3214,\"records\":2900900},{\"\
+        year\":2023,\"downloads\":2507,\"records\":2257415},{\"year\":2022,\"downloads\"\
+        :2096,\"records\":1774295},{\"year\":2021,\"downloads\":2114,\"records\":1882545},{\"\
+        year\":2020,\"downloads\":714,\"records\":624076},{\"year\":2019,\"downloads\"\
+        :130,\"records\":97147},{\"year\":2018,\"downloads\":1,\"records\":908}],\"\
+        tags\":null,\"disable_extensions\":null,\"records\":908},{\"id\":\"7a067da3-9c42-4805-a32f-f72a3b880eab\"\
+        ,\"url\":\"http://ipt.vliz.be/eurobis/resource?r=observadoresdelmar\",\"archive\"\
+        :\"https://ipt.vliz.be/eurobis/archive.do?r=observadoresdelmar\",\"published\"\
+        :\"2025-09-17T10:11:44.000Z\",\"created\":\"2021-11-12T02:32:44.146Z\",\"\
+        updated\":\"2026-09-18T19:36:55.037Z\",\"core\":\"event\",\"extensions\":[\"\
+        measurementorfact\",\"occurrence\"],\"statistics\":{\"Event\":9807,\"absence\"\
+        :0,\"dropped\":35,\"Occurrence\":9831,\"DNADerivedData\":0,\"MeasurementOrFact\"\
+        :13823},\"extent\":\"POLYGON((-28.6258 27.6384,35.9064 27.6384,35.9064 45.7626,-28.6258\
+        \ 45.7626,-28.6258 27.6384))\",\"title\":\"Global Marine biodiversity data\
+        \ from Seawatchers Marine Citizen Science Platform 1980-2020\",\"citation\"\
+        :\"Chic, Oscar; Garrabou, Joaquim. (2020) Global Marine biodiversity data\
+        \ from Seawatchers Marine Citizen Science Platform between 1980 and 2020\"\
+        ,\"citation_id\":null,\"abstract\":\"\\n    <p>Observadores del Mar is a marine\
+        \ citizen science platform launched in 2012 devoted to enhancing the understanding\
+        \ of the conservation status of marine ecosystems. The platform hosts 13 projects\
+        \ covering 8 main taxa: corals, jellyfishes, decapod crustaceans, fishes,\
+        \ seaweeds, seagrasses, seabirds and molluscs, in addition to two projects\
+        \ focused on marine litter and reporting information on two main topics: i)\
+        \ biodiversity data focusing mainly on species distribution and abundance,\
+        \ and ii) the impacts of anthropogenic activities  (e.g. jellyfish blooms)\
+        \ and associated mid- to long-term changes (e.g. colonization of invasive\
+        \ species). Almost 12000 observations validated by scientists have been already\
+        \ collected resulting in more than 20 scientific papers and communications.\
+        \ The major findings have been new records of introduced and invasive species,\
+        \ tracking the spread of novel pen shell mortality outbreak in the Mediterranean\
+        \ Sea and monitoring microplastic concentration on beaches.</p>\\n  \",\"\
+        intellectualrights\":\"This work is licensed under a  Creative Commons Attribution\
+        \ Non Commercial (CC-BY-NC) 4.0 License\",\"feed\":{\"id\":\"e3dad797-a123-4e78-8473-5b0a295d3685\"\
+        ,\"url\":\"http://ipt.vliz.be/eurobis/rss.do\",\"website\":\"http://ipt.vliz.be/eurobis\"\
+        ,\"active\":true},\"institutes\":null,\"contacts\":[{\"role\":null,\"type\"\
+        :\"creator\",\"givenname\":\"Joaquim\",\"surname\":\"Garrabou\",\"organization\"\
+        :\"Institut de Ci\xE8ncies del Mar (ICM-CSIC)\",\"position\":null,\"email\"\
+        :\"garrabou@icm.csic.es\",\"url\":null,\"organization_oceanexpert_id\":null,\"\
+        type_display\":\"Creator\"},{\"role\":null,\"type\":\"contact\",\"givenname\"\
+        :\"Joaquim\",\"surname\":\"Garrabou\",\"organization\":\"Institut de Ci\xE8\
+        ncies del Mar (ICM-CSIC)\",\"position\":null,\"email\":\"garrabou@icm.csic.es\"\
+        ,\"url\":null,\"organization_oceanexpert_id\":null,\"type_display\":\"Contact\"\
+        },{\"role\":null,\"type\":\"metadataProvider\",\"givenname\":\"Joaquim\",\"\
+        surname\":\"Garrabou\",\"organization\":\"Institut de Ci\xE8ncies del Mar\
+        \ (ICM-CSIC)\",\"position\":null,\"email\":\"garrabou@icm.csic.es\",\"url\"\
+        :null,\"organization_oceanexpert_id\":null,\"type_display\":\"Metadata Provider\"\
+        },{\"role\":\"user\",\"type\":\"associatedParty\",\"givenname\":\"\xD2scar\"\
+        ,\"surname\":\"Chic Gim\xE9nez\",\"organization\":null,\"position\":null,\"\
+        email\":\"ochic@icm.csic.es\",\"url\":null,\"organization_oceanexpert_id\"\
+        :null,\"type_display\":\"User\"}],\"nodes\":[{\"id\":\"4bf79a01-65a9-4db6-b37b-18434f26ddfc\"\
+        ,\"name\":\"EurOBIS\"}],\"keywords\":[{\"keyword\":\"Marine citizen science\"\
+        ,\"thesaurus\":\"GBIF Dataset Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type.xml\"\
+        },{\"keyword\":\"Conservation biology\",\"thesaurus\":\"GBIF Dataset Type\
+        \ Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type.xml\"},{\"keyword\"\
+        :\"Climate change\",\"thesaurus\":\"GBIF Dataset Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type.xml\"\
+        },{\"keyword\":\"Public engagement\",\"thesaurus\":\"GBIF Dataset Type Vocabulary:\
+        \ http://rs.gbif.org/vocabulary/gbif/dataset_type.xml\"}],\"downloads\":[{\"\
+        year\":2026,\"downloads\":21291,\"records\":1984325},{\"year\":2025,\"downloads\"\
+        :20523,\"records\":22801025},{\"year\":2024,\"downloads\":22585,\"records\"\
+        :31518935},{\"year\":2023,\"downloads\":17762,\"records\":24575997},{\"year\"\
+        :2022,\"downloads\":16669,\"records\":17512342},{\"year\":2021,\"downloads\"\
+        :3263,\"records\":1874520}],\"tags\":[\"https://rs.obis.org/obis/vocabulary/DatasetType/CitizenScience\"\
+        ],\"disable_extensions\":null,\"records\":659},{\"id\":\"b0a7add2-dd9e-4020-9ca4-5df048c8f6a2\"\
+        ,\"url\":\"http://ipt.vliz.be/eurobis/resource?r=biocean\",\"archive\":\"\
+        https://ipt.vliz.be/eurobis/archive.do?r=biocean\",\"published\":null,\"created\"\
+        :null,\"updated\":\"2025-09-30T05:43:18.439Z\",\"core\":\"event\",\"extensions\"\
+        :[\"measurementorfact\",\"occurrence\"],\"statistics\":{\"Event\":3205,\"\
+        absence\":0,\"dropped\":665,\"Occurrence\":32714,\"DNADerivedData\":0,\"MeasurementOrFact\"\
+        :3417},\"extent\":\"POLYGON((-153.539252 -53,168 -53,168 77,-153.539252 77,-153.539252\
+        \ -53))\",\"title\":\"Biological samples from the french oceanographic fleet's\
+        \ deep-sea cruises\",\"citation\":\"Olu K, Cannat M, Arnaud-Haond S, Rabouille\
+        \ C, Lallier F, Blandin J, Cambon-Bonavita M, Justiniano J, Sarradin P, Fouquet\
+        \ Y, Fabri M, Gillet H, Soubigou O, Menot L, Cotten C (2025). Biological samples\
+        \ from the french oceanographic fleet's deep-sea cruises. Version 1.3. IFREMER\
+        \ - French Research Institute for Exploitation of the Sea. Samplingevent dataset.\
+        \ 10.15468/dl.ey5ub5\",\"citation_id\":null,\"abstract\":\"<p>Description\
+        \ of biological samples collected during deep-sea campaigns operated by the\
+        \ French oceanographic fleet since 2011. These data are acquired by underwater\
+        \ devices during the campaigns and then stored by Ifremer's CNDO (Centre National\
+        \ de Donnees Oceanographiques) Sismer. These data are mainly located in the\
+        \ Mid-Atlantic Ridge and around mainland France.</p>\",\"intellectualrights\"\
+        :\"This work is licensed under a  Creative Commons Attribution (CC-BY) 4.0\
+        \ License\",\"feed\":{\"id\":\"e3dad797-a123-4e78-8473-5b0a295d3685\",\"url\"\
+        :\"http://ipt.vliz.be/eurobis/rss.do\",\"website\":\"http://ipt.vliz.be/eurobis\"\
+        ,\"active\":true},\"institutes\":[{\"name\":\"Vlaams Instituut voor de Zee\"\
+        ,\"oceanexpert_id\":6223,\"oceanexpert_parent_id\":null},{\"name\":\"Institut\
+        \ Fran\xE7ais de Recherche pour l'Exploitation de la Mer, Ifremer, Centre\
+        \ de Bretagne\",\"oceanexpert_id\":6509,\"oceanexpert_parent_id\":null},{\"\
+        name\":\"Station Biologique de Roscoff\",\"oceanexpert_id\":19642,\"oceanexpert_parent_id\"\
+        :null}],\"contacts\":[{\"role\":null,\"type\":\"creator\",\"givenname\":null,\"\
+        surname\":null,\"organization\":\"Institut Fran\xE7ais de Recherche pour l'Exploitation\
+        \ de la Mer\",\"position\":null,\"email\":null,\"url\":null,\"organization_oceanexpert_id\"\
+        :6509,\"type_display\":\"Creator\"},{\"role\":null,\"type\":\"creator\",\"\
+        givenname\":\"Karine\",\"surname\":\"Olu\",\"organization\":\"Institut Fran\xE7\
+        ais de Recherche pour l'Exploitation de la Mer\",\"position\":null,\"email\"\
+        :null,\"url\":null,\"organization_oceanexpert_id\":6509,\"type_display\":\"\
+        Creator\"},{\"role\":null,\"type\":\"creator\",\"givenname\":\"Mathilde\"\
+        ,\"surname\":\"Cannat\",\"organization\":\"Institut de Physique du Globe de\
+        \ Paris\",\"position\":null,\"email\":null,\"url\":null,\"organization_oceanexpert_id\"\
+        :null,\"type_display\":\"Creator\"},{\"role\":null,\"type\":\"creator\",\"\
+        givenname\":\"Sophie\",\"surname\":\"Arnaud-Haond\",\"organization\":\"Institut\
+        \ Fran\xE7ais de Recherche pour l'Exploitation de la Mer\",\"position\":null,\"\
+        email\":null,\"url\":null,\"organization_oceanexpert_id\":6509,\"type_display\"\
+        :\"Creator\"},{\"role\":null,\"type\":\"creator\",\"givenname\":\"Marie-Claire\"\
+        ,\"surname\":\"Fabri\",\"organization\":\"Institut Fran\xE7ais de Recherche\
+        \ pour l'Exploitation de la Mer\",\"position\":null,\"email\":null,\"url\"\
+        :null,\"organization_oceanexpert_id\":6509,\"type_display\":\"Creator\"},{\"\
+        role\":null,\"type\":\"creator\",\"givenname\":\"L\xE9na\xEFck\",\"surname\"\
+        :\"Menot\",\"organization\":\"Institut Fran\xE7ais de Recherche pour l'Exploitation\
+        \ de la Mer\",\"position\":null,\"email\":\"lenaick.menot@ifremer.fr\",\"\
+        url\":null,\"organization_oceanexpert_id\":6509,\"type_display\":\"Creator\"\
+        },{\"role\":null,\"type\":\"creator\",\"givenname\":\"Christophe\",\"surname\"\
+        :\"Rabouille\",\"organization\":\"LSCE, UMR CEA-CNRS-UVSQ and IPSL\",\"position\"\
+        :null,\"email\":null,\"url\":null,\"organization_oceanexpert_id\":null,\"\
+        type_display\":\"Creator\"},{\"role\":null,\"type\":\"creator\",\"givenname\"\
+        :\"Fran\xE7ois\",\"surname\":\"Lallier\",\"organization\":\"Sorbonne Universit\xE9\
+        ; Sorbonne Universit\xE9/CNRS, Station Biologique de Roscoff\",\"position\"\
+        :null,\"email\":null,\"url\":null,\"organization_oceanexpert_id\":19642,\"\
+        type_display\":\"Creator\"},{\"role\":null,\"type\":\"creator\",\"givenname\"\
+        :\"J\xE9r\xF4me\",\"surname\":\"Blandin\",\"organization\":\"Institut Fran\xE7\
+        ais de Recherche pour l'Exploitation de la Mer\",\"position\":null,\"email\"\
+        :null,\"url\":null,\"organization_oceanexpert_id\":6509,\"type_display\":\"\
+        Creator\"},{\"role\":null,\"type\":\"creator\",\"givenname\":\"Marie-Anne\"\
+        ,\"surname\":\"Cambon-Bonavita\",\"organization\":\"Institut Fran\xE7ais de\
+        \ Recherche pour l'Exploitation de la Mer\",\"position\":null,\"email\":null,\"\
+        url\":null,\"organization_oceanexpert_id\":6509,\"type_display\":\"Creator\"\
+        },{\"role\":null,\"type\":\"creator\",\"givenname\":\"Jean-Paul\",\"surname\"\
+        :\"Justiniano\",\"organization\":null,\"position\":null,\"email\":null,\"\
+        url\":null,\"organization_oceanexpert_id\":null,\"type_display\":\"Creator\"\
+        },{\"role\":null,\"type\":\"creator\",\"givenname\":\"Pierre-Marie\",\"surname\"\
+        :\"Sarradin\",\"organization\":\"Institut Fran\xE7ais de Recherche pour l'Exploitation\
+        \ de la Mer\",\"position\":null,\"email\":null,\"url\":null,\"organization_oceanexpert_id\"\
+        :6509,\"type_display\":\"Creator\"},{\"role\":null,\"type\":\"creator\",\"\
+        givenname\":\"Yves\",\"surname\":\"Fouquet\",\"organization\":\"Institut Fran\xE7\
+        ais de Recherche pour l'Exploitation de la Mer\",\"position\":null,\"email\"\
+        :null,\"url\":null,\"organization_oceanexpert_id\":6509,\"type_display\":\"\
+        Creator\"},{\"role\":null,\"type\":\"creator\",\"givenname\":\"Herv\xE9\"\
+        ,\"surname\":\"Gillet\",\"organization\":\"Universit\xE9 de Bordeaux\",\"\
+        position\":null,\"email\":null,\"url\":null,\"organization_oceanexpert_id\"\
+        :null,\"type_display\":\"Creator\"},{\"role\":null,\"type\":\"creator\",\"\
+        givenname\":\"Olivier\",\"surname\":\"Soubigou\",\"organization\":\"Institut\
+        \ Fran\xE7ais de Recherche pour l'Exploitation de la Mer\",\"position\":null,\"\
+        email\":null,\"url\":null,\"organization_oceanexpert_id\":6509,\"type_display\"\
+        :\"Creator\"},{\"role\":null,\"type\":\"contact\",\"givenname\":\"Sylvie\"\
+        ,\"surname\":\"Van Iseghem\",\"organization\":\"Institut Fran\xE7ais de Recherche\
+        \ pour l'Exploitation de la Mer\",\"position\":null,\"email\":null,\"url\"\
+        :null,\"organization_oceanexpert_id\":6509,\"type_display\":\"Contact\"},{\"\
+        role\":null,\"type\":\"metadataProvider\",\"givenname\":null,\"surname\":null,\"\
+        organization\":\"Flanders Marine Institute (VLIZ)\",\"position\":null,\"email\"\
+        :\"info@vliz.be\",\"url\":\"https://www.vliz.be\",\"organization_oceanexpert_id\"\
+        :6223,\"type_display\":\"Metadata Provider\"},{\"role\":\"custodianSteward\"\
+        ,\"type\":\"associatedParty\",\"givenname\":\"Catherine\",\"surname\":\"Borremans\"\
+        ,\"organization\":\"Institut Fran\xE7ais de Recherche pour l'Exploitation\
+        \ de la Mer\",\"position\":null,\"email\":null,\"url\":null,\"organization_oceanexpert_id\"\
+        :6509,\"type_display\":\"Custodian Steward\"},{\"role\":\"custodianSteward\"\
+        ,\"type\":\"associatedParty\",\"givenname\":\"Ruben\",\"surname\":\"Perez\
+        \ Perez\",\"organization\":\"Vlaams Instituut voor de Zee\",\"position\":null,\"\
+        email\":\"ruben.perez@vliz.be\",\"url\":null,\"organization_oceanexpert_id\"\
+        :6223,\"type_display\":\"Custodian Steward\"},{\"role\":\"publisher\",\"type\"\
+        :\"associatedParty\",\"givenname\":null,\"surname\":null,\"organization\"\
+        :\"Global Biodiversity Information Facility\",\"position\":null,\"email\"\
+        :null,\"url\":null,\"organization_oceanexpert_id\":null,\"type_display\":\"\
+        Publisher\"},{\"role\":\"pointOfContact\",\"type\":\"associatedParty\",\"\
+        givenname\":\"Cl\xE9mence\",\"surname\":\"Cotten\",\"organization\":\"Institut\
+        \ Fran\xE7ais de Recherche pour l'Exploitation de la Mer\",\"position\":null,\"\
+        email\":null,\"url\":null,\"organization_oceanexpert_id\":6509,\"type_display\"\
+        :\"Point Of Contact\"}],\"nodes\":[{\"id\":\"4bf79a01-65a9-4db6-b37b-18434f26ddfc\"\
+        ,\"name\":\"EurOBIS\"}],\"keywords\":[{\"keyword\":\"A, Mid-Atlantic Ridge\"\
+        ,\"thesaurus\":\"ASFA Geoterms\"},{\"keyword\":\"ANE, Biscay Bay\",\"thesaurus\"\
+        :\"ASFA Geoterms\"},{\"keyword\":\"ANE, Celtic Sea\",\"thesaurus\":\"ASFA\
+        \ Geoterms\"},{\"keyword\":\"ASE, Guinea Gulf\",\"thesaurus\":\"ASFA Geoterms\"\
+        },{\"keyword\":\"Azores\",\"thesaurus\":\"ASFA Geoterms\"},{\"keyword\":\"\
+        MED\",\"thesaurus\":\"ASFA Geoterms\"},{\"keyword\":\"World Waters\",\"thesaurus\"\
+        :\"ASFA Geoterms\"},{\"keyword\":\"Benthos\",\"thesaurus\":\"ASFA Thesaurus\
+        \ List\"},{\"keyword\":\"Deep sea\",\"thesaurus\":\"ASFA Thesaurus List\"\
+        },{\"keyword\":\"Fauna\",\"thesaurus\":\"ASFA Thesaurus List\"},{\"keyword\"\
+        :\"Bio-geographical regions\",\"thesaurus\":\"INSPIRE themes\"},{\"keyword\"\
+        :\"Habitats and biotopes\",\"thesaurus\":\"INSPIRE themes\"},{\"keyword\"\
+        :\"Sea regions\",\"thesaurus\":\"INSPIRE themes\"},{\"keyword\":\"Biota\"\
+        ,\"thesaurus\":\"INSPIRE Topics\"},{\"keyword\":\"Environment\",\"thesaurus\"\
+        :\"INSPIRE Topics\"},{\"keyword\":\"Geoscientific Information\",\"thesaurus\"\
+        :\"INSPIRE Topics\"},{\"keyword\":\"Oceans\",\"thesaurus\":\"INSPIRE Topics\"\
+        },{\"keyword\":\"EurOBIS calculated BBOX\",\"thesaurus\":\"Geoterms no link\
+        \ Marine Regions\"},{\"keyword\":\"Global\",\"thesaurus\":\"INSPIRE Spatial\
+        \ Scope\"},{\"keyword\":\"Metadata non conformant\",\"thesaurus\":\"INSPIRE\
+        \ Conformity\"},{\"keyword\":\"Metadata not evaluated\",\"thesaurus\":\"INSPIRE\
+        \ Conformity\"},{\"keyword\":\"No limitations to public access\",\"thesaurus\"\
+        :\"INSPIRE Limitations on public access\"},{\"keyword\":\"WGS84 (EPSG:4326)\"\
+        ,\"thesaurus\":\"Coordinate Reference System\"},{\"keyword\":\"XYZ ASCII\"\
+        ,\"thesaurus\":\"Spatial data formats\"},{\"keyword\":\"Samplingevent\",\"\
+        thesaurus\":\"GBIF Dataset Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type_2015-07-10.xml\"\
+        }],\"downloads\":[{\"year\":2026,\"downloads\":41669,\"records\":6240900},{\"\
+        year\":2025,\"downloads\":22286,\"records\":73092914},{\"year\":2024,\"downloads\"\
+        :31928,\"records\":103184498},{\"year\":2023,\"downloads\":12787,\"records\"\
+        :80102085},{\"year\":2022,\"downloads\":38113,\"records\":57322559},{\"year\"\
+        :2021,\"downloads\":24601,\"records\":61989201},{\"year\":2020,\"downloads\"\
+        :4372,\"records\":21066068},{\"year\":2019,\"downloads\":920,\"records\":2543235},{\"\
+        year\":2018,\"downloads\":18,\"records\":43983}],\"tags\":null,\"disable_extensions\"\
+        :null,\"records\":634},{\"id\":\"5cee0d88-c2bd-47fe-9a02-5e1a34af8fb3\",\"\
+        url\":\"https://ipt.sibbr.gov.br/mnrj/resource?r=mnrj_cnidaria\",\"archive\"\
+        :\"https://ipt.sibbr.gov.br/mnrj/archive.do?r=mnrj_cnidaria\",\"published\"\
+        :\"2025-08-18T14:00:15.000Z\",\"created\":\"2022-02-10T18:08:45.843Z\",\"\
+        updated\":\"2025-09-20T07:21:22.636Z\",\"core\":\"occurrence\",\"extensions\"\
+        :[],\"statistics\":{\"Event\":0,\"absence\":0,\"dropped\":2221,\"Occurrence\"\
+        :7679,\"DNADerivedData\":0,\"MeasurementOrFact\":0},\"extent\":\"POLYGON((-176.2166667\
+        \ -75.18055556,170.628865 -75.18055556,170.628865 57.3,-176.2166667 57.3,-176.2166667\
+        \ -75.18055556))\",\"title\":\"Cole\xE7\xE3o de Cnidaria do Museu Nacional\
+        \ (MNRJ)\",\"citation\":\"MNRJ(2015) Cole\xE7\xE3o de Cnidaria do Museu Nacional\
+        \ da Universidade Federal do Rio de Janeiro (Hexacorallia e Octocorallia),\
+        \ 7679 registros (atualizado em 15/12/2016).\",\"citation_id\":null,\"abstract\"\
+        :\"A cole\xE7\xE3o foi iniciada (lote MNRJ 00001) apenas na d\xE9cada de 1970.\
+        \ As primeiras entradas foram realizadas pela Dra. Maria J\xFAlia da Costa\
+        \ Bel\xE9m e seus alunos, sendo formada principalmente por exemplares de zona\
+        \ entremar\xE9s e de \xE1guas rasas do Brasil. Na d\xE9cada de 1980, houve\
+        \ grande interc\xE2mbio de exemplares de octocorais intermediado principalmente\
+        \ com a Smithsonian Institution (EUA) pelo Dr. Clovis Barreira e Castro, ganhando\
+        \ representa\xE7\xE3o caribeana. Com o trabalho de \xE2mbito mundial sobre\
+        \ cnidoma na ordem Scleractinia, realizado pela Dra. D\xE9bora de Oliveira\
+        \ Pires na primeira metade da d\xE9cada de 1990, a cole\xE7\xE3o ganhou representatividade\
+        \ de praticamente todas as fam\xEDlias da ordem, com material fixado com tecido,\
+        \ o que \xE9 raro para este grupo taxon\xF4mico, e oriundo principalmente\
+        \ do Rijksmuseum (Holanda) e de novas coletas. A partir de meados da d\xE9\
+        cada de 1990, a cole\xE7\xE3o ganhou forte representatividade de materiais\
+        \ da plataforma e talude continental brasileiro, a partir de amostras recebidas\
+        \ do Programa Recursos Vivos da Zona Econ\xF4mica Exclusiva (REVIZEE - Scores\
+        \ Central e Sul, compreendendo as \xE1reas entre Salvador e o extremo sul\
+        \ do Brasil), do Programa de Observadores de Bordo em Embarca\xE7\xF5es Arrendadas\
+        \ (PROA - UNIVALI), do Projeto de Caracteriza\xE7\xE3o Ambiental Regional\
+        \ da Bacia de Campos (PCR-BC - Petrobras) e outros. Trata-se hoje de uma das\
+        \ melhores cole\xE7\xF5es de mar profundo do grupo em todo o mundo.\",\"intellectualrights\"\
+        :\"This work is licensed under a  Creative Commons Attribution (CC-BY) 4.0\
+        \ License\",\"feed\":{\"id\":\"61065b67-a4a4-4f2e-ada5-5471ce076157\",\"url\"\
+        :\"https://ipt.sibbr.gov.br/mnrj/rss.do\",\"website\":\"https://ipt.sibbr.gov.br/mnrj\"\
+        ,\"active\":true},\"institutes\":[{\"name\":\"Universidade Federal do Rio\
+        \ de Janeiro\",\"oceanexpert_id\":18929,\"oceanexpert_parent_id\":null}],\"\
+        contacts\":[{\"role\":null,\"type\":\"creator\",\"givenname\":\"Joana\",\"\
+        surname\":\"Silva\",\"organization\":\"Museu Nacional, Universidade Federal\
+        \ do Rio de Janeiro\",\"position\":\"Assitente T\xE9cnico de Curadoria\",\"\
+        email\":\"joanadovale@gmail.com\",\"url\":null,\"organization_oceanexpert_id\"\
+        :18929,\"type_display\":\"Creator\"},{\"role\":null,\"type\":\"contact\",\"\
+        givenname\":\"D\xE9bora\",\"surname\":\"Pires\",\"organization\":\"Museu Nacional,\
+        \ Universidade Federal do Rio de Janeiro\",\"position\":\"Curadora\",\"email\"\
+        :\"debora.pires@coralvivo.org.br\",\"url\":null,\"organization_oceanexpert_id\"\
+        :18929,\"type_display\":\"Contact\"},{\"role\":null,\"type\":\"metadataProvider\"\
+        ,\"givenname\":\"Clovis\",\"surname\":\"Castro\",\"organization\":\"Museu\
+        \ Nacional, Universidade Federal do Rio de Janeiro\",\"position\":\"Curador\"\
+        ,\"email\":\"clovis.castro@coralvivo.org.br\",\"url\":null,\"organization_oceanexpert_id\"\
+        :18929,\"type_display\":\"Metadata Provider\"},{\"role\":\"curator\",\"type\"\
+        :\"associatedParty\",\"givenname\":\"Clovis\",\"surname\":\"Castro\",\"organization\"\
+        :\"Museu Nacional, Universidade Federal do Rio de Janeiro\",\"position\":\"\
+        Curador\",\"email\":\"clovis.castro@coralvivo.org.br\",\"url\":null,\"organization_oceanexpert_id\"\
+        :18929,\"type_display\":\"Curator\"},{\"role\":\"curator\",\"type\":\"personnel\"\
+        ,\"givenname\":\"Clovis\",\"surname\":\"Castro\",\"organization\":null,\"\
+        position\":null,\"email\":null,\"url\":null,\"organization_oceanexpert_id\"\
+        :null,\"type_display\":\"Curator\"}],\"nodes\":[{\"id\":\"dde0dbd3-92fb-41e6-9f51-b1ae930a934b\"\
+        ,\"name\":\"OBIS Brazil\"}],\"keywords\":[{\"keyword\":\"Occurrence\",\"thesaurus\"\
+        :\"GBIF Dataset Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type.xml\"\
+        },{\"keyword\":\"Specimen\",\"thesaurus\":\"GBIF Dataset Subtype Vocabulary:\
+        \ http://rs.gbif.org/vocabulary/gbif/dataset_subtype.xml\"},{\"keyword\":\"\
+        Cnidaria; Anthozoa; Hexacorallia; Octocorallia\",\"thesaurus\":\"n/a\"},{\"\
+        keyword\":\"Occurrence\",\"thesaurus\":\"GBIF Dataset Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type_2015-07-10.xml\"\
+        }],\"downloads\":[{\"year\":2026,\"downloads\":7152,\"records\":1205457},{\"\
+        year\":2025,\"downloads\":5294,\"records\":12966851},{\"year\":2024,\"downloads\"\
+        :7666,\"records\":19771447},{\"year\":2023,\"downloads\":4797,\"records\"\
+        :15349546},{\"year\":2022,\"downloads\":8991,\"records\":10023745}],\"tags\"\
+        :null,\"disable_extensions\":null,\"records\":143},{\"id\":\"a80f6e1c-bb4a-4eec-bf45-a77f9644d967\"\
+        ,\"url\":\"http://ipt.obis.org/nonode/resource?r=vinpcoralspecieslist\",\"\
+        archive\":\"http://ipt.obis.org/nonode/archive.do?r=vinpcoralspecieslist\"\
+        ,\"published\":null,\"created\":null,\"updated\":\"2025-11-08T23:02:26.954Z\"\
+        ,\"core\":\"occurrence\",\"extensions\":[],\"statistics\":{\"Event\":0,\"\
+        absence\":0,\"dropped\":0,\"Occurrence\":53,\"DNADerivedData\":0,\"MeasurementOrFact\"\
+        :0},\"extent\":\"POLYGON((-64.7499923706 18.3333320618,-64.7499923706 18.3333320618,-64.7499923706\
+        \ 18.3333320618,-64.7499923706 18.3333320618,-64.7499923706 18.3333320618))\"\
+        ,\"title\":\"Virgin Islands National Park and Coral Reef National Monument\
+        \ Coral Species List\",\"citation\":\"Boulon, Rafe. 2010. Virgin Islands National\
+        \ Park and Coral Reef National Monument Coral Species List. Virgin Islands\
+        \ National Park, 1300 Cruz Bay Creek, St. John, Virgin Islands 00830. Retrieved\
+        \ from http://www.usgs.gov/obis-usa/.\",\"citation_id\":null,\"abstract\"\
+        :\"The list of corals for the Virgin Islands National Park/Biosphere Reserve\
+        \ has been compiled and added to during four decades of research and monitoring\
+        \ of coral reef resources in the waters around St. John. The majority of this\
+        \ list comes from Beets and Lewand (1986) with additions and updates by several\
+        \ other experts over the years. Specimens of most of these species reside\
+        \ in the natural history collection at the V.I. National Park.\",\"intellectualrights\"\
+        :\"This work is licensed under a  Creative Commons Attribution (CC-BY) 4.0\
+        \ License\",\"feed\":{\"id\":\"f6ecda39-1165-4b36-86d3-61ada8abd7bb\",\"url\"\
+        :\"http://ipt.obis.org/nonode/rss.do\",\"website\":\"http://ipt.obis.org/nonode\"\
+        ,\"active\":false},\"institutes\":[{\"name\":\"Intergovernmental Oceanographic\
+        \ Commission of UNESCO\",\"oceanexpert_id\":6860,\"oceanexpert_parent_id\"\
+        :null}],\"contacts\":[{\"role\":null,\"type\":\"creator\",\"givenname\":null,\"\
+        surname\":null,\"organization\":\"Virgin Islands National Park\",\"position\"\
+        :null,\"email\":null,\"url\":null,\"organization_oceanexpert_id\":null,\"\
+        type_display\":\"Creator\"},{\"role\":null,\"type\":\"contact\",\"givenname\"\
+        :null,\"surname\":\"OBIS Secretariat\",\"organization\":\"Intergovernmental\
+        \ Oceanographic Commission of UNESCO\",\"position\":null,\"email\":\"info@iobis.org\"\
+        ,\"url\":\"http://www.iobis.org\",\"organization_oceanexpert_id\":6860,\"\
+        type_display\":\"Contact\"},{\"role\":null,\"type\":\"metadataProvider\",\"\
+        givenname\":null,\"surname\":\"OBIS Secretariat\",\"organization\":\"Intergovernmental\
+        \ Oceanographic Commission of UNESCO\",\"position\":null,\"email\":\"info@iobis.org\"\
+        ,\"url\":\"http://www.iobis.org\",\"organization_oceanexpert_id\":6860,\"\
+        type_display\":\"Metadata Provider\"}],\"nodes\":[{\"id\":\"310922b4-9d0c-4de1-92d7-9b442d34765b\"\
+        ,\"name\":\"OBIS Secretariat\"}],\"keywords\":[{\"keyword\":\"Occurrence\"\
+        ,\"thesaurus\":\"GBIF Dataset Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type.xml\"\
+        },{\"keyword\":\"Observation\",\"thesaurus\":\"GBIF Dataset Subtype Vocabulary:\
+        \ http://rs.gbif.org/vocabulary/gbif/dataset_subtype.xml\"}],\"downloads\"\
+        :[{\"year\":2026,\"downloads\":1713,\"records\":11869},{\"year\":2025,\"downloads\"\
+        :2973,\"records\":121020},{\"year\":2024,\"downloads\":4031,\"records\":167918},{\"\
+        year\":2023,\"downloads\":2706,\"records\":130024},{\"year\":2022,\"downloads\"\
+        :2827,\"records\":95370},{\"year\":2021,\"downloads\":2485,\"records\":107374},{\"\
+        year\":2020,\"downloads\":877,\"records\":34877},{\"year\":2019,\"downloads\"\
+        :503,\"records\":4590},{\"year\":2018,\"downloads\":1,\"records\":53}],\"\
+        tags\":null,\"disable_extensions\":null,\"records\":53},{\"id\":\"329b1c55-6957-45b4-a272-08af7639930f\"\
+        ,\"url\":\"https://nzobisipt.niwa.co.nz/resource?r=lfulviflamma\",\"archive\"\
+        :\"https://nzobisipt.niwa.co.nz/archive.do?r=lfulviflamma\",\"published\"\
+        :\"2018-08-08T21:06:13.000Z\",\"created\":null,\"updated\":\"2025-11-11T01:27:50.975Z\"\
+        ,\"core\":\"occurrence\",\"extensions\":[\"measurementorfact\"],\"statistics\"\
+        :{\"Event\":0,\"absence\":0,\"dropped\":0,\"Occurrence\":30,\"DNADerivedData\"\
+        :0,\"MeasurementOrFact\":336},\"extent\":\"POLYGON((163.925433 -22.445,166.926083\
+        \ -22.445,166.926083 -20.225067,163.925433 -20.225067,163.925433 -22.445))\"\
+        ,\"title\":\"Extent of Mangrove Nursery Habitats Determines the Geographic\
+        \ Distribution of a Coral Reef Fish in a South-Pacific Archipelago\",\"citation\"\
+        :\"Paillon C, Wantiez L, Kulbicki M, Labonne M, Vigliola L (2014) Data from:\
+        \ Extent of Mangrove Nursery Habitats Determines the Geographic Distribution\
+        \ of a Coral Reef Fish in a South-Pacific Archipelago. Southwestern Pacific\
+        \ OBIS, National Institute of Water and Atmospheric Research (NIWA), Wellington,\
+        \ New Zealand, 30 records, Online http://nzobisipt.niwa.co.nz/resource.do?r=lfulviflamma\
+        \ released on February 26, 2016.\",\"citation_id\":null,\"abstract\":\"Understanding\
+        \ the drivers of species' geographic distribution has fundamental implications\
+        \ for the management of biodiversity. For coral reef fishes, mangroves have\
+        \ long been recognized as important nursery habitats sustaining biodiversity\
+        \ in the Western Atlantic but there is still debate about their role in the\
+        \ Indo-Pacific. Here, we combined LA-ICP-MS otolith microchemistry, underwater\
+        \ visual censuses (UVC) and mangrove cartography to estimate the importance\
+        \ of mangroves for the Indo-Pacific coral reef fish Lutjanus fulviflamma in\
+        \ the archipelago of New Caledonia. Otolith elemental compositions allowed\
+        \ high discrimination of mangroves and reefs with 83.8% and 98.7% correct\
+        \ classification, respectively. Reefs were characterized by higher concentrations\
+        \ of Rb and Sr and mangroves by higher concentrations of Ba, Cr, Mn and Sn.\
+        \ All adult L. fulviflamma collected on reefs presented a mangrove signature\
+        \ during their juvenile stage with 85% inhabiting mangrove for their entire\
+        \ juvenile life (about 1 year). The analysis of 2942 UVC revealed that the\
+        \ species was absent from isolated islands of the New Caledonian archipelago\
+        \ where mangroves were absent. Furthermore, strong positive correlations existed\
+        \ between the abundance of L. fulviflamma and the area of mangrove (r\u200A\
+        =\u200A0.84 for occurrence, 0.93 for density and 0.89 for biomass). These\
+        \ results indicate that mangrove forest is an obligatory juvenile habitat\
+        \ for L. fulviflamma in New Caledonia and emphasize the potential importance\
+        \ of mangroves for Indo-Pacific coral reef fishes.\",\"intellectualrights\"\
+        :\"This work is licensed under a  Creative Commons Attribution (CC-BY) 4.0\
+        \ License\",\"feed\":{\"id\":\"b46bd714-39a5-42b6-a997-42e529d898cb\",\"url\"\
+        :\"https://nzobisipt.niwa.co.nz/rss.do\",\"website\":\"https://nzobisipt.niwa.co.nz\"\
+        ,\"active\":true},\"institutes\":[{\"name\":\"Centre National de la Recherche\
+        \ Scientifique, Observatoire Oc\xE9anologique de Banyuls sur Mer\",\"oceanexpert_id\"\
+        :5358,\"oceanexpert_parent_id\":null},{\"name\":\"National Institute for Water\
+        \ & Atmospheric Research\",\"oceanexpert_id\":7489,\"oceanexpert_parent_id\"\
+        :null},{\"name\":\"Institut de Recherche pour le D\xE9veloppement\",\"oceanexpert_id\"\
+        :13684,\"oceanexpert_parent_id\":null},{\"name\":\"Institut de Recherche pour\
+        \ le D\xE9veloppement, Noumea, BP A5, Nouvelle-Cal\xE9donie\",\"oceanexpert_id\"\
+        :18297,\"oceanexpert_parent_id\":null},{\"name\":\"Universit\xE9 de Nouvelle-Caledonie\"\
+        ,\"oceanexpert_id\":19557,\"oceanexpert_parent_id\":null}],\"contacts\":[{\"\
+        role\":null,\"type\":\"creator\",\"givenname\":\"Christelle\",\"surname\"\
+        :\"Pallion\",\"organization\":\"Institut de Recherche pour le D\xE9veloppement\
+        \ (IRD)\",\"position\":null,\"email\":null,\"url\":null,\"organization_oceanexpert_id\"\
+        :18297,\"type_display\":\"Creator\"},{\"role\":null,\"type\":\"contact\",\"\
+        givenname\":\"Christelle\",\"surname\":\"Pallion\",\"organization\":\"Institut\
+        \ de Recherche pour le D\xE9veloppement (IRD)\",\"position\":null,\"email\"\
+        :null,\"url\":null,\"organization_oceanexpert_id\":18297,\"type_display\"\
+        :\"Contact\"},{\"role\":null,\"type\":\"metadataProvider\",\"givenname\":\"\
+        Kevin\",\"surname\":\"Mackay\",\"organization\":\"NIWA\",\"position\":\"Marine\
+        \ Data Manager\",\"email\":null,\"url\":\"http://www.niwa.co.nz\",\"organization_oceanexpert_id\"\
+        :7489,\"type_display\":\"Metadata Provider\"},{\"role\":\"author\",\"type\"\
+        :\"associatedParty\",\"givenname\":\"Laurent\",\"surname\":\"Wantiez\",\"\
+        organization\":\"Universit\xE9 de Nouvelle-Cal\xE9donie (UNC)\",\"position\"\
+        :\"Researcher\",\"email\":null,\"url\":null,\"organization_oceanexpert_id\"\
+        :19557,\"type_display\":\"Author\"},{\"role\":\"author\",\"type\":\"associatedParty\"\
+        ,\"givenname\":\"Michel\",\"surname\":\"Kulbicki\",\"organization\":\"Institut\
+        \ de Recherche pour le D\xE9veloppement (IRD)\",\"position\":\"Researcher\"\
+        ,\"email\":null,\"url\":null,\"organization_oceanexpert_id\":5358,\"type_display\"\
+        :\"Author\"},{\"role\":\"author\",\"type\":\"associatedParty\",\"givenname\"\
+        :\"Maylis\",\"surname\":\"Labonne\",\"organization\":\"Institut de Recherche\
+        \ pour le D\xE9veloppement (IRD)\",\"position\":\"Researcher\",\"email\":null,\"\
+        url\":null,\"organization_oceanexpert_id\":13684,\"type_display\":\"Author\"\
+        },{\"role\":\"author\",\"type\":\"associatedParty\",\"givenname\":\"Laurent\"\
+        ,\"surname\":\"Vigliola\",\"organization\":\"Institut de Recherche pour le\
+        \ D\xE9veloppement (IRD)\",\"position\":\"Researcher\",\"email\":null,\"url\"\
+        :null,\"organization_oceanexpert_id\":18297,\"type_display\":\"Author\"}],\"\
+        nodes\":[{\"id\":\"6c17c09e-5cc2-4d5a-8463-e866731d35a1\",\"name\":\"SWP OBIS\"\
+        }],\"keywords\":[{\"keyword\":\"Occurrence\",\"thesaurus\":\"GBIF Dataset\
+        \ Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type.xml\"},{\"\
+        keyword\":\"Observation\",\"thesaurus\":\"GBIF Dataset Subtype Vocabulary:\
+        \ http://rs.gbif.org/vocabulary/gbif/dataset_subtype.xml\"}],\"downloads\"\
+        :[{\"year\":2026,\"downloads\":282,\"records\":7359},{\"year\":2025,\"downloads\"\
+        :2414,\"records\":73204},{\"year\":2024,\"downloads\":3246,\"records\":98556},{\"\
+        year\":2023,\"downloads\":2452,\"records\":74248},{\"year\":2022,\"downloads\"\
+        :1752,\"records\":52152},{\"year\":2021,\"downloads\":2066,\"records\":62441},{\"\
+        year\":2020,\"downloads\":660,\"records\":19775},{\"year\":2019,\"downloads\"\
+        :62,\"records\":1860}],\"tags\":null,\"disable_extensions\":null,\"records\"\
+        :30},{\"id\":\"01930fb1-4d33-4d75-af8d-19481a9c153d\",\"url\":\"https://nzobisipt.niwa.co.nz/resource?r=smpatry_of_coral\"\
+        ,\"archive\":\"https://nzobisipt.niwa.co.nz/archive.do?r=smpatry_of_coral\"\
+        ,\"published\":\"2019-07-25T06:01:45.000Z\",\"created\":null,\"updated\":\"\
+        2025-11-09T13:45:10.973Z\",\"core\":\"occurrence\",\"extensions\":[],\"statistics\"\
+        :{\"Event\":0,\"absence\":0,\"dropped\":0,\"Occurrence\":20,\"DNADerivedData\"\
+        :0,\"MeasurementOrFact\":0},\"extent\":\"POLYGON((-170.67361 -19.15806,177.30611\
+        \ -19.15806,177.30611 7.90806,-170.67361 7.90806,-170.67361 -19.15806))\"\
+        ,\"title\":\"Extensive sympatry, cryptic diversity and introgression throughout\
+        \ the Indo-Pacific distribution of two coral species complexes\",\"citation\"\
+        :\"Southwestern Pacific OBIS (2015). Extensive sympatry, cryptic diversity\
+        \ and introgression throughout the geographic distribution of two coral species\
+        \ complexes. Southwestern Pacific OBIS, National Institute of Water and Atmospheric\
+        \ Research (NIWA), Wellington, New Zealand, 20 records, Online http://nzobisipt.niwa.co.nz/resource.do?r=smpatry_of_coral\
+        \ released on April 7, 2015.\",\"citation_id\":null,\"abstract\":\"The identification\
+        \ of species is one of the most basic, and yet critically important, issues\
+        \ in biology with far-reaching potential implications for fields such as biodiversity\
+        \ conservation, population ecology and epidemiology. Morphology has long been\
+        \ the primary tool biologists have used to categorize life. However, we now\
+        \ know that a significant portion of natural diversity is morphologically\
+        \ hidden, and therefore, we must integrate nonmorphological tools into the\
+        \ description of biodiversity. Here, we demonstrate the utility of multilocus\
+        \ population genetic data for identifying and characterizing cryptic species\
+        \ complexes, even when species share large amounts of genetic variability.\
+        \ Specifically, we have used DNA sequence data from 12 genomic regions to\
+        \ characterize two widespread species complexes in the coral genus Acropora:\
+        \ A. cytherea and A. hyacinthus. These two morphospecies have each been sampled\
+        \ from 5 to 7 locations throughout their Indo-Pacific distributions, and with\
+        \ the use of structure and hierarchical clustering, we demonstrate the presence\
+        \ of at least six widespread cryptic species within these two morphospecies\
+        \ complexes. After identifying cryptic lineages, we then utilize the genetic\
+        \ data to examine the history of introgressive hybridization within and between\
+        \ these morphospecies complexes. Our data indicate that these two complexes\
+        \ form a global syngameon with consistent patterns of introgression between\
+        \ species across large geographic distributions.\",\"intellectualrights\"\
+        :\"This work is licensed under a  Creative Commons Attribution (CC-BY) 4.0\
+        \ License\",\"feed\":{\"id\":\"b46bd714-39a5-42b6-a997-42e529d898cb\",\"url\"\
+        :\"https://nzobisipt.niwa.co.nz/rss.do\",\"website\":\"https://nzobisipt.niwa.co.nz\"\
+        ,\"active\":true},\"institutes\":[{\"name\":\"Stanford University, Hopkins\
+        \ Marine Station\",\"oceanexpert_id\":6466,\"oceanexpert_parent_id\":null},{\"\
+        name\":\"National Institute for Water & Atmospheric Research\",\"oceanexpert_id\"\
+        :7489,\"oceanexpert_parent_id\":null}],\"contacts\":[{\"role\":null,\"type\"\
+        :\"creator\",\"givenname\":\"Kevin\",\"surname\":\"Mackay\",\"organization\"\
+        :\"NIWA\",\"position\":\"Marine Database Manager\",\"email\":null,\"url\"\
+        :null,\"organization_oceanexpert_id\":7489,\"type_display\":\"Creator\"},{\"\
+        role\":null,\"type\":\"contact\",\"givenname\":\"Jason\",\"surname\":\"Ladner\"\
+        ,\"organization\":\"Standford University\",\"position\":\"Department of Biology\"\
+        ,\"email\":null,\"url\":null,\"organization_oceanexpert_id\":6466,\"type_display\"\
+        :\"Contact\"},{\"role\":null,\"type\":\"metadataProvider\",\"givenname\":\"\
+        Kevin\",\"surname\":\"Mackay\",\"organization\":\"NIWA\",\"position\":\"Marine\
+        \ Database Manager\",\"email\":null,\"url\":null,\"organization_oceanexpert_id\"\
+        :7489,\"type_display\":\"Metadata Provider\"},{\"role\":\"author\",\"type\"\
+        :\"associatedParty\",\"givenname\":\"Jason T.\",\"surname\":\"Ladner\",\"\
+        organization\":\"Standford University\",\"position\":\"Department of Biology\"\
+        ,\"email\":null,\"url\":null,\"organization_oceanexpert_id\":6466,\"type_display\"\
+        :\"Author\"},{\"role\":\"author\",\"type\":\"associatedParty\",\"givenname\"\
+        :\"Stephen R.\",\"surname\":\"Palumbi\",\"organization\":\"Standford University\"\
+        ,\"position\":\"Department of Biology\",\"email\":null,\"url\":null,\"organization_oceanexpert_id\"\
+        :6466,\"type_display\":\"Author\"}],\"nodes\":[{\"id\":\"6c17c09e-5cc2-4d5a-8463-e866731d35a1\"\
+        ,\"name\":\"SWP OBIS\"}],\"keywords\":[{\"keyword\":\"Occurrence\",\"thesaurus\"\
+        :\"GBIF Dataset Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type.xml\"\
+        },{\"keyword\":\"Specimen\",\"thesaurus\":\"GBIF Dataset Subtype Vocabulary:\
+        \ http://rs.gbif.org/vocabulary/gbif/dataset_subtype.xml\"}],\"downloads\"\
+        :[{\"year\":2026,\"downloads\":328,\"records\":4650},{\"year\":2025,\"downloads\"\
+        :2330,\"records\":45791},{\"year\":2024,\"downloads\":3328,\"records\":64179},{\"\
+        year\":2023,\"downloads\":2571,\"records\":49897},{\"year\":2022,\"downloads\"\
+        :1969,\"records\":36064},{\"year\":2021,\"downloads\":2023,\"records\":39832},{\"\
+        year\":2020,\"downloads\":726,\"records\":13307},{\"year\":2019,\"downloads\"\
+        :138,\"records\":2104},{\"year\":2018,\"downloads\":3,\"records\":20}],\"\
+        tags\":null,\"disable_extensions\":null,\"records\":20},{\"id\":\"9d629feb-ba03-4a83-908c-794d94d30531\"\
+        ,\"url\":\"https://ipt-obis.gbif.us/resource?r=ogl_msc_northeasternuniversity\"\
+        ,\"archive\":\"https://ipt-obis.gbif.us/archive.do?r=ogl_msc_northeasternuniversity\"\
+        ,\"published\":\"2022-08-15T18:21:48.000Z\",\"created\":null,\"updated\":\"\
+        2026-09-16T20:50:46.002Z\",\"core\":\"occurrence\",\"extensions\":[],\"statistics\"\
+        :{\"Event\":0,\"absence\":0,\"dropped\":5726,\"Occurrence\":31872,\"DNADerivedData\"\
+        :0,\"MeasurementOrFact\":0},\"extent\":\"POLYGON((-179.970993041992 -77.6169967651367,179.988998413086\
+        \ -77.6169967651367,179.988998413086 73,-179.970993041992 73,-179.970993041992\
+        \ -77.6169967651367))\",\"title\":\"Ocean Genome Legacy Collection\",\"citation\"\
+        :\"Accession ID OGL-#####. The Ocean Genome Legacy Center. Northeastern University.\
+        \ Published on the web at ogl.northeastern.edu/catalog.\",\"citation_id\"\
+        :null,\"abstract\":\"\\n    <p>The Ocean Genome Legacy Center (OGL) is a nonprofit\
+        \ marine research facility and genome bank dedicated to exploring and preserving\
+        \ the threatened biological diversity of the sea and oversees a collection\
+        \ of annotated and validated samples of genomic DNA and DNA-containing tissues\
+        \ representing a broad cross section of diversity of life in the oceans.</p>\\\
+        n  \",\"intellectualrights\":\"This work is licensed under a  Creative Commons\
+        \ Attribution (CC-BY) 4.0 License\",\"feed\":{\"id\":\"8112d75b-7e78-4641-9e09-9a2cc7db7375\"\
+        ,\"url\":\"https://ipt-obis.gbif.us/rss.do\",\"website\":\"https://ipt-obis.gbif.us\"\
+        ,\"active\":true},\"institutes\":[{\"name\":\"U.S. Geological Survey HQ\"\
+        ,\"oceanexpert_id\":12976,\"oceanexpert_parent_id\":null}],\"contacts\":[{\"\
+        role\":null,\"type\":\"creator\",\"givenname\":\"Hannah\",\"surname\":\"Appiah-Madson\"\
+        ,\"organization\":\"Northeastern University Marine Science Center\",\"position\"\
+        :\"Collections Associate\",\"email\":\"oglinfo@northeastern.edu\",\"url\"\
+        :\"http://ogl.northeastern.edu\",\"organization_oceanexpert_id\":null,\"type_display\"\
+        :\"Creator\"},{\"role\":null,\"type\":\"creator\",\"givenname\":\"Daniel\"\
+        ,\"surname\":\"Distel\",\"organization\":\"Northeastern University Marine\
+        \ Science Center\",\"position\":\"Director\",\"email\":\"d.distel@northeastern.edu\"\
+        ,\"url\":\"https://cos.northeastern.edu/people/dan-distel-2/\",\"organization_oceanexpert_id\"\
+        :null,\"type_display\":\"Creator\"},{\"role\":null,\"type\":\"contact\",\"\
+        givenname\":\"Hannah\",\"surname\":\"Appiah-Madson\",\"organization\":\"Northeastern\
+        \ University Marine Science Center\",\"position\":\"Collections Associate\"\
+        ,\"email\":\"oglinfo@northeastern.edu\",\"url\":\"http://ogl.northeastern.edu\"\
+        ,\"organization_oceanexpert_id\":null,\"type_display\":\"Contact\"},{\"role\"\
+        :null,\"type\":\"contact\",\"givenname\":\"Daniel\",\"surname\":\"Distel\"\
+        ,\"organization\":\"Northeastern University Marine Science Center\",\"position\"\
+        :\"Director\",\"email\":\"d.distel@northeastern.edu\",\"url\":\"https://cos.northeastern.edu/people/dan-distel-2/\"\
+        ,\"organization_oceanexpert_id\":null,\"type_display\":\"Contact\"},{\"role\"\
+        :null,\"type\":\"metadataProvider\",\"givenname\":\"Hannah\",\"surname\":\"\
+        Appiah-Madson\",\"organization\":\"Northeastern University Marine Science\
+        \ Center\",\"position\":\"Collections Associate\",\"email\":\"oglinfo@northeastern.edu\"\
+        ,\"url\":\"http://ogl.northeastern.edu\",\"organization_oceanexpert_id\":null,\"\
+        type_display\":\"Metadata Provider\"},{\"role\":null,\"type\":\"metadataProvider\"\
+        ,\"givenname\":\"Abigail\",\"surname\":\"Benson\",\"organization\":\"U.S.\
+        \ Geological Survey\",\"position\":\"Biologist\",\"email\":\"albenson@usgs.gov\"\
+        ,\"url\":null,\"organization_oceanexpert_id\":12976,\"type_display\":\"Metadata\
+        \ Provider\"},{\"role\":\"user\",\"type\":\"associatedParty\",\"givenname\"\
+        :\"Abigail\",\"surname\":\"Benson\",\"organization\":null,\"position\":null,\"\
+        email\":\"albenson@usgs.gov\",\"url\":null,\"organization_oceanexpert_id\"\
+        :null,\"type_display\":\"User\"}],\"nodes\":[{\"id\":\"b7c47783-a020-4173-b390-7b57c4fa1426\"\
+        ,\"name\":\"OBIS USA\"}],\"keywords\":[{\"keyword\":\"Occurrence\",\"thesaurus\"\
+        :\"GBIF Dataset Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type.xml\"\
+        },{\"keyword\":\"Occurrence\",\"thesaurus\":\"GBIF Dataset Type Vocabulary:\
+        \ http://rs.gbif.org/vocabulary/gbif/dataset_type_2015-07-10.xml\"}],\"downloads\"\
+        :[{\"year\":2026,\"downloads\":103393,\"records\":5341734},{\"year\":2025,\"\
+        downloads\":91266,\"records\":60248817},{\"year\":2024,\"downloads\":88769,\"\
+        records\":83345576},{\"year\":2023,\"downloads\":42562,\"records\":64488880},{\"\
+        year\":2022,\"downloads\":61804,\"records\":44570311},{\"year\":2021,\"downloads\"\
+        :92501,\"records\":36499038},{\"year\":2020,\"downloads\":16317,\"records\"\
+        :11189171},{\"year\":2019,\"downloads\":2720,\"records\":1134688},{\"year\"\
+        :2018,\"downloads\":14,\"records\":5793}],\"tags\":null,\"disable_extensions\"\
+        :null,\"records\":10},{\"id\":\"b0ae29fa-8e83-4218-ba06-80efa0cf82e5\",\"\
+        url\":\"https://nzobisipt.niwa.co.nz/resource?r=fiji_marine_data\",\"archive\"\
+        :\"https://nzobisipt.niwa.co.nz/archive.do?r=fiji_marine_data\",\"published\"\
+        :\"2024-07-25T20:39:37.000Z\",\"created\":null,\"updated\":\"2026-09-16T03:24:36.852Z\"\
+        ,\"core\":\"occurrence\",\"extensions\":[],\"statistics\":{\"Event\":0,\"\
+        absence\":0,\"dropped\":2,\"Occurrence\":1691,\"DNADerivedData\":0,\"MeasurementOrFact\"\
+        :0},\"extent\":\"POLYGON((-179.4535 -31.5178,179.4354 -31.5178,179.4354 6.776,-179.4535\
+        \ 6.776,-179.4535 -31.5178))\",\"title\":\"Marine observation data from surveys\
+        \ around Fiji\",\"citation\":\"SWPRON (2018). Marine observation data from\
+        \ surveys around Fiji. Southwestern Pacific OBIS, National Institute of Water\
+        \ and Atmospheric Research (NIWA), Wellington, New Zealand, 1143 records,\
+        \ Online http://nzobisipt.niwa.co.nz/resource.do?r=fiji_marine_data released\
+        \ on January 16, 2018.\",\"citation_id\":null,\"abstract\":\"\\n         \
+        \                   <p>Occurrence details of Fiji marine fauna and flora from\
+        \ around the coastline and offshore. Information is assimilated from a variety\
+        \ of sources including unpublished data sets and digitised from journal articles.\
+        \ Where the source is from a published paper the source paper citation is\
+        \ listed at the record level.</p>\\n                \",\"intellectualrights\"\
+        :\"This work is licensed under a  Creative Commons Attribution (CC-BY) 4.0\
+        \ License\",\"feed\":{\"id\":\"b46bd714-39a5-42b6-a997-42e529d898cb\",\"url\"\
+        :\"https://nzobisipt.niwa.co.nz/rss.do\",\"website\":\"https://nzobisipt.niwa.co.nz\"\
+        ,\"active\":true},\"institutes\":[{\"name\":\"National Institute for Water\
+        \ & Atmospheric Research\",\"oceanexpert_id\":7489,\"oceanexpert_parent_id\"\
+        :null}],\"contacts\":[{\"role\":null,\"type\":\"creator\",\"givenname\":\"\
+        Kevin\",\"surname\":\"Mackay\",\"organization\":\"NIWA\",\"position\":\"Marine\
+        \ Database Manager\",\"email\":null,\"url\":null,\"organization_oceanexpert_id\"\
+        :7489,\"type_display\":\"Creator\"},{\"role\":null,\"type\":\"contact\",\"\
+        givenname\":\"Kevin\",\"surname\":\"Mackay\",\"organization\":\"NIWA\",\"\
+        position\":\"Marine Database Manager\",\"email\":null,\"url\":null,\"organization_oceanexpert_id\"\
+        :7489,\"type_display\":\"Contact\"},{\"role\":null,\"type\":\"metadataProvider\"\
+        ,\"givenname\":\"Kevin\",\"surname\":\"Mackay\",\"organization\":\"NIWA\"\
+        ,\"position\":\"Marine Database Manager\",\"email\":null,\"url\":null,\"organization_oceanexpert_id\"\
+        :7489,\"type_display\":\"Metadata Provider\"}],\"nodes\":[{\"id\":\"6c17c09e-5cc2-4d5a-8463-e866731d35a1\"\
+        ,\"name\":\"SWP OBIS\"}],\"keywords\":[{\"keyword\":\"Occurrence\",\"thesaurus\"\
+        :\"GBIF Dataset Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type.xml\"\
+        },{\"keyword\":\"Observation\",\"thesaurus\":\"GBIF Dataset Subtype Vocabulary:\
+        \ http://rs.gbif.org/vocabulary/gbif/dataset_subtype.xml\"},{\"keyword\":\"\
+        Occurrence\",\"thesaurus\":\"GBIF Dataset Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type_2015-07-10.xml\"\
+        }],\"downloads\":[{\"year\":2026,\"downloads\":19049,\"records\":281897},{\"\
+        year\":2025,\"downloads\":18994,\"records\":3827754},{\"year\":2024,\"downloads\"\
+        :17934,\"records\":4447432},{\"year\":2023,\"downloads\":7638,\"records\"\
+        :2785742},{\"year\":2022,\"downloads\":7343,\"records\":1974753},{\"year\"\
+        :2021,\"downloads\":15944,\"records\":2207927},{\"year\":2020,\"downloads\"\
+        :2400,\"records\":744854},{\"year\":2019,\"downloads\":1175,\"records\":70439},{\"\
+        year\":2018,\"downloads\":3,\"records\":11}],\"tags\":null,\"disable_extensions\"\
+        :null,\"records\":4},{\"id\":\"89e23fc8-3f61-4480-9de3-358fe6eefe0b\",\"url\"\
+        :\"http://ipt.obis.org/nonode/resource?r=nmnh-iz\",\"archive\":\"http://ipt.obis.org/nonode/archive.do?r=nmnh-iz\"\
+        ,\"published\":null,\"created\":null,\"updated\":\"2025-11-08T23:16:48.355Z\"\
+        ,\"core\":\"occurrence\",\"extensions\":[],\"statistics\":{\"Event\":0,\"\
+        absence\":0,\"dropped\":24062,\"Occurrence\":550789,\"DNADerivedData\":0,\"\
+        MeasurementOrFact\":0},\"extent\":\"POLYGON((-180 -90,180 -90,180 85.5950012207,-180\
+        \ 85.5950012207,-180 -90))\",\"title\":\"National Museum of Natural History\
+        \ Invertebrate Zoology Collections\",\"citation\":\"National Museum of Natural\
+        \ History, Smithsonian Institution NMNH Invertebrate Zoology Collection Database.\
+        \ National Museum of Natural History, Smithsonian Institution, 10th and Constitution\
+        \ Ave. N.W., Washington, DC 20560-0193, 2001, Version 3.2.04 (0802221).\"\
+        ,\"citation_id\":null,\"abstract\":\"NMNH Invertebrate Zoology Collections\
+        \ records, 8784 Bryozoa, 68401 Coelenterates, 220965 Crustacea, 75012 Echinoderms,\
+        \ 196851 Mollusks, 28853 Porifera, 16466 Tunicates, 171401 Worms, 93268 General;\
+        \ Total number of 884216 records currently represent approximately 33% of\
+        \ actual specimen holdings, as of 10 May 2007.\",\"intellectualrights\":\"\
+        This work is licensed under a  Creative Commons Attribution (CC-BY) 4.0 License\"\
+        ,\"feed\":{\"id\":\"f6ecda39-1165-4b36-86d3-61ada8abd7bb\",\"url\":\"http://ipt.obis.org/nonode/rss.do\"\
+        ,\"website\":\"http://ipt.obis.org/nonode\",\"active\":false},\"institutes\"\
+        :[{\"name\":\"Intergovernmental Oceanographic Commission of UNESCO\",\"oceanexpert_id\"\
+        :6860,\"oceanexpert_parent_id\":null},{\"name\":\"National Museum of Natural\
+        \ History, Smithsonian Institution\",\"oceanexpert_id\":7553,\"oceanexpert_parent_id\"\
+        :17611}],\"contacts\":[{\"role\":null,\"type\":\"creator\",\"givenname\":null,\"\
+        surname\":null,\"organization\":\"Smithsonian Institution; National Museum\
+        \ of Natural History Department of Invertebrate Zoology (NMNM-IZ)\",\"position\"\
+        :null,\"email\":null,\"url\":null,\"organization_oceanexpert_id\":7553,\"\
+        type_display\":\"Creator\"},{\"role\":null,\"type\":\"contact\",\"givenname\"\
+        :null,\"surname\":\"OBIS Secretariat\",\"organization\":\"Intergovernmental\
+        \ Oceanographic Commission of UNESCO\",\"position\":null,\"email\":\"info@iobis.org\"\
+        ,\"url\":\"http://www.iobis.org\",\"organization_oceanexpert_id\":6860,\"\
+        type_display\":\"Contact\"},{\"role\":null,\"type\":\"metadataProvider\",\"\
+        givenname\":null,\"surname\":\"OBIS Secretariat\",\"organization\":\"Intergovernmental\
+        \ Oceanographic Commission of UNESCO\",\"position\":null,\"email\":\"info@iobis.org\"\
+        ,\"url\":\"http://www.iobis.org\",\"organization_oceanexpert_id\":6860,\"\
+        type_display\":\"Metadata Provider\"},{\"role\":\"custodianSteward\",\"type\"\
+        :\"associatedParty\",\"givenname\":\"Cheryl\",\"surname\":\"Bright\",\"organization\"\
+        :\"Smithsonian Institution; National Museum of Natural History; Department\
+        \ of Invertebrate Zoology (IZ)\",\"position\":null,\"email\":\"brightc@si.edu\"\
+        ,\"url\":null,\"organization_oceanexpert_id\":7553,\"type_display\":\"Custodian\
+        \ Steward\"}],\"nodes\":[{\"id\":\"310922b4-9d0c-4de1-92d7-9b442d34765b\"\
+        ,\"name\":\"OBIS Secretariat\"}],\"keywords\":[{\"keyword\":\"Occurrence\"\
+        ,\"thesaurus\":\"GBIF Dataset Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type.xml\"\
+        },{\"keyword\":\"Observation\",\"thesaurus\":\"GBIF Dataset Subtype Vocabulary:\
+        \ http://rs.gbif.org/vocabulary/gbif/dataset_subtype.xml\"},{\"keyword\":\"\
+        Bryozoan\",\"thesaurus\":\"ASFA\"},{\"keyword\":\"Coelenterates\",\"thesaurus\"\
+        :\"ASFA\"},{\"keyword\":\"Crustacea\",\"thesaurus\":\"ASFA\"},{\"keyword\"\
+        :\"Echinoderm\",\"thesaurus\":\"ASFA\"},{\"keyword\":\"Molluscs\",\"thesaurus\"\
+        :\"ASFA\"},{\"keyword\":\"Worms\",\"thesaurus\":\"ASFA\"}],\"downloads\":[{\"\
+        year\":2026,\"downloads\":279854,\"records\":107955778},{\"year\":2025,\"\
+        downloads\":134965,\"records\":1193357524},{\"year\":2024,\"downloads\":205350,\"\
+        records\":1679334615},{\"year\":2023,\"downloads\":68243,\"records\":1299824763},{\"\
+        year\":2022,\"downloads\":297514,\"records\":938696280},{\"year\":2021,\"\
+        downloads\":194812,\"records\":1027182874},{\"year\":2020,\"downloads\":35284,\"\
+        records\":348684508},{\"year\":2019,\"downloads\":5329,\"records\":37427037},{\"\
+        year\":2018,\"downloads\":28,\"records\":755383}],\"tags\":null,\"disable_extensions\"\
+        :null,\"records\":2},{\"id\":\"23070c76-ee0b-4ffe-8956-733c06cd6f69\",\"url\"\
+        :\"https://nzobisipt.niwa.co.nz/resource?r=acanthoplesiops_naka_from_tonga\"\
+        ,\"archive\":\"https://nzobisipt.niwa.co.nz/archive.do?r=acanthoplesiops_naka_from_tonga\"\
+        ,\"published\":\"2020-02-05T11:15:54.000Z\",\"created\":\"2020-02-02T03:22:15.562Z\"\
+        ,\"updated\":\"2025-11-06T08:01:37.959Z\",\"core\":\"occurrence\",\"extensions\"\
+        :[],\"statistics\":{\"Event\":0,\"absence\":0,\"dropped\":0,\"Occurrence\"\
+        :21,\"DNADerivedData\":0,\"MeasurementOrFact\":0},\"extent\":\"POLYGON((-174.47083\
+        \ -29.85,167.4743 -29.85,167.4743 21.934,-174.47083 21.934,-174.47083 -29.85))\"\
+        ,\"title\":\"Acanthoplesiops naka. A new species of the fish genus Acanthoplesiops\
+        \ Regan (Teleostei: Plesiopidae: Acanthoclininae) from Tonga\",\"citation\"\
+        :\"Mooi, R.D. and Gill, A.C. (2004) Data from: Description of a new species\
+        \ of the fish genus Acanthoplesiops Regan (Teleostei: Plesiopidae: Acanthoclininae)\
+        \ from Tonga. Zootaxa 432: 1-29\\n\",\"citation_id\":null,\"abstract\":\"\
+        Acanthoplesiops naka sp. n. is described from the 9.9 mm SL holotype collected\
+        \ at Ofolanga Island of the Ha'apai Group of Tonga. Its dorsal-fin spine count\
+        \ of XVIII is unique in the genus. The following combination of characters\
+        \ also distinguishes it from congeners: first two dorsal-fin pterygiophores\
+        \ in the 3rd interneural space (anterior dorsal-fin formula ?/?/I+I/I/I/I/I//I/I/I);\
+        \ 3 dentary pores; 2 intertemporal pores; head and body generally brownish\
+        \ with darker pigment spots (from shrunken melanophores), excepting a paler\
+        \ stripe from the anterior half of the symphyseal flap on the lower lip to\
+        \ the origin of the dorsal fin (continuing on to the first dorsal spine),\
+        \ a pale spot on the pectoral-fin base, and a pale caudal peduncle continuous\
+        \ with  pale bases of last 3 segmented dorsal- and anal-fin rays; regular\
+        \ ctenoid scales; no membranous attachment of last dorsal- or anal-fin rays\
+        \ to caudal fin. The new species might be the sister taxon to A. psilogaster\
+        \ as they share the putative derived character of two dorsal-fin pterygiophores\
+        \ in the 3rd interneural space. \",\"intellectualrights\":\"This work is licensed\
+        \ under a  Creative Commons Attribution (CC-BY) 4.0 License\",\"feed\":{\"\
+        id\":\"b46bd714-39a5-42b6-a997-42e529d898cb\",\"url\":\"https://nzobisipt.niwa.co.nz/rss.do\"\
+        ,\"website\":\"https://nzobisipt.niwa.co.nz\",\"active\":true},\"institutes\"\
+        :[{\"name\":\"Arizona State University\",\"oceanexpert_id\":20806,\"oceanexpert_parent_id\"\
+        :null}],\"contacts\":[{\"role\":null,\"type\":\"creator\",\"givenname\":\"\
+        Randall\",\"surname\":\"Moori\",\"organization\":\"Milwaukee Public Museum\"\
+        ,\"position\":\"Vertebrate Zoology Section\",\"email\":null,\"url\":null,\"\
+        organization_oceanexpert_id\":null,\"type_display\":\"Creator\"},{\"role\"\
+        :null,\"type\":\"creator\",\"givenname\":\"Anthony\",\"surname\":\"Gill\"\
+        ,\"organization\":\"Arizona State University\",\"position\":\"School of Life\
+        \ Sciences\",\"email\":null,\"url\":null,\"organization_oceanexpert_id\":20806,\"\
+        type_display\":\"Creator\"},{\"role\":null,\"type\":\"contact\",\"givenname\"\
+        :\"Randall\",\"surname\":\"Moori\",\"organization\":\"Milwaukee Public Museum\"\
+        ,\"position\":\"Vertebrate Zoology Section\",\"email\":null,\"url\":null,\"\
+        organization_oceanexpert_id\":null,\"type_display\":\"Contact\"},{\"role\"\
+        :null,\"type\":\"metadataProvider\",\"givenname\":\"Randall\",\"surname\"\
+        :\"Moori\",\"organization\":\"Milwaukee Public Museum\",\"position\":\"Vertebrate\
+        \ Zoology Section\",\"email\":null,\"url\":null,\"organization_oceanexpert_id\"\
+        :null,\"type_display\":\"Metadata Provider\"},{\"role\":\"user\",\"type\"\
+        :\"associatedParty\",\"givenname\":\"Kevin\",\"surname\":\"Mackay\",\"organization\"\
+        :null,\"position\":null,\"email\":\"kevin.mackay@niwa.co.nz\",\"url\":null,\"\
+        organization_oceanexpert_id\":null,\"type_display\":\"User\"}],\"nodes\":[{\"\
+        id\":\"6c17c09e-5cc2-4d5a-8463-e866731d35a1\",\"name\":\"SWP OBIS\"}],\"keywords\"\
+        :[{\"keyword\":\"Occurrence\",\"thesaurus\":\"GBIF Dataset Type Vocabulary:\
+        \ http://rs.gbif.org/vocabulary/gbif/dataset_type.xml\"},{\"keyword\":\"Specimen\"\
+        ,\"thesaurus\":\"GBIF Dataset Subtype Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_subtype.xml\"\
+        }],\"downloads\":[{\"year\":2026,\"downloads\":426,\"records\":3604},{\"year\"\
+        :2025,\"downloads\":2490,\"records\":47288},{\"year\":2024,\"downloads\":3381,\"\
+        records\":67114},{\"year\":2023,\"downloads\":2553,\"records\":51436},{\"\
+        year\":2022,\"downloads\":1984,\"records\":36453},{\"year\":2021,\"downloads\"\
+        :2089,\"records\":40130},{\"year\":2020,\"downloads\":725,\"records\":13460}],\"\
+        tags\":null,\"disable_extensions\":null,\"records\":1},{\"id\":\"268ca554-d8be-442c-993d-35d2e0a3e224\"\
+        ,\"url\":\"https://ipt.naturalsciences.be/resource?r=be_rbins_invertebrates_echinodermata\"\
+        ,\"archive\":\"https://ipt.naturalsciences.be/archive.do?r=be_rbins_invertebrates_echinodermata\"\
+        ,\"published\":\"2025-03-13T14:37:47.000Z\",\"created\":\"2025-10-24T14:58:33.835Z\"\
+        ,\"updated\":\"2025-10-24T17:12:30.488Z\",\"core\":\"occurrence\",\"extensions\"\
+        :[\"measurementorfact\"],\"statistics\":{\"Event\":0,\"absence\":0,\"dropped\"\
+        :1312,\"Occurrence\":4679,\"DNADerivedData\":0,\"MeasurementOrFact\":16904},\"\
+        extent\":\"POLYGON((-149.61667 -78.15856,179.8022460937 -78.15856,179.8022460937\
+        \ 70.23767,-149.61667 70.23767,-149.61667 -78.15856))\",\"title\":\"RBINS\
+        \ Echinodermata collection\",\"citation\":null,\"citation_id\":null,\"abstract\"\
+        :\"The RBINS is known for its rich echinoderm collections. The Institute has\
+        \ a particularly rich collection of sea cucumbers, with material from all\
+        \ over the world and many type specimens. Of particular interest to the taxonomic\
+        \ community are the several thousands of microscope slides of ossicles from\
+        \ thousands of specimens, including hundreds of type specimens.\",\"intellectualrights\"\
+        :\"This work is licensed under a  Creative Commons Attribution Non Commercial\
+        \ (CC-BY-NC) 4.0 License\",\"feed\":{\"id\":\"b25aacb1-f9bb-4bb3-bbce-05b4d44077a4\"\
+        ,\"url\":\"https://ipt.naturalsciences.be/rss.do\",\"website\":\"https://ipt.naturalsciences.be\"\
+        ,\"active\":true},\"institutes\":[{\"name\":\"Koninklijk Belgisch Instituut\
+        \ voor Natuurwetenschappen\",\"oceanexpert_id\":18705,\"oceanexpert_parent_id\"\
+        :null}],\"contacts\":[{\"role\":null,\"type\":\"creator\",\"givenname\":\"\
+        Yves\",\"surname\":\"Samyn\",\"organization\":\"Royal Belgian Institute for\
+        \ Natural Sciences  -  Department of Scientific Heritage Service\",\"position\"\
+        :\"Curator\",\"email\":null,\"url\":null,\"organization_oceanexpert_id\":null,\"\
+        type_display\":\"Creator\"},{\"role\":null,\"type\":\"contact\",\"givenname\"\
+        :null,\"surname\":null,\"organization\":\"Biodiversity and Ecological Data\
+        \ and Information Centre - Royal Belgian Institute for Natural Sciences\"\
+        ,\"position\":null,\"email\":\"info@bedic.be\",\"url\":null,\"organization_oceanexpert_id\"\
+        :null,\"type_display\":\"Contact\"},{\"role\":null,\"type\":\"metadataProvider\"\
+        ,\"givenname\":\"Thomas\",\"surname\":\"Vandenberghe\",\"organization\":\"\
+        Royal Belgian Institute for Natural Sciences\",\"position\":\"Data manager\"\
+        ,\"email\":\"tvandenberghe@naturalsciences.be\",\"url\":null,\"organization_oceanexpert_id\"\
+        :18705,\"type_display\":\"Metadata Provider\"},{\"role\":null,\"type\":\"\
+        metadataProvider\",\"givenname\":\"Stijn\",\"surname\":\"Cooleman\",\"organization\"\
+        :\"Belgian Biodiversity Platform\",\"position\":\"Biodiversity Data Officer\"\
+        ,\"email\":\"s.cooleman@biodiversity.be\",\"url\":null,\"organization_oceanexpert_id\"\
+        :null,\"type_display\":\"Metadata Provider\"},{\"role\":null,\"type\":\"metadataProvider\"\
+        ,\"givenname\":\"Franck\",\"surname\":\"Theeten\",\"organization\":\"Royal\
+        \ Museum for Central Africa\",\"position\":\"Database manager\",\"email\"\
+        :\"franck.theeten@africamuseum.be\",\"url\":null,\"organization_oceanexpert_id\"\
+        :null,\"type_display\":\"Metadata Provider\"},{\"role\":\"contentProvider\"\
+        ,\"type\":\"associatedParty\",\"givenname\":\"Patrick\",\"surname\":\"Semal\"\
+        ,\"organization\":\"Royal Belgian Institute for Natural Sciences\",\"position\"\
+        :\"Head of Scientific Heritage\",\"email\":\"psemal@naturalsciences.be\",\"\
+        url\":null,\"organization_oceanexpert_id\":18705,\"type_display\":\"Content\
+        \ Provider\"},{\"role\":\"custodianSteward\",\"type\":\"associatedParty\"\
+        ,\"givenname\":\"Jean-Marc\",\"surname\":\"Herpers\",\"organization\":\"Royal\
+        \ Belgian Institute for Natural Sciences\",\"position\":\"Curator of digital\
+        \ data\",\"email\":\"jmherpers@naturalsciences.be\",\"url\":null,\"organization_oceanexpert_id\"\
+        :18705,\"type_display\":\"Custodian Steward\"}],\"nodes\":[{\"id\":\"4bf79a01-65a9-4db6-b37b-18434f26ddfc\"\
+        ,\"name\":\"EurOBIS\"}],\"keywords\":[{\"keyword\":\"natural history collection\"\
+        ,\"thesaurus\":\"N/A\"},{\"keyword\":\"RBINS\",\"thesaurus\":\"N/A\"},{\"\
+        keyword\":\"DaRWIN\",\"thesaurus\":\"N/A\"},{\"keyword\":\"Echinodermata\"\
+        ,\"thesaurus\":\"N/A\"},{\"keyword\":\"Occurrence\",\"thesaurus\":\"GBIF Dataset\
+        \ Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type.xml\"},{\"\
+        keyword\":\"Specimen\",\"thesaurus\":\"GBIF Dataset Subtype Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_subtype.xml\"\
+        },{\"keyword\":\"Occurrence\",\"thesaurus\":\"GBIF Dataset Type Vocabulary:\
+        \ http://rs.gbif.org/vocabulary/gbif/dataset_type_2015-07-10.xml\"}],\"downloads\"\
+        :[{\"year\":2026,\"downloads\":9826,\"records\":452232},{\"year\":2025,\"\
+        downloads\":566,\"records\":86060}],\"tags\":null,\"disable_extensions\":null,\"\
+        records\":1},{\"id\":\"89e3bd22-3872-43f9-866d-20be987b5519\",\"url\":\"http://ipt.env.duke.edu/resource?r=zd_1767\"\
+        ,\"archive\":\"https://ipt.env.duke.edu/archive.do?r=zd_1767\",\"published\"\
+        :\"2026-07-15T18:35:30.000Z\",\"created\":\"2020-10-12T23:38:25.946Z\",\"\
+        updated\":\"2026-07-15T19:24:36.873Z\",\"core\":\"occurrence\",\"extensions\"\
+        :[],\"statistics\":{\"Event\":0,\"absence\":0,\"dropped\":0,\"Occurrence\"\
+        :22263,\"DNADerivedData\":0,\"MeasurementOrFact\":0},\"extent\":\"POLYGON((-179.9117\
+        \ -75,179.730644 -75,179.730644 -60,-179.9117 -60,-179.9117 -75))\",\"title\"\
+        :\"Happywhale - Humpback whale in Southern Ocean\",\"citation\":\"Happywhale.\
+        \ 2026. Happywhale - Humpback whale in Southern Ocean. Version 1.5.0. Dataset\
+        \ published in OBIS-SEAMAP and originated from Happywhale.com. https://doi.org/10.82144/762d6cfa.\"\
+        ,\"citation_id\":\"https://doi.org/10.82144/762d6cfa\",\"abstract\":\"\\n\
+        \            <p>Original provider:\\nHappywhale\\n\\nDataset credits:\\nHappywhale\
+        \ and contributors\\n\\nAbstract:\\nHappywhale.com is a resource to help you\
+        \ know whales as individuals, and to benefit conservation science with rich\
+        \ data about individual whales.\\n</p>\\n        \",\"intellectualrights\"\
+        :\"This work is licensed under a  Creative Commons Attribution Non Commercial\
+        \ (CC-BY-NC) 4.0 License\",\"feed\":{\"id\":\"18954703-9b9d-4584-b46d-87846532c5ee\"\
+        ,\"url\":\"https://ipt.env.duke.edu/rss.do\",\"website\":\"https://ipt.env.duke.edu\"\
+        ,\"active\":true},\"institutes\":[{\"name\":\"Duke University\",\"oceanexpert_id\"\
+        :19393,\"oceanexpert_parent_id\":null}],\"contacts\":[{\"role\":null,\"type\"\
+        :\"creator\",\"givenname\":\"Ted\",\"surname\":\"Cheeseman\",\"organization\"\
+        :\"Happywhale.com\",\"position\":\"Primary contact\",\"email\":\"ted@happywhale.com\"\
+        ,\"url\":\"https://happywhale.com\",\"organization_oceanexpert_id\":null,\"\
+        type_display\":\"Creator\"},{\"role\":null,\"type\":\"contact\",\"givenname\"\
+        :\"Ted\",\"surname\":\"Cheeseman\",\"organization\":\"Happywhale.com\",\"\
+        position\":\"Primary contact\",\"email\":\"ted@happywhale.com\",\"url\":\"\
+        https://happywhale.com\",\"organization_oceanexpert_id\":null,\"type_display\"\
+        :\"Contact\"},{\"role\":null,\"type\":\"metadataProvider\",\"givenname\":null,\"\
+        surname\":\"OBIS-SEAMAP\",\"organization\":\"Marine Geospatial Ecology Lab,\
+        \ Duke University\",\"position\":null,\"email\":\"seamap-contact@duke.edu\"\
+        ,\"url\":\"https://seamap.env.duke.edu\",\"organization_oceanexpert_id\":19393,\"\
+        type_display\":\"Metadata Provider\"},{\"role\":\"distributor\",\"type\":\"\
+        associatedParty\",\"givenname\":null,\"surname\":\"OBIS-SEAMAP\",\"organization\"\
+        :\"Marine Geospatial Ecology Lab, Duke University\",\"position\":null,\"email\"\
+        :\"seamap-contact@duke.edu\",\"url\":\"https://seamap.env.duke.edu\",\"organization_oceanexpert_id\"\
+        :19393,\"type_display\":\"Distributor\"},{\"role\":\"owner\",\"type\":\"associatedParty\"\
+        ,\"givenname\":\"Ted\",\"surname\":\"Cheeseman\",\"organization\":\"Happywhale.com\"\
+        ,\"position\":\"Primary contact\",\"email\":\"ted@happywhale.com\",\"url\"\
+        :\"https://happywhale.com\",\"organization_oceanexpert_id\":null,\"type_display\"\
+        :\"Owner\"},{\"role\":\"originator\",\"type\":\"associatedParty\",\"givenname\"\
+        :\"Ted\",\"surname\":\"Cheeseman\",\"organization\":\"Happywhale.com\",\"\
+        position\":null,\"email\":\"ted@happywhale.com\",\"url\":\"https://happywhale.com\"\
+        ,\"organization_oceanexpert_id\":null,\"type_display\":\"Originator\"},{\"\
+        role\":\"owner\",\"type\":\"personnel\",\"givenname\":\"Ted\",\"surname\"\
+        :\"Cheeseman\",\"organization\":null,\"position\":null,\"email\":null,\"url\"\
+        :null,\"organization_oceanexpert_id\":null,\"type_display\":\"Owner\"}],\"\
+        nodes\":[{\"id\":\"573654c1-4ce7-4ea2-b2f1-e4d42f8f9c31\",\"name\":\"OBIS-SEAMAP\"\
+        }],\"keywords\":[{\"keyword\":\"Marine Biology\",\"thesaurus\":\"N/A\"},{\"\
+        keyword\":\"PhotoID\",\"thesaurus\":\"N/A\"},{\"keyword\":\"Occurrence\",\"\
+        thesaurus\":\"GBIF Dataset Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type_2015-07-10.xml\"\
+        },{\"keyword\":\"Observation\",\"thesaurus\":\"GBIF Dataset Subtype Vocabulary:\
+        \ http://rs.gbif.org/vocabulary/gbif/dataset_subtype.xml\"}],\"downloads\"\
+        :[{\"year\":2026,\"downloads\":415,\"records\":7565375},{\"year\":2025,\"\
+        downloads\":2783,\"records\":41908499},{\"year\":2024,\"downloads\":3560,\"\
+        records\":42092942},{\"year\":2023,\"downloads\":2687,\"records\":22986968},{\"\
+        year\":2022,\"downloads\":2567,\"records\":14173674},{\"year\":2021,\"downloads\"\
+        :2163,\"records\":14344313},{\"year\":2020,\"downloads\":383,\"records\":1868963}],\"\
+        tags\":null,\"disable_extensions\":null,\"records\":1},{\"id\":\"a279b1c2-44c7-426e-8295-55effa2b9a37\"\
+        ,\"url\":\"http://ipt.env.duke.edu/resource?r=zd_1743\",\"archive\":\"https://ipt.env.duke.edu/archive.do?r=zd_1743\"\
+        ,\"published\":\"2026-07-15T18:49:46.000Z\",\"created\":\"2020-10-12T23:38:59.133Z\"\
+        ,\"updated\":\"2026-07-15T19:36:41.858Z\",\"core\":\"occurrence\",\"extensions\"\
+        :[],\"statistics\":{\"Event\":0,\"absence\":0,\"dropped\":0,\"Occurrence\"\
+        :224,\"DNADerivedData\":0,\"MeasurementOrFact\":0},\"extent\":\"POLYGON((-164.67885\
+        \ -78.633889,171.25363 -78.633889,171.25363 -61,-164.67885 -61,-164.67885\
+        \ -78.633889))\",\"title\":\"Happywhale - Common minke whale in Southern Ocean\"\
+        ,\"citation\":\"Happywhale. 2026. Happywhale - Common minke whale in Southern\
+        \ Ocean. Version 1.5.0. Dataset published in OBIS-SEAMAP and originated from\
+        \ Happywhale.com. https://doi.org/10.82144/4abb57c0.\",\"citation_id\":\"\
+        https://doi.org/10.82144/4abb57c0\",\"abstract\":\"\\n            <p>Original\
+        \ provider:\\nHappywhale\\n\\nDataset credits:\\nHappywhale and contributors\\\
+        n\\nAbstract:\\nHappywhale.com is a resource to help you know whales as individuals,\
+        \ and to benefit conservation science with rich data about individual whales.\\\
+        n</p>\\n        \",\"intellectualrights\":\"This work is licensed under a\
+        \  Creative Commons Attribution Non Commercial (CC-BY-NC) 4.0 License\",\"\
+        feed\":{\"id\":\"18954703-9b9d-4584-b46d-87846532c5ee\",\"url\":\"https://ipt.env.duke.edu/rss.do\"\
+        ,\"website\":\"https://ipt.env.duke.edu\",\"active\":true},\"institutes\"\
+        :[{\"name\":\"Duke University\",\"oceanexpert_id\":19393,\"oceanexpert_parent_id\"\
+        :null}],\"contacts\":[{\"role\":null,\"type\":\"creator\",\"givenname\":\"\
+        Ted\",\"surname\":\"Cheeseman\",\"organization\":\"Happywhale.com\",\"position\"\
+        :\"Primary contact\",\"email\":\"ted@happywhale.com\",\"url\":\"https://happywhale.com\"\
+        ,\"organization_oceanexpert_id\":null,\"type_display\":\"Creator\"},{\"role\"\
+        :null,\"type\":\"contact\",\"givenname\":\"Ted\",\"surname\":\"Cheeseman\"\
+        ,\"organization\":\"Happywhale.com\",\"position\":\"Primary contact\",\"email\"\
+        :\"ted@happywhale.com\",\"url\":\"https://happywhale.com\",\"organization_oceanexpert_id\"\
+        :null,\"type_display\":\"Contact\"},{\"role\":null,\"type\":\"metadataProvider\"\
+        ,\"givenname\":null,\"surname\":\"OBIS-SEAMAP\",\"organization\":\"Marine\
+        \ Geospatial Ecology Lab, Duke University\",\"position\":null,\"email\":\"\
+        seamap-contact@duke.edu\",\"url\":\"https://seamap.env.duke.edu\",\"organization_oceanexpert_id\"\
+        :19393,\"type_display\":\"Metadata Provider\"},{\"role\":\"distributor\",\"\
+        type\":\"associatedParty\",\"givenname\":null,\"surname\":\"OBIS-SEAMAP\"\
+        ,\"organization\":\"Marine Geospatial Ecology Lab, Duke University\",\"position\"\
+        :null,\"email\":\"seamap-contact@duke.edu\",\"url\":\"https://seamap.env.duke.edu\"\
+        ,\"organization_oceanexpert_id\":19393,\"type_display\":\"Distributor\"},{\"\
+        role\":\"owner\",\"type\":\"associatedParty\",\"givenname\":\"Ted\",\"surname\"\
+        :\"Cheeseman\",\"organization\":\"Happywhale.com\",\"position\":\"Primary\
+        \ contact\",\"email\":\"ted@happywhale.com\",\"url\":\"https://happywhale.com\"\
+        ,\"organization_oceanexpert_id\":null,\"type_display\":\"Owner\"},{\"role\"\
+        :\"originator\",\"type\":\"associatedParty\",\"givenname\":\"Ted\",\"surname\"\
+        :\"Cheeseman\",\"organization\":\"Happywhale.com\",\"position\":null,\"email\"\
+        :\"ted@happywhale.com\",\"url\":\"https://happywhale.com\",\"organization_oceanexpert_id\"\
+        :null,\"type_display\":\"Originator\"},{\"role\":\"owner\",\"type\":\"personnel\"\
+        ,\"givenname\":\"Ted\",\"surname\":\"Cheeseman\",\"organization\":null,\"\
+        position\":null,\"email\":null,\"url\":null,\"organization_oceanexpert_id\"\
+        :null,\"type_display\":\"Owner\"}],\"nodes\":[{\"id\":\"573654c1-4ce7-4ea2-b2f1-e4d42f8f9c31\"\
+        ,\"name\":\"OBIS-SEAMAP\"}],\"keywords\":[{\"keyword\":\"Marine Biology\"\
+        ,\"thesaurus\":\"N/A\"},{\"keyword\":\"PhotoID\",\"thesaurus\":\"N/A\"},{\"\
+        keyword\":\"Occurrence\",\"thesaurus\":\"GBIF Dataset Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type_2015-07-10.xml\"\
+        },{\"keyword\":\"Observation\",\"thesaurus\":\"GBIF Dataset Subtype Vocabulary:\
+        \ http://rs.gbif.org/vocabulary/gbif/dataset_subtype.xml\"}],\"downloads\"\
+        :[{\"year\":2026,\"downloads\":312,\"records\":59437},{\"year\":2025,\"downloads\"\
+        :2693,\"records\":441943},{\"year\":2024,\"downloads\":1446,\"records\":223321},{\"\
+        year\":2023,\"downloads\":1271,\"records\":117199},{\"year\":2022,\"downloads\"\
+        :2018,\"records\":168447},{\"year\":2021,\"downloads\":2112,\"records\":154966},{\"\
+        year\":2020,\"downloads\":378,\"records\":18748}],\"tags\":null,\"disable_extensions\"\
+        :null,\"records\":1},{\"id\":\"d6af0fac-8a21-4d77-8872-f10d471fc0cf\",\"url\"\
+        :\"http://ipt.calacademy.org:8080/resource?r=ich\",\"archive\":\"http://ipt.calacademy.org:8080/archive.do?r=ich\"\
+        ,\"published\":\"2026-10-26T22:37:11.000Z\",\"created\":\"2022-10-14T13:35:03.757Z\"\
+        ,\"updated\":\"2026-10-27T19:35:41.513Z\",\"core\":\"occurrence\",\"extensions\"\
+        :[],\"statistics\":{\"Event\":0,\"absence\":5489,\"dropped\":73995,\"Occurrence\"\
+        :220939,\"DNADerivedData\":0,\"MeasurementOrFact\":0},\"extent\":\"POLYGON((-179.95\
+        \ -78,179.97225 -78,179.97225 80.2,-179.95 80.2,-179.95 -78))\",\"title\"\
+        :\"CAS Ichthyology (ICH)\",\"citation\":\"Fong J (2026). CAS Ichthyology (ICH).\
+        \ Version 150.546. California Academy of Sciences. Occurrence dataset. http://ipt.calacademy.org:8080/resource?r=ich&v=150.546\"\
+        ,\"citation_id\":null,\"abstract\":\"\\n            <p>The electronic catalog\
+        \ of the ichthyology collection at the California Academy of Sciences, San\
+        \ Francisco.</p>\\n        \",\"intellectualrights\":\"To the extent possible\
+        \ under law, the publisher has waived all rights to these data and has dedicated\
+        \ them to the  Public Domain (CC0 1.0)\",\"feed\":{\"id\":\"efb15359-a72b-48dd-8195-065ea832bad5\"\
+        ,\"url\":\"http://ipt.calacademy.org:8080/rss.do\",\"website\":\"http://ipt.calacademy.org:8080\"\
+        ,\"active\":true},\"institutes\":[{\"name\":\"California Academy of Sciences\"\
+        ,\"oceanexpert_id\":5196,\"oceanexpert_parent_id\":null}],\"contacts\":[{\"\
+        role\":null,\"type\":\"creator\",\"givenname\":\"Jon\",\"surname\":\"Fong\"\
+        ,\"organization\":\"California Academy of Sciences\",\"position\":\"Collection\
+        \ Manager, Ichthyology\",\"email\":\"jfong@calacademy.org\",\"url\":\"https://www.calacademy.org/staff/ibss/ichthyology/jon-fong\"\
+        ,\"organization_oceanexpert_id\":null,\"type_display\":\"Creator\"},{\"role\"\
+        :null,\"type\":\"contact\",\"givenname\":\"Jon\",\"surname\":\"Fong\",\"organization\"\
+        :\"California Academy of Sciences\",\"position\":\"Collection Manager, Ichthyology\"\
+        ,\"email\":\"jfong@calacademy.org\",\"url\":\"https://www.calacademy.org/staff/ibss/ichthyology/jon-fong\"\
+        ,\"organization_oceanexpert_id\":null,\"type_display\":\"Contact\"},{\"role\"\
+        :null,\"type\":\"metadataProvider\",\"givenname\":\"Jon\",\"surname\":\"Fong\"\
+        ,\"organization\":\"California Academy of Sciences\",\"position\":\"Collection\
+        \ Manager, Ichthyology\",\"email\":\"jfong@calacademy.org\",\"url\":null,\"\
+        organization_oceanexpert_id\":5196,\"type_display\":\"Metadata Provider\"\
+        },{\"role\":\"curator\",\"type\":\"associatedParty\",\"givenname\":\"Luiz\"\
+        ,\"surname\":\"Rocha\",\"organization\":\"California Academy of Sciences\"\
+        ,\"position\":\"Curator\",\"email\":\"lrocha@calacademy.org\",\"url\":\"https://www.calacademy.org/staff/ibss/ichthyology/luiz-a-rocha\"\
+        ,\"organization_oceanexpert_id\":5196,\"type_display\":\"Curator\"}],\"nodes\"\
+        :[{\"id\":\"b7c47783-a020-4173-b390-7b57c4fa1426\",\"name\":\"OBIS USA\"}],\"\
+        keywords\":[{\"keyword\":\"Ichthyology\",\"thesaurus\":\"n/a\"},{\"keyword\"\
+        :\"Fishes\",\"thesaurus\":\"n/a\"},{\"keyword\":\"Fish\",\"thesaurus\":\"\
+        n/a\"},{\"keyword\":\"Occurrence\",\"thesaurus\":\"GBIF Dataset Type Vocabulary:\
+        \ http://rs.gbif.org/vocabulary/gbif/dataset_type.xml\"},{\"keyword\":\"Specimen\"\
+        ,\"thesaurus\":\"GBIF Dataset Subtype Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_subtype.xml\"\
+        },{\"keyword\":\"Occurrence\",\"thesaurus\":\"GBIF Dataset Type Vocabulary:\
+        \ http://rs.gbif.org/vocabulary/gbif/dataset_type_2015-07-10.xml\"}],\"downloads\"\
+        :[{\"year\":2026,\"downloads\":323646,\"records\":28180944},{\"year\":2025,\"\
+        downloads\":245301,\"records\":331978215},{\"year\":2024,\"downloads\":275558,\"\
+        records\":464480323},{\"year\":2023,\"downloads\":103951,\"records\":353307271},{\"\
+        year\":2022,\"downloads\":46472,\"records\":73923008}],\"tags\":null,\"disable_extensions\"\
+        :null,\"records\":1},{\"id\":\"fcbb56da-7237-43a3-831e-d45571496c68\",\"url\"\
+        :\"http://ipt.env.duke.edu/resource?r=zd_1765\",\"archive\":\"https://ipt.env.duke.edu/archive.do?r=zd_1765\"\
+        ,\"published\":\"2026-07-15T18:29:56.000Z\",\"created\":\"2020-10-12T23:38:29.526Z\"\
+        ,\"updated\":\"2026-07-15T18:56:46.938Z\",\"core\":\"occurrence\",\"extensions\"\
+        :[],\"statistics\":{\"Event\":0,\"absence\":0,\"dropped\":0,\"Occurrence\"\
+        :211278,\"DNADerivedData\":0,\"MeasurementOrFact\":0},\"extent\":\"POLYGON((-179.911\
+        \ 0.000019,179.791 0.000019,179.791 66.33888,-179.911 66.33888,-179.911 0.000019))\"\
+        ,\"title\":\"Happywhale - Humpback whale in North Pacific Ocean\",\"citation\"\
+        :\"Happywhale. 2026. Happywhale - Humpback whale in North Pacific Ocean. Version\
+        \ 1.5.0. Dataset published in OBIS-SEAMAP and originated from Happywhale.com.\
+        \ https://doi.org/10.82144/4991ec34.\",\"citation_id\":\"https://doi.org/10.82144/4991ec34\"\
+        ,\"abstract\":\"\\n            <p>Original provider:\\nHappywhale\\n\\nDataset\
+        \ credits:\\nHappywhale and contributors\\n\\nAbstract:\\nHappywhale.com is\
+        \ a resource to help you know whales as individuals, and to benefit conservation\
+        \ science with rich data about individual whales.\\n</p>\\n        \",\"intellectualrights\"\
+        :\"This work is licensed under a  Creative Commons Attribution Non Commercial\
+        \ (CC-BY-NC) 4.0 License\",\"feed\":{\"id\":\"18954703-9b9d-4584-b46d-87846532c5ee\"\
+        ,\"url\":\"https://ipt.env.duke.edu/rss.do\",\"website\":\"https://ipt.env.duke.edu\"\
+        ,\"active\":true},\"institutes\":[{\"name\":\"Duke University\",\"oceanexpert_id\"\
+        :19393,\"oceanexpert_parent_id\":null}],\"contacts\":[{\"role\":null,\"type\"\
+        :\"creator\",\"givenname\":\"Ted\",\"surname\":\"Cheeseman\",\"organization\"\
+        :\"Happywhale.com\",\"position\":\"Primary contact\",\"email\":\"ted@happywhale.com\"\
+        ,\"url\":\"https://happywhale.com\",\"organization_oceanexpert_id\":null,\"\
+        type_display\":\"Creator\"},{\"role\":null,\"type\":\"contact\",\"givenname\"\
+        :\"Ted\",\"surname\":\"Cheeseman\",\"organization\":\"Happywhale.com\",\"\
+        position\":\"Primary contact\",\"email\":\"ted@happywhale.com\",\"url\":\"\
+        https://happywhale.com\",\"organization_oceanexpert_id\":null,\"type_display\"\
+        :\"Contact\"},{\"role\":null,\"type\":\"metadataProvider\",\"givenname\":null,\"\
+        surname\":\"OBIS-SEAMAP\",\"organization\":\"Marine Geospatial Ecology Lab,\
+        \ Duke University\",\"position\":null,\"email\":\"seamap-contact@duke.edu\"\
+        ,\"url\":\"https://seamap.env.duke.edu\",\"organization_oceanexpert_id\":19393,\"\
+        type_display\":\"Metadata Provider\"},{\"role\":\"distributor\",\"type\":\"\
+        associatedParty\",\"givenname\":null,\"surname\":\"OBIS-SEAMAP\",\"organization\"\
+        :\"Marine Geospatial Ecology Lab, Duke University\",\"position\":null,\"email\"\
+        :\"seamap-contact@duke.edu\",\"url\":\"https://seamap.env.duke.edu\",\"organization_oceanexpert_id\"\
+        :19393,\"type_display\":\"Distributor\"},{\"role\":\"owner\",\"type\":\"associatedParty\"\
+        ,\"givenname\":\"Ted\",\"surname\":\"Cheeseman\",\"organization\":\"Happywhale.com\"\
+        ,\"position\":\"Primary contact\",\"email\":\"ted@happywhale.com\",\"url\"\
+        :\"https://happywhale.com\",\"organization_oceanexpert_id\":null,\"type_display\"\
+        :\"Owner\"},{\"role\":\"originator\",\"type\":\"associatedParty\",\"givenname\"\
+        :\"Ted\",\"surname\":\"Cheeseman\",\"organization\":\"Happywhale.com\",\"\
+        position\":null,\"email\":\"ted@happywhale.com\",\"url\":\"https://happywhale.com\"\
+        ,\"organization_oceanexpert_id\":null,\"type_display\":\"Originator\"},{\"\
+        role\":\"owner\",\"type\":\"personnel\",\"givenname\":\"Ted\",\"surname\"\
+        :\"Cheeseman\",\"organization\":null,\"position\":null,\"email\":null,\"url\"\
+        :null,\"organization_oceanexpert_id\":null,\"type_display\":\"Owner\"}],\"\
+        nodes\":[{\"id\":\"573654c1-4ce7-4ea2-b2f1-e4d42f8f9c31\",\"name\":\"OBIS-SEAMAP\"\
+        }],\"keywords\":[{\"keyword\":\"Marine Biology\",\"thesaurus\":\"N/A\"},{\"\
+        keyword\":\"PhotoID\",\"thesaurus\":\"N/A\"},{\"keyword\":\"Occurrence\",\"\
+        thesaurus\":\"GBIF Dataset Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type_2015-07-10.xml\"\
+        },{\"keyword\":\"Observation\",\"thesaurus\":\"GBIF Dataset Subtype Vocabulary:\
+        \ http://rs.gbif.org/vocabulary/gbif/dataset_subtype.xml\"}],\"downloads\"\
+        :[{\"year\":2026,\"downloads\":1250,\"records\":60634654},{\"year\":2025,\"\
+        downloads\":5613,\"records\":414529314},{\"year\":2024,\"downloads\":4135,\"\
+        records\":497293979},{\"year\":2023,\"downloads\":3063,\"records\":315270775},{\"\
+        year\":2022,\"downloads\":6392,\"records\":215922489},{\"year\":2021,\"downloads\"\
+        :2927,\"records\":228408618},{\"year\":2020,\"downloads\":554,\"records\"\
+        :25424577}],\"tags\":null,\"disable_extensions\":null,\"records\":1}]}"
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 28 Oct 2026 10:52:30 GMT
+      ETag:
+      - W/"1bbaa-QJRNGX8c60kwYghbgGPYEM+TkCo"
+      Server:
+      - nginx/1.14.0 (Ubuntu)
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Cache-Date:
+      - Wed, 28 Oct 2026 10:52:30 GMT
+      X-Powered-By:
+      - Express
+    status:
+      code: 200
+      message: OK
+version: 1
