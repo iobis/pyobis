@@ -395,6 +395,7 @@ def grid(
     event=None,
     flags=None,
     exclude=None,
+    cache=True,
     **kwargs,
 ):
     """
@@ -467,6 +468,7 @@ def grid(
         isSearch=False,
         hasMapper=False,
         isKML=False,
+        cache=cache,
     )
 
 
@@ -486,6 +488,7 @@ def getpoints(
     event=None,
     flags=None,
     exclude=None,
+    cache=True,
     **kwargs,
 ):
     """
@@ -550,6 +553,7 @@ def getpoints(
         isSearch=False,
         hasMapper=False,
         isKML=False,
+        cache=cache,
     )
 
 
@@ -572,6 +576,7 @@ def point(
     event=None,
     flags=None,
     exclude=None,
+    cache=True,
     **kwargs,
 ):
     """
@@ -639,6 +644,7 @@ def point(
         isSearch=False,
         hasMapper=False,
         isKML=False,
+        cache=cache,
     )
 
 
@@ -662,6 +668,7 @@ def tile(
     event=None,
     flags=None,
     exclude=None,
+    cache=True,
     **kwargs,
 ):
     """
@@ -737,6 +744,7 @@ def tile(
         isSearch=False,
         hasMapper=False,
         isKML=False,
+        cache=cache,
     )
 
 
@@ -756,6 +764,7 @@ def centroid(
     event=None,
     flags=None,
     exclude=None,
+    cache=True,
     **kwargs,
 ):
     """
@@ -816,6 +825,7 @@ def centroid(
         isSearch=False,
         hasMapper=False,
         isKML=False,
+        cache=cache,
     )
 
 

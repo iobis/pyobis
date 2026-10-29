@@ -7,7 +7,7 @@ name = "pyobis"
 dynamic = ["version"]
 description = "Python client for OBIS"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 license = {text = "MIT"}
 authors = [
     {name = "pyOBIS Community", email = "pyobis-mailing-list@googlegroups.com"}
@@ -23,9 +23,25 @@ classifiers = [
 ]
 dependencies = [
     "pandas",
-    "requests>=2.7",
-    "requests-cache>=1.2.0,<2.0.0",
-    "urllib3<2.0.0",
+    "requests",
+    "requests-cache",
+    "urllib3",
+]
+[dependency-groups]
+dev = [
+  "check-manifest",
+  "interrogate",
+  "mccabe",
+  "nbsphinx",
+  "pre-commit",
+  "pytest",
+  "pytest-cov",
+  "pytest-sugar",
+  "pytest-recording",
+  "pytest-xdist",
+  "setuptools_scm",
+  "sphinx",
+  "sphinx_rtd_theme",
 ]
 
 [project.urls]
