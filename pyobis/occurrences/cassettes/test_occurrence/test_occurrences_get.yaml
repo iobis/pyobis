@@ -1,0 +1,314 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      Host:
+      - api.obis.org
+      User-Agent:
+      - Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
+        Gecko)         Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.52
+    method: GET
+    uri: https://api.obis.org/v3/occurrence?offset=0&mof=False&size=1
+  response:
+    body:
+      string: '{"total":230582466,"results":[{"basisOfRecord":"MaterialSample","bibliographicCitation":"Brown,
+        M. V. et al. Continental scale monitoring of marine microbiota by the Australian
+        Marine Microbial Biodiversity Initiative. Sci. Data 5:180130 doi: 10.1038/sdata.2018.130
+        (2018).","brackish":true,"catalogNumber":"102.100.100/35552-EF9455B8FFF22EFC18B3DCB746553DB9","class":"Coccolithophyceae","classid":592906,"collectionCode":"BioPlatforms
+        Marine microbes NRS ROT","coordinateUncertaintyInMeters":50,"country":"Australia","date_end":1498348800000,"date_mid":1498348800000,"date_start":1498348800000,"date_year":2017,"decimalLatitude":-32,"decimalLongitude":115.41667,"depth":20,"eventDate":"2017-06-25T15:46:00Z","eventID":"102.100.100/35552","footprintWKT":"POINT(115.41667
+        -32.0)","hab":true,"identificationReferences":"https://github.com/AusMicrobiome/scientific_manual","identificationRemarks":"Australian
+        Microbiome OTU Database - tabular export ---------------------------------------------------  Amplicon
+        filter:   amplicon is ''18Sv4F18Sv4R_v4_eukaryote''  Taxonomy filter:   taxonomy_source
+        is ''silva138 SKlearn''   r1 is ''d__Eukaryota''   r2 is not ''d__Eukaryota_unclassified''  Traits
+        filter:   (no trait filter applied)  Contextual filter:   Nrs Sample Code
+        contains \"nrsrot\"  Australian Microbiome Database Metadata:   Dataset methodology=bpaotu_1.33.0__analysis_2.2.0__AM_db_v3.2_202203021355.db__AM_data_submit_202205160949.tar.gz   Dataset
+        analysis url=https://github.com/AusMicrobiome/amplicon/raw/2.2.0/docs/amplicon_analysis_workflow.docx   Dataset
+        revision date=2022-05-24  ---------------------------------------------------
+        How to cite Australian Microbiome data: https://www.australianmicrobiome.com/protocols/acknowledgements/  Australian
+        Microbiome data use policy: https://www.australianmicrobiome.com/protocols/data-policy/","institutionCode":"BioPlatforms","kingdom":"Chromista","kingdomid":7,"locality":"Rottnest
+        Island","marine":true,"materialSampleID":"102.100.100/35552","maximumDepthInMeters":20,"minimumDepthInMeters":20,"modified":"2022-08-01T08:50:55Z","occurrenceID":"urn:bioplatforms:102.100.100/35552-EF9455B8FFF22EFC18B3DCB746553DB9","occurrenceStatus":"present","order":"Prymnesiales","orderid":115061,"organismQuantity":"1","organismQuantityType":"DNA
+        sequence reads","phylum":"Haptophyta","phylumid":369190,"recordedBy":"Jodie
+        van de Kamp","sampleSizeUnit":"DNA sequence reads","sampleSizeValue":"238789","samplingProtocol":"Should
+        point to voyage CTD bottle cast methods.","scientificName":"Prymnesiales","scientificNameID":"urn:lsid:marinespecies.org:taxname:115061","subclass":"Prymnesiophycidae","subclassid":236093,"subkingdom":"Hacrobia","subkingdomid":582418,"subphylum":"Haptophytina","subphylumid":1731399,"superdomain":"Biota","superdomainid":1,"taxonRank":"family","wrims":true,"id":"0000001f-7694-4934-81fd-b531fb7530a9","dataset_id":"2ac6b17f-3b3a-4e0f-b712-3b640bf79147","node_id":["2a57cd59-6799-4579-955e-27c9af97aea4"],"dropped":false,"absence":false,"originalScientificName":"Prymnesiales","aphiaID":115061,"flags":[],"bathymetry":43,"shoredistance":3903,"sst":20.89,"sss":35.53}]}'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 28 Oct 2026 11:02:07 GMT
+      ETag:
+      - W/"c40-x5f5acnO/QtbqnapzDgHav3MNVc"
+      Server:
+      - nginx/1.14.0 (Ubuntu)
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Cache-Date:
+      - Wed, 28 Oct 2026 11:02:07 GMT
+      X-Powered-By:
+      - Express
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      Host:
+      - api.obis.org
+      User-Agent:
+      - Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
+        Gecko)         Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.52
+    method: GET
+    uri: https://api.obis.org/v3/occurrence?offset=0&mof=False&size=1
+  response:
+    body:
+      string: '{"total":230582466,"results":[{"basisOfRecord":"MaterialSample","bibliographicCitation":"Brown,
+        M. V. et al. Continental scale monitoring of marine microbiota by the Australian
+        Marine Microbial Biodiversity Initiative. Sci. Data 5:180130 doi: 10.1038/sdata.2018.130
+        (2018).","brackish":true,"catalogNumber":"102.100.100/35552-EF9455B8FFF22EFC18B3DCB746553DB9","class":"Coccolithophyceae","classid":592906,"collectionCode":"BioPlatforms
+        Marine microbes NRS ROT","coordinateUncertaintyInMeters":50,"country":"Australia","date_end":1498348800000,"date_mid":1498348800000,"date_start":1498348800000,"date_year":2017,"decimalLatitude":-32,"decimalLongitude":115.41667,"depth":20,"eventDate":"2017-06-25T15:46:00Z","eventID":"102.100.100/35552","footprintWKT":"POINT(115.41667
+        -32.0)","hab":true,"identificationReferences":"https://github.com/AusMicrobiome/scientific_manual","identificationRemarks":"Australian
+        Microbiome OTU Database - tabular export ---------------------------------------------------  Amplicon
+        filter:   amplicon is ''18Sv4F18Sv4R_v4_eukaryote''  Taxonomy filter:   taxonomy_source
+        is ''silva138 SKlearn''   r1 is ''d__Eukaryota''   r2 is not ''d__Eukaryota_unclassified''  Traits
+        filter:   (no trait filter applied)  Contextual filter:   Nrs Sample Code
+        contains \"nrsrot\"  Australian Microbiome Database Metadata:   Dataset methodology=bpaotu_1.33.0__analysis_2.2.0__AM_db_v3.2_202203021355.db__AM_data_submit_202205160949.tar.gz   Dataset
+        analysis url=https://github.com/AusMicrobiome/amplicon/raw/2.2.0/docs/amplicon_analysis_workflow.docx   Dataset
+        revision date=2022-05-24  ---------------------------------------------------
+        How to cite Australian Microbiome data: https://www.australianmicrobiome.com/protocols/acknowledgements/  Australian
+        Microbiome data use policy: https://www.australianmicrobiome.com/protocols/data-policy/","institutionCode":"BioPlatforms","kingdom":"Chromista","kingdomid":7,"locality":"Rottnest
+        Island","marine":true,"materialSampleID":"102.100.100/35552","maximumDepthInMeters":20,"minimumDepthInMeters":20,"modified":"2022-08-01T08:50:55Z","occurrenceID":"urn:bioplatforms:102.100.100/35552-EF9455B8FFF22EFC18B3DCB746553DB9","occurrenceStatus":"present","order":"Prymnesiales","orderid":115061,"organismQuantity":"1","organismQuantityType":"DNA
+        sequence reads","phylum":"Haptophyta","phylumid":369190,"recordedBy":"Jodie
+        van de Kamp","sampleSizeUnit":"DNA sequence reads","sampleSizeValue":"238789","samplingProtocol":"Should
+        point to voyage CTD bottle cast methods.","scientificName":"Prymnesiales","scientificNameID":"urn:lsid:marinespecies.org:taxname:115061","subclass":"Prymnesiophycidae","subclassid":236093,"subkingdom":"Hacrobia","subkingdomid":582418,"subphylum":"Haptophytina","subphylumid":1731399,"superdomain":"Biota","superdomainid":1,"taxonRank":"family","wrims":true,"id":"0000001f-7694-4934-81fd-b531fb7530a9","dataset_id":"2ac6b17f-3b3a-4e0f-b712-3b640bf79147","node_id":["2a57cd59-6799-4579-955e-27c9af97aea4"],"dropped":false,"absence":false,"originalScientificName":"Prymnesiales","aphiaID":115061,"flags":[],"bathymetry":43,"shoredistance":3903,"sst":20.89,"sss":35.53}]}'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 28 Oct 2026 11:02:08 GMT
+      ETag:
+      - W/"c40-x5f5acnO/QtbqnapzDgHav3MNVc"
+      Server:
+      - nginx/1.14.0 (Ubuntu)
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Cache-Date:
+      - Wed, 28 Oct 2026 11:02:08 GMT
+      X-Powered-By:
+      - Express
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      Host:
+      - api.obis.org
+      User-Agent:
+      - Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
+        Gecko)         Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.52
+    method: GET
+    uri: https://api.obis.org/v3/occurrence/0000001f-7694-4934-81fd-b531fb7530a9?size=1
+  response:
+    body:
+      string: '{"total":1,"results":[{"basisOfRecord":"MaterialSample","bibliographicCitation":"Brown,
+        M. V. et al. Continental scale monitoring of marine microbiota by the Australian
+        Marine Microbial Biodiversity Initiative. Sci. Data 5:180130 doi: 10.1038/sdata.2018.130
+        (2018).","brackish":true,"catalogNumber":"102.100.100/35552-EF9455B8FFF22EFC18B3DCB746553DB9","class":"Coccolithophyceae","classid":592906,"collectionCode":"BioPlatforms
+        Marine microbes NRS ROT","coordinateUncertaintyInMeters":50,"country":"Australia","date_end":1498348800000,"date_mid":1498348800000,"date_start":1498348800000,"date_year":2017,"decimalLatitude":-32,"decimalLongitude":115.41667,"depth":20,"eventDate":"2017-06-25T15:46:00Z","eventID":"102.100.100/35552","footprintWKT":"POINT(115.41667
+        -32.0)","hab":true,"identificationReferences":"https://github.com/AusMicrobiome/scientific_manual","identificationRemarks":"Australian
+        Microbiome OTU Database - tabular export ---------------------------------------------------  Amplicon
+        filter:   amplicon is ''18Sv4F18Sv4R_v4_eukaryote''  Taxonomy filter:   taxonomy_source
+        is ''silva138 SKlearn''   r1 is ''d__Eukaryota''   r2 is not ''d__Eukaryota_unclassified''  Traits
+        filter:   (no trait filter applied)  Contextual filter:   Nrs Sample Code
+        contains \"nrsrot\"  Australian Microbiome Database Metadata:   Dataset methodology=bpaotu_1.33.0__analysis_2.2.0__AM_db_v3.2_202203021355.db__AM_data_submit_202205160949.tar.gz   Dataset
+        analysis url=https://github.com/AusMicrobiome/amplicon/raw/2.2.0/docs/amplicon_analysis_workflow.docx   Dataset
+        revision date=2022-05-24  ---------------------------------------------------
+        How to cite Australian Microbiome data: https://www.australianmicrobiome.com/protocols/acknowledgements/  Australian
+        Microbiome data use policy: https://www.australianmicrobiome.com/protocols/data-policy/","institutionCode":"BioPlatforms","kingdom":"Chromista","kingdomid":7,"locality":"Rottnest
+        Island","marine":true,"materialSampleID":"102.100.100/35552","maximumDepthInMeters":20,"minimumDepthInMeters":20,"modified":"2022-08-01T08:50:55Z","occurrenceID":"urn:bioplatforms:102.100.100/35552-EF9455B8FFF22EFC18B3DCB746553DB9","occurrenceStatus":"present","order":"Prymnesiales","orderid":115061,"organismQuantity":"1","organismQuantityType":"DNA
+        sequence reads","phylum":"Haptophyta","phylumid":369190,"recordedBy":"Jodie
+        van de Kamp","sampleSizeUnit":"DNA sequence reads","sampleSizeValue":"238789","samplingProtocol":"Should
+        point to voyage CTD bottle cast methods.","scientificName":"Prymnesiales","scientificNameID":"urn:lsid:marinespecies.org:taxname:115061","subclass":"Prymnesiophycidae","subclassid":236093,"subkingdom":"Hacrobia","subkingdomid":582418,"subphylum":"Haptophytina","subphylumid":1731399,"superdomain":"Biota","superdomainid":1,"taxonRank":"family","wrims":true,"id":"0000001f-7694-4934-81fd-b531fb7530a9","dataset_id":"2ac6b17f-3b3a-4e0f-b712-3b640bf79147","node_id":["2a57cd59-6799-4579-955e-27c9af97aea4"],"dropped":false,"absence":false,"originalScientificName":"Prymnesiales","aphiaID":115061,"flags":[],"bathymetry":43,"shoredistance":3903,"sst":20.89,"sss":35.53}]}'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 28 Oct 2026 11:02:09 GMT
+      ETag:
+      - W/"c38-yJaRktfgmkEC7yjQi9Utn4/6Z6M"
+      Server:
+      - nginx/1.14.0 (Ubuntu)
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Cache-Date:
+      - Wed, 28 Oct 2026 11:02:09 GMT
+      X-Powered-By:
+      - Express
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      Host:
+      - api.obis.org
+      User-Agent:
+      - Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
+        Gecko)         Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.52
+    method: GET
+    uri: https://api.obis.org/v3/occurrence/0000001f-7694-4934-81fd-b531fb7530a9
+  response:
+    body:
+      string: '{"total":1,"results":[{"basisOfRecord":"MaterialSample","bibliographicCitation":"Brown,
+        M. V. et al. Continental scale monitoring of marine microbiota by the Australian
+        Marine Microbial Biodiversity Initiative. Sci. Data 5:180130 doi: 10.1038/sdata.2018.130
+        (2018).","brackish":true,"catalogNumber":"102.100.100/35552-EF9455B8FFF22EFC18B3DCB746553DB9","class":"Coccolithophyceae","classid":592906,"collectionCode":"BioPlatforms
+        Marine microbes NRS ROT","coordinateUncertaintyInMeters":50,"country":"Australia","date_end":1498348800000,"date_mid":1498348800000,"date_start":1498348800000,"date_year":2017,"decimalLatitude":-32,"decimalLongitude":115.41667,"depth":20,"eventDate":"2017-06-25T15:46:00Z","eventID":"102.100.100/35552","footprintWKT":"POINT(115.41667
+        -32.0)","hab":true,"identificationReferences":"https://github.com/AusMicrobiome/scientific_manual","identificationRemarks":"Australian
+        Microbiome OTU Database - tabular export ---------------------------------------------------  Amplicon
+        filter:   amplicon is ''18Sv4F18Sv4R_v4_eukaryote''  Taxonomy filter:   taxonomy_source
+        is ''silva138 SKlearn''   r1 is ''d__Eukaryota''   r2 is not ''d__Eukaryota_unclassified''  Traits
+        filter:   (no trait filter applied)  Contextual filter:   Nrs Sample Code
+        contains \"nrsrot\"  Australian Microbiome Database Metadata:   Dataset methodology=bpaotu_1.33.0__analysis_2.2.0__AM_db_v3.2_202203021355.db__AM_data_submit_202205160949.tar.gz   Dataset
+        analysis url=https://github.com/AusMicrobiome/amplicon/raw/2.2.0/docs/amplicon_analysis_workflow.docx   Dataset
+        revision date=2022-05-24  ---------------------------------------------------
+        How to cite Australian Microbiome data: https://www.australianmicrobiome.com/protocols/acknowledgements/  Australian
+        Microbiome data use policy: https://www.australianmicrobiome.com/protocols/data-policy/","institutionCode":"BioPlatforms","kingdom":"Chromista","kingdomid":7,"locality":"Rottnest
+        Island","marine":true,"materialSampleID":"102.100.100/35552","maximumDepthInMeters":20,"minimumDepthInMeters":20,"modified":"2022-08-01T08:50:55Z","occurrenceID":"urn:bioplatforms:102.100.100/35552-EF9455B8FFF22EFC18B3DCB746553DB9","occurrenceStatus":"present","order":"Prymnesiales","orderid":115061,"organismQuantity":"1","organismQuantityType":"DNA
+        sequence reads","phylum":"Haptophyta","phylumid":369190,"recordedBy":"Jodie
+        van de Kamp","sampleSizeUnit":"DNA sequence reads","sampleSizeValue":"238789","samplingProtocol":"Should
+        point to voyage CTD bottle cast methods.","scientificName":"Prymnesiales","scientificNameID":"urn:lsid:marinespecies.org:taxname:115061","subclass":"Prymnesiophycidae","subclassid":236093,"subkingdom":"Hacrobia","subkingdomid":582418,"subphylum":"Haptophytina","subphylumid":1731399,"superdomain":"Biota","superdomainid":1,"taxonRank":"family","wrims":true,"id":"0000001f-7694-4934-81fd-b531fb7530a9","dataset_id":"2ac6b17f-3b3a-4e0f-b712-3b640bf79147","node_id":["2a57cd59-6799-4579-955e-27c9af97aea4"],"dropped":false,"absence":false,"originalScientificName":"Prymnesiales","aphiaID":115061,"flags":[],"bathymetry":43,"shoredistance":3903,"sst":20.89,"sss":35.53}]}'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 28 Oct 2026 11:02:10 GMT
+      ETag:
+      - W/"c38-yJaRktfgmkEC7yjQi9Utn4/6Z6M"
+      Server:
+      - nginx/1.14.0 (Ubuntu)
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Cache-Date:
+      - Wed, 28 Oct 2026 11:02:10 GMT
+      X-Powered-By:
+      - Express
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, zstd
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+    method: GET
+    uri: https://api.obis.org/v3/occurrence/0000001f-7694-4934-81fd-b531fb7530a9
+  response:
+    body:
+      string: '{"total":1,"results":[{"basisOfRecord":"MaterialSample","bibliographicCitation":"Brown,
+        M. V. et al. Continental scale monitoring of marine microbiota by the Australian
+        Marine Microbial Biodiversity Initiative. Sci. Data 5:180130 doi: 10.1038/sdata.2018.130
+        (2018).","brackish":true,"catalogNumber":"102.100.100/35552-EF9455B8FFF22EFC18B3DCB746553DB9","class":"Coccolithophyceae","classid":592906,"collectionCode":"BioPlatforms
+        Marine microbes NRS ROT","coordinateUncertaintyInMeters":50,"country":"Australia","date_end":1498348800000,"date_mid":1498348800000,"date_start":1498348800000,"date_year":2017,"decimalLatitude":-32,"decimalLongitude":115.41667,"depth":20,"eventDate":"2017-06-25T15:46:00Z","eventID":"102.100.100/35552","footprintWKT":"POINT(115.41667
+        -32.0)","hab":true,"identificationReferences":"https://github.com/AusMicrobiome/scientific_manual","identificationRemarks":"Australian
+        Microbiome OTU Database - tabular export ---------------------------------------------------  Amplicon
+        filter:   amplicon is ''18Sv4F18Sv4R_v4_eukaryote''  Taxonomy filter:   taxonomy_source
+        is ''silva138 SKlearn''   r1 is ''d__Eukaryota''   r2 is not ''d__Eukaryota_unclassified''  Traits
+        filter:   (no trait filter applied)  Contextual filter:   Nrs Sample Code
+        contains \"nrsrot\"  Australian Microbiome Database Metadata:   Dataset methodology=bpaotu_1.33.0__analysis_2.2.0__AM_db_v3.2_202203021355.db__AM_data_submit_202205160949.tar.gz   Dataset
+        analysis url=https://github.com/AusMicrobiome/amplicon/raw/2.2.0/docs/amplicon_analysis_workflow.docx   Dataset
+        revision date=2022-05-24  ---------------------------------------------------
+        How to cite Australian Microbiome data: https://www.australianmicrobiome.com/protocols/acknowledgements/  Australian
+        Microbiome data use policy: https://www.australianmicrobiome.com/protocols/data-policy/","institutionCode":"BioPlatforms","kingdom":"Chromista","kingdomid":7,"locality":"Rottnest
+        Island","marine":true,"materialSampleID":"102.100.100/35552","maximumDepthInMeters":20,"minimumDepthInMeters":20,"modified":"2022-08-01T08:50:55Z","occurrenceID":"urn:bioplatforms:102.100.100/35552-EF9455B8FFF22EFC18B3DCB746553DB9","occurrenceStatus":"present","order":"Prymnesiales","orderid":115061,"organismQuantity":"1","organismQuantityType":"DNA
+        sequence reads","phylum":"Haptophyta","phylumid":369190,"recordedBy":"Jodie
+        van de Kamp","sampleSizeUnit":"DNA sequence reads","sampleSizeValue":"238789","samplingProtocol":"Should
+        point to voyage CTD bottle cast methods.","scientificName":"Prymnesiales","scientificNameID":"urn:lsid:marinespecies.org:taxname:115061","subclass":"Prymnesiophycidae","subclassid":236093,"subkingdom":"Hacrobia","subkingdomid":582418,"subphylum":"Haptophytina","subphylumid":1731399,"superdomain":"Biota","superdomainid":1,"taxonRank":"family","wrims":true,"id":"0000001f-7694-4934-81fd-b531fb7530a9","dataset_id":"2ac6b17f-3b3a-4e0f-b712-3b640bf79147","node_id":["2a57cd59-6799-4579-955e-27c9af97aea4"],"dropped":false,"absence":false,"originalScientificName":"Prymnesiales","aphiaID":115061,"flags":[],"bathymetry":43,"shoredistance":3903,"sst":20.89,"sss":35.53}]}'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 28 Oct 2026 11:02:11 GMT
+      ETag:
+      - W/"c38-yJaRktfgmkEC7yjQi9Utn4/6Z6M"
+      Server:
+      - nginx/1.14.0 (Ubuntu)
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Cache-Date:
+      - Wed, 28 Oct 2026 11:02:11 GMT
+      X-Powered-By:
+      - Express
+    status:
+      code: 200
+      message: OK
+version: 1
