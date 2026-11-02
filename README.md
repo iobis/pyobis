@@ -69,7 +69,7 @@ data = query.execute()
 
 ## Documentation
 
-For more information, see the [documentation](https://pyobis.readthedocs.io/).
+For more information, see the [documentation](https://iobis.github.io/pyobis).
 
 ## License
 
