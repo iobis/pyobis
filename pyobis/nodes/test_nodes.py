@@ -6,12 +6,12 @@ import requests
 from pyobis import nodes
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_nodes_search_data():
     """
     nodes.search - test for data, check type, size and other methods
     """
-    query = nodes.search(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc")
+    query = nodes.search(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc", cache=False)
     assert not query.data
     query.execute()
     assert "dict" == query.data.__class__.__name__
@@ -22,23 +22,23 @@ def test_nodes_search_data():
     assert query.to_pandas().__class__.__name__ == "DataFrame"
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_nodes_search_url():
     """
     nodes.activities - basic test for url, url are accessible and
     mapper_url correct for supported methods
     """
-    query = nodes.search(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc")
+    query = nodes.search(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc", cache=False)
     assert requests.get(query.api_url).status_code == 200
     assert requests.get(query.mapper_url).status_code == 200
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_nodes_activities_data():
     """
     nodes.activities - basic test for data, check type, size and other methods
     """
-    query = nodes.activities(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc")
+    query = nodes.activities(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc", cache=False)
     assert not query.data
     query.execute()
     assert "dict" == query.data.__class__.__name__
@@ -49,18 +49,17 @@ def test_nodes_activities_data():
     assert query.to_pandas().__class__.__name__ == "DataFrame"
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_nodes_activities_url():
     """
     nodes.activities - basic test for url, url are accessible and
     mapper_url correct for supported methods
     """
-    query = nodes.activities(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc")
+    query = nodes.activities(id="4bf79a01-65a9-4db6-b37b-18434f26ddfc", cache=False)
     assert requests.get(query.api_url).status_code == 200
     assert not query.mapper_url
 
 
-@pytest.mark.vcr()
 def test_cache_parameter_functionality():
     """
     nodes.search, nodes.activities - test cache parameter functionality

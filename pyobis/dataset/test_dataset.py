@@ -6,10 +6,10 @@ import requests
 from pyobis import dataset
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_dataset_get_data():
     "dataset.get - test data"
-    query = dataset.get(id="ec9df3b9-3b2b-4d83-881b-27bcbcd57b95")
+    query = dataset.get(id="ec9df3b9-3b2b-4d83-881b-27bcbcd57b95", cache=False)
     assert not query.data
     query.execute()
     assert query.data.__class__.__name__ == "dict"
@@ -18,18 +18,18 @@ def test_dataset_get_data():
     assert query.to_pandas().__class__.__name__ == "DataFrame"
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_dataset_get_url():
     "dataset.get - test data"
-    query = dataset.get(id="ec9df3b9-3b2b-4d83-881b-27bcbcd57b95")
+    query = dataset.get(id="ec9df3b9-3b2b-4d83-881b-27bcbcd57b95", cache=False)
     assert requests.get(query.api_url).status_code == 200
     assert requests.get(query.mapper_url).status_code == 200
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_dataset_search_data():
     "dataset.search - test for data"
-    query = dataset.search(scientificname="Mola mola")
+    query = dataset.search(scientificname="Mola mola", cache=False)
     assert not query.data
     query.execute()
     assert "dict" == query.data.__class__.__name__
@@ -38,24 +38,23 @@ def test_dataset_search_data():
     assert query.to_pandas().__class__.__name__ == "DataFrame"
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_dataset_search_url():
     "dataset.search - test for data"
-    query = dataset.search(scientificname="Mola mola")
+    query = dataset.search(scientificname="Mola mola", cache=False)
     assert requests.get(query.api_url).status_code == 200
     assert not query.mapper_url
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_dataset_search_keywords():
     "dataset search with keywords"
-    query = dataset.search(keyword="coral")
+    query = dataset.search(keyword="coral", cache=False)
     query.execute()
     assert "dict" == query.data.__class__.__name__
     assert query.to_pandas().__class__.__name__ == "DataFrame"
 
 
-@pytest.mark.vcr()
 def test_cache_parameter_functionality():
     """
     dataset.search, dataset.get - test cache parameter functionality

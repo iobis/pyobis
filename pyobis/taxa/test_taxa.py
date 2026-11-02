@@ -6,12 +6,12 @@ import requests
 from pyobis import taxa
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_taxa_search_data():
     """
     taxa.search - basic test for data, check type, size and other methods
     """
-    query = taxa.search(scientificname="Mola mola")
+    query = taxa.search(scientificname="Mola mola", cache=False)
     assert not query.data  # the data is none after query building but before executing
     query.execute()
     assert "dict" == query.data.__class__.__name__
@@ -19,23 +19,23 @@ def test_taxa_search_data():
     assert 2 == len(query.data)
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_taxa_search_url():
     """
     taxa.search - basic test for url, url are accessible and
     mapper_url is None for unsupported methods
     """
-    query = taxa.search(scientificname="Mola mola")
+    query = taxa.search(scientificname="Mola mola", cache=False)
     assert requests.get(query.api_url).status_code == 200
     assert not query.mapper_url
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_taxa_taxon_data():
     """
     taxa.taxon - basic test for data, check type, size and other methods
     """
-    query = taxa.taxon(545439)
+    query = taxa.taxon(545439, cache=False)
     assert not query.data
     query.execute()
     assert dict == query.data.__class__
@@ -45,23 +45,23 @@ def test_taxa_taxon_data():
     assert query.to_pandas().__class__.__name__ == "DataFrame"
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_taxa_taxon_url():
     """
     taxa.taxon - basic test for url, url are accessible and
     mapper_url is None for unsupported methods
     """
-    query = taxa.taxon(545439)
+    query = taxa.taxon(545439, cache=False)
     assert requests.get(query.api_url).status_code == 200
     assert not query.mapper_url
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_taxa_annotations_data():
     """
     taxa.annotations - basic test for data, check type, size and other methods
     """
-    query = taxa.annotations(scientificname="Abra")
+    query = taxa.annotations(scientificname="Abra", cache=False)
     assert not query.data
     query.execute()
     assert dict == query.data.__class__
@@ -70,18 +70,17 @@ def test_taxa_annotations_data():
     assert query.to_pandas().__class__.__name__ == "DataFrame"
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_taxa_annotations_url():
     """
     taxa.annotations - basic test for url, url are accessible and
     mapper_url is None for unsupported methods
     """
-    query = taxa.annotations(scientificname="Abra")
+    query = taxa.annotations(scientificname="Abra", cache=False)
     assert requests.get(query.api_url).status_code == 200
     assert not query.mapper_url
 
 
-@pytest.mark.vcr()
 def test_cache_parameter_functionality():
     """
     taxa.search, taxa.taxon, taxa.annotations - test cache parameter functionality
