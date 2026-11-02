@@ -300,24 +300,24 @@ def search(
     :param hasextensions: [String] Extensions that need to be present
         (e.g. MeasurementOrFact, DNADerivedData).
     :param cache: [bool, optional] Whether to use caching. Defaults to True.
-    :return: A dictionary
+    :return: OccResponse which can be turned into a pandas dataframe of taxon occurrences using .execute().
 
     Usage::
 
         from pyobis import occurrences
-        occurrences.search(scientificname = 'Mola mola').execute()
+        df = occurrences.search(scientificname = 'Mola mola').execute()
 
         # Many names
-        occurrences.search(scientificname = ['Mola', 'Abra', 'Lanice', 'Pectinaria']).execute()
+        df = occurrences.search(scientificname = ['Mola', 'Abra', 'Lanice', 'Pectinaria']).execute()
 
         # Use paging parameters (limit and start) to page.
         # Note the different results for the two queries below.
-        occ.search(scientificname = 'Mola mola', offset=0, size=10)
-        occ.search(scientificname = 'Mola mola', offset=10, size=10)
+        df = occ.search(scientificname = 'Mola mola', offset=0, size=10)
+        df = occ.search(scientificname = 'Mola mola', offset=10, size=10)
 
         # Search on a bounding box
         ## in well known text format
-        occurrences.search(
+        df = occurrences.search(
             geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))',
             size=20
         ).execute()
@@ -325,19 +325,19 @@ def search(
         from pyobis import taxa
 
         res = taxa.search(scientificname='Mola mola').execute()['results'][0]
-        occurrences.search(
-            obisid=res['id'],
+        df = occurrences.search(
+            obisid=res['taxonID'],
             geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))',
             size=20
         ).execute()
-        occurrences.search(
+        df = occurrences.search(
             aphiaid=res['worms_id'],
             geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))',
             size=20
         ).execute()
 
         # Get mof response as a pandas dataframe
-        occurrences.search(
+        df = occurrences.search(
             scientificname="Abra", mof=True, hasextensions="MeasurementOrFact", size=100
             ).execute()
     """  # noqa: E501
