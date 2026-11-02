@@ -15,27 +15,27 @@ repos:
       files: requirements-dev.txt
 
 - repo: https://github.com/PyCQA/flake8
-  rev: 7.3.0
+  rev: 7.5.0
   hooks:
     - id: flake8
       exclude: ^(docs/source/conf.py|pyobis/obisissues.py)
       args: [--max-line-length=105]
 
 - repo: https://github.com/pycqa/isort
-  rev: 9.0.0a3
+  rev: 10.0.0b2
   hooks:
     - id: isort
       additional_dependencies: [toml]
       args: ["--profile", "black", "--filter-files"]
 
 - repo: https://github.com/psf/black-pre-commit-mirror
-  rev: 26.5.1
+  rev: 26.10.1
   hooks:
   - id: black
     language_version: python3
 
 - repo: https://github.com/pre-commit/mirrors-mypy
-  rev: v2.1.0
+  rev: v2.4.1
   hooks:
   - id: mypy
     exclude: docs/source/conf.py
@@ -55,7 +55,7 @@ repos:
       args: [-vv, --config=pyproject.toml]
 
 - repo: https://github.com/codespell-project/codespell
-  rev: v2.4.2
+  rev: v2.4.3
   hooks:
     - id: codespell
       exclude: >
@@ -67,7 +67,7 @@ repos:
         # These ignore are needed b/c of the widget PNG as base64 in notebooks/biodiversity_mapping.ipynb
 
 - repo: https://github.com/asottile/pyupgrade
-  rev: v3.21.2
+  rev: v3.22.0
   hooks:
     - id: pyupgrade
       args:
@@ -79,7 +79,7 @@ repos:
     - id: add-trailing-comma
 
 - repo: https://github.com/woodruffw/zizmor-pre-commit
-  rev: v1.25.2
+  rev: v1.31.1
   hooks:
     - id: zizmor
 

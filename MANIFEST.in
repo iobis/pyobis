@@ -15,4 +15,5 @@ exclude Makefile
 exclude .coveragerc
 exclude ruff.toml
 exclude .gitignore
+exclude .zenodo.json
 exclude pyobis/_version.py

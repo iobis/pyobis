@@ -1,0 +1,94 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      Host:
+      - api.obis.org
+      User-Agent:
+      - Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
+        Gecko)         Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.52
+    method: GET
+    uri: https://api.obis.org/v3/node/4bf79a01-65a9-4db6-b37b-18434f26ddfc/activities
+  response:
+    body:
+      string: '{"total":4,"results":[{"id":"4b35a5b4-2357-44b1-8de5-a134fc5c3a16","title":"European
+        Marine Observation and Data Network (EMODnet) - Biology","type":"Other","type_other":"Projects","description":"The
+        European Marine Data and Observation Network (EMODnet) aims to develop a system
+        to make marine data available in support of scientists, policy makers and
+        other end-users, within the framework of the new European maritime policy.
+        VLIZ coordinates the biology lot, with 24 European partners and develops an
+        online data portal. EMODNet Biology contributes to EurOBIS. EMODnet is currently
+        in its third phase.\n","url":"http://www.emodnet-biology.eu/","startdate":"2017-04-17T00:00:00.000Z","enddate":"2019-04-16T00:00:00.000Z","logo":null,"contributions":[{"node_id":"4bf79a01-65a9-4db6-b37b-18434f26ddfc","node":"EurOBIS","other_contributor":null,"funding":[],"funding_source":[]},{"node_id":"310922b4-9d0c-4de1-92d7-9b442d34765b","node":"OBIS
+        Secretariat","other_contributor":null,"funding":[],"funding_source":[]},{"node_id":null,"node":null,"other_contributor":"European
+        Commission - DGMARE","funding":[],"funding_source":[]}]},{"id":"e914b256-8476-4b4d-9202-c7e8ecc6ddf5","title":"Expanding
+        OBIS with environmental data (OBIS-ENV-DATA)","type":"Other","type_other":"Projects","description":"The
+        main objectives of the project \"Expanding OBIS with environmental data\"
+        were (i) to ensure mixed data sets stay together, (ii) to demonstrate that
+        OBIS nodes, NODCs and ADUs, that hold mixed data sets, can collaborate on
+        the joint management and exchange of biodiversity observation data including
+        environmental measurements, and (iii) to show what the benefit of this approach
+        is for marine sciences, biological analysis and modelling. This was an IODE
+        pilot project established by Recommendation IODE-XXIII.4.","url":"https://www.iode.org/index.php?option=com_content&view=article&id=464:sg-obis-env-data&catid=10:structure&Itemid=100200#rec23.4","startdate":"2015-03-20T00:00:00.000Z","enddate":"2017-03-31T00:00:00.000Z","logo":null,"contributions":[{"node_id":"4bf79a01-65a9-4db6-b37b-18434f26ddfc","node":"EurOBIS","other_contributor":null,"funding":[10000],"funding_source":["EMODNet"]},{"node_id":"dc6c6ea2-83f5-4b18-985a-9efff6320d69","node":"Antarctic
+        OBIS","other_contributor":null,"funding":[],"funding_source":["Belspo"]},{"node_id":"1ad35eb9-c615-4733-864a-b585aebcfb70","node":"MedOBIS","other_contributor":null,"funding":[],"funding_source":[]},{"node_id":"b7c47783-a020-4173-b390-7b57c4fa1426","node":"OBIS
+        USA","other_contributor":null,"funding":[],"funding_source":[]},{"node_id":"aa56c74b-90ba-461d-b117-2b384571993b","node":"OBIS
+        Kenya","other_contributor":null,"funding":[],"funding_source":[]},{"node_id":"310922b4-9d0c-4de1-92d7-9b442d34765b","node":"OBIS
+        Secretariat","other_contributor":null,"funding":[10000],"funding_source":["IODE"]}]},{"id":"323f8f38-500a-4cbe-b561-4eb15794a0d3","title":"World
+        Register of Marine Species","type":"Partnerships","type_other":"Projects","description":"The
+        aim of a World Register of Marine Species (WoRMS) is to provide an authoritative
+        and comprehensive list of names of marine organisms, including information
+        on synonymy. While the highest priority goes to valid names, other names in
+        use are included so that this register can serve as a guide to interpret taxonomic
+        literature.","url":"http://www.marinespecies.org","startdate":null,"enddate":null,"logo":null,"contributions":[{"node_id":"4bf79a01-65a9-4db6-b37b-18434f26ddfc","node":"EurOBIS","other_contributor":null,"funding":[],"funding_source":[]},{"node_id":"dc6c6ea2-83f5-4b18-985a-9efff6320d69","node":"Antarctic
+        OBIS","other_contributor":null,"funding":[],"funding_source":[]}]},{"id":"f7f688cd-14d6-4064-a0c6-3e89840bc592","title":"LifeWatch
+        Belgium","type":"Partnerships","type_other":null,"description":"LifeWatch
+        was established as part of the European Strategy Forum on Research Infrastructure
+        (ESFRI) and can be seen as a virtual laboratory for biodiversity research.
+        The concept behind LifeWatch was developed in the 1990s and early 2000s, with
+        the support of EU Networks of Excellence related to biodiversity and ecosystem
+        functioning. This - amongst others - included the MarBEF project, which was
+        the driving project behind the creation of both the European node of the Ocean
+        Biogeographic Information System (EurOBIS) and European Register of Marine
+        Species (ERMS) - the predecessor of the World Register of Marine Species (WoRMS).\n\nBelgium
+        contributes to LifeWatch with varied and complementary \"in-kind\" contributions.
+        These are implemented under the form of long lasting projects by different
+        research centers and universities spread over the country and supported by
+        each respective political authority. Within LifeWatch, the Flanders Marine
+        Institute - host of the European node of the Ocean Biogeographic Information
+        System (EurOBIS) and the World Register of Marine Species (WoRMS) - has taken
+        on the responsibility to develop the LifeWatch Species Information Backbone
+        (LW-SIBb). This Backbone also includes OBIS, allowing people to combine services
+        spanning e.g. WoRMS & OBIS in one go.","url":"http://www.lifewatch.be/","startdate":null,"enddate":null,"logo":null,"contributions":[{"node_id":"4bf79a01-65a9-4db6-b37b-18434f26ddfc","node":"EurOBIS","other_contributor":null,"funding":[],"funding_source":[]},{"node_id":"dc6c6ea2-83f5-4b18-985a-9efff6320d69","node":"Antarctic
+        OBIS","other_contributor":null,"funding":[],"funding_source":[]}]}]}'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 28 Oct 2026 10:54:49 GMT
+      ETag:
+      - W/"1575-GOhlrn59f5OgcSwT1fUJMtfDBvQ"
+      Server:
+      - nginx/1.14.0 (Ubuntu)
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Cache-Date:
+      - Wed, 28 Oct 2026 10:54:49 GMT
+      X-Powered-By:
+      - Express
+    status:
+      code: 200
+      message: OK
+version: 1

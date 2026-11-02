@@ -1,0 +1,85 @@
+{
+  "title": "pyobis: Python client for the Ocean Biodiversity Information System (OBIS) API",
+  "upload_type": "software",
+  "description": "<p>pyobis is a Python package for accessing data from the Ocean Biodiversity Information System (OBIS) through the <a href=\"https://api.obis.org/\">OBIS API</a>. OBIS is a global open-access data and information clearing-house on marine biodiversity for science, conservation and sustainable development, which harvests occurrence records from thousands of datasets and makes them available as a single integrated dataset.</p><p>With pyobis, users can search and download species occurrence records, look up taxa, datasets, and OBIS nodes, and retrieve checklists, with results returned as pandas DataFrames and optional request caching.</p><p>pyobis is available from <a href=\"https://pypi.org/project/pyobis/\">PyPI</a> and <a href=\"https://anaconda.org/conda-forge/pyobis\">conda-forge</a>, with documentation at <a href=\"https://iobis.github.io/pyobis/\">iobis.github.io/pyobis</a>. This archive contains the package source code from <a href=\"https://github.com/iobis/pyobis\">github.com/iobis/pyobis</a>.</p>",
+  "creators": [
+    {
+      "name": "pyOBIS Community"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Anand, Ayush",
+      "type": "ProjectMember"
+    },
+    {
+      "name": "Fernandes, Filipe",
+      "type": "ProjectLeader"
+    },
+    {
+      "name": "Murray, Tylar",
+      "orcid": "0000-0001-8241-1919",
+      "affiliation": "USF IMaRS",
+      "type": "ProjectLeader"
+    },
+    {
+      "name": "Rumman, Mehraz Hossain",
+      "type": "ProjectMember"
+    },
+    {
+      "name": "Chamberlain, Scott",
+      "type": "ProjectLeader"
+    },
+    {
+      "name": "Baljapalli, Anshul",
+      "type": "ProjectMember"
+    },
+    {
+      "name": "Provoost, Pieter",
+      "orcid": "0000-0002-4236-0384",
+      "affiliation": "International Oceanographic Data and Information Exchange (IODE), IOC-UNESCO",
+      "type": "ProjectMember"
+    },
+    {
+      "name": "Olatoye, Dolapo",
+      "type": "ProjectMember"
+    },
+    {
+      "name": "Verma, Pushkar",
+      "type": "ProjectMember"
+    },
+    {
+      "name": "Ocean Biodiversity Information System",
+      "type": "Producer"
+    }
+  ],
+  "license": "MIT",
+  "keywords": [
+    "Python",
+    "OBIS",
+    "Ocean Biodiversity Information System",
+    "marine biodiversity",
+    "species occurrence",
+    "biodiversity data",
+    "API client",
+    "pandas"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/iobis/pyobis",
+      "relation": "isSupplementTo",
+      "resource_type": "software",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://pypi.org/project/pyobis/",
+      "relation": "isVariantFormOf",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://iobis.github.io/pyobis/",
+      "relation": "isDocumentedBy",
+      "scheme": "url"
+    }
+  ]
+}

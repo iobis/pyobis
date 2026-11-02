@@ -6,12 +6,12 @@ import requests
 from pyobis import checklist
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_checklist():
     """
     checklist.list - basic test for data, check type, size and other methods
     """
-    query = checklist.list(scientificname="Mola mola")
+    query = checklist.list(scientificname="Mola mola", cache=False)
     assert not query.data
     query.execute()
     assert "dict" == query.data.__class__.__name__
@@ -22,12 +22,12 @@ def test_checklist():
     assert requests.get(query.api_url).status_code == 200
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_checklist_redlist():
     """
     checklist.redlist - basic test for data, check type, size and other methods
     """
-    query = checklist.redlist(scientificname="Mola mola")
+    query = checklist.redlist(scientificname="Mola mola", cache=False)
     assert not query.data
     query.execute()
     assert "dict" == query.data.__class__.__name__
@@ -38,12 +38,12 @@ def test_checklist_redlist():
     assert requests.get(query.api_url).status_code == 200
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_checklist_newest():
     """
     checklist.newest - basic test for data, check type, size and other methods
     """
-    query = checklist.newest(scientificname="Mola mola")
+    query = checklist.newest(scientificname="Mola mola", cache=False)
     assert not query.data
     query.execute()
     assert "dict" == query.data.__class__.__name__
@@ -55,7 +55,6 @@ def test_checklist_newest():
     assert query.to_pandas().__class__.__name__ == "DataFrame"
 
 
-@pytest.mark.vcr()
 def test_cache_parameter_functionality():
     """
     checklist.list - test cache parameter functionality
